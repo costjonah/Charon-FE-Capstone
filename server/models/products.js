@@ -2,7 +2,7 @@ const axios = require('axios');
 const settings = require('./settings.js');
 
 module.exports = {
-  get: (callback) => {
+  getAll: (callback) => {
     axios
       .get(`${settings.url}/products`, settings.head)
       .then((res) => {
@@ -12,7 +12,7 @@ module.exports = {
         callback(err);
       });
   },
-  getById: (id = 1, callback) => {
+  info: (id = 1, callback) => {
     axios
       .get(`${settings.url}/products/${id}`, settings.head)
       .then((res) => {
@@ -22,7 +22,7 @@ module.exports = {
         callback(err);
       });
   },
-  getStylesById: (id = 1, callback) => {
+  styles: (id = 1, callback) => {
     axios
       .get(`${settings.url}/products/${id}/styles`, settings.head)
       .then((res) => {
@@ -32,7 +32,7 @@ module.exports = {
         callback(err);
       });
   },
-  getRelatedById: (id = 1, callback) => {
+  related: (id = 1, callback) => {
     axios
       .get(`${settings.url}/products/${id}/related`, settings.head)
       .then((res) => {

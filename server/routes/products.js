@@ -2,7 +2,7 @@ const models = require('../models/index');
 
 module.exports = (app) => {
   app.get('/products', (req, res) => {
-    models.products.get((err, responseData) => {
+    models.products.getAll((err, responseData) => {
       if (err) {
         console.error('Error: ', err);
         res.status(500).end();
@@ -13,7 +13,7 @@ module.exports = (app) => {
   });
   app.get('/products/:product_id', (req, res) => {
     let id = req.params.product_id;
-    models.products.getById(id, (err, responseData) => {
+    models.products.info(id, (err, responseData) => {
       if (err) {
         console.error('Error: ', err);
         res.status(500).end();
@@ -24,7 +24,7 @@ module.exports = (app) => {
   });
   app.get('/products/:product_id/styles', (req, res) => {
     let id = req.params.product_id;
-    models.products.getStylesById(id, (err, responseData) => {
+    models.products.styles(id, (err, responseData) => {
       if (err) {
         console.error('Error: ', err);
         res.status(500).end();
@@ -35,7 +35,7 @@ module.exports = (app) => {
   });
   app.get('/products/:product_id/related', (req, res) => {
     let id = req.params.product_id;
-    models.products.getRelatedById(id, (err, responseData) => {
+    models.products.related(id, (err, responseData) => {
       if (err) {
         console.error('Error: ', err);
         res.status(500).end();
