@@ -22,8 +22,7 @@ module.exports = (app) => {
     });
   });
   app.post('/reviews', (req, res) => {
-    let id = req.params.product_id;
-    models.reviews.getStylesById(id, (err, responseData) => {
+    models.reviews.getStylesById((err, responseData) => {
       if (err) {
         console.error('Error: ', err);
         res.status(500).end();
@@ -33,7 +32,7 @@ module.exports = (app) => {
     });
   });
   app.put('/reviews/:review_id/helpful', (req, res) => {
-    let id = req.params.product_id;
+    let id = req.params.review_id;
     models.reviews.getRelatedById(id, (err, responseData) => {
       if (err) {
         console.error('Error: ', err);
@@ -44,7 +43,7 @@ module.exports = (app) => {
     });
   });
   app.put('/reviews/:review_id/report', (req, res) => {
-    let id = req.params.product_id;
+    let id = req.params.review_id;
     models.reviews.getRelatedById(id, (err, responseData) => {
       if (err) {
         console.error('Error: ', err);
