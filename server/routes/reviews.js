@@ -2,7 +2,7 @@ const models = require('../models/index')
 
 module.exports = (app) => {
   app.get('/reviews', (req, res) => {
-    models.reviews.get((err, responseData) => {
+    models.reviews.list((err, responseData) => {
       if (err) {
         console.error('Error: ', err);
         res.status(500).end();
@@ -12,7 +12,7 @@ module.exports = (app) => {
     });
   });
   app.get('/reviews/meta', (req, res) => {
-    models.reviews.getById((err, responseData) => {
+    models.reviews.getMetadata((err, responseData) => {
       if (err) {
         console.error('Error: ', err);
         res.status(500).end();
@@ -22,7 +22,7 @@ module.exports = (app) => {
     });
   });
   app.post('/reviews', (req, res) => {
-    models.reviews.getStylesById((err, responseData) => {
+    models.reviews.add((err, responseData) => {
       if (err) {
         console.error('Error: ', err);
         res.status(500).end();
@@ -33,7 +33,7 @@ module.exports = (app) => {
   });
   app.put('/reviews/:review_id/helpful', (req, res) => {
     let id = req.params.review_id;
-    models.reviews.getRelatedById(id, (err, responseData) => {
+    models.reviews.markAsHelpful(id, (err, responseData) => {
       if (err) {
         console.error('Error: ', err);
         res.status(500).end();
@@ -44,7 +44,7 @@ module.exports = (app) => {
   });
   app.put('/reviews/:review_id/report', (req, res) => {
     let id = req.params.review_id;
-    models.reviews.getRelatedById(id, (err, responseData) => {
+    models.reviews.report(id, (err, responseData) => {
       if (err) {
         console.error('Error: ', err);
         res.status(500).end();
