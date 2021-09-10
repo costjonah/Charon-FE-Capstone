@@ -7,13 +7,17 @@ let interactions = require('./routes/interactions');
 
 let app = express();
 
+app.use(express.json());
+app.use(express.static('client'));
+
+app.get('/', (req, res) => {
+  res.send('Under construction. Please come back later.');
+});
+
 products(app);
 reviews(app);
 questionsAndAnswers(app);
 cart(app);
 interactions(app);
-
-app.use(express.json());
-app.use(express.static('client'));
 
 module.exports = app;
