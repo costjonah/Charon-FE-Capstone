@@ -5,7 +5,7 @@ module.exports = {
   list: (params, callback) => {
     axios
       .get(
-        `${settings.url}/reviews?page=${params.page}&count=${params.count}&sort=${params.sort}&id=${params.id}`,
+        `${settings.url}/reviews?page=${params.page}&count=${params.count}&sort=${params.sort}&product_id=${params.id}`,
         settings.head
       )
       .then((res) => {

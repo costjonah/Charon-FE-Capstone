@@ -2,13 +2,13 @@ const models = require('../models/index');
 
 module.exports = (app) => {
   app.get('/reviews', (req, res) => {
-    let queryParams = {
-      page: req.query.page,
-      count: req.query.count,
-      sort: req.query.sort,
+    let queryData = {
+      page: req.query.page || 1,
+      count: req.query.count || 5,
+      sort: req.query.text || 'newest',
       id: req.query.product_id,
     };
-    models.reviews.list(queryParams, (err, responseData) => {
+    models.reviews.list(queryData, (err, responseData) => {
       if (err) {
         console.error('Error: ', err);
         res.status(500).end();
@@ -18,8 +18,7 @@ module.exports = (app) => {
     });
   });
   app.get('/reviews/meta', (req, res) => {
-    let queryId = req.query.product_id;
-    models.reviews.getMetadata(queryId, (err, responseData) => {
+    models.reviews.getMetadata((err, responseData) => {
       if (err) {
         console.error('Error: ', err);
         res.status(500).end();
@@ -29,13 +28,12 @@ module.exports = (app) => {
     });
   });
   app.post('/reviews', (req, res) => {
-    let body = req.body;
-    models.reviews.add(body, (err, responseData) => {
+    models.reviews.add((err, responseData) => {
       if (err) {
         console.error('Error: ', err);
         res.status(500).end();
       } else {
-        res.status(201).send(body);
+        res.status(201).send(responseData.data);
       }
     });
   });

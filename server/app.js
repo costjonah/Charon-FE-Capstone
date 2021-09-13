@@ -9,7 +9,7 @@ let interactions = require('./routes/interactions');
 let app = express();
 
 app.use(express.json());
-app.use(express.static(__dirname + '/../client/dist'));
+app.use(express.static(path.join(__dirname, '../client/dist')));
 
 products(app);
 reviews(app);
