@@ -12,7 +12,6 @@ module.exports = {
   },
   date: (date) => {
     const d = new Date(date);
-    console.log(d);
     var dateString = `${d.toLocaleString('default', {
       month: 'long',
     })} ${d.getDate()}, ${d.getFullYear()}`;
@@ -25,7 +24,8 @@ module.exports = {
     return body;
   },
   photos: (photos) => {
-    return photos;
+    //return photos;
+    return [];
   },
   recommend: (recommend) => {
     const recommended = 'I recommend this product ✓';
