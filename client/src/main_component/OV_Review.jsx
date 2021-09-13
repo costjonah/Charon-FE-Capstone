@@ -3,7 +3,7 @@ import Select from 'react-select';
 
 const Review = (props) => {
   console.log('PROPS: ', props)
-  if (props !== undefined) {
+  if (props.metadata[0] !== undefined) {
   return (
     <div>
       <h4>Review</h4>
