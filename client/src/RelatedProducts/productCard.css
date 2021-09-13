@@ -1,0 +1,94 @@
+.card {
+    border-radius: 10px;
+    box-shadow: 8px 8px 5px rgba(0,0,0,.6);
+    max-width: 380px;
+    background-color: #fff;
+    height: 300px;
+}
+
+.card .card-header {
+    padding: .5rem 1rem;
+    color: #fff;
+    font-size: 1.5vw;
+    background-color: #3E2C41;
+    border-radius: 8px 8px 0 0;
+}
+
+.card:hover .card-body {
+    color: #fff;
+    animation: glow 1s linear forwards;
+}
+
+@keyframes glow {
+    from {
+        background-color: #fff;
+        transform: translateY(-50%);
+    }
+
+    to {
+        background-color: #5C527F;
+        transform: translateY(0%);
+    }
+}
+
+.card .card-body {
+    padding: 1rem;
+    color:rgb(138, 135, 135);
+    font-weight: 300;
+    height: 200px;
+    overflow-y: scroll;
+}
+
+.card .card-body .product-detail {
+    margin-bottom: 1rem;
+}
+
+.card .card-body .product-detail .item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.card .card-body .product-detail .item .label {
+    color: #3E2C41;
+    font-weight: 800;
+    font-size: 1.5vw;
+}
+
+.card .card-body .product-detail .item .item-value {
+    font-size: 1.2vw;
+    font-weight: 300;
+}
+
+
+.card .card-footer {
+    border-top: 2px solid #3E2C41;
+    border-radius: 0 0 10px 10px;
+    padding: .5rem 1rem;
+}
+
+.footer-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-info .created-date {
+    font-size: .8vw;
+    color: #6E85B2;
+}
+
+
+.footer-info a {
+    display: block;
+    background-color: #261C2C;
+    color: #fff;
+    text-decoration: none;
+    padding: .3rem .8rem;
+    border-radius: 5px;
+}
+
+.footer-info a:hover {
+    background-color: #3E2C41;
+}
+

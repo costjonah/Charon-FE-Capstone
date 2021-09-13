@@ -1,0 +1,16 @@
+body {
+    background-color: lightgray;
+}
+
+.w-80 {
+    width: 80% !important;
+    margin: auto;
+}
+
+.text-danger {
+    color: brown !important;
+}
+
+.font-weight-bold {
+    font-weight: bold;
+}
