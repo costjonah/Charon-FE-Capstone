@@ -2,9 +2,9 @@ const axios = require('axios');
 const settings = require('./settings.js');
 
 module.exports = {
-  list: (callback) => {
+  list: (data, callback) => {
     axios
-      .get(`${settings.url}/reviews`, settings.head)
+      .get(`${settings.url}/reviews?page=${data.page}&count=${data.count}&sort=${data.sort}&product_id=${data.product_id}`, settings.head)
       .then((res) => {
         callback(null, res);
       })
