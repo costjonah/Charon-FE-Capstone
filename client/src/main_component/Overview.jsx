@@ -3,19 +3,25 @@ import ReactDOM from "react-dom";
 import axios from "axios";
 import ProductInfo from './ProductInfo.jsx';
 import StyleSelector from './StyleSelector.jsx';
+import Review from './OV_Review.jsx';
 
 class Overview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       productInfo: [],
-      productId: '',
       styles: [],
-      reviewMeta: []
+      reviewMeta: [],
+      average: 0,
+      productId: [],
+      count: 0,
+      page: 0,
+
     };
     this.getProductData = this.getProductData.bind(this);
     this.getStyleData = this.getStyleData.bind(this);
     this.getReviewData = this.getReviewData.bind(this);
+    this.getAverage = this.getAverage.bind(this);
   };
 
   componentDidMount() {
@@ -30,6 +36,12 @@ class Overview extends React.Component {
         this.setState({
           productInfo: productData.data,
         });
+        productData.data.map((data) => {
+          this.setState({
+            productId: data.id
+          })
+        })
+        console.log(this.state.productId)
       })
       .catch((err) => {
         console.log(err);
@@ -40,9 +52,9 @@ class Overview extends React.Component {
     axios.get(`/products/37311/styles`)
       .then((styleData) => {
         this.setState({
-          styles: styleData.data.results,
+          styles: styleData.data,
         });
-        console.log(this.state.styles);
+        console.log('STYLE', this.state.styles);
       })
       .catch((err) => {
         console.log(err);
@@ -50,17 +62,26 @@ class Overview extends React.Component {
   };
 
   getReviewData = (id) => {
-    axios.get(`/reviews`)
+    axios.get(`/reviews/37311`)
       .then((reviewData) => {
-        console.log(reviewData)
-        // this.setState({
-        //   reviewMeta: reviewData.data.results,
-        // });
-        // console.log(this.state.reviewMeta);
+        this.setState({
+          reviewMeta: reviewData.data.results,
+          count: reviewData.data.count,
+          page: reviewData.data.page
+        });
+        console.log(this.state.reviewMeta)
       })
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  getAverage = (array) => {
+    var sum = 0;
+    for (var i = 0; i < array.length; i++) {
+      sum += array[i];
+    }
+    return sum / array.length;
   };
 
   render() {
@@ -68,6 +89,11 @@ class Overview extends React.Component {
       <div>
         <h2>Main Component</h2>
         <ProductInfo products={this.state.productInfo}/>
+        <Review
+        metadata={this.state.reviewMeta}
+        averageFunc={this.getAverage}
+        average={this.state.average}
+        />
         <StyleSelector styles={this.state.styles}/>
       </div>
     );
