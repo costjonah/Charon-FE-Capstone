@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+
+import Navigation from './Navigation.jsx'
 import Overview from '../main_component/Overview.jsx'
 
 class App extends React.Component {

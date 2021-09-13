@@ -2,9 +2,12 @@ const axios = require('axios');
 const settings = require('./settings.js');
 
 module.exports = {
-  list: (id = 1, callback) => {
+  list: (params, callback) => {
     axios
-      .get(`${settings.url}/reviews?product_id=${id}`, settings.head)
+    .get(
+      `${settings.url}/reviews?page=${params.page}&count=${params.count}&sort=${params.sort}&product_id=${params.id}`,
+      settings.head
+    )
       .then((res) => {
         callback(null, res);
       })
@@ -12,9 +15,9 @@ module.exports = {
         callback(err);
       });
   },
-  getMetadata: (id = 1, callback) => {
+  getMetadata: (params, callback) => {
     axios
-      .get(`${settings.url}/reviews/meta?product_id=${id}`, settings.head)
+    .get(`${settings.url}/reviews/meta?product_id=${params}`, settings.head)
       .then((res) => {
         callback(null, res);
       })
@@ -22,12 +25,10 @@ module.exports = {
         callback(err);
       });
   },
-  add: (data, callback) => {
-    console.log('LINE26:', data)
+  add: (callback) => {
     axios
       .post(`${settings.url}/reviews`, data, settings.head)
       .then((res) => {
-
         callback(null, res);
       })
       .catch((err) => {
