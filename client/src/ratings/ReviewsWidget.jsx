@@ -33,6 +33,23 @@ class ReviewsWidget extends React.Component {
         console.log(err);
       });
   }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.product !== this.props.product) {
+      console.log('updated', prevProps.product, this.props.product);
+      axios
+        .get(`/reviews?product_id=${this.props.product.id}`)
+        .then((res) => {
+          console.log('res', res.data.results);
+          this.setState({
+            reviews: res.data.results,
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }
 }
 
 export default ReviewsWidget;
