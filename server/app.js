@@ -8,7 +8,7 @@ let interactions = require('./routes/interactions');
 let app = express();
 
 app.use(express.json());
-app.use(express.static('client'));
+app.use(express.static(__dirname + '/../client/dist'));
 
 app.get('/', (req, res) => {
   res.send('Under construction. Please come back later.');

@@ -1,8 +1,9 @@
 const models = require('../models/index')
 
 module.exports = (app) => {
-  app.get('/reviews', (req, res) => {
-    models.reviews.list((err, responseData) => {
+  app.get('/reviews/:id', (req, res) => {
+    let id = req.params.id;
+    models.reviews.list(id, (err, responseData) => {
       if (err) {
         console.error('Error: ', err);
         res.status(500).end();
@@ -11,8 +12,9 @@ module.exports = (app) => {
       }
     });
   });
-  app.get('/reviews/meta', (req, res) => {
-    models.reviews.getMetadata((err, responseData) => {
+  app.get('/reviews/meta/:id', (req, res) => {
+    let id = req.params.id;
+    models.reviews.getMetadata(id, (err, responseData) => {
       if (err) {
         console.error('Error: ', err);
         res.status(500).end();
@@ -22,12 +24,13 @@ module.exports = (app) => {
     });
   });
   app.post('/reviews', (req, res) => {
-    models.reviews.add((err, responseData) => {
+    let body = req.body;
+    models.reviews.add(body, (err, responseData) => {
       if (err) {
         console.error('Error: ', err);
         res.status(500).end();
       } else {
-        res.status(201).send(responseData.data);
+        res.status(201).send(body);
       }
     });
   });
