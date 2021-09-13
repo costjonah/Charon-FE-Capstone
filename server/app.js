@@ -11,10 +11,6 @@ let app = express();
 app.use(express.json());
 app.use(express.static(__dirname + '/../client/dist'));
 
-app.get('/test', (req, res) => {
-  res.send('WORKING?');
-});
-
 products(app);
 reviews(app);
 questionsAndAnswers(app);

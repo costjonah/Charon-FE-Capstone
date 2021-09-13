@@ -2,10 +2,14 @@ const axios = require('axios');
 const settings = require('./settings.js');
 
 module.exports = {
-  get: (req, res) => {
-    axios.get(settings.url + '/', settings.head)
-    .then(result => {
-      console.log(result);
-    })
-  }
-}
+  log: (callback) => {
+    axios
+      .post(`${settings.url}/interactions`, settings.head)
+      .then((res) => {
+        callback(null, res);
+      })
+      .catch((err) => {
+        callback(err);
+      });
+  },
+};
