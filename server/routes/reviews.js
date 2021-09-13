@@ -3,9 +3,9 @@ const models = require('../models/index');
 module.exports = (app) => {
   app.get('/reviews', (req, res) => {
     let queryParams = {
-      page: req.query.page,
-      count: req.query.count,
-      sort: req.query.sort,
+      page: req.query.page || 1,
+      count: req.query.count || 5,
+      sort: req.query.sort || 'newest',
       id: req.query.product_id,
     };
     models.reviews.list(queryParams, (err, responseData) => {
