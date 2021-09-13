@@ -5,7 +5,6 @@ let reviews = require('./routes/reviews');
 let questionsAndAnswers = require('./routes/questionsAndAnswers');
 let cart = require('./routes/cart');
 let interactions = require('./routes/interactions');
-const path = require('path');
 
 let app = express();
 
