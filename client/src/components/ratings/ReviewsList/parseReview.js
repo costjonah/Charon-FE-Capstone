@@ -39,7 +39,7 @@ module.exports = {
   },
   response: (response) => {
     if (response && response.length > 0) {
-      return `Response from seller: ${response}`
+      return `Response from seller: ${response}`;
     }
     return response;
   },

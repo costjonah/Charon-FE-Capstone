@@ -3,25 +3,25 @@ const parseReview = require('./parseReview.js');
 
 const ReviewTile = (props) => {
   return (
-    <li style={{listStyleType: 'none'}} >
-      <div style={{borderStyle: 'solid'}}>
-        {parseReview.rating(props.review.rating)}
+    <li style={{ listStyleType: 'none' }}>
+      <div style={{ borderStyle: 'solid' }}>
+        <span>{parseReview.summary(props.review.summary)}</span>
         <br />
-        {parseReview.date(props.review.date)}
+        <div>{parseReview.rating(props.review.rating)}</div>
         <br />
-        {parseReview.summary(props.review.summary)}
+        <span>{parseReview.date(props.review.date)}</span>
         <br />
-        {parseReview.body(props.review.body)}
+        <div>{parseReview.body(props.review.body)}</div>
         <br />
-        {parseReview.photos(props.review.photos)}
+        <div>{parseReview.photos(props.review.photos)}</div>
         <br />
-        {parseReview.recommend(props.review.recommend)}
+        <span>{parseReview.recommend(props.review.recommend)}</span>
         <br />
-        {parseReview.name(props.review.reviewer_name)}
+        <span>{parseReview.name(props.review.reviewer_name)}</span>
         <br />
-        {parseReview.response(props.review.response)}
+        <div>{parseReview.response(props.review.response)}</div>
         <br />
-        {parseReview.helpfulness(props.review.helpfulness)}
+        <div>{parseReview.helpfulness(props.review.helpfulness)}</div>
       </div>
     </li>
   );
