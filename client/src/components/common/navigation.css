@@ -1,4 +1,4 @@
-* {
+ /* * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -63,8 +63,6 @@ a {
 
 .nav-bar-container .action-pane .nav-item:hover a,
 .nav-bar-container .nav-menu .nav-item:hover a {
-  /* border-bottom: 2px solid #FFFEB7; */
-  color: #FFFEB7;
-}
-
-
+  border-bottom: 2px solid #FFFEB7;
+ color: #FFFEB7;
+ } */
