@@ -3,7 +3,7 @@ import React from "react";
 var StyleSelector = (props) => {
   return (
     <div>
-      <h4>Styles</h4>
+      <h4>Style Selector</h4>
     </div>
   );
 };

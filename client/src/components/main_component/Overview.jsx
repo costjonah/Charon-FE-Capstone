@@ -1,19 +1,22 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import axios from "axios";
+import styled from 'styled-components'
 import ProductInfo from "./ProductInfo.jsx";
 import StyleSelector from "./StyleSelector.jsx";
 import Review from "./OV_Review.jsx";
+import FreeForm from "./FreeForm.jsx";
 
 class Overview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       styles: [],
+      currentStyle: {},
       productReview: [],
       average: 0,
       count: 0,
-      page: 0
+      page: 0,
     };
 
     this.getStyleData = this.getStyleData.bind(this);
@@ -35,7 +38,13 @@ class Overview extends React.Component {
         this.setState({
           styles: styleData.data,
         });
-        console.log("STYLE", this.state.styles);
+        for (var i = 0; i < this.state.styles.results.length; i++) {
+          if (this.state.styles.results[i]["default?"] === true) {
+            this.setState({
+              currentStyle: this.state.styles.results[i],
+            });
+          }
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -51,7 +60,6 @@ class Overview extends React.Component {
           count: reviewData.data.count,
           page: reviewData.data.page,
         });
-        console.log("DATA", this.state.productReview);
       })
       .catch((err) => {
         console.log(err);
@@ -69,18 +77,61 @@ class Overview extends React.Component {
   render() {
     return (
       <div>
-        <h2>Main Component</h2>
-        <ProductInfo products={this.props.productInfo} />
+        <MainStyle>
+        <ProductInfoStyle>
+        <ProductInfo
+          products={this.props.products}
+          productId={this.props.productId}
+          currentStyle={this.state.currentStyle}
+        />
+       </ProductInfoStyle>
+       <ReviewStyle>
         <Review
           reviewdata={this.state.productReview}
           averageFunc={this.getAverage}
           average={this.state.average}
           count={this.state.count}
         />
+        </ReviewStyle>
+        <SelectorStyle>
         <StyleSelector styles={this.state.styles} />
+        </SelectorStyle>
+        <FreeFormStyle>
+        <FreeForm
+          products={this.props.products}
+          productId={this.props.productId}
+        />
+        </FreeFormStyle>
+        </MainStyle>
       </div>
     );
   }
 }
+
+const MainStyle = styled.div`
+
+  display: flex;
+  order: 1;
+  flex-grow: 1;
+`
+const ProductInfoStyle = styled.div`
+ display: flex;
+ flex-direction: column;
+ flex-grow: 1;
+ order: 2;
+`
+const ReviewStyle = styled.div`
+display: flex;
+  flex-wrap: wrap;
+  margin: 10%;
+`
+const SelectorStyle = styled.div`
+  display: flex;
+  flex-grow: 3;
+`
+const FreeFormStyle = styled.div`
+  display: flex;
+  height: 25%;
+`
 
 export default Overview;

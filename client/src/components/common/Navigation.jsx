@@ -1,35 +1,42 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// import "./navigation.css";
+import styled from 'styled-components'
 
-class Navigation extends React.Component {
+class Navbar extends React.Component{
     render() {
         return (
-            <div className="container">
-                <div className="nav-bar-container">
-                    <div className="nav-menu">
-                        <div className="nav-item">
-                            <Link to="/">Home</Link>
-                        </div>
-                        <div className="nav-item">
-                            <Link to="/related-products">Related Products</Link>
-                        </div>
-                        <div className="nav-item">
-                            <Link to="/about-us">About Us</Link>
-                        </div>
-                    </div>
-                    <div className="action-pane">
-                        <div className="nav-item">
-                            <Link to="/about-us">Sign In</Link>
-                        </div>
-                        <div className="nav-item">
-                            <Link to="/about-us">Sign Up</Link>
-                        </div>
-                    </div>
-                </div>
+            <div>
+                <NavStyle>
+              <ul id="nav">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#">Contact</a></li>
+              </ul>
+           </NavStyle>
             </div>
         );
     }
 }
 
-export default Navigation;
+const NavStyle = styled.div`
+ul {
+    width: 100%;
+
+    margin: 0 0 3em 0;
+    padding: 0;
+    list-style: none;
+    background-color: #f2f2f2;
+    border-bottom: 1px solid #ccc;
+    border-top: 1px solid #ccc; }
+
+li {
+        display: inline;
+        padding: 8px 15px;
+        text-decoration: none;
+        font-weight: bold;
+        color: #069;
+        border-right: 1px solid #ccc; }
+`
+
+export default Navbar;

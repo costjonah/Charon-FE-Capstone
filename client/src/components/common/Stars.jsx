@@ -1,6 +1,6 @@
-import React from 'react';
-import StarRatings from 'react-star-ratings';
-import Rating from './Rating.jsx';
+import React from "react";
+import StarRatings from "react-star-ratings";
+import Rating from "./Rating.jsx";
 
 class Stars extends React.Component {
   constructor(props) {
@@ -16,6 +16,6 @@ class Stars extends React.Component {
       />
     );
   }
-};
+}
 
 export default Stars;
