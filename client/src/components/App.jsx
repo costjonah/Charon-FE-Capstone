@@ -10,8 +10,10 @@ class App extends React.Component {
     this.state = {
       products: [],
       currentProduct: { id: 0 },
+      reviewCount: 2,
     };
     this.selectProduct = this.selectProduct.bind(this);
+    this.showMoreReviews = this.showMoreReviews.bind(this);
   }
 
   render() {
@@ -22,9 +24,20 @@ class App extends React.Component {
           products={this.state.products}
           selectProduct={this.selectProduct}
         />
-        <ReviewsWidget product={this.state.currentProduct} />
+        <ReviewsWidget
+          product={this.state.currentProduct}
+          reviewCount={this.state.reviewCount}
+          showMoreReviews={this.showMoreReviews}
+        />
       </div>
     );
+  }
+
+  showMoreReviews() {
+    let newCount = this.state.reviewCount + 2;
+    this.setState({
+      reviewCount: newCount,
+    });
   }
 
   selectProduct(id) {
@@ -32,6 +45,7 @@ class App extends React.Component {
       if (this.state.products[i].id === parseInt(id)) {
         this.setState({
           currentProduct: this.state.products[i],
+          reviewCount: 2,
         });
       }
     }
