@@ -2,9 +2,12 @@ const axios = require('axios');
 const settings = require('./settings.js');
 
 module.exports = {
-  getAll: (callback) => {
+  getAll: (params, callback) => {
     axios
-      .get(`${settings.url}/products`, settings.head)
+      .get(
+        `${settings.url}/products?page=${params.page}&count=${params.count}`,
+        settings.head
+      )
       .then((res) => {
         callback(null, res);
       })
