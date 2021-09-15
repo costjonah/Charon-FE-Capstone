@@ -12,7 +12,7 @@ var ProductInfo = (props) => {
   }
   return (
     <div className="productinfomain">
-      <br/>
+      <br />
       <h4 id="curCateg">{currentCategory}</h4>
       <h1 id="curName">{currentName}</h1>
       <h4 id="curPrice">${stylePrice}</h4>
@@ -20,6 +20,4 @@ var ProductInfo = (props) => {
   );
 };
 
-
 export default ProductInfo;
-

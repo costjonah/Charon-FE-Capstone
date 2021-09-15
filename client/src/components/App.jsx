@@ -45,7 +45,6 @@ class App extends React.Component {
             products={this.state.productInfo}
             productId={this.state.productId}
           />
-
         </div>
       </BrowserRouter>
     );

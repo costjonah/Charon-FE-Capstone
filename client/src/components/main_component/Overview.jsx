@@ -27,7 +27,6 @@ class Overview extends React.Component {
       count: 0,
       page: 0,
       hover: false,
-
       toggleZoom: false,
     };
 
@@ -37,7 +36,6 @@ class Overview extends React.Component {
     this.onMouseOver = this.onMouseOver.bind(this);
     this.onMouseOut = this.onMouseOut.bind(this);
     this.zoomOnClick = this.zoomOnClick.bind(this);
-
     this.imageMouseOver = this.imageMouseOver.bind(this);
   }
 
@@ -149,6 +147,7 @@ class Overview extends React.Component {
           hover={this.state.hover}
           mouseOver={this.onMouseOver}
           mouseOut={this.onMouseOut}
+          zoom={this.state.toggleZoom}
           zoomClick={this.zoomOnClick}
         />
 
@@ -160,10 +159,9 @@ class Overview extends React.Component {
           productId={this.props.productId}
         />
         <BrandLogos />
-
       </div>
     );
   }
-}
+};
 
 export default Overview;

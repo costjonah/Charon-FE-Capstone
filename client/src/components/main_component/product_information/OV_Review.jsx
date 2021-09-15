@@ -21,8 +21,7 @@ const Review = (props) => {
           <Stars rating={averageRating} />
           <a data={reviewData} id="readreviews">
             {" "}
-
-        &#65372; Read all {numReviews} reviews
+            &#65372; Read all {numReviews} reviews
           </a>
         </div>
       );
