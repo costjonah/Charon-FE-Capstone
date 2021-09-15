@@ -44,7 +44,6 @@ class Body extends React.Component {
     return (
       <div>
         <div>{this.props.summaryTail}</div>
-        <br />
         {bodyText}
         {show}
       </div>

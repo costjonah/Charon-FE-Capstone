@@ -34,7 +34,7 @@ class ReviewTile extends React.Component {
           </div>
           <Summary summaryHead={summaryHead} />
           <Body summaryTail={summaryTail} body={review.body} />
-          <Photos />
+          <Photos photos={review.photos} />
           <Recommend recommend={review.recommend} />
           <Name name={review.name} />
           <Response response={review.response} />
