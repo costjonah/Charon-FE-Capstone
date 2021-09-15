@@ -4,6 +4,7 @@ let reviews = require('./routes/reviews');
 let questionsAndAnswers = require('./routes/questionsAndAnswers');
 let cart = require('./routes/cart');
 let interactions = require('./routes/interactions');
+const test = require('./routes/test');
 
 let app = express();
 
@@ -19,5 +20,6 @@ reviews(app);
 questionsAndAnswers(app);
 cart(app);
 interactions(app);
+test(app);
 
 module.exports = app;

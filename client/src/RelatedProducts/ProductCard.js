@@ -12,7 +12,7 @@ class ProductCard extends React.Component {
                     {this.props.product.name}
                 </div>
                 <div className="card-body">
-                    <div class="product-detail">
+                    <div className="product-detail">
                         <div className="item">
                             <div className="label">Category</div>
                             <div className="item-value">
