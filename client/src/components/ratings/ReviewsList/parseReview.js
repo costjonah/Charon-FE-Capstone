@@ -1,28 +1,4 @@
 module.exports = {
-  rating: (rating) => {
-    let stars = '';
-    for (var i = 0; i < 5; i++) {
-      if (i < rating) {
-        stars += '★';
-      } else {
-        stars += '☆';
-      }
-    }
-    return stars;
-  },
-  date: (date) => {
-    const d = new Date(date);
-    var dateString = `${d.toLocaleString('default', {
-      month: 'long',
-    })} ${d.getDate()}, ${d.getFullYear()}`;
-    return dateString;
-  },
-  summary: (summary) => {
-    return summary;
-  },
-  body: (body) => {
-    return body;
-  },
   photos: (photos) => {
     //return photos;
     return [];
