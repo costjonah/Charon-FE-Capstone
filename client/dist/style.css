@@ -1,0 +1,284 @@
+html, body {
+  padding: 0;
+  min-height: 765px;
+  min-width: 1200px;
+
+  max-height: 765px;
+  max-width: 1200px;
+}
+body {
+  font-family: "HM Sans Regular", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka, メイリオ, Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+  background-color:#faf9f8;
+  color: rgb(34, 34, 34);
+}
+
+#mainheader {
+  margin-top: 20px;
+}
+
+#navul {
+  width: 100%;
+  padding: 0;
+  list-style: none;
+  vertical-align: middle;
+  background-color: #f2f2f2;
+  border-bottom: 1px solid #ccc;
+  border-top: 1px solid #ccc;
+}
+#navli {
+  display: inline;
+  padding: 8px 15px;
+  text-decoration: none;
+  font-weight: bold;
+  vertical-align: middle;
+  color: #069;
+  border-right: 1px solid #ccc;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+#readreviews:hover, #cartbtn:hover {
+  cursor: pointer;
+}
+
+
+.searchBar {
+  display: inline;
+  margin-left: 350px;
+  height: 30px;
+  width: 250px;
+  border: 0px none;
+  font-size: 18px;
+  padding: 0px 25px 0px 10px;
+  background-size: 20px 20px;
+  vertical-align: middle;
+  border-radius: 5px;
+}
+
+.overviewmain {
+  display: grid;
+  grid-template-columns: 40% 20% 40%;
+  grid-template-rows: 3.5% 5% 23% 30% 33%;
+  grid-gap: 5px;
+}
+
+.defaultview {
+  height: 450px;
+  margin: 0;
+  padding: 0;
+  grid-column: 1 / 3;
+
+}
+
+#mainimg {
+  height: 450px;
+  border-radius: 5px;
+}
+
+
+.freeformmain {
+  grid-column: 1 / 2;
+  grid-row: 5 / 5;
+  margin-left: 25px;
+}
+
+.reviewmain {
+  grid-column: 3 / 3;
+  grid-row: 2 / 5;
+  margin-top: -15px;
+}
+
+.productinfomain {
+  grid-column: 3 / 3;
+  grid-row: 3 / 5;
+  margin-top: -70px;
+}
+
+#currentstylename {
+grid-column: 3 / 3;
+  grid-row: 3 / 5;
+  margin-top: -10px;
+}
+
+.sizeselectormain {
+  grid-column: 3 / 3;
+  grid-row: 5 / 5;
+  margin-top: -70px;
+  margin-left: 10px;
+}
+#selectsize {
+  margin-top: 10px;
+  width: 150px;
+}
+
+.addtocartmain {
+  grid-column: 3 / 3;
+  grid-row: 5 / 5;
+  margin-top: -70px;
+  margin-left: 10px;
+}
+#cartadd {
+  margin-top: 55px;
+  width: 320px;
+  height: 20px;
+}
+#cartbtn{
+  width: 317px;
+  height: 25px;
+  background-color: rgb(34, 34, 34);
+  border: none;
+  color: #faf9f8;
+  border-radius: 3.5px;
+  font-family: "HM Sans Regular", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka, メイリオ, Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+}
+
+.quantityselectormain {
+  grid-column: 3 / 3;
+  grid-row: 5 / 5;
+  margin-top: -70px;
+  margin-left: 200px;
+}
+#selectquantity {
+  margin-top: 10px;
+  width: 125px;
+}
+
+.styleselectormain {
+  grid-column: 3 / 3;
+  grid-row: 4 / 5;
+  margin-top: -70px;
+}
+
+.brandlogomain {
+  grid-column: 2 / 4;
+  grid-row:  5 / 5;
+  margin-top: 30px;
+  margin-left: 50px;
+}
+
+#facebook {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  margin-right: 5px;
+  text-align: center;
+  border-radius:5px;
+  color: #fff;
+  font-size: 220px;
+  line-height: 250px;
+  vertical-align: middle;
+  background: #3b5998;
+  background: radial-gradient(circle at 30% 107%, #3b5998 0%, #3b5998 5%, #3b5998 45%,#3b5998 60%,#3b5998 90%);
+  box-shadow: 0px 3px 10px rgba(0,0,0,.25);
+}
+
+#instagram {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  margin-right: 5px;
+  text-align: center;
+  border-radius:5px;
+  color: #fff;
+  font-size: 220px;
+  line-height: 250px;
+  vertical-align: middle;
+  background: #d6249f;
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+  box-shadow: 0px 3px 10px rgba(0,0,0,.25);
+}
+
+#pinterest {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  border-radius:5px;
+  color: #fff;
+  font-size: 220px;
+  line-height: 250px;
+  vertical-align: middle;
+  background: #d6249f;
+  background: radial-gradient(circle at 30% 107%, #BD081C 0%, #BD081C 5%, #BD081C 45%,#BD081C 60%,#BD081C 90%);
+  box-shadow: 0px 3px 10px rgba(0,0,0,.25);
+}
+
+#facebook:hover, #instagram:hover, #pinterest:hover {
+  cursor: pointer;
+}
+
+#styleul {
+  margin: 5px 5px 0 5px;
+  padding: 0;
+  width: 100%;
+}
+
+#styleli {
+    display: inline-block;
+    width: 22%;
+    margin: 0 0 0 0;
+    list-style-type: none;
+    padding: 0 0 0px 15px;
+    display:-moz-inline-box;
+}
+
+#crop {
+  background: lightcoral;
+  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+  text-align: center;
+  overflow: hidden;
+}
+
+#imglist {
+  height: 80px;
+  object-fit: cover;
+}
+
+#imglist:hover {
+  cursor: pointer;
+}
+
+#curCateg {
+  font-weight: bold;
+  margin-top: 25px;
+  margin-bottom: 5px;
+  padding: 0;
+}
+
+#curName {
+  font-weight: bolder;
+  margin: 0;
+  margin-bottom: 10px;
+  padding: 0;
+}
+
+#curPrice {
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+}
+
+
+::placeholder {
+  color: rgba(34, 34, 34, 0.632);
+  text-shadow: none;
+}
+
+::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+  background-color: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(34, 34, 34, 0.600);
+
+  border-radius: 5px;
+}
+::-webkit-scrollbar-corner {
+  background-color:transparent;
+}

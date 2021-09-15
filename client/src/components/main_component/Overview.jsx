@@ -2,10 +2,15 @@ import React from "react";
 import ReactDOM from "react-dom";
 import axios from "axios";
 import styled from 'styled-components'
-import ProductInfo from "./ProductInfo.jsx";
-import StyleSelector from "./StyleSelector.jsx";
-import Review from "./OV_Review.jsx";
-import FreeForm from "./FreeForm.jsx";
+import ProductInfo from "./product_information/ProductInfo.jsx";
+import Review from "./product_information/OV_Review.jsx";
+import FreeForm from "./product_information/FreeForm.jsx";
+import BrandLogos from "./product_information/BrandLogos.jsx";
+import StyleSelector from "./style_selector/StyleSelector.jsx";
+import MainImage from "./image_gallery/MainImage.jsx";
+import SizeSelector from "./add_to_cart/SizeSelect.jsx";
+import QuantitySelector from "./add_to_cart/QuantitySelect.jsx";
+import AddToCart from "./add_to_cart/AddToCart.jsx";
 
 class Overview extends React.Component {
   constructor(props) {
@@ -17,11 +22,14 @@ class Overview extends React.Component {
       average: 0,
       count: 0,
       page: 0,
+      hover: false,
     };
 
     this.getStyleData = this.getStyleData.bind(this);
     this.getReviewData = this.getReviewData.bind(this);
     this.getAverage = this.getAverage.bind(this);
+    this.onMouseOver = this.onMouseOver.bind(this);
+    this.onMouseOut = this.onMouseOut.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -66,6 +74,20 @@ class Overview extends React.Component {
       });
   };
 
+  onMouseOver = () => {
+    this.setState({
+      hover: true
+    });
+
+  }
+
+  onMouseOut = () => {
+    this.setState({
+      hover: false
+    });
+
+  }
+
   getAverage = (array) => {
     var sum = 0;
     for (var i = 0; i < array.length; i++) {
@@ -75,63 +97,41 @@ class Overview extends React.Component {
   };
 
   render() {
+    var nameStyle = {
+      display: this.state.hover ? 'block' : 'none'
+    }
     return (
-      <div>
-        <MainStyle>
-        <ProductInfoStyle>
+      <div className="overviewmain">
+        <MainImage currentStyle={this.state.currentStyle}/>
         <ProductInfo
           products={this.props.products}
           productId={this.props.productId}
           currentStyle={this.state.currentStyle}
         />
-       </ProductInfoStyle>
-       <ReviewStyle>
         <Review
           reviewdata={this.state.productReview}
           averageFunc={this.getAverage}
           average={this.state.average}
           count={this.state.count}
         />
-        </ReviewStyle>
-        <SelectorStyle>
-        <StyleSelector styles={this.state.styles} />
-        </SelectorStyle>
-        <FreeFormStyle>
+        <StyleSelector
+        styles={this.state.styles}
+        hover={this.state.hover}
+        mouseOver={this.onMouseOver}
+        mouseOut={this.onMouseOut}
+          />
+        <SizeSelector /><QuantitySelector />
+        <AddToCart />
         <FreeForm
           products={this.props.products}
           productId={this.props.productId}
         />
-        </FreeFormStyle>
-        </MainStyle>
+        <BrandLogos />
+
       </div>
     );
   }
 }
 
-const MainStyle = styled.div`
-
-  display: flex;
-  order: 1;
-  flex-grow: 1;
-`
-const ProductInfoStyle = styled.div`
- display: flex;
- flex-direction: column;
- flex-grow: 1;
- order: 2;
-`
-const ReviewStyle = styled.div`
-display: flex;
-  flex-wrap: wrap;
-  margin: 10%;
-`
-const SelectorStyle = styled.div`
-  display: flex;
-  flex-grow: 3;
-`
-const FreeFormStyle = styled.div`
-  display: flex;
-  height: 25%;
-`
 
 export default Overview;
