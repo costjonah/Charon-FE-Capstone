@@ -7,6 +7,17 @@ class ReviewsWidget extends React.Component {
     super(props);
     this.state = {
       reviews: [],
+      recommended: {
+        false: 0,
+        true: 0,
+      },
+      ratings: {
+        1: 0,
+        2: 0,
+        3: 0,
+        4: 0,
+        5: 0,
+      },
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -43,6 +54,18 @@ class ReviewsWidget extends React.Component {
       .catch((err) => {
         console.log(err);
       });
+
+    axios
+      .get(`/reviews/meta?product_id=${this.props.product.id || 37311}`)
+      .then((res) => {
+        this.setState({
+          recommended: res.data.recommended,
+          ratings: res.data.ratings,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   componentDidUpdate(prevProps) {
@@ -52,6 +75,18 @@ class ReviewsWidget extends React.Component {
         .then((res) => {
           this.setState({
             reviews: res.data.results,
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+
+      axios
+        .get(`/reviews/meta?product_id=${this.props.product.id}`)
+        .then((res) => {
+          this.setState({
+            recommended: res.data.recommended,
+            ratings: res.data.ratings,
           });
         })
         .catch((err) => {
