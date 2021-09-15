@@ -53,9 +53,11 @@ module.exports = (app) => {
   });
   app.put('/reviews/:review_id/helpful', (req, res) => {
     let id = req.params.review_id;
+    console.log('ID: ', id);
     models.reviews.markAsHelpful(id, (err, responseData) => {
       if (err) {
-        console.error('Error: ', err);
+        console.error('Error: ', err.response.status);
+        console.error('Error: ', err.response.data);
         res.status(500).end();
       } else {
         res.status(204).send(responseData.data);
@@ -66,7 +68,8 @@ module.exports = (app) => {
     let id = req.params.review_id;
     models.reviews.report(id, (err, responseData) => {
       if (err) {
-        console.error('Error: ', err);
+        console.error('Error: ', err.response.status);
+        console.error('Error: ', err.response.data);
         res.status(500).end();
       } else {
         res.status(204).send(responseData.data);
