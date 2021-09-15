@@ -5,7 +5,6 @@ import { faSearchMinus } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 const ZoomFav = (props) => {
-  console.log("ZOOOOM", props);
   if (props.zoom === false) {
     return (
       <div>

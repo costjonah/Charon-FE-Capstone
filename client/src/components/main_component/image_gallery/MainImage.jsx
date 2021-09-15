@@ -3,7 +3,7 @@ import CursorZoom from "react-cursor-zoom";
 
 const MainView = (props) => {
   if (Object.keys(props.currentStyle).length !== 0) {
-    console.log(props);
+    // console.log(props);
     if (props.zoom === false) {
       return (
         <div className="defaultview">

@@ -1,19 +1,32 @@
 import React from "react";
 import Select from "react-select";
 
-const options = [
-  { value: "one", label: "1" },
-  { value: "two", label: "2" },
-  { value: "three", label: "3" },
-  { value: "four", label: "4" },
-  { value: "five", label: "5" },
-];
+const QuantitySelector = (props) => {
+  const options = [];
+  let qty;
+  let i = 1;
+  for (var key in props.styleSkus) {
+    if (props.selectedSizeOption === props.styleSkus[key].size) {
+      qty = props.styleSkus[key].quantity;
+    }
+  }
+  while (qty > i) {
+    options.push({
+      value: i,
+      label: i,
+    });
+    i += 1;
+  }
 
-const QuantitySelector = () => {
   return (
     <div className="quantityselectormain">
       <div id="selectquantity">
-        <Select placeholder="Quantity" id="pickqty" options={options} />
+        <Select
+          placeholder="Quantity"
+          options={options}
+          onChange={props.handleQtyChange}
+          id="qtyselect"
+        />
       </div>
     </div>
   );

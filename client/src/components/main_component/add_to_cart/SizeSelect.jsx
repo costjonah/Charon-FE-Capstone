@@ -1,22 +1,27 @@
 import React from "react";
 import Select from "react-select";
 
-const options = [
-  { value: "extra-small", label: "XS" },
-  { value: "small", label: "S" },
-  { value: "medium", label: "M" },
-  { value: "large", label: "L" },
-  { value: "extra-large", label: "XL" },
-];
+const SizeSelector = (props) => {
 
-const SizeSelector = () => {
+  const options = [];
+  var sizesQty;
+  for (var key in props.styleSkus) {
+    console.log(props.styleSkus[key]);
+    options.push({
+      value: props.styleSkus[key].size,
+      label: props.styleSkus[key].size,
+    });
+  }
+
   return (
     <div className="sizeselectormain">
       <div id="selectsize">
-        <Select placeholder="Select Size" options={options} />
+        <Select placeholder="Select Size" options={options} onChange={props.handleSizeChange} id="sizeselect"/>
       </div>
+
     </div>
   );
+
 };
 
 export default SizeSelector;

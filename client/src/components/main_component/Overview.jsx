@@ -28,7 +28,9 @@ class Overview extends React.Component {
       page: 0,
       hover: false,
       toggleZoom: false,
-      remainingQty: '',
+      styleSkus: {},
+      selectedSizeOption: null,
+      selectedQtyOption: null,
     };
 
     this.getStyleData = this.getStyleData.bind(this);
@@ -38,6 +40,8 @@ class Overview extends React.Component {
     this.onMouseOut = this.onMouseOut.bind(this);
     this.zoomOnClick = this.zoomOnClick.bind(this);
     this.imageMouseOver = this.imageMouseOver.bind(this);
+    this.handleSizeChange = this.handleSizeChange.bind(this);
+    this.handleQtyChange = this.handleQtyChange.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -58,12 +62,14 @@ class Overview extends React.Component {
         //   if (this.state.styles.results[i]["default?"] === true) {
         //     this.setState({
         //       currentStyle: this.state.styles.results[i],
+        //       styleSkus: this.state.styles.results[i].skus,
         //     });
         //   }
         // }
         this.setState({
-                currentStyle: this.state.styles.results[2],
-              });
+          currentStyle: this.state.styles.results[2],
+          styleSkus: this.state.styles.results[2].skus,
+        });
       })
       .catch((err) => {
         console.log(err);
@@ -123,6 +129,16 @@ class Overview extends React.Component {
     return sum / array.length;
   };
 
+  handleSizeChange = (selectedSz) => {
+    this.setState({ selectedSizeOption: selectedSz.value });
+    console.log(`Size option selected:`, selectedSz);
+  };
+
+  handleQtyChange = (selectedQty) => {
+    this.setState({ selectedQtyOption: selectedQty.value });
+    console.log(`Quantity option selected:`, selectedQty);
+  };
+
   render() {
     var nameStyle = {
       display: this.state.hover ? "block" : "none",
@@ -155,8 +171,18 @@ class Overview extends React.Component {
           zoomClick={this.zoomOnClick}
         />
 
-        <SizeSelector />
-        <QuantitySelector />
+        <SizeSelector
+          styleSkus={this.state.styleSkus}
+          handleSizeChange={this.handleSizeChange}
+          selectedSizeOption={this.state.selectedSizeOption}
+        />
+        <QuantitySelector
+          styleSkus={this.state.styleSkus}
+          handleQtyChange={this.handleQtyChange}
+          selectedSizeOption={this.state.selectedSizeOption}
+          selectedQtyOption={this.state.selectedQtyOption}
+        />
+
         <AddToCart />
         <FreeForm
           products={this.props.products}
@@ -166,6 +192,6 @@ class Overview extends React.Component {
       </div>
     );
   }
-};
+}
 
 export default Overview;

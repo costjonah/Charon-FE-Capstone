@@ -262,15 +262,15 @@ a {
   grid-column: 2 / 4;
   grid-row: 5 / 5;
   margin-top: 30px;
-  margin-left: 50px;
+  margin-left: 25px;
   height: fit-content;
   width: fit-content;
 }
 
 #facebook {
   display: inline-block;
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   margin-right: 5px;
   text-align: center;
   border-radius: 5px;
@@ -289,11 +289,32 @@ a {
   );
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.25);
 }
+#twitter {
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  text-align: center;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 220px;
+  line-height: 250px;
+  vertical-align: middle;
+  background: #1DA1F2;
+  background: radial-gradient(
+    circle at 30% 107%,
+    #1DA1F2 0%,
+    #1DA1F2 5%,
+    #1DA1F2 45%,
+    #1DA1F2 60%,
+    #1DA1F2 90%
+  );
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.25);
+}
 
 #instagram {
   display: inline-block;
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   margin-right: 5px;
   text-align: center;
   border-radius: 5px;
@@ -315,8 +336,8 @@ a {
 
 #pinterest {
   display: inline-block;
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   text-align: center;
   border-radius: 5px;
   color: #fff;
@@ -336,6 +357,7 @@ a {
 }
 
 #facebook:hover,
+#twitter:hover,
 #instagram:hover,
 #pinterest:hover {
   cursor: pointer;
