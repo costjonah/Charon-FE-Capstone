@@ -25,7 +25,6 @@ class ReviewsWidget extends React.Component {
   }
 
   handleClick() {
-    console.log(this.state.reviews);
     this.props.showMoreReviews();
   }
 

@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Name = (props) => {
-  return <span>{props.name}</span>;
+  return <div>{props.name}</div>;
 };
 
 export default Name;
