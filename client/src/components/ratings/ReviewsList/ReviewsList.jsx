@@ -6,7 +6,14 @@ const ReviewsList = (props) => {
   return (
     <ul>
       {shownReviews.map((review) => {
-        return <ReviewTile review={review} key={review.review_id} />;
+        return (
+          <ReviewTile
+            review={review}
+            key={review.review_id}
+            helpful={props.helpful}
+            report={props.report}
+          />
+        );
       })}
     </ul>
   );

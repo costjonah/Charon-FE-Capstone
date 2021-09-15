@@ -1,20 +1,20 @@
 import React from 'react';
 
 const Helpfulness = (props) => {
-  const doNothing = () => {
-    console.log('Helpful!');
+  const handleHelpfulClick = () => {
+    props.helpful(props.id);
   };
 
-  const doNothingAgain = () => {
-    console.log('Reported!');
+  const handleReportClick = () => {
+    props.report(props.id);
   };
 
   return (
     <div>
       <div>Was this review helpful?</div>
       <div>
-        <div onClick={doNothing}>Yes ({props.helpfulness})</div>
-        <div onClick={doNothingAgain}>Report</div>
+        <div onClick={handleHelpfulClick}>Yes ({props.helpfulness})</div>
+        <div onClick={handleReportClick}>Report</div>
       </div>
     </div>
   );

@@ -20,11 +20,53 @@ class ReviewsWidget extends React.Component {
       },
     };
     this.handleClick = this.handleClick.bind(this);
+    this.helpful = this.helpful.bind(this);
+    this.report = this.report.bind(this);
   }
 
   handleClick() {
     console.log(this.state.reviews);
     this.props.showMoreReviews();
+  }
+
+  helpful(reviewId) {
+    axios
+      .put(`/reviews/${reviewId}/helpful`)
+      .then((res) => {
+        axios
+          .get(`/reviews?product_id=${this.props.product.id}`)
+          .then((res) => {
+            this.setState({
+              reviews: res.data.results,
+            });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  report(reviewId) {
+    axios
+      .put(`/reviews/${reviewId}/report`)
+      .then((res) => {
+        axios
+          .get(`/reviews?product_id=${this.props.product.id}`)
+          .then((res) => {
+            this.setState({
+              reviews: res.data.results,
+            });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   render() {
@@ -37,6 +79,8 @@ class ReviewsWidget extends React.Component {
         <ReviewsList
           reviews={this.state.reviews}
           count={this.props.reviewCount}
+          helpful={this.helpful}
+          report={this.report}
         />
         {button}
       </div>

@@ -38,7 +38,12 @@ class ReviewTile extends React.Component {
           <Recommend recommend={review.recommend} />
           <Name name={review.name} />
           <Response response={review.response} />
-          <Helpfulness helpfulness={review.helpfulness} />
+          <Helpfulness
+            helpfulness={review.helpfulness}
+            id={review.review_id}
+            helpful={this.props.helpful}
+            report={this.props.report}
+          />
         </div>
       </li>
     );

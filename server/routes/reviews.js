@@ -53,7 +53,6 @@ module.exports = (app) => {
   });
   app.put('/reviews/:review_id/helpful', (req, res) => {
     let id = req.params.review_id;
-    console.log('ID: ', id);
     models.reviews.markAsHelpful(id, (err, responseData) => {
       if (err) {
         console.error('Error: ', err.response.status);
