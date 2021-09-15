@@ -21,8 +21,8 @@ class ReviewTile extends React.Component {
     let summaryHead = review.summary;
     let summaryTail = '';
     if (review.summary.length >= 60) {
-      summaryHead = summary.substring(0, 60) + '...';
-      summaryTail = '...' + summary.substring(60);
+      summaryHead = review.summary.substring(0, 60) + '...';
+      summaryTail = '...' + review.summary.substring(60);
     }
 
     return (
@@ -30,13 +30,15 @@ class ReviewTile extends React.Component {
         <div style={{ borderStyle: 'solid' }}>
           <div>
             <Rating rating={review.rating} />
-            <ReviewDate reviewDate={review.date} />
+            <div>
+              <Name name={review.reviewer_name} />
+              <ReviewDate reviewDate={review.date} />
+            </div>
           </div>
           <Summary summaryHead={summaryHead} />
           <Body summaryTail={summaryTail} body={review.body} />
           <Photos photos={review.photos} />
           <Recommend recommend={review.recommend} />
-          <Name name={review.reviewer_name} />
           <Response response={review.response} />
           <Helpfulness
             helpfulness={review.helpfulness}

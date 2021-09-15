@@ -6,7 +6,7 @@ const ReviewDate = (props) => {
     month: 'long',
   })} ${d.getDate()}, ${d.getFullYear()}`;
 
-  return <div>{dateString}</div>;
+  return <span>{dateString}</span>;
 };
 
 export default ReviewDate;
