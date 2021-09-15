@@ -164,6 +164,7 @@ class Overview extends React.Component {
         />
         <StyleSelector
           styles={this.state.styles}
+          currentstyle={this.state.currentStyle}
           hover={this.state.hover}
           mouseOver={this.onMouseOver}
           mouseOut={this.onMouseOut}

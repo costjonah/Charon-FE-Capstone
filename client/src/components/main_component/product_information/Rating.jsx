@@ -13,7 +13,6 @@ class Rating extends React.Component {
       <StarRatings
         className="ratingmain"
         rating={this.state.rating}
-        starRatedColor="blue"
         changeRating={this.changeRating}
         numberOfStars={5}
         name="rating"

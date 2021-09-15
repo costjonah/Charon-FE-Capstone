@@ -1,8 +1,8 @@
 import React from 'react';
-import StyleSelector from './StyleSelector.jsx';
+
 
 const CurrentStyle = (props) => {
-
+  console.log(document.getElementById('currentstylename'))
 };
 
 export default CurrentStyle;

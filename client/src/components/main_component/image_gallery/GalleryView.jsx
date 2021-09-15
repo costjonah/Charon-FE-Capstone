@@ -4,8 +4,6 @@ import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
 
 const Gallery = (props) => {
   if (Object.keys(props.currentStyle).length !== 0) {
-    // console.log(props);
-
     return (
       <div className="galleryviewmain">
         <ul className="galthumbs">
