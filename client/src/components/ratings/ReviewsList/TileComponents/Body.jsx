@@ -10,7 +10,6 @@ class Body extends React.Component {
   }
 
   showMore() {
-    console.log('clicked');
     this.setState({
       showing: true,
     });
@@ -30,7 +29,11 @@ class Body extends React.Component {
     }
     if (this.state.showing === false) {
       bodyText = <div>{bodyHead}</div>;
-      show = <span onClick={this.showMore}>Show more</span>;
+      show = (
+        <span style={{ color: 'blue' }} onClick={this.showMore}>
+          Show more
+        </span>
+      );
     } else {
       bodyText = (
         <div>

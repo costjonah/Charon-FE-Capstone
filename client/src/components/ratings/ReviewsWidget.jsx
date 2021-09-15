@@ -17,13 +17,7 @@ class ReviewsWidget extends React.Component {
   }
 
   render() {
-    let button = <div></div>;
-    console.log(
-      'reviews: ',
-      this.state.reviews.length,
-      'shown',
-      this.props.reviewCount
-    );
+    let button = null;
     if (this.props.reviewCount < this.state.reviews.length) {
       button = <button onClick={this.handleClick}>More Reviews</button>;
     }
