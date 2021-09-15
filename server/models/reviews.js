@@ -28,7 +28,7 @@ module.exports = {
         callback(err);
       });
   },
-  add: (callback) => {
+  add: (data, callback) => {
     axios
       .post(`${settings.url}/reviews`, data, settings.head)
       .then((res) => {
