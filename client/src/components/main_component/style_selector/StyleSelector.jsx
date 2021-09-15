@@ -1,14 +1,19 @@
 import React from "react";
+import ZoomFav from "../image_gallery/ZoomFav.jsx";
 
 var StyleSelector = (props) => {
   if (props.styles.product_id !== undefined) {
-    console.log(props);
+
 
     return (
       <div className="styleselectormain">
 
         <ul id="styleul">
         <h4 id="currentstylename">Style > Black </h4>
+        <ZoomFav
+          zoomClick={props.zoomClick}
+
+        />
           {props.styles.results.map((style, index) => {
             // console.log(index);
             return (

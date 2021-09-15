@@ -38,7 +38,7 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <div>
-          <h1 id="mainheader">Project Catwalk</h1>
+          <h1 id="header">Project Catwalk</h1>
           <Navbar />
 
           <Overview

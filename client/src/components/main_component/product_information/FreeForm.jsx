@@ -12,8 +12,8 @@ var FreeForm = (props) => {
 
   return (
     <div className="freeformmain">
-      <h3>{currentSlogan}</h3>
-      <h5>{currentDescription}</h5>
+      <h3 id="curslogan">{currentSlogan}</h3>
+      <h5 id="curdescrip">{currentDescription}</h5>
     </div>
   );
 };
