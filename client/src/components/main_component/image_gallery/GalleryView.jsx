@@ -4,13 +4,13 @@ import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
 
 const Gallery = (props) => {
   if (Object.keys(props.currentStyle).length !== 0) {
-    console.log(props);
+    // console.log(props);
 
     return (
       <div className="galleryviewmain">
         <ul className="galthumbs">
           {props.currentStyle.photos.map((pic, index) => {
-            console.log(pic);
+            // console.log(pic);
             return (
               <div key={index} className="thumbnails">
                 <div id="thumbcaro">

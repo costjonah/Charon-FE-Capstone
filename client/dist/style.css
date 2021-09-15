@@ -120,6 +120,10 @@ a {
   display: block;
 }
 
+#galleryimg:hover {
+  cursor: pointer;
+}
+
 #downarrow {
   font-weight: bolder;
   font-size: 20px;
@@ -388,6 +392,12 @@ a {
 #curPrice {
   font-weight: bold;
   margin: 0;
+  padding: 0;
+}
+
+#newPrice {
+  margin-top: -4px;
+  font-weight: bold;
   padding: 0;
 }
 

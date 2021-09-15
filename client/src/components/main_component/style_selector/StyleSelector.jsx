@@ -2,6 +2,7 @@ import React from "react";
 import ZoomFav from "../image_gallery/ZoomFav.jsx";
 
 var StyleSelector = (props) => {
+  console.log(props);
   if (props.styles.product_id !== undefined) {
     return (
       <div className="styleselectormain">

@@ -28,6 +28,7 @@ class Overview extends React.Component {
       page: 0,
       hover: false,
       toggleZoom: false,
+      remainingQty: '',
     };
 
     this.getStyleData = this.getStyleData.bind(this);
@@ -53,13 +54,16 @@ class Overview extends React.Component {
         this.setState({
           styles: styleData.data,
         });
-        for (var i = 0; i < this.state.styles.results.length; i++) {
-          if (this.state.styles.results[i]["default?"] === true) {
-            this.setState({
-              currentStyle: this.state.styles.results[i],
-            });
-          }
-        }
+        // for (var i = 0; i < this.state.styles.results.length; i++) {
+        //   if (this.state.styles.results[i]["default?"] === true) {
+        //     this.setState({
+        //       currentStyle: this.state.styles.results[i],
+        //     });
+        //   }
+        // }
+        this.setState({
+                currentStyle: this.state.styles.results[2],
+              });
       })
       .catch((err) => {
         console.log(err);
