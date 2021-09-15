@@ -17,7 +17,10 @@ module.exports = {
   },
   getMetadata: (params, callback) => {
     axios
-      .get(`${settings.url}/reviews/meta?product_id=${params}`, settings.head)
+      .get(
+        `${settings.url}/reviews/meta?product_id=${params.id}`,
+        settings.head
+      )
       .then((res) => {
         callback(null, res);
       })

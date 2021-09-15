@@ -18,7 +18,10 @@ module.exports = (app) => {
     });
   });
   app.get('/reviews/meta', (req, res) => {
-    models.reviews.getMetadata((err, responseData) => {
+    let queryData = {
+      id: req.query.product_id,
+    };
+    models.reviews.getMetadata(queryData, (err, responseData) => {
       if (err) {
         console.error('Error: ', err);
         res.status(500).end();
