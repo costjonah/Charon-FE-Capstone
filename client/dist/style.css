@@ -1,3 +1,12 @@
+html {
+  -webkit-tap-highlight-color: transparent;
+  -khtml-user-select: none;
+  -o-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
 html,
 body {
   padding: 0;
@@ -35,7 +44,6 @@ body {
   background-color: #f2f2f2;
   border-bottom: 1px solid #ccc;
   border-top: 1px solid #ccc;
-
 }
 #navli {
   display: inline;
@@ -43,13 +51,10 @@ body {
   text-decoration: none;
   font-weight: bold;
   vertical-align: middle;
-
-  /* border-right: 1px solid #ccc; */
 }
 
 a {
   text-decoration: none;
-  /* color: black; */
   color: #f2f2f2;
 }
 
@@ -90,8 +95,18 @@ a {
   display: block;
   padding: 0;
   grid-column: 1 / 3;
+  width: fit-content;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 5px;
+  border: 2px solid transparent;
+  object-fit: cover;
 }
 
+.viewcontainer {
+  width: 679px;
+  height: 454px;
+}
 .galleryviewmain {
   grid-column: 1 / 3;
   margin-left: 0px;
@@ -110,12 +125,31 @@ a {
   box-shadow: 10px 15px 30px rgba(0, 0, 0, 0.25);
 }
 
+#maincaro {
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  overflow: hidden;
+  margin-bottom: 7.5px;
+  border-radius: 5px;
+}
+#fullimg {
+  height: 100%;
+  width: 100%;
+  border-radius: 5px;
+  display: block;
+}
+.mainpics:nth-child(n + 2) {
+  display: none;
+}
+
 .galthumbs {
   height: 100%;
   width: 100%;
 }
 
-.thumbnails {
+.thumbnails,
+.mainpics {
   list-style-type: none;
 }
 
@@ -148,15 +182,16 @@ a {
   cursor: pointer;
 }
 
-
 #rightarrow {
   font-weight: bolder;
   font-size: 20px;
   color: #4444dd97;
+  padding: 0;
   filter: drop-shadow(7.5px 12.5px 2px #4444dd);
 }
 
-#downarrow, #uparrow {
+#downarrow,
+#uparrow {
   font-weight: bolder;
   font-size: 20px;
   color: #4444dd97;
@@ -166,7 +201,9 @@ a {
   filter: drop-shadow(7.5px 12.5px 2px #4444dd);
 }
 
-#downarrow:hover, #uparrow:hover {
+#downarrow:hover,
+#uparrow:hover,
+#rightarrow:hover {
   cursor: pointer;
   color: #4444dd;
 }
@@ -177,20 +214,6 @@ a {
   width: 100%;
   border-radius: 5px;
   display: block;
-}
-
-.viewcontainer {
-  width: 679px;
-  height: 454px;
-}
-.defaultview {
-  /* height: fit-content; */
-  width: fit-content;
-  justify-content: center;
-  overflow: hidden;
-  border-radius: 5px;
-  border: 2px solid transparent;
-  object-fit: cover;
 }
 
 .freeformmain {
@@ -485,9 +508,10 @@ a {
   position: sticky;
   /* top: 0; */
   z-index: 200;
-
 }
-.navbar, .navbar>.container, .navbar>.container-fluid {
+.navbar,
+.navbar > .container,
+.navbar > .container-fluid {
   display: flex;
 }
 .navbar {
@@ -499,7 +523,6 @@ a {
   box-sizing: border-box;
   height: 3.75rem;
   height: 3rem;
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
   width: 100%;
 }
-

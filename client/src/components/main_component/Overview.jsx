@@ -27,6 +27,7 @@ class Overview extends React.Component {
       average: 0,
       count: 0,
       page: 0,
+      idx: 0,
       toggleZoom: false,
       styleSkus: {},
       selectedSizeOption: null,
@@ -43,6 +44,7 @@ class Overview extends React.Component {
     this.handleQtyChange = this.handleQtyChange.bind(this);
     this.downArrowOnClick = this.downArrowOnClick.bind(this);
     this.upArrowOnClick = this.upArrowOnClick.bind(this);
+    this.rightArrowOnClick = this.rightArrowOnClick.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -60,7 +62,6 @@ class Overview extends React.Component {
           styles: styleData.data,
           allStyles: styleData.data.results,
         });
-
         for (var i = 0; i < this.state.styles.results.length; i++) {
           if (this.state.styles.results[i]["default?"] === true) {
             this.setState({
@@ -74,8 +75,6 @@ class Overview extends React.Component {
         console.log(err);
       });
   };
-
-  setDefaultStyle = () => {};
 
   getReviewData = (id) => {
     axios
@@ -96,6 +95,7 @@ class Overview extends React.Component {
     e.preventDefault();
     this.setState({
       currentStyle: selection,
+      idx: 0,
     });
   };
 
@@ -121,6 +121,18 @@ class Overview extends React.Component {
     while (lastEl.length > 0) {
       ul.appendChild(lastEl.shift());
     }
+  };
+
+  rightArrowOnClick = (e) => {
+    let idx = this.state.idx;
+    if (idx == this.state.currentStyle.photos.length - 1) {
+      idx = 0;
+    } else {
+      idx++;
+    }
+    this.setState({
+      idx,
+    });
   };
 
   imageMouseOver = () => {
@@ -160,6 +172,9 @@ class Overview extends React.Component {
           currentStyle={this.state.currentStyle}
           zoom={this.state.toggleZoom}
           imageMouseOut={this.imageMouseOut}
+          rightClick={this.rightArrowOnClick}
+          currentPhoto={this.state.currentPhoto}
+          idxTicker={this.state.idx}
         />
         <Gallery
           currentStyle={this.state.currentStyle}

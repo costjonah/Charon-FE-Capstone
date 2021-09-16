@@ -2,7 +2,6 @@ import React from "react";
 import ZoomFav from "../image_gallery/ZoomFav.jsx";
 
 var StyleSelector = (props) => {
-  // console.log("LINE5: ", props);
   if (props.styles.product_id !== undefined) {
     return (
       <div className="styleselectormain">
@@ -10,7 +9,6 @@ var StyleSelector = (props) => {
           <h4 id="currentstylename"> Style > {props.currentStyle.name} </h4>
           <ZoomFav zoomClick={props.zoomClick} zoom={props.zoom} />
           {props.styles.results.map((style, index) => {
-            // console.log(style)
             return (
               <li
                 id="styleli"

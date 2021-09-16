@@ -7,32 +7,37 @@ const Gallery = (props) => {
   if (Object.keys(props.currentStyle).length !== 0) {
     return (
       <div className="galleryviewmain">
-         <div id="arrowU">
+        <div id="arrowU">
           <p>
             {" "}
-            <FontAwesomeIcon icon={faArrowUp} id="uparrow"onClick={(e) => props.upClick(e)} />
+            <FontAwesomeIcon
+              icon={faArrowUp}
+              id="uparrow"
+              onClick={(e) => props.upClick(e)}
+            />
           </p>
         </div>
-      <div>
-        <ul className="galthumbs">
-          {props.currentStyle.photos.map((pic, index) => {
-            return (
-              <li
-                key={index}
-                className="thumbnails"
-              >
-                <div id="thumbcaro">
-                  <img src={pic.thumbnail_url} alt="new" id="galleryimg" />
-                </div>
-              </li>
-            );
-          })}
-        </ul>
+        <div>
+          <ul className="galthumbs">
+            {props.currentStyle.photos.map((pic, index) => {
+              return (
+                <li key={index} className="thumbnails">
+                  <div id="thumbcaro">
+                    <img src={pic.thumbnail_url} alt="new" id="galleryimg" />
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
         </div>
         <div id="arrowD">
           <p>
             {" "}
-            <FontAwesomeIcon icon={faArrowDown} id="downarrow" onClick={(e) => props.downClick(e)} />
+            <FontAwesomeIcon
+              icon={faArrowDown}
+              id="downarrow"
+              onClick={(e) => props.downClick(e)}
+            />
           </p>
         </div>
       </div>

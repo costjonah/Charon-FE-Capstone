@@ -5,15 +5,12 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 const MainView = (props) => {
   if (Object.keys(props.currentStyle).length !== 0) {
-    // console.log(props);
-    var imageAtt = document.getElementsByClassName("defaultview");
-    console.log("BEFORE", imageAtt);
     if (props.zoom === false) {
       return (
         <div className="viewcontainer">
           <div className="defaultview">
             <img
-              src={props.currentStyle.photos[0].url}
+              src={props.currentStyle.photos[props.idxTicker].url}
               alt="new"
               id="mainimg"
             />
@@ -24,7 +21,7 @@ const MainView = (props) => {
               <FontAwesomeIcon
                 icon={faArrowRight}
                 id="rightarrow"
-                // onClick={(e) => props.upClick(e)}
+                onClick={(e) => props.rightClick(e)}
               />
             </p>
           </div>
@@ -38,13 +35,13 @@ const MainView = (props) => {
           <div className="defaultview" onMouseOut={props.imageMouseOut}>
             <CursorZoom
               image={{
-                src: props.currentStyle.photos[0].url,
+                src: props.currentStyle.photos[props.idxTicker].url,
                 width: 675,
                 height: 450,
                 style: { borderRadius: "5px", display: "block" },
               }}
               zoomImage={{
-                src: props.currentStyle.photos[0].url,
+                src: props.currentStyle.photos[props.idxTicker].url,
                 width: 1600,
                 height: 1200,
                 style: { borderRadius: "5px", display: "block" },
@@ -59,7 +56,7 @@ const MainView = (props) => {
               <FontAwesomeIcon
                 icon={faArrowRight}
                 id="rightarrow"
-                // onClick={(e) => props.upClick(e)}
+                onClick={(e) => props.upClick(e)}
               />
             </p>
           </div>
