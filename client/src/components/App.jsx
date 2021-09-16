@@ -53,7 +53,7 @@ class App extends React.Component {
 
   componentDidMount() {
     axios
-      .get('/products')
+      .get('/products?page=1&count=10')
       .then((res) => {
         this.setState({
           products: res.data,

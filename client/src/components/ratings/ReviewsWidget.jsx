@@ -1,5 +1,6 @@
 import React from 'react';
 import ReviewsList from './ReviewsList/ReviewsList.jsx';
+import SortOptions from './SortOptions/SortOptions.jsx';
 const axios = require('axios');
 
 class ReviewsWidget extends React.Component {
@@ -7,25 +8,33 @@ class ReviewsWidget extends React.Component {
     super(props);
     this.state = {
       reviews: [],
-      recommended: {
-        false: 0,
-        true: 0,
-      },
-      ratings: {
-        1: 0,
-        2: 0,
-        3: 0,
-        4: 0,
-        5: 0,
-      },
+      recommended: {},
+      ratings: {},
+      sortOption: 'Relevant',
     };
     this.handleClick = this.handleClick.bind(this);
     this.helpful = this.helpful.bind(this);
     this.report = this.report.bind(this);
+    this.sort = this.sort.bind(this);
+    this.sortFunctions = {
+      Relevant: (a, b) => {},
+      Helpful: (a, b) => {
+        return b.helpfulness - a.helpfulness;
+      },
+      Newest: (a, b) => {
+        return new Date(b.date) - new Date(a.date);
+      },
+    };
   }
 
   handleClick() {
     this.props.showMoreReviews();
+  }
+
+  sort(option) {
+    this.setState({
+      sortOption: option,
+    });
   }
 
   helpful(reviewId) {
@@ -73,13 +82,16 @@ class ReviewsWidget extends React.Component {
     if (this.props.reviewCount < this.state.reviews.length) {
       button = <button onClick={this.handleClick}>More Reviews</button>;
     }
+    let sortBy = this.sortFunctions[this.state.sortOption];
     return (
       <div>
+        <SortOptions sort={this.sort} />
         <ReviewsList
           reviews={this.state.reviews}
           count={this.props.reviewCount}
           helpful={this.helpful}
           report={this.report}
+          sortFunction={sortBy}
         />
         {button}
       </div>
