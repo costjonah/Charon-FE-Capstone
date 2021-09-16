@@ -16,6 +16,6 @@ class Stars extends React.Component {
       />
     );
   }
-}
+};
 
 export default Stars;

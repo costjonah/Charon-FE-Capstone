@@ -21,12 +21,12 @@ class Overview extends React.Component {
     super(props);
     this.state = {
       styles: [],
+      allStyles: [],
       currentStyle: {},
       productReview: [],
       average: 0,
       count: 0,
       page: 0,
-      hover: false,
       toggleZoom: false,
       styleSkus: {},
       selectedSizeOption: null,
@@ -36,12 +36,13 @@ class Overview extends React.Component {
     this.getStyleData = this.getStyleData.bind(this);
     this.getReviewData = this.getReviewData.bind(this);
     this.getAverage = this.getAverage.bind(this);
-    this.onMouseOver = this.onMouseOver.bind(this);
-    this.onMouseOut = this.onMouseOut.bind(this);
+    this.styleOnClick = this.styleOnClick.bind(this);
     this.zoomOnClick = this.zoomOnClick.bind(this);
     this.imageMouseOver = this.imageMouseOver.bind(this);
     this.handleSizeChange = this.handleSizeChange.bind(this);
     this.handleQtyChange = this.handleQtyChange.bind(this);
+    this.downArrowOnClick = this.downArrowOnClick.bind(this);
+    this.upArrowOnClick = this.upArrowOnClick.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -57,24 +58,24 @@ class Overview extends React.Component {
       .then((styleData) => {
         this.setState({
           styles: styleData.data,
+          allStyles: styleData.data.results,
         });
-        // for (var i = 0; i < this.state.styles.results.length; i++) {
-        //   if (this.state.styles.results[i]["default?"] === true) {
-        //     this.setState({
-        //       currentStyle: this.state.styles.results[i],
-        //       styleSkus: this.state.styles.results[i].skus,
-        //     });
-        //   }
-        // }
-        this.setState({
-          currentStyle: this.state.styles.results[2],
-          styleSkus: this.state.styles.results[2].skus,
-        });
+
+        for (var i = 0; i < this.state.styles.results.length; i++) {
+          if (this.state.styles.results[i]["default?"] === true) {
+            this.setState({
+              currentStyle: this.state.styles.results[i],
+              styleSkus: this.state.styles.results[i].skus,
+            });
+          }
+        }
       })
       .catch((err) => {
         console.log(err);
       });
   };
+
+  setDefaultStyle = () => {};
 
   getReviewData = (id) => {
     axios
@@ -91,15 +92,10 @@ class Overview extends React.Component {
       });
   };
 
-  onMouseOver = () => {
+  styleOnClick = (selection, e) => {
+    e.preventDefault();
     this.setState({
-      hover: true,
-    });
-  };
-
-  onMouseOut = () => {
-    this.setState({
-      hover: false,
+      currentStyle: selection,
     });
   };
 
@@ -107,6 +103,24 @@ class Overview extends React.Component {
     this.setState({
       toggleZoom: !this.state.toggleZoom,
     });
+  };
+
+  downArrowOnClick = (e) => {
+    var children = document.querySelectorAll(".thumbnails");
+    var firstEl = Array.prototype.slice.call(children, 0, 1);
+    var ul = document.querySelector(".galthumbs");
+    while (firstEl.length > 0) {
+      ul.appendChild(firstEl.shift());
+    }
+  };
+
+  upArrowOnClick = (e) => {
+    var children = document.querySelectorAll(".thumbnails");
+    var lastEl = Array.prototype.slice.call(children, 0, children.length - 1);
+    var ul = document.querySelector(".galthumbs");
+    while (lastEl.length > 0) {
+      ul.appendChild(lastEl.shift());
+    }
   };
 
   imageMouseOver = () => {
@@ -140,9 +154,6 @@ class Overview extends React.Component {
   };
 
   render() {
-    var nameStyle = {
-      display: this.state.hover ? "block" : "none",
-    };
     return (
       <div className="overviewmain">
         <MainImage
@@ -150,7 +161,11 @@ class Overview extends React.Component {
           zoom={this.state.toggleZoom}
           imageMouseOut={this.imageMouseOut}
         />
-        <Gallery currentStyle={this.state.currentStyle} />
+        <Gallery
+          currentStyle={this.state.currentStyle}
+          upClick={this.upArrowOnClick}
+          downClick={this.downArrowOnClick}
+        />
         <ProductInfo
           products={this.props.products}
           productId={this.props.productId}
@@ -164,10 +179,8 @@ class Overview extends React.Component {
         />
         <StyleSelector
           styles={this.state.styles}
-          currentstyle={this.state.currentStyle}
-          hover={this.state.hover}
-          mouseOver={this.onMouseOver}
-          mouseOut={this.onMouseOut}
+          currentStyle={this.state.currentStyle}
+          styleClick={this.styleOnClick}
           zoom={this.state.toggleZoom}
           zoomClick={this.zoomOnClick}
         />

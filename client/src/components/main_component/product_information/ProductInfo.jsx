@@ -17,7 +17,12 @@ var ProductInfo = (props) => {
         <br />
         <h4 id="curCateg">{currentCategory}</h4>
         <h1 id="curName">{currentName}</h1>
-        <h4 id="curPrice">${styleOGPrice}</h4>
+        <p style={priceStyle} id="curPrice">
+          ${styleOGPrice}
+        </p>
+        <p id="newPrice">
+          <br />
+        </p>
       </div>
     );
   } else {
