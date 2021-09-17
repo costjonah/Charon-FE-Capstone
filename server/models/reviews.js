@@ -4,10 +4,10 @@ const settings = require('./settings.js');
 module.exports = {
   list: (params, callback) => {
     axios
-    .get(
-      `${settings.url}/reviews?page=${params.page}&count=${params.count}&sort=${params.sort}&product_id=${params.id}`,
-      settings.head
-    )
+      .get(
+        `${settings.url}/reviews?page=${params.page}&count=${params.count}&sort=${params.sort}&product_id=${params.id}`,
+        settings.head
+      )
       .then((res) => {
         callback(null, res);
       })
@@ -17,7 +17,7 @@ module.exports = {
   },
   getMetadata: (params, callback) => {
     axios
-    .get(`${settings.url}/reviews/meta?product_id=${params}`, settings.head)
+      .get(`${settings.url}/reviews/meta?product_id=${params}`, settings.head)
       .then((res) => {
         callback(null, res);
       })

@@ -1,4 +1,4 @@
-const models = require('../models/index')
+const models = require('../models/index');
 
 module.exports = (app) => {
   app.get('/reviews', (req, res) => {
@@ -61,4 +61,4 @@ module.exports = (app) => {
       }
     });
   });
-}
+};
