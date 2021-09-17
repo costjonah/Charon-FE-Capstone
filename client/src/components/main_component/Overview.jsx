@@ -25,9 +25,9 @@ class Overview extends React.Component {
       currentStyle: {},
       productReview: [],
       average: 0,
-      count: 0,
-      page: 0,
       idx: 0,
+      height: 0,
+      width: 0,
       toggleZoom: false,
       styleSkus: {},
       selectedSizeOption: null,
@@ -45,6 +45,7 @@ class Overview extends React.Component {
     this.downArrowOnClick = this.downArrowOnClick.bind(this);
     this.upArrowOnClick = this.upArrowOnClick.bind(this);
     this.rightArrowOnClick = this.rightArrowOnClick.bind(this);
+    this.getImgSize = this.getImgSize.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -68,6 +69,7 @@ class Overview extends React.Component {
               currentStyle: this.state.styles.results[i],
               styleSkus: this.state.styles.results[i].skus,
             });
+            this.getImgSize(this.state.styles.results[i].photos[0].url);
           }
         }
       })
@@ -91,12 +93,29 @@ class Overview extends React.Component {
       });
   };
 
-  styleOnClick = (selection, e) => {
+  getImgSize = (img) => {
+    img = document.getElementById("mainimg");
+    var imgHeight = img.clientHeight;
+    var imgWidth = img.clientWidth;
+    this.setState({
+      height: imgHeight,
+      width: imgWidth,
+    });
+  };
+
+  styleOnClick = (selection, index, e) => {
     e.preventDefault();
     this.setState({
       currentStyle: selection,
       idx: 0,
     });
+    var allChecks = document.querySelectorAll(".checked");
+    var currentCheck = document.querySelector("#radio" + index);
+
+    for (var i = 0; i < allChecks.length; i++) {
+      allChecks[i].style.visibility = "hidden";
+    }
+    currentCheck.style.visibility = "visible";
   };
 
   zoomOnClick = () => {
@@ -175,6 +194,8 @@ class Overview extends React.Component {
           rightClick={this.rightArrowOnClick}
           currentPhoto={this.state.currentPhoto}
           idxTicker={this.state.idx}
+          height={this.state.height}
+          width={this.state.width}
         />
         <Gallery
           currentStyle={this.state.currentStyle}

@@ -28,8 +28,6 @@ const MainView = (props) => {
         </div>
       );
     } else if (props.zoom === true) {
-      var imageAtt = document.getElementsByClassName("defaultview");
-      console.log("AFTER", imageAtt);
       return (
         <div className="viewcontainer">
           <div className="defaultview" onMouseOut={props.imageMouseOut}>
@@ -38,13 +36,17 @@ const MainView = (props) => {
                 src: props.currentStyle.photos[props.idxTicker].url,
                 width: 675,
                 height: 450,
-                style: { borderRadius: "5px", display: "block" },
+                style: {
+                  borderRadius: "5px",
+                  display: "block",
+                  height: "100%",
+                  width: "100%",
+                },
               }}
               zoomImage={{
                 src: props.currentStyle.photos[props.idxTicker].url,
                 width: 1600,
                 height: 1200,
-                style: { borderRadius: "5px", display: "block" },
               }}
               cursorOffset={{ x: 50, y: 0 }}
               size={125}

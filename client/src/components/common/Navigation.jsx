@@ -13,7 +13,8 @@ class Navbar extends React.Component {
     this.onSearchEnter = this.onSearchEnter.bind(this);
   }
 
-  onSearchEnter = (e) => {   // incomplete function
+  onSearchEnter = (e) => {
+    // incomplete function
     if (e.charCode === 13) {
       e.preventDefault();
       onSearch(e.target.value);

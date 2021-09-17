@@ -14,8 +14,17 @@ var StyleSelector = (props) => {
                 id="styleli"
                 key={style.style_id}
                 name={style.name}
-                onClick={(e) => props.styleClick(style, e)}
+                onClick={(e) => props.styleClick(style, index, e)}
               >
+                <div id="checkdiv">
+                  <input
+                    className="checked"
+                    type="radio"
+                    id={"radio" + index}
+                    name="checkbox"
+                  />
+                  <label htmlFor={"radio" + index}></label>
+                </div>
                 <div id="crop">
                   <img
                     src={style.photos[0].thumbnail_url}

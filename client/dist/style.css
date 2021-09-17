@@ -45,6 +45,7 @@ body {
   border-bottom: 1px solid #ccc;
   border-top: 1px solid #ccc;
 }
+
 #navli {
   display: inline;
   padding: 8px 15px;
@@ -125,36 +126,22 @@ a {
   box-shadow: 10px 15px 30px rgba(0, 0, 0, 0.25);
 }
 
-#maincaro {
-  height: 100%;
-  width: 100%;
-  text-align: center;
-  overflow: hidden;
-  margin-bottom: 7.5px;
-  border-radius: 5px;
-}
-#fullimg {
-  height: 100%;
-  width: 100%;
-  border-radius: 5px;
-  display: block;
-}
-.mainpics:nth-child(n + 2) {
-  display: none;
-}
-
 .galthumbs {
   height: 100%;
   width: 100%;
 }
 
-.thumbnails,
-.mainpics {
+.thumbnails {
   list-style-type: none;
 }
 
 .galthumbs .thumbnails:nth-child(n + 6) {
   display: none;
+}
+
+.cursor-zoom-magnifier-container,
+.cursor-zoom-magnifier {
+  border-radius: 50%;
 }
 
 #arrowU {
@@ -184,30 +171,30 @@ a {
 
 #rightarrow {
   font-weight: bolder;
-  font-size: 20px;
-  color: #4444dd97;
+  font-size: 22.5px;
+  color: #bd081c;
   padding: 0;
-  filter: drop-shadow(7.5px 12.5px 2px #4444dd);
+  filter: drop-shadow(7.5px 12.5px 2px #4444dd97);
 }
 
 #downarrow,
 #uparrow {
   font-weight: bolder;
-  font-size: 20px;
-  color: #4444dd97;
+  font-size: 22.5px;
+  color: #bd081c;
   padding: 0;
   margin-top: 5px;
   margin-left: 20px;
-  filter: drop-shadow(7.5px 12.5px 2px #4444dd);
+  filter: drop-shadow(7.5px 12.5px 2px #4444dd97);
 }
 
 #downarrow:hover,
 #uparrow:hover,
 #rightarrow:hover {
   cursor: pointer;
-  color: #4444dd;
+  color: crimson;
 }
-
+/* #4444dd */
 #mainimg {
   /* height: 450px; */
   height: 100%;
@@ -247,6 +234,7 @@ a {
   margin-top: -40px;
   margin-left: 10px;
 }
+
 #selectsize {
   margin-top: 10px;
   width: 150px;
@@ -263,6 +251,7 @@ a {
   width: 320px;
   height: 20px;
 }
+
 .cartbtn {
   width: 317px;
   height: 25px;
@@ -438,6 +427,47 @@ a {
   list-style-type: none;
   padding: 0 0 0px 15px;
   display: -moz-inline-box;
+}
+
+#styleli input.checked[type="radio"] {
+  visibility: hidden;
+  display: block;
+}
+
+input[type="radio"] {
+  display: inline-block;
+  position: absolute;
+  margin-left: 40px;
+  margin-top: 1px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+}
+
+input[type="radio"]:after {
+  content: "✔";
+  border: none;
+  font-size: 20px;
+  color: #bd081c;
+}
+input[type="radio"]:checked:after {
+  content: "✔";
+  border: none;
+  font-size: 20px;
+  color: #bd081c;
+}
+
+#checkdiv {
+  width: fit-content;
+  padding: 0;
+  margin: 0;
+}
+
+.checked {
+  padding: 0;
+  margin-top: -10px;
 }
 
 #crop {
