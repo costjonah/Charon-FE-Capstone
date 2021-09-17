@@ -1,5 +1,6 @@
 import React from 'react';
 import ReviewsList from './ReviewsList/ReviewsList.jsx';
+import RatingsBreakdown from './RatingsBreakdown/RatingsBreakdown.jsx';
 const axios = require('axios');
 
 class ReviewsWidget extends React.Component {
@@ -7,17 +8,8 @@ class ReviewsWidget extends React.Component {
     super(props);
     this.state = {
       reviews: [],
-      recommended: {
-        false: 0,
-        true: 0,
-      },
-      ratings: {
-        1: 0,
-        2: 0,
-        3: 0,
-        4: 0,
-        5: 0,
-      },
+      recommended: {},
+      ratings: {},
     };
     this.handleClick = this.handleClick.bind(this);
     this.helpful = this.helpful.bind(this);
@@ -74,14 +66,20 @@ class ReviewsWidget extends React.Component {
       button = <button onClick={this.handleClick}>More Reviews</button>;
     }
     return (
-      <div>
-        <ReviewsList
-          reviews={this.state.reviews}
-          count={this.props.reviewCount}
-          helpful={this.helpful}
-          report={this.report}
+      <div style={{ display: 'flex', flexDirection: 'row' }}>
+        <RatingsBreakdown
+          recommended={this.state.recommended}
+          ratings={this.state.ratings}
         />
-        {button}
+        <div>
+          <ReviewsList
+            reviews={this.state.reviews}
+            count={this.props.reviewCount}
+            helpful={this.helpful}
+            report={this.report}
+          />
+          {button}
+        </div>
       </div>
     );
   }
