@@ -23,17 +23,17 @@ const StyledRadio = styled.div`
 const OverallRating = (props) => {
   let meanings = ['Poor', 'Fair', 'Average', 'Good', 'Great'];
   let meaning = null;
-  meaning = <span>{meanings[parseInt(props.selected) - 1]}</span>;
+  meaning = <span>{meanings[props.selected - 1]}</span>;
 
   return (
     <StyledRadio onChange={props.handleChange}>
       <label>
         Overall Rating
-        <input type='radio' value='1' name='rating' />
-        <input type='radio' value='2' name='rating' />
-        <input type='radio' value='3' name='rating' />
-        <input type='radio' value='4' name='rating' />
-        <input type='radio' value='5' name='rating' /> {meaning}
+        <input type='radio' value={1} name='rating' />
+        <input type='radio' value={2} name='rating' />
+        <input type='radio' value={3} name='rating' />
+        <input type='radio' value={4} name='rating' />
+        <input type='radio' value={5} name='rating' defaultChecked /> {meaning}
       </label>
     </StyledRadio>
   );

@@ -7,8 +7,8 @@ import Email from './NewReviewComponents/Email.jsx';
 import Nickname from './NewReviewComponents/Nickname.jsx';
 import OverallRating from './NewReviewComponents/OverallRating.jsx';
 import Photos from './NewReviewComponents/Photos.jsx';
-import Recommended from './NewReviewComponents/Body.jsx';
-import Summary from './NewReviewComponents/Body.jsx';
+import Recommended from './NewReviewComponents/Recommended.jsx';
+import Summary from './NewReviewComponents/Summary.jsx';
 
 const StyledModal = styled.div`
   background: lightgrey;
@@ -25,9 +25,11 @@ class Modal extends React.Component {
     super(props);
     this.state = {
       overallRating: 5,
+      recommended: true,
     };
     this.handleClose = this.handleClose.bind(this);
     this.changeRating = this.changeRating.bind(this);
+    this.changeRecommended = this.changeRecommended.bind(this);
   }
 
   handleClose() {
@@ -37,6 +39,11 @@ class Modal extends React.Component {
   changeRating(e) {
     this.setState({
       overallRating: e.target.value,
+    });
+  }
+  changeRecommended(e) {
+    this.setState({
+      recommended: e.target.value,
     });
   }
 
@@ -51,7 +58,7 @@ class Modal extends React.Component {
             handleChange={this.changeRating}
             selected={this.state.overallRating}
           />
-          <Recommended />
+          <Recommended handleChange={this.changeRecommended} />
           <Characteristics />
           <Summary />
           <Body />
