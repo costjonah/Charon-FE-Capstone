@@ -86,6 +86,7 @@ a {
   grid-template-columns: 40% 20% 40%;
   grid-template-rows: 3.5% 5% 23% 10% 33%;
   grid-gap: 5px;
+  position: relative;
 }
 
 .defaultview {
@@ -108,6 +109,45 @@ a {
   width: 679px;
   height: 454px;
 }
+
+.mainimgmodal {
+  height: fit-content;
+  width: fit-content;
+}
+
+.modalview {
+  height: fit-content;
+  width: fit-content;
+  padding: 0;
+  position: absolute;
+  opacity: 1 !important;
+  border-radius: 5px;
+}
+
+#sizeselect > div,
+#qtyselect > div {
+  cursor: pointer;
+}
+
+#expandbtn {
+  float: right;
+  margin-top: 20px;
+  cursor: pointer;
+  font-weight: bolder;
+  font-size: 17.5px;
+  color: #4444dd97;
+  padding: 0;
+  /* filter: drop-shadow(5px 10px 1.5px #4444dd97); */
+}
+#expandbtn:hover {
+  color: #4444dd;
+}
+
+#expandedimg {
+  margin-top: 50px;
+  border-radius: 5px;
+}
+
 .galleryviewmain {
   grid-column: 1 / 3;
   margin-left: 0px;
@@ -147,31 +187,34 @@ a {
 #arrowU {
   margin-top: -5px;
   margin-left: 40px;
+  padding: 0;
 }
 
 #arrowD {
   margin-top: 5px;
   margin-left: 40px;
+  padding: 0;
 }
 
 #arrowR {
   margin-top: -245px;
-  margin-left: 95%;
+  padding: 0;
+  float: right;
 }
 
-#galleryimg {
+.galleryimg {
   height: 100%;
   width: 100%;
   display: block;
 }
 
-#galleryimg:hover {
+.galleryimg:hover {
   cursor: pointer;
 }
 
 #rightarrow {
   font-weight: bolder;
-  font-size: 22.5px;
+  font-size: 17.5px;
   color: #bd081c;
   padding: 0;
   filter: drop-shadow(7.5px 12.5px 2px #4444dd97);
@@ -180,7 +223,7 @@ a {
 #downarrow,
 #uparrow {
   font-weight: bolder;
-  font-size: 22.5px;
+  font-size: 17.5px;
   color: #bd081c;
   padding: 0;
   margin-top: 5px;
@@ -194,13 +237,24 @@ a {
   cursor: pointer;
   color: crimson;
 }
-/* #4444dd */
-#mainimg {
-  /* height: 450px; */
+
+.mainimg {
   height: 100%;
   width: 100%;
   border-radius: 5px;
   display: block;
+}
+
+.mainimg > img {
+  margin-top: 50px;
+  height: 100%;
+  width: 100%;
+  border-radius: 5px;
+  display: block;
+}
+
+.mainimg:hover {
+  cursor: zoom-in;
 }
 
 .freeformmain {
@@ -299,8 +353,8 @@ a {
 #heart {
   grid-column: 3 / 3;
   grid-row: 2 / 5;
-  margin-top: -70px;
-  margin-left: 10px;
+  margin-top: -65px;
+  margin-left: 25px;
 }
 
 #zoomin {

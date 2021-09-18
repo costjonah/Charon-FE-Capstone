@@ -10,7 +10,10 @@ const QuantitySelector = (props) => {
       qty = props.styleSkus[key].quantity;
     }
   }
-  while (qty > i) {
+  if (qty > 15) {
+    qty = 15;
+  }
+  while (qty >= i) {
     options.push({
       value: i,
       label: i,
