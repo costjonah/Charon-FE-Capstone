@@ -1,8 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-const axios = require('axios');
 import ReviewsWidget from './ratings/ReviewsWidget.jsx';
 import TEMPPRODUCTS from './TEMPPRODUCTS.jsx';
+import { BrowserRouter, Route } from 'react-router-dom';
+import axios from 'axios';
+
+import Navbar from '../components/common/Navigation.jsx';
+import Overview from '../components/main_component/Overview.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -11,25 +15,54 @@ class App extends React.Component {
       products: [],
       currentProduct: { id: 0 },
       reviewCount: 2,
+      productId: '0',
+      productInfo: [],
     };
     this.selectProduct = this.selectProduct.bind(this);
     this.showMoreReviews = this.showMoreReviews.bind(this);
+    this.getProductData = this.getProductData.bind(this);
   }
+
+  componentDidMount() {
+    this.getProductData();
+  }
+
+  getProductData = () => {
+    axios
+      .get('/products')
+      .then((productData) => {
+        this.setState({
+          productInfo: productData.data,
+          productId: productData.data[3].id,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   render() {
     return (
-      <div>
-        <h1>Project Catwalk</h1>
-        <TEMPPRODUCTS
-          products={this.state.products}
-          selectProduct={this.selectProduct}
-        />
-        <ReviewsWidget
-          product={this.state.currentProduct}
-          reviewCount={this.state.reviewCount}
-          showMoreReviews={this.showMoreReviews}
-        />
-      </div>
+      <BrowserRouter>
+        <div>
+          <h1 id='header'>Project Catwalk</h1>
+          <Navbar />
+
+          <Overview
+            products={this.state.productInfo}
+            productId={this.state.productId}
+          />
+          <TEMPPRODUCTS
+            products={this.state.products}
+            selectProduct={this.selectProduct}
+          />
+          <ReviewsWidget
+            product={this.state.currentProduct}
+            reviewCount={this.state.reviewCount}
+            showMoreReviews={this.showMoreReviews}
+          />
+        </div>
+      </BrowserRouter>
     );
   }
 
