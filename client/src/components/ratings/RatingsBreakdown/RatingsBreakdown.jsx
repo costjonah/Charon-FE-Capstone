@@ -9,19 +9,26 @@ class RatingsBreakdown extends React.Component {
     this.state = {
       averageRating: 0,
       totalRatings: 0,
+      ratingsPer: {},
     };
   }
 
   findRatings(ratings) {
     let totalRatings = 0;
     let totalStars = 0;
+    let ratingsPer = {};
     for (var stars in ratings) {
       totalRatings += parseInt(ratings[stars]);
       totalStars += parseInt(ratings[stars]) * parseInt(stars);
     }
+    for (var stars in ratings) {
+      let ratingsPercentage = parseInt(ratings[stars]) / totalRatings;
+      ratingsPer[stars] = Math.round(ratingsPercentage * 100);
+    }
     let result = {
       averageRating: Math.round((totalStars / totalRatings) * 10) / 10,
       totalRatings: totalRatings,
+      ratingsPer: ratingsPer,
     };
     return result;
   }
@@ -33,7 +40,7 @@ class RatingsBreakdown extends React.Component {
           averageRating={this.state.averageRating}
           totalRatings={this.state.totalRatings}
         />
-        <Breakdown />
+        <Breakdown ratingsPer={this.state.ratingsPer} />
         <Recommendations />
       </div>
     );
@@ -43,6 +50,7 @@ class RatingsBreakdown extends React.Component {
     this.setState({
       averageRating: this.findRatings(this.props.ratings).averageRating,
       totalRatings: this.findRatings(this.props.ratings).totalRatings,
+      ratingsPer: this.findRatings(this.props.ratings).ratingsPer,
     });
   }
 
@@ -51,6 +59,7 @@ class RatingsBreakdown extends React.Component {
       this.setState({
         averageRating: this.findRatings(this.props.ratings).averageRating,
         totalRatings: this.findRatings(this.props.ratings).totalRatings,
+        ratingsPer: this.findRatings(this.props.ratings).ratingsPer,
       });
     }
   }
