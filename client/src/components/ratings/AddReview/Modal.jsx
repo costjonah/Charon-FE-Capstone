@@ -26,6 +26,14 @@ class Modal extends React.Component {
     this.state = {
       overallRating: 5,
       recommended: true,
+      characteristics: {
+        size: null,
+        width: null,
+        comfort: null,
+        quality: null,
+        length: null,
+        fit: null,
+      },
     };
     this.handleClose = this.handleClose.bind(this);
     this.changeRating = this.changeRating.bind(this);
@@ -48,6 +56,7 @@ class Modal extends React.Component {
   }
 
   render() {
+    console.log(this.props.characteristics);
     let showModal = this.props.show ? 'block' : 'none';
     return (
       <StyledModal show={showModal}>

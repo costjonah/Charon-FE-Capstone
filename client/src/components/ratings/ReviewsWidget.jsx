@@ -12,6 +12,7 @@ class ReviewsWidget extends React.Component {
       reviews: [],
       recommended: {},
       ratings: {},
+      characteristics: {},
       filter: [],
       sortOption: 'Relevant',
     };
@@ -136,7 +137,10 @@ class ReviewsWidget extends React.Component {
             sortFunction={sortBy}
           />
           {button}
-          <AddReview product={this.props.product} />
+          <AddReview
+            product={this.props.product}
+            characteristics={this.state.characteristics}
+          />
         </div>
       </div>
     );
@@ -160,6 +164,7 @@ class ReviewsWidget extends React.Component {
         this.setState({
           recommended: res.data.recommended,
           ratings: res.data.ratings,
+          characteristics: res.data.characteristics,
         });
       })
       .catch((err) => {
@@ -186,6 +191,7 @@ class ReviewsWidget extends React.Component {
           this.setState({
             recommended: res.data.recommended,
             ratings: res.data.ratings,
+            characteristics: res.data.characteristics,
           });
         })
         .catch((err) => {

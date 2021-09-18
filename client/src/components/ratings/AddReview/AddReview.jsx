@@ -31,6 +31,7 @@ class AddReview extends React.Component {
           show={this.state.show}
           hideModal={this.hideModal}
           product={this.props.product}
+          characteristics={this.props.characteristics}
         />
         <button type='button' onClick={this.showModal}>
           Add a Review
