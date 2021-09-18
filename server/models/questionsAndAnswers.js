@@ -1,5 +1,5 @@
-const axios = require('axios');
-const settings = require('./settings.js');
+const axios = require("axios");
+const settings = require("./settings.js");
 
 module.exports = {
   questions: (callback) => {
