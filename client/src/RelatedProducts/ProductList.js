@@ -21,14 +21,14 @@ class ProductList extends React.Component {
         console.log("move is: ", move);
         if (move > 0) {
             preBtn.classList.remove("hidden");
-        } 
+        }
         if (move + 3 < cards.length) {
             nextBtn.classList.remove("hidden");
-        } 
+        }
         if (move === 0) {
             console.log("hidden previous button...");
             preBtn.classList.add("hidden");
-        } 
+        }
         if (move + 3 === cards.length) {
             nextBtn.classList.add("hidden");
         }

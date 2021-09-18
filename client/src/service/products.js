@@ -12,3 +12,9 @@ exports.fetchProduct = async (id) => {
     const data = await res.json();
     return data;
 };
+
+exports.fetchCurrentProduct = async () => {
+    const res = await fetch(`${BASE_URL_PREFFIX}/currentProduct`);
+    const data = await res.json();
+    return data;
+};
