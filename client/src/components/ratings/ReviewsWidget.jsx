@@ -1,6 +1,7 @@
 import React from 'react';
 import ReviewsList from './ReviewsList/ReviewsList.jsx';
 import RatingsBreakdown from './RatingsBreakdown/RatingsBreakdown.jsx';
+import SortOptions from './SortOptions/SortOptions.jsx';
 const axios = require('axios');
 
 class ReviewsWidget extends React.Component {
@@ -11,16 +12,33 @@ class ReviewsWidget extends React.Component {
       recommended: {},
       ratings: {},
       filter: [],
+      sortOption: 'Relevant',
     };
     this.handleClick = this.handleClick.bind(this);
     this.helpful = this.helpful.bind(this);
     this.report = this.report.bind(this);
     this.filterBy = this.filterBy.bind(this);
     this.removeAllFilters = this.removeAllFilters.bind(this);
+    this.sort = this.sort.bind(this);
+    this.sortFunctions = {
+      Relevant: (a, b) => {},
+      Helpful: (a, b) => {
+        return b.helpfulness - a.helpfulness;
+      },
+      Newest: (a, b) => {
+        return new Date(b.date) - new Date(a.date);
+      },
+    };
   }
 
   handleClick() {
     this.props.showMoreReviews();
+  }
+
+  sort(option) {
+    this.setState({
+      sortOption: option,
+    });
   }
 
   helpful(reviewId) {
@@ -96,6 +114,7 @@ class ReviewsWidget extends React.Component {
     if (this.props.reviewCount < this.state.reviews.length) {
       button = <button onClick={this.handleClick}>More Reviews</button>;
     }
+    let sortBy = this.sortFunctions[this.state.sortOption];
     return (
       <div style={{ display: 'flex', flexDirection: 'row' }}>
         <RatingsBreakdown
@@ -105,6 +124,7 @@ class ReviewsWidget extends React.Component {
           removeAllFilters={this.removeAllFilters}
           recommended={this.recommendedPercentages()}
         />
+        <SortOptions sort={this.sort} />
         <div>
           <ReviewsList
             reviews={this.state.reviews}
@@ -112,6 +132,7 @@ class ReviewsWidget extends React.Component {
             helpful={this.helpful}
             report={this.report}
             filter={this.state.filter}
+            sortFunction={sortBy}
           />
           {button}
         </div>

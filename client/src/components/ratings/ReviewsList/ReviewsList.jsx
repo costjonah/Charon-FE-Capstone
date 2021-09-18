@@ -3,6 +3,7 @@ import ReviewTile from './ReviewTile.jsx';
 
 const ReviewsList = (props) => {
   let shownReviews = props.reviews.slice(0, props.count);
+  let sortedReviews = shownReviews.sort(props.sortFunction);
   return (
     <ul>
       {shownReviews.map((review) => {
