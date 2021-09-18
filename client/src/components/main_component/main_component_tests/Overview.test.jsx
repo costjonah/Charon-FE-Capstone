@@ -1,22 +1,22 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import Overview from "./Overview.jsx";
+import Overview from "../../../components/main_component/Overview.jsx";
 
-import ProductInfo from "./product_information/ProductInfo.jsx";
-import Review from "./product_information/OV_Review.jsx";
-import FreeForm from "./product_information/FreeForm.jsx";
-import BrandLogos from "./product_information/BrandLogos.jsx";
+import ProductInfo from "../../../components/main_component/product_information/ProductInfo.jsx";
+import Review from "../../../components/main_component/product_information/OV_Review.jsx";
+import FreeForm from "../../../components/main_component/product_information/FreeForm.jsx";
+import BrandLogos from "../../../components/main_component/product_information/BrandLogos.jsx";
 
-import StyleSelector from "./style_selector/StyleSelector.jsx";
+import StyleSelector from "../../../components/main_component/style_selector/StyleSelector.jsx";
 
-import MainImage from "./image_gallery/MainImage.jsx";
-import Gallery from "./image_gallery/GalleryView.jsx";
-import ImgModal from "./image_gallery/ImgModal.jsx";
+import MainImage from "../../../components/main_component/image_gallery/MainImage.jsx";
+import Gallery from "../../../components/main_component/image_gallery/GalleryView.jsx";
+import ImgModal from "../../../components/main_component/image_gallery/ImgModal.jsx";
 
-import SizeSelector from "./add_to_cart/SizeSelect.jsx";
-import QuantitySelector from "./add_to_cart/QuantitySelect.jsx";
-import AddToCart from "./add_to_cart/AddToCart.jsx";
+import SizeSelector from "../../../components/main_component/add_to_cart/SizeSelect.jsx";
+import QuantitySelector from "../../../components/main_component/add_to_cart/QuantitySelect.jsx";
+import AddToCart from "../../../components/main_component/add_to_cart/AddToCart.jsx";
 
 describe('Main Component', () => {
   let overviewBody;

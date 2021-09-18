@@ -1,9 +1,8 @@
-
 import { shallow, mount, render } from 'enzyme';
 import React from 'react';
-import Stars from './Stars.jsx';
+import Stars from "../../../components/main_component/product_information/Stars.jsx";
 
-test('StarRating value to be 1', () => {
+test('Stars value to be 1', () => {
   const count = 1;
 
   const Rating = mount(<Stars rating={count} />);

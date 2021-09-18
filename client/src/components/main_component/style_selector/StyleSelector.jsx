@@ -1,14 +1,17 @@
 import React from "react";
-import ZoomFav from "../image_gallery/ZoomFav.jsx";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 var StyleSelector = (props) => {
   if (props.styles.product_id !== undefined) {
-    console.log(props);
+    // console.log(props);
     return (
       <div className="styleselectormain">
         <ul id="styleul">
           <h4 id="currentstylename"> Style > {props.currentStyle.name} </h4>
-          <ZoomFav zoomClick={props.zoomClick} zoom={props.zoom} />
+          <h3 className="zoom fav">
+            <FontAwesomeIcon icon={faHeart} id="heart" />{" "}
+          </h3>
           {props.styles.results.map((style, index) => {
             return (
               <li

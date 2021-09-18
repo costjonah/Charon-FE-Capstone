@@ -47,6 +47,7 @@ class Overview extends React.Component {
     this.upArrowOnClick = this.upArrowOnClick.bind(this);
     this.rightArrowOnClick = this.rightArrowOnClick.bind(this);
     this.showModalClick = this.showModalClick.bind(this);
+    this.thumbnailOnClick = this.thumbnailOnClick.bind(this);
     this.closeModalClick = this.closeModalClick.bind(this);
     this.addToCartPost = this.addToCartPost.bind(this);
     this.getImgSize = this.getImgSize.bind(this);
@@ -185,9 +186,43 @@ class Overview extends React.Component {
     });
   };
 
+  thumbnailOnClick = (x, index, e) => {
+    var select = (document.getElementById("img" + index).src = x.thumbnail_url);
+    console.log("SELECTED", select);
+    console.log("TARGET", e.target.id);
+
+    var recurse = (target) => {
+      var children = document.querySelectorAll(".thumbnails");
+      var ul = document.querySelector(".galthumbs");
+      var caroDiv = document.querySelectorAll("#thumbcaro");
+      var currentId = caroDiv[0].lastChild.id;
+      if (target === currentId) {
+        return;
+      }
+      if (target !== currentId) {
+        var lastEl = Array.prototype.slice.call(children, 0, 1);
+        ul.appendChild(lastEl.shift());
+
+      if (this.state.idx !== this.state.currentStyle.photos.length - 1) {
+          this.setState({
+            idx: ++this.state.idx,
+          });
+        } else {
+          this.setState({
+            idx: 0,
+          });
+        }
+        console.log('INDEX', this.state.idx);
+      }
+       recurse(target);
+    };
+    recurse(e.target.id);
+  };
+
   upArrowOnClick = (e) => {
     var children = document.querySelectorAll(".thumbnails");
     var lastEl = Array.prototype.slice.call(children, 0, children.length - 1);
+
     var ul = document.querySelector(".galthumbs");
     while (lastEl.length > 0) {
       ul.appendChild(lastEl.shift());
@@ -205,7 +240,9 @@ class Overview extends React.Component {
 
   downArrowOnClick = (e) => {
     var children = document.querySelectorAll(".thumbnails");
+    console.log(children[0]);
     var firstEl = Array.prototype.slice.call(children, 0, 1);
+
     var ul = document.querySelector(".galthumbs");
     while (firstEl.length > 0) {
       ul.appendChild(firstEl.shift());
@@ -277,6 +314,7 @@ class Overview extends React.Component {
           currentStyle={this.state.currentStyle}
           upClick={this.upArrowOnClick}
           downClick={this.downArrowOnClick}
+          thumbnailClick={this.thumbnailOnClick}
         />
 
         <ProductInfo
