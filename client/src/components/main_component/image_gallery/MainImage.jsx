@@ -1,42 +1,82 @@
 import React from "react";
-import CursorZoom from "react-cursor-zoom";
+import {
+  Magnifier,
+  GlassMagnifier,
+  SideBySideMagnifier,
+  PictureInPictureMagnifier,
+  MOUSE_ACTIVATION,
+  TOUCH_ACTIVATION,
+} from "react-image-magnifiers";
+import ImgModal from "./ImgModal.jsx";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { faExpandArrowsAlt } from "@fortawesome/free-solid-svg-icons";
 
 const MainView = (props) => {
   if (Object.keys(props.currentStyle).length !== 0) {
-    console.log(props);
-
-    if (props.zoom === true) {
+    if (props.zoom === false) {
       return (
-        <div className="defaultview" onMouseOut={props.imageMouseOut}>
-          <CursorZoom
-            alt="new"
-            image={{
-              src: props.currentStyle.photos[0].url,
-              width: 675,
-              height: 450,
-            }}
-            zoomImage={{
-              src: props.currentStyle.photos[0].url,
-              width: 1600,
-              height: 1200,
-            }}
-            cursorOffset={{ x: 50, y: 0 }}
-            size={125}
+        <div className="viewcontainer">
+          <FontAwesomeIcon
+            icon={faExpandArrowsAlt}
+            id="expandbtn"
+            onClick={(e) => props.toggleModal(e)}
           />
+          <div className="defaultview">
+            <img
+              src={props.currentStyle.photos[props.idxTicker].url}
+              alt="new"
+              className="mainimg"
+              onClick={(e) => props.toggleModal(e)}
+            />
+          </div>
+          <div id="arrowR">
+            <p>
+              {" "}
+              <FontAwesomeIcon
+                icon={faArrowRight}
+                id="rightarrow"
+                onClick={(e) => props.rightClick(e)}
+              />
+            </p>
+          </div>
         </div>
       );
-      document.getElementById("mainimg").style.borderRadius = "5px";
-    } else if (props.zoom === false) {
+    } else if (props.zoom === true) {
       return (
-        <div className="defaultview">
-          <img src={props.currentStyle.photos[0].url} alt="new" id="mainimg" />
+        <div className="viewcontainer">
+          <FontAwesomeIcon
+            icon={faExpandArrowsAlt}
+            id="expandbtn"
+            onClick={(e) => props.toggleModal(e)}
+          />
+          <div className="defaultview" onMouseOut={props.imageMouseOut}>
+            <GlassMagnifier
+              imageSrc={props.currentStyle.photos[props.idxTicker].url}
+              imageAlt="new"
+              largeImageSrc={props.currentStyle.photos[props.idxTicker].url}
+              className="mainimg"
+            />
+          </div>
+          <div id="arrowR">
+            <p>
+              {" "}
+              <FontAwesomeIcon
+                icon={faArrowRight}
+                id="rightarrow"
+                onClick={(e) => props.rightClick(e)}
+              />
+            </p>
+          </div>
         </div>
       );
     }
   } else {
     return (
       <div>
-        <h2>Main Image</h2>
+        <h2>
+          <br />
+        </h2>
       </div>
     );
   }

@@ -33,7 +33,7 @@ class App extends React.Component {
       .then((productData) => {
         this.setState({
           productInfo: productData.data,
-          productId: productData.data[3].id,
+          productId: productData.data[0].id,
         });
       })
       .catch((err) => {
