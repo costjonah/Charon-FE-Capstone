@@ -1,6 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Overview from '../main_component/Overview.jsx'
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter, Route } from "react-router-dom";
+import axios from "axios";
+
+import Navbar from "../components/common/Navigation.jsx";
+import Overview from "../components/main_component/Overview.jsx";
 
 class App extends React.Component {
   constructor(props) {
@@ -32,11 +36,18 @@ class App extends React.Component {
 
   render() {
     return (
-    <div>
-      <h1>Project Catwalk</h1>
-      <Overview />
-    </div>
-    )
+      <BrowserRouter>
+        <div>
+          <h1 id="header">Project Catwalk</h1>
+          <Navbar />
+
+          <Overview
+            products={this.state.productInfo}
+            productId={this.state.productId}
+          />
+        </div>
+      </BrowserRouter>
+    );
   }
 }
 
