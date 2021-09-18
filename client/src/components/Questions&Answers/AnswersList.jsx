@@ -71,6 +71,7 @@ class AnswersList extends React.Component {
       <ul className='Answers'>
       {this.state.answers.slice(0, this.state.length).map(answer =>
         <Answer
+        key={answer.id}
         answer={answer}
         helpfulAnswerClick={this.helpfulAnswerClick}
         reportAnswerClick={this.reportAnswerClick}
