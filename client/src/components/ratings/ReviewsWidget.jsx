@@ -2,6 +2,7 @@ import React from 'react';
 import ReviewsList from './ReviewsList/ReviewsList.jsx';
 import RatingsBreakdown from './RatingsBreakdown/RatingsBreakdown.jsx';
 import SortOptions from './SortOptions/SortOptions.jsx';
+import AddReview from './AddReview/AddReview.jsx';
 const axios = require('axios');
 
 class ReviewsWidget extends React.Component {
@@ -136,6 +137,7 @@ class ReviewsWidget extends React.Component {
           />
           {button}
         </div>
+        <AddReview />
       </div>
     );
   }
