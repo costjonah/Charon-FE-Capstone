@@ -1,18 +1,33 @@
 import React from "react";
-import CursorZoom from "react-cursor-zoom";
+import {
+  Magnifier,
+  GlassMagnifier,
+  SideBySideMagnifier,
+  PictureInPictureMagnifier,
+  MOUSE_ACTIVATION,
+  TOUCH_ACTIVATION,
+} from "react-image-magnifiers";
+import ImgModal from "./ImgModal.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { faExpandArrowsAlt } from "@fortawesome/free-solid-svg-icons";
 
 const MainView = (props) => {
   if (Object.keys(props.currentStyle).length !== 0) {
     if (props.zoom === false) {
       return (
         <div className="viewcontainer">
+          <FontAwesomeIcon
+            icon={faExpandArrowsAlt}
+            id="expandbtn"
+            onClick={(e) => props.toggleModal(e)}
+          />
           <div className="defaultview">
             <img
               src={props.currentStyle.photos[props.idxTicker].url}
               alt="new"
-              id="mainimg"
+              className="mainimg"
+              onClick={(e) => props.toggleModal(e)}
             />
           </div>
           <div id="arrowR">
@@ -30,26 +45,17 @@ const MainView = (props) => {
     } else if (props.zoom === true) {
       return (
         <div className="viewcontainer">
+          <FontAwesomeIcon
+            icon={faExpandArrowsAlt}
+            id="expandbtn"
+            onClick={(e) => props.toggleModal(e)}
+          />
           <div className="defaultview" onMouseOut={props.imageMouseOut}>
-            <CursorZoom
-              image={{
-                src: props.currentStyle.photos[props.idxTicker].url,
-                width: 675,
-                height: 450,
-                style: {
-                  borderRadius: "5px",
-                  display: "block",
-                  height: "100%",
-                  width: "100%",
-                },
-              }}
-              zoomImage={{
-                src: props.currentStyle.photos[props.idxTicker].url,
-                width: 1600,
-                height: 1200,
-              }}
-              cursorOffset={{ x: 50, y: 0 }}
-              size={125}
+            <GlassMagnifier
+              imageSrc={props.currentStyle.photos[props.idxTicker].url}
+              imageAlt="new"
+              largeImageSrc={props.currentStyle.photos[props.idxTicker].url}
+              className="mainimg"
             />
           </div>
           <div id="arrowR">
@@ -58,7 +64,7 @@ const MainView = (props) => {
               <FontAwesomeIcon
                 icon={faArrowRight}
                 id="rightarrow"
-                onClick={(e) => props.upClick(e)}
+                onClick={(e) => props.rightClick(e)}
               />
             </p>
           </div>
@@ -68,7 +74,9 @@ const MainView = (props) => {
   } else {
     return (
       <div>
-        <h2>Main Image</h2>
+        <h2>
+          <br />
+        </h2>
       </div>
     );
   }

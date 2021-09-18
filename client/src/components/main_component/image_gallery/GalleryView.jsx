@@ -23,7 +23,12 @@ const Gallery = (props) => {
               return (
                 <li key={index} className="thumbnails">
                   <div id="thumbcaro">
-                    <img src={pic.thumbnail_url} alt="new" id="galleryimg" />
+                    <img
+                      src={pic.thumbnail_url}
+                      alt="new"
+                      id={"img" + index}
+                      className="galleryimg"
+                    />
                   </div>
                 </li>
               );
