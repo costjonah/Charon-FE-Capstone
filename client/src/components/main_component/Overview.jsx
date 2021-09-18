@@ -24,7 +24,6 @@ class Overview extends React.Component {
       styles: [],
       allStyles: [],
       currentStyle: {},
-      currentPhoto: "",
       productReview: [],
       average: 0,
       idx: 0,
@@ -42,7 +41,6 @@ class Overview extends React.Component {
     this.getAverage = this.getAverage.bind(this);
     this.styleOnClick = this.styleOnClick.bind(this);
     this.zoomOnClick = this.zoomOnClick.bind(this);
-    this.imageMouseOver = this.imageMouseOver.bind(this);
     this.handleSizeChange = this.handleSizeChange.bind(this);
     this.handleQtyChange = this.handleQtyChange.bind(this);
     this.downArrowOnClick = this.downArrowOnClick.bind(this);
@@ -98,7 +96,6 @@ class Overview extends React.Component {
             this.setState({
               currentStyle: this.state.styles.results[i],
               styleSkus: this.state.styles.results[i].skus,
-              currentPhoto: this.state.styles.results[i].photos[0].url,
             });
             this.getImgSize(this.state.styles.results[i].photos[0].url);
           }
@@ -117,8 +114,6 @@ class Overview extends React.Component {
       .then((reviewData) => {
         this.setState({
           productReview: reviewData.data.results,
-          count: reviewData.data.count,
-          page: reviewData.data.page,
         });
       })
       .catch((err) => {
@@ -175,13 +170,9 @@ class Overview extends React.Component {
     e.preventDefault();
     this.setState({
       currentStyle: selection,
-      currentPhoto: selection.photos[0].url,
-      idx: 0,
     });
-    console.log(this.state.currentPhoto);
     var allChecks = document.querySelectorAll(".checked");
     var currentCheck = document.querySelector("#radio" + index);
-
     for (var i = 0; i < allChecks.length; i++) {
       allChecks[i].style.visibility = "hidden";
     }
@@ -270,20 +261,17 @@ class Overview extends React.Component {
         <MainImage
           currentStyle={this.state.currentStyle}
           zoom={this.state.toggleZoom}
-          imageMouseOut={this.imageMouseOut}
           rightClick={this.rightArrowOnClick}
           toggleModal={this.showModalClick}
-          currentPhoto={this.state.currentPhoto}
           idxTicker={this.state.idx}
           height={this.state.height}
           width={this.state.width}
         />
         <ImgModal
-          modalState={this.state.modal}
-          currentPhoto={this.state.currentPhoto}
-          idxTicker={this.state.idx}
           currentStyle={this.state.currentStyle}
           rightClick={this.rightArrowOnClick}
+          modalState={this.state.modal}
+          idxTicker={this.state.idx}
         />
         <Gallery
           currentStyle={this.state.currentStyle}

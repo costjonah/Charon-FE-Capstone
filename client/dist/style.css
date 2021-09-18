@@ -580,7 +580,7 @@ input[type="radio"]:checked:after {
   background-color: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(34, 34, 34, 0.6);
+  background: #bd081d9c;
   border-radius: 5px;
 }
 ::-webkit-scrollbar-corner {
