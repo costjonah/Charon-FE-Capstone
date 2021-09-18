@@ -16,6 +16,7 @@ class ReviewsWidget extends React.Component {
     this.helpful = this.helpful.bind(this);
     this.report = this.report.bind(this);
     this.filterBy = this.filterBy.bind(this);
+    this.removeAllFilters = this.removeAllFilters.bind(this);
   }
 
   handleClick() {
@@ -74,6 +75,12 @@ class ReviewsWidget extends React.Component {
     this.setState({ filter: filter });
   }
 
+  removeAllFilters() {
+    this.setState({
+      filter: [],
+    });
+  }
+
   render() {
     let button = null;
     if (this.props.reviewCount < this.state.reviews.length) {
@@ -86,6 +93,7 @@ class ReviewsWidget extends React.Component {
           ratings={this.state.ratings}
           filterBy={this.filterBy}
           filter={this.state.filter}
+          removeAllFilters={this.removeAllFilters}
         />
         <div>
           <ReviewsList

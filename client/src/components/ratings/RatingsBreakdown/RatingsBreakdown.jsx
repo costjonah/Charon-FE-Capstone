@@ -11,6 +11,8 @@ class RatingsBreakdown extends React.Component {
       totalRatings: 0,
       ratingsPer: {},
     };
+    this.handleRemoveFilters = this.handleRemoveFilters.bind(this);
+    this.findRatings = this.findRatings.bind(this);
   }
 
   findRatings(ratings) {
@@ -33,10 +35,20 @@ class RatingsBreakdown extends React.Component {
     return result;
   }
 
+  handleRemoveFilters() {
+    this.props.removeAllFilters();
+  }
+
   render() {
     let filterBy = null;
+    let removeFilters = null;
     if (this.props.filter.length > 0) {
       filterBy = <span>Filter by: </span>;
+      removeFilters = (
+        <span style={{ color: 'blue' }} onClick={this.handleRemoveFilters}>
+          Remove all filters
+        </span>
+      );
     }
 
     return (
@@ -55,6 +67,7 @@ class RatingsBreakdown extends React.Component {
             return <span key={index}>{(index ? ', ' : '') + filter}</span>;
           })}
         </div>
+        {removeFilters}
         <Recommendations />
       </div>
     );
