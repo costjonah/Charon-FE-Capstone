@@ -2,13 +2,13 @@ const models = require('../models/index');
 
 module.exports = (app) => {
   app.get('/reviews', (req, res) => {
-    let queryData = {
+    let queryParams = {
       page: req.query.page || 1,
       count: req.query.count || 5,
-      sort: req.query.text || 'newest',
+      sort: req.query.sort || 'newest',
       id: req.query.product_id,
     };
-    models.reviews.list(queryData, (err, responseData) => {
+    models.reviews.list(queryParams, (err, responseData) => {
       if (err) {
         console.error('Error: ', err);
         res.status(500).end();
