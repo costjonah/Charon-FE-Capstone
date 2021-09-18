@@ -68,7 +68,7 @@ class RatingsBreakdown extends React.Component {
           })}
         </div>
         {removeFilters}
-        <Recommendations />
+        <Recommendations recommended={this.props.recommended} />
       </div>
     );
   }

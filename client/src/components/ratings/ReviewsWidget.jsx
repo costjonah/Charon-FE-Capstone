@@ -81,7 +81,17 @@ class ReviewsWidget extends React.Component {
     });
   }
 
+  recommendedPercentages() {
+    let yes = parseInt(this.state.recommended.true);
+    let no = parseInt(this.state.recommended.false);
+    let totalRecommendations = yes + no;
+    let yesPercent = Math.round((yes / totalRecommendations) * 1000) / 10;
+    let noPercent = Math.round((no / totalRecommendations) * 1000) / 10;
+    return yesPercent;
+  }
+
   render() {
+    this.recommendedPercentages();
     let button = null;
     if (this.props.reviewCount < this.state.reviews.length) {
       button = <button onClick={this.handleClick}>More Reviews</button>;
@@ -89,11 +99,11 @@ class ReviewsWidget extends React.Component {
     return (
       <div style={{ display: 'flex', flexDirection: 'row' }}>
         <RatingsBreakdown
-          recommended={this.state.recommended}
           ratings={this.state.ratings}
           filterBy={this.filterBy}
           filter={this.state.filter}
           removeAllFilters={this.removeAllFilters}
+          recommended={this.recommendedPercentages()}
         />
         <div>
           <ReviewsList

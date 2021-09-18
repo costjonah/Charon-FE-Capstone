@@ -1,7 +1,15 @@
 import React from 'react';
 
 const Recommendations = (props) => {
-  return <div>Recommendations</div>;
+  let recommended = null;
+  if (!Number.isNaN(props.recommended)) {
+    recommended = props.recommended;
+  }
+  return (
+    <React.Fragment>
+      <span>{recommended}% of reviews recommend this product</span>
+    </React.Fragment>
+  );
 };
 
 export default Recommendations;
