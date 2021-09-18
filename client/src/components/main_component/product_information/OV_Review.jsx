@@ -3,7 +3,6 @@ import Select from "react-select";
 import Stars from "./Stars.jsx";
 
 const Review = (props) => {
-  // console.log("REVIEWPROPS:", props);
   let reviewData = props.reviewdata;
   let count = props.count;
   if (count > 0) {
@@ -21,8 +20,7 @@ const Review = (props) => {
           <Stars rating={averageRating} />
           <a data={reviewData} id="readreviews">
             {" "}
-
-        &#65372; Read all {numReviews} reviews
+            &#65372; Read all {numReviews} reviews
           </a>
         </div>
       );

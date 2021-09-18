@@ -21,24 +21,31 @@ class Overview extends React.Component {
     super(props);
     this.state = {
       styles: [],
+      allStyles: [],
       currentStyle: {},
       productReview: [],
       average: 0,
-      count: 0,
-      page: 0,
-      hover: false,
-
+      idx: 0,
+      height: 0,
+      width: 0,
       toggleZoom: false,
+      styleSkus: {},
+      selectedSizeOption: null,
+      selectedQtyOption: null,
     };
 
     this.getStyleData = this.getStyleData.bind(this);
     this.getReviewData = this.getReviewData.bind(this);
     this.getAverage = this.getAverage.bind(this);
-    this.onMouseOver = this.onMouseOver.bind(this);
-    this.onMouseOut = this.onMouseOut.bind(this);
+    this.styleOnClick = this.styleOnClick.bind(this);
     this.zoomOnClick = this.zoomOnClick.bind(this);
-
     this.imageMouseOver = this.imageMouseOver.bind(this);
+    this.handleSizeChange = this.handleSizeChange.bind(this);
+    this.handleQtyChange = this.handleQtyChange.bind(this);
+    this.downArrowOnClick = this.downArrowOnClick.bind(this);
+    this.upArrowOnClick = this.upArrowOnClick.bind(this);
+    this.rightArrowOnClick = this.rightArrowOnClick.bind(this);
+    this.getImgSize = this.getImgSize.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -54,12 +61,15 @@ class Overview extends React.Component {
       .then((styleData) => {
         this.setState({
           styles: styleData.data,
+          allStyles: styleData.data.results,
         });
         for (var i = 0; i < this.state.styles.results.length; i++) {
           if (this.state.styles.results[i]["default?"] === true) {
             this.setState({
               currentStyle: this.state.styles.results[i],
+              styleSkus: this.state.styles.results[i].skus,
             });
+            this.getImgSize(this.state.styles.results[i].photos[0].url);
           }
         }
       })
@@ -83,21 +93,64 @@ class Overview extends React.Component {
       });
   };
 
-  onMouseOver = () => {
+  getImgSize = (img) => {
+    img = document.getElementById("mainimg");
+    var imgHeight = img.clientHeight;
+    var imgWidth = img.clientWidth;
     this.setState({
-      hover: true,
+      height: imgHeight,
+      width: imgWidth,
     });
   };
 
-  onMouseOut = () => {
+  styleOnClick = (selection, index, e) => {
+    e.preventDefault();
     this.setState({
-      hover: false,
+      currentStyle: selection,
+      idx: 0,
     });
+    var allChecks = document.querySelectorAll(".checked");
+    var currentCheck = document.querySelector("#radio" + index);
+
+    for (var i = 0; i < allChecks.length; i++) {
+      allChecks[i].style.visibility = "hidden";
+    }
+    currentCheck.style.visibility = "visible";
   };
 
   zoomOnClick = () => {
     this.setState({
       toggleZoom: !this.state.toggleZoom,
+    });
+  };
+
+  downArrowOnClick = (e) => {
+    var children = document.querySelectorAll(".thumbnails");
+    var firstEl = Array.prototype.slice.call(children, 0, 1);
+    var ul = document.querySelector(".galthumbs");
+    while (firstEl.length > 0) {
+      ul.appendChild(firstEl.shift());
+    }
+  };
+
+  upArrowOnClick = (e) => {
+    var children = document.querySelectorAll(".thumbnails");
+    var lastEl = Array.prototype.slice.call(children, 0, children.length - 1);
+    var ul = document.querySelector(".galthumbs");
+    while (lastEl.length > 0) {
+      ul.appendChild(lastEl.shift());
+    }
+  };
+
+  rightArrowOnClick = (e) => {
+    let idx = this.state.idx;
+    if (idx == this.state.currentStyle.photos.length - 1) {
+      idx = 0;
+    } else {
+      idx++;
+    }
+    this.setState({
+      idx,
     });
   };
 
@@ -121,18 +174,34 @@ class Overview extends React.Component {
     return sum / array.length;
   };
 
+  handleSizeChange = (selectedSz) => {
+    this.setState({ selectedSizeOption: selectedSz.value });
+    console.log(`Size option selected:`, selectedSz);
+  };
+
+  handleQtyChange = (selectedQty) => {
+    this.setState({ selectedQtyOption: selectedQty.value });
+    console.log(`Quantity option selected:`, selectedQty);
+  };
+
   render() {
-    var nameStyle = {
-      display: this.state.hover ? "block" : "none",
-    };
     return (
       <div className="overviewmain">
         <MainImage
           currentStyle={this.state.currentStyle}
           zoom={this.state.toggleZoom}
           imageMouseOut={this.imageMouseOut}
+          rightClick={this.rightArrowOnClick}
+          currentPhoto={this.state.currentPhoto}
+          idxTicker={this.state.idx}
+          height={this.state.height}
+          width={this.state.width}
         />
-        <Gallery currentStyle={this.state.currentStyle} />
+        <Gallery
+          currentStyle={this.state.currentStyle}
+          upClick={this.upArrowOnClick}
+          downClick={this.downArrowOnClick}
+        />
         <ProductInfo
           products={this.props.products}
           productId={this.props.productId}
@@ -146,21 +215,30 @@ class Overview extends React.Component {
         />
         <StyleSelector
           styles={this.state.styles}
-          hover={this.state.hover}
-          mouseOver={this.onMouseOver}
-          mouseOut={this.onMouseOut}
+          currentStyle={this.state.currentStyle}
+          styleClick={this.styleOnClick}
+          zoom={this.state.toggleZoom}
           zoomClick={this.zoomOnClick}
         />
 
-        <SizeSelector />
-        <QuantitySelector />
+        <SizeSelector
+          styleSkus={this.state.styleSkus}
+          handleSizeChange={this.handleSizeChange}
+          selectedSizeOption={this.state.selectedSizeOption}
+        />
+        <QuantitySelector
+          styleSkus={this.state.styleSkus}
+          handleQtyChange={this.handleQtyChange}
+          selectedSizeOption={this.state.selectedSizeOption}
+          selectedQtyOption={this.state.selectedQtyOption}
+        />
+
         <AddToCart />
         <FreeForm
           products={this.props.products}
           productId={this.props.productId}
         />
         <BrandLogos />
-
       </div>
     );
   }

@@ -26,7 +26,7 @@ class App extends React.Component {
       .then((productData) => {
         this.setState({
           productInfo: productData.data,
-          productId: productData.data[3].id,
+          productId: productData.data[0].id,
         });
       })
       .catch((err) => {
@@ -45,7 +45,6 @@ class App extends React.Component {
             products={this.state.productInfo}
             productId={this.state.productId}
           />
-
         </div>
       </BrowserRouter>
     );

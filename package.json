@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/RFE5-FEC/Charon-FE-Capstone#readme",
   "dependencies": {
+    "@emotion/react": "^11.4.1",
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-brands-svg-icons": "^5.15.4",
     "@fortawesome/free-regular-svg-icons": "^5.15.4",
