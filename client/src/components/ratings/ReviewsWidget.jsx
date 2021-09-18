@@ -136,8 +136,8 @@ class ReviewsWidget extends React.Component {
             sortFunction={sortBy}
           />
           {button}
+          <AddReview product={this.props.product} />
         </div>
-        <AddReview />
       </div>
     );
   }

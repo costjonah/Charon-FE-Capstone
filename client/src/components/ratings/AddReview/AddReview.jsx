@@ -18,20 +18,22 @@ class AddReview extends React.Component {
   }
 
   showModal() {
-    console.log('show');
     this.setState({ show: true });
   }
   hideModal() {
-    console.log('hide');
     this.setState({ show: false });
   }
 
   render() {
     return (
       <StyledContainer>
-        <Modal show={this.state.show} hideModal={this.hideModal} />
+        <Modal
+          show={this.state.show}
+          hideModal={this.hideModal}
+          product={this.props.product}
+        />
         <button type='button' onClick={this.showModal}>
-          New Review
+          Add a Review
         </button>
       </StyledContainer>
     );

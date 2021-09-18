@@ -16,37 +16,56 @@ const StyledModal = styled.div`
   height: auto;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -150%);
   display: ${(props) => props.show};
 `;
 
-const Modal = (props) => {
-  const showModal = props.show ? 'block' : 'none';
+class Modal extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      overallRating: 5,
+    };
+    this.handleClose = this.handleClose.bind(this);
+    this.changeRating = this.changeRating.bind(this);
+  }
 
-  let handleClose = () => {
-    props.hideModal();
-  };
+  handleClose() {
+    this.props.hideModal();
+  }
 
-  return (
-    <StyledModal show={showModal}>
-      <h1>Write Your Review</h1>
-      <h2>About the PRODUCT-NAME-HERE</h2>
-      <form>
-        <OverallRating />
-        <Recommended />
-        <Characteristics />
-        <Summary />
-        <Body />
-        <Photos />
-        <Nickname />
-        <Email />
-        <input type='submit' value='Submit' />
-      </form>
-      <button type='button' onClick={handleClose}>
-        Close
-      </button>
-    </StyledModal>
-  );
-};
+  changeRating(e) {
+    this.setState({
+      overallRating: e.target.value,
+    });
+  }
+
+  render() {
+    let showModal = this.props.show ? 'block' : 'none';
+    return (
+      <StyledModal show={showModal}>
+        <h1>Write Your Review</h1>
+        <h2>About the {this.props.product.name}</h2>
+        <form onSubmit={this.handleSubmit}>
+          <OverallRating
+            handleChange={this.changeRating}
+            selected={this.state.overallRating}
+          />
+          <Recommended />
+          <Characteristics />
+          <Summary />
+          <Body />
+          <Photos />
+          <Nickname />
+          <Email />
+          <input type='submit' value='Submit' />
+        </form>
+        <button type='button' onClick={this.handleClose}>
+          Close
+        </button>
+      </StyledModal>
+    );
+  }
+}
 
 export default Modal;
