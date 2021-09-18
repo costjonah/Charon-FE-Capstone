@@ -3,7 +3,7 @@ import React from 'react';
 
 const QuestionModal = (props) => {
   return (
-    <div>
+    <div className='Modal'>
       <h2> Ask Your Question</h2>
       <h3> About the product {props.productName}</h3>
       <form>

@@ -3,10 +3,10 @@ import Photo from './Photo.jsx'
 
 const AnswerModal = (props) => {
   return (
-    <div>
+    <div className='Modal'>
       <h2> Submit Your Answer </h2>
       <h3> {props.productName} : {props.question_body}</h3>
-      <form>
+      <form >
         <label> *Answer: </label>
         <textarea type='text' maxLength='1000' rows='7' cols='40' onChange={props.handleAnswerInput} placeholder='Your Answer Goes Here'>
         </textarea>
@@ -19,7 +19,7 @@ const AnswerModal = (props) => {
         <div>For authentication reasons, you will not be emailed</div>
         <label> Photos: </label>
         {/* {props.photo === true ? <Photo /> : <button type='button' onClick={props.showPhotoModal}> test </button>} */}
-        {props.photos.length < 5 ? <Photo photos={props.photos} handlePhotoChange={props.handlePhotoChange}/> : props.photos.map(photo => <img src={photo}/>)}
+        {props.photos.length < 5 ? <Photo photos={props.photos} handlePhotoChange={props.handlePhotoChange}/> : props.photos.map(photo => <img className='AnswerImg' src={photo}/>)}
         <br/>
         <button type='button' onClick={props.handleSubmit}> Submit Answer</button>
         <button type='button' onClick={props.closeAnswerModal}> Close </button>

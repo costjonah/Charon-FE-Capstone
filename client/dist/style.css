@@ -12,6 +12,7 @@
   font-weight: bold;
   margin-top: 10px;
   margin-bottom: 10px;
+
 }
 
 .HelpfulButton{
@@ -30,6 +31,8 @@
   font-size: 15px;
   padding-left: 40%;
   color:gray;
+  /* position: relative; */
+  /* position: justify; */
 }
 .HelpfulCounter{
   font-size: 15px;
@@ -112,3 +115,33 @@
   overflow: auto;
   max-height: 600px;
 }
+.AnswerModal{
+  top: 200px;
+  left: 100px;
+  width: 600px;
+  height: 500px;
+  position: absolute;
+  background-color: white;
+  border: 1px solid black;
+  color: black;
+}
+.Modal{
+  top: 200px;
+  left: 100px;
+  width: 600px;
+  height: 550px;
+  position: absolute;
+  background-color: white;
+  border: 1px solid black;
+  color: black;
+  font-size: 18px;
+  font-weight: bold;
+  font-family: 'Times New Roman', Times, serif;
+}
+.AnswerImg{
+  width: 100px;
+  height: 100px
+}
+/* .AnswerModalText{
+  color: white
+} */
