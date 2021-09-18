@@ -18,7 +18,7 @@ questionsAndAnswers(app);
 cart(app);
 interactions(app);
 test(app);
-app.get("*", (req, res) => {
+app.use((req, res) => {
   res.sendFile(path.resolve(__dirname, "../client/dist/index.html"));
 });
 
