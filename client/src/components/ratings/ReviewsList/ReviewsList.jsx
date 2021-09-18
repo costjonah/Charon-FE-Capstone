@@ -6,14 +6,21 @@ const ReviewsList = (props) => {
   return (
     <ul>
       {shownReviews.map((review) => {
-        return (
-          <ReviewTile
-            review={review}
-            key={review.review_id}
-            helpful={props.helpful}
-            report={props.report}
-          />
-        );
+        if (
+          props.filter.length === 0 ||
+          props.filter.includes(review.rating + '')
+        ) {
+          return (
+            <ReviewTile
+              review={review}
+              key={review.review_id}
+              helpful={props.helpful}
+              report={props.report}
+            />
+          );
+        } else {
+          return null;
+        }
       })}
     </ul>
   );

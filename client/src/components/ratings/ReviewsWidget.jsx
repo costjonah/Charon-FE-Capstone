@@ -10,10 +10,12 @@ class ReviewsWidget extends React.Component {
       reviews: [],
       recommended: {},
       ratings: {},
+      filter: [],
     };
     this.handleClick = this.handleClick.bind(this);
     this.helpful = this.helpful.bind(this);
     this.report = this.report.bind(this);
+    this.filterBy = this.filterBy.bind(this);
   }
 
   handleClick() {
@@ -60,6 +62,18 @@ class ReviewsWidget extends React.Component {
       });
   }
 
+  filterBy(starRating) {
+    let filter = this.state.filter.slice();
+    if (filter.indexOf(starRating) === -1) {
+      filter.push(starRating);
+    } else {
+      filter.splice(filter.indexOf(starRating), 1);
+    }
+    filter.sort();
+    console.log('filter: ', filter);
+    this.setState({ filter: filter });
+  }
+
   render() {
     let button = null;
     if (this.props.reviewCount < this.state.reviews.length) {
@@ -70,6 +84,8 @@ class ReviewsWidget extends React.Component {
         <RatingsBreakdown
           recommended={this.state.recommended}
           ratings={this.state.ratings}
+          filterBy={this.filterBy}
+          filter={this.state.filter}
         />
         <div>
           <ReviewsList
@@ -77,6 +93,7 @@ class ReviewsWidget extends React.Component {
             count={this.props.reviewCount}
             helpful={this.helpful}
             report={this.report}
+            filter={this.state.filter}
           />
           {button}
         </div>

@@ -34,13 +34,27 @@ class RatingsBreakdown extends React.Component {
   }
 
   render() {
+    let filterBy = null;
+    if (this.props.filter.length > 0) {
+      filterBy = <span>Filter by: </span>;
+    }
+
     return (
       <div>
         <RatingSummary
           averageRating={this.state.averageRating}
           totalRatings={this.state.totalRatings}
         />
-        <Breakdown ratingsPer={this.state.ratingsPer} />
+        <Breakdown
+          ratingsPer={this.state.ratingsPer}
+          filterBy={this.props.filterBy}
+        />
+        <div>
+          {filterBy}
+          {this.props.filter.map((filter, index) => {
+            return <span key={index}>{(index ? ', ' : '') + filter}</span>;
+          })}
+        </div>
         <Recommendations />
       </div>
     );
