@@ -1,11 +1,11 @@
-const axios = require('axios');
-const settings = require('./settings.js');
+const axios = require("axios");
+const settings = require("./settings.js");
 
 module.exports = {
   list: (params, callback) => {
     axios
       .get(
-        `${settings.url}/reviews?page=${params.page}&count=${params.count}&sort=${params.sort}&id=${params.id}`,
+        `${settings.url}/reviews?page=${params.page}&count=${params.count}&sort=${params.sort}&product_id=${params.id}`,
         settings.head
       )
       .then((res) => {
@@ -25,7 +25,7 @@ module.exports = {
         callback(err);
       });
   },
-  add: (callback) => {
+  add: (data, callback) => {
     axios
       .post(`${settings.url}/reviews`, data, settings.head)
       .then((res) => {

@@ -23,6 +23,12 @@ class QuestionsList extends React.Component {
     this.getAllQuestions()
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps !== this.props) {
+      this.getAllQuestions()
+    }
+  }
+
   getAllQuestions(){
     let product_id = this.props.currentProduct
     console.log(product_id)
