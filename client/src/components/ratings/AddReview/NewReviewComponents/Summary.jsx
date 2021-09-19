@@ -2,7 +2,7 @@ import React from 'react';
 
 const Summary = ({ summary, handleChange }) => {
   let maxLengthWarning = null;
-  if (summary.length >= 60) {
+  if (summary && summary.length >= 60) {
     maxLengthWarning = <div>Maximum Length Reached</div>;
   }
   return (

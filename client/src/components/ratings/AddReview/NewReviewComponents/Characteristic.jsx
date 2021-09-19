@@ -67,6 +67,9 @@ const Characteristic = ({ char, handleChange, selected }) => {
   };
 
   let meaning = null;
+  if (!selected) {
+    selected = 3;
+  }
   meaning = <span>{meanings[char][selected - 1]}</span>;
 
   return (

@@ -24,9 +24,9 @@ class Modal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      overallRating: 5,
-      recommended: true,
-      characteristics: {
+      overallRating: null,
+      recommended: null,
+      selectedCharacteristics: {
         size: null,
         width: null,
         comfort: null,
@@ -36,8 +36,19 @@ class Modal extends React.Component {
       },
       summary: '',
       body: '',
+      photos: [],
       nickname: '',
       email: '',
+      validation: {
+        overallRating: false,
+        recommended: false,
+        selectedCharacteristics: false,
+        body: false,
+        nickname: false,
+        email: false,
+      },
+      validated: false,
+      submitAttempted: false,
     };
     this.handleClose = this.handleClose.bind(this);
     this.changeRating = this.changeRating.bind(this);
@@ -47,10 +58,25 @@ class Modal extends React.Component {
     this.changeSummary = this.changeSummary.bind(this);
     this.changeNickname = this.changeNickname.bind(this);
     this.changeEmail = this.changeEmail.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.validateComponent = this.validateComponent.bind(this);
+    this.validateAll = this.validateAll.bind(this);
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    this.validateAll();
+    this.setState({
+      submitAttempted: true,
+    });
   }
 
   handleClose() {
     this.props.hideModal();
+    this.setState({
+      validated: false,
+      submitAttempted: false,
+    });
   }
 
   changeRating(e) {
@@ -64,14 +90,13 @@ class Modal extends React.Component {
     });
   }
   changeCharacteristic(e) {
-    console.log(e.target.name, e.target.value);
     let characteristicsCopy = JSON.parse(
-      JSON.stringify(this.state.characteristics)
+      JSON.stringify(this.state.selectedCharacteristics)
     );
     characteristicsCopy[e.target.name] = e.target.value;
 
     this.setState({
-      characteristics: characteristicsCopy,
+      selectedCharacteristics: characteristicsCopy,
     });
   }
   changeBody(e) {
@@ -95,12 +120,57 @@ class Modal extends React.Component {
     });
   }
 
+  validateComponent(validator) {
+    let validationCopy = JSON.parse(JSON.stringify(this.state.validation));
+    if (this.state[validator]) {
+      if (validator === 'nickname' || validator === 'email') {
+        if (this.state[validator].length > 0) {
+          validationCopy[validator] = true;
+        }
+      } else if (validator === 'body') {
+        if (this.state[validator].length >= 50) {
+          validationCopy[validator] = true;
+        } else {
+          validationCopy[validator] = false;
+        }
+      } else {
+        validationCopy[validator] = true;
+      }
+    }
+    console.log(`Validate ${validator} is `, validationCopy[validator]);
+    this.setState({
+      validation: validationCopy,
+    });
+  }
+
+  validateAll() {
+    let allValid = true;
+    this.validateComponent('overallRating');
+    this.validateComponent('recommended');
+    this.validateComponent('selectedCharacteristics');
+    this.validateComponent('body');
+    this.validateComponent('nickname');
+    this.validateComponent('email');
+    for (let keys in this.state.validation) {
+      if (this.state.validation[keys] === false) {
+        allValid = false;
+      }
+    }
+    console.log('All Valid: ', allValid);
+  }
+
   render() {
     let showModal = this.props.show ? 'block' : 'none';
+    let invalid = null;
+    if (!this.state.validated && this.state.submitAttempted) {
+      invalid = <h2>You must enter the following:</h2>;
+    }
+
     return (
       <StyledModal show={showModal}>
         <h1>Write Your Review</h1>
         <h2>About the {this.props.product.name}</h2>
+        {invalid}
         <form onSubmit={this.handleSubmit}>
           <OverallRating
             handleChange={this.changeRating}
@@ -110,7 +180,7 @@ class Modal extends React.Component {
           <Characteristics
             characteristics={this.props.characteristics}
             handleChange={this.changeCharacteristic}
-            selections={this.state.characteristics}
+            selections={this.state.selectedCharacteristics}
           />
           <Summary
             summary={this.state.summary}

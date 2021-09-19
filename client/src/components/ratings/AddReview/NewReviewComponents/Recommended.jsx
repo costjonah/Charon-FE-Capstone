@@ -20,9 +20,9 @@ const StyledRadio = styled.div`
   }
 `;
 
-const Recommended = (props) => {
+const Recommended = ({ handleChange }) => {
   return (
-    <StyledRadio onChange={props.handleChange}>
+    <StyledRadio onChange={handleChange}>
       <label>
         Recommended
         <input type='radio' value={true} name='recommended' defaultChecked />
