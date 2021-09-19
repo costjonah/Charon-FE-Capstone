@@ -175,7 +175,6 @@ a {
   list-style-type: none;
 }
 
-
 .galthumbs .thumbnails:nth-child(n + 6) {
   display: none;
 }
@@ -507,7 +506,7 @@ a {
   font-size: 20px;
   color: #bd081c;
 }
-#styleli  input[type="radio"]:checked:after {
+#styleli input[type="radio"]:checked:after {
   content: "✔";
   border: none;
   font-size: 20px;
@@ -562,12 +561,14 @@ a {
   font-weight: bold;
   margin: 0;
   padding: 0;
+  margin-top: -5px;
 }
 
 #newPrice {
-  margin-top: -4px;
   font-weight: bold;
   padding: 0;
+  margin-bottom: 5px;
+  margin-top: 5px;
 }
 
 ::placeholder {

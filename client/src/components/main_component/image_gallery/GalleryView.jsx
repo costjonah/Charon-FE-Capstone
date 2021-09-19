@@ -20,7 +20,6 @@ const Gallery = (props) => {
         <div>
           <ul className="galthumbs">
             {props.currentStyle.photos.map((pic, index) => {
-              // console.log(pic)
               return (
                 <li key={index} className="thumbnails">
                   <div id="thumbcaro">

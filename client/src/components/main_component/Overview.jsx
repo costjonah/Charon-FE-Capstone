@@ -29,6 +29,7 @@ class Overview extends React.Component {
       idx: 0,
       height: 0,
       width: 0,
+      favorite: false,
       toggleZoom: false,
       styleSkus: {},
       selectedSizeOption: null,
@@ -139,7 +140,6 @@ class Overview extends React.Component {
   };
 
   closeModalClick = (e) => {
-    var appBody = document.querySelector(".app");
     if (this.state.modal === true) {
       this.setState({
         modal: false,
@@ -178,6 +178,7 @@ class Overview extends React.Component {
       allChecks[i].style.visibility = "hidden";
     }
     currentCheck.style.visibility = "visible";
+    console.log(this.state.currentStyle.favorite)
   };
 
   zoomOnClick = () => {
@@ -188,8 +189,8 @@ class Overview extends React.Component {
 
   thumbnailOnClick = (x, index, e) => {
     var recurse = (target) => {
-      var children = document.querySelectorAll(".thumbnails");
       var ul = document.querySelector(".galthumbs");
+      var children = document.querySelectorAll(".thumbnails");
       var caroDiv = document.querySelectorAll("#thumbcaro");
       var currentId = caroDiv[0].lastChild.id;
       if (target === currentId) {
@@ -211,7 +212,6 @@ class Overview extends React.Component {
   upArrowOnClick = (e) => {
     var children = document.querySelectorAll(".thumbnails");
     var lastEl = Array.prototype.slice.call(children, 0, children.length - 1);
-
     var ul = document.querySelector(".galthumbs");
     while (lastEl.length > 0) {
       ul.appendChild(lastEl.shift());
@@ -229,9 +229,7 @@ class Overview extends React.Component {
 
   downArrowOnClick = (e) => {
     var children = document.querySelectorAll(".thumbnails");
-    console.log(children[0]);
     var firstEl = Array.prototype.slice.call(children, 0, 1);
-
     var ul = document.querySelector(".galthumbs");
     while (firstEl.length > 0) {
       ul.appendChild(firstEl.shift());
