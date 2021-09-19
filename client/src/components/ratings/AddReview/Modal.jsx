@@ -38,6 +38,7 @@ class Modal extends React.Component {
     this.handleClose = this.handleClose.bind(this);
     this.changeRating = this.changeRating.bind(this);
     this.changeRecommended = this.changeRecommended.bind(this);
+    this.changeCharacteristic = this.changeCharacteristic.bind(this);
   }
 
   handleClose() {
@@ -54,9 +55,20 @@ class Modal extends React.Component {
       recommended: e.target.value,
     });
   }
+  changeCharacteristic(e) {
+    console.log(e.target.name, e.target.value);
+    let characteristicsCopy = JSON.parse(
+      JSON.stringify(this.state.characteristics)
+    );
+    characteristicsCopy[e.target.name] = e.target.value;
+
+    this.setState({
+      characteristics: characteristicsCopy,
+    });
+  }
 
   render() {
-    console.log(this.props.characteristics);
+    console.log(this.state);
     let showModal = this.props.show ? 'block' : 'none';
     return (
       <StyledModal show={showModal}>
@@ -68,7 +80,11 @@ class Modal extends React.Component {
             selected={this.state.overallRating}
           />
           <Recommended handleChange={this.changeRecommended} />
-          <Characteristics />
+          <Characteristics
+            characteristics={this.props.characteristics}
+            handleChange={this.changeCharacteristic}
+            selections={this.state.characteristics}
+          />
           <Summary />
           <Body />
           <Photos />

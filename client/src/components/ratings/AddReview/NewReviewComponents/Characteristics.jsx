@@ -1,12 +1,23 @@
 import React from 'react';
+import Characteristic from './Characteristic.jsx';
 
-const Characteristics = (props) => {
+const Characteristics = ({ characteristics, handleChange, selections }) => {
+  if (!characteristics) {
+    return null;
+  }
   return (
     <div>
-      <label>
-        Characteristics
-        <input type='text' name='name' />
-      </label>
+      <label>Characteristics</label>
+      {Object.keys(characteristics).map((key) => {
+        return (
+          <Characteristic
+            char={key}
+            key={key}
+            handleChange={handleChange}
+            selected={selections[key]}
+          />
+        );
+      })}
     </div>
   );
 };
