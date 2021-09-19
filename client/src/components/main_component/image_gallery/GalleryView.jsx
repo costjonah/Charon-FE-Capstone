@@ -28,6 +28,7 @@ const Gallery = (props) => {
                       alt="new"
                       id={"img" + index}
                       className="galleryimg"
+                      onClick={(e) => props.thumbnailClick(pic, index, e)}
                     />
                   </div>
                 </li>
