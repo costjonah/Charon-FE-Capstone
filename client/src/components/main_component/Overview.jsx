@@ -187,10 +187,6 @@ class Overview extends React.Component {
   };
 
   thumbnailOnClick = (x, index, e) => {
-    var select = (document.getElementById("img" + index).src = x.thumbnail_url);
-    console.log("SELECTED", select);
-    console.log("TARGET", e.target.id);
-
     var recurse = (target) => {
       var children = document.querySelectorAll(".thumbnails");
       var ul = document.querySelector(".galthumbs");
@@ -202,19 +198,12 @@ class Overview extends React.Component {
       if (target !== currentId) {
         var lastEl = Array.prototype.slice.call(children, 0, 1);
         ul.appendChild(lastEl.shift());
-
-      if (this.state.idx !== this.state.currentStyle.photos.length - 1) {
-          this.setState({
-            idx: ++this.state.idx,
-          });
-        } else {
-          this.setState({
-            idx: 0,
-          });
-        }
-        console.log('INDEX', this.state.idx);
+        var indexState = Number(target.split("img")[1]);
+        this.setState({
+          idx: indexState,
+        });
       }
-       recurse(target);
+      recurse(target);
     };
     recurse(e.target.id);
   };
