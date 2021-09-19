@@ -4,8 +4,6 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 var StyleSelector = (props) => {
   if (props.styles.product_id !== undefined) {
-    // console.log(props);
-
     return (
       <div className="styleselectormain">
         <ul id="styleul">
@@ -32,10 +30,11 @@ var StyleSelector = (props) => {
                 </div>
                 <div id="crop">
                   <img
+                    className="imglist"
                     src={style.photos[0].thumbnail_url}
                     alt="new"
                     title={style.name}
-                    id="imglist"
+                    id={"imglist" + index}
                   />
                 </div>
               </li>
