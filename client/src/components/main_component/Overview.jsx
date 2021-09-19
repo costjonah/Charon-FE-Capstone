@@ -24,12 +24,12 @@ class Overview extends React.Component {
       styles: [],
       allStyles: [],
       currentStyle: {},
-      currentPhoto: "",
       productReview: [],
       average: 0,
       idx: 0,
       height: 0,
       width: 0,
+      favorite: false,
       toggleZoom: false,
       styleSkus: {},
       selectedSizeOption: null,
@@ -42,13 +42,13 @@ class Overview extends React.Component {
     this.getAverage = this.getAverage.bind(this);
     this.styleOnClick = this.styleOnClick.bind(this);
     this.zoomOnClick = this.zoomOnClick.bind(this);
-    this.imageMouseOver = this.imageMouseOver.bind(this);
     this.handleSizeChange = this.handleSizeChange.bind(this);
     this.handleQtyChange = this.handleQtyChange.bind(this);
     this.downArrowOnClick = this.downArrowOnClick.bind(this);
     this.upArrowOnClick = this.upArrowOnClick.bind(this);
     this.rightArrowOnClick = this.rightArrowOnClick.bind(this);
     this.showModalClick = this.showModalClick.bind(this);
+    this.thumbnailOnClick = this.thumbnailOnClick.bind(this);
     this.closeModalClick = this.closeModalClick.bind(this);
     this.addToCartPost = this.addToCartPost.bind(this);
     this.getImgSize = this.getImgSize.bind(this);
@@ -98,7 +98,6 @@ class Overview extends React.Component {
             this.setState({
               currentStyle: this.state.styles.results[i],
               styleSkus: this.state.styles.results[i].skus,
-              currentPhoto: this.state.styles.results[i].photos[0].url,
             });
             this.getImgSize(this.state.styles.results[i].photos[0].url);
           }
@@ -117,8 +116,6 @@ class Overview extends React.Component {
       .then((reviewData) => {
         this.setState({
           productReview: reviewData.data.results,
-          count: reviewData.data.count,
-          page: reviewData.data.page,
         });
       })
       .catch((err) => {
@@ -143,7 +140,6 @@ class Overview extends React.Component {
   };
 
   closeModalClick = (e) => {
-    var appBody = document.querySelector(".app");
     if (this.state.modal === true) {
       this.setState({
         modal: false,
@@ -175,23 +171,42 @@ class Overview extends React.Component {
     e.preventDefault();
     this.setState({
       currentStyle: selection,
-      currentPhoto: selection.photos[0].url,
-      idx: 0,
     });
-    console.log(this.state.currentPhoto);
     var allChecks = document.querySelectorAll(".checked");
     var currentCheck = document.querySelector("#radio" + index);
-
     for (var i = 0; i < allChecks.length; i++) {
       allChecks[i].style.visibility = "hidden";
     }
     currentCheck.style.visibility = "visible";
+    console.log(this.state.currentStyle.favorite)
   };
 
   zoomOnClick = () => {
     this.setState({
       toggleZoom: !this.state.toggleZoom,
     });
+  };
+
+  thumbnailOnClick = (x, index, e) => {
+    var recurse = (target) => {
+      var ul = document.querySelector(".galthumbs");
+      var children = document.querySelectorAll(".thumbnails");
+      var caroDiv = document.querySelectorAll("#thumbcaro");
+      var currentId = caroDiv[0].lastChild.id;
+      if (target === currentId) {
+        return;
+      }
+      if (target !== currentId) {
+        var lastEl = Array.prototype.slice.call(children, 0, 1);
+        ul.appendChild(lastEl.shift());
+        var indexState = Number(target.split("img")[1]);
+        this.setState({
+          idx: indexState,
+        });
+      }
+      recurse(target);
+    };
+    recurse(e.target.id);
   };
 
   upArrowOnClick = (e) => {
@@ -270,25 +285,23 @@ class Overview extends React.Component {
         <MainImage
           currentStyle={this.state.currentStyle}
           zoom={this.state.toggleZoom}
-          imageMouseOut={this.imageMouseOut}
           rightClick={this.rightArrowOnClick}
           toggleModal={this.showModalClick}
-          currentPhoto={this.state.currentPhoto}
           idxTicker={this.state.idx}
           height={this.state.height}
           width={this.state.width}
         />
         <ImgModal
-          modalState={this.state.modal}
-          currentPhoto={this.state.currentPhoto}
-          idxTicker={this.state.idx}
           currentStyle={this.state.currentStyle}
           rightClick={this.rightArrowOnClick}
+          modalState={this.state.modal}
+          idxTicker={this.state.idx}
         />
         <Gallery
           currentStyle={this.state.currentStyle}
           upClick={this.upArrowOnClick}
           downClick={this.downArrowOnClick}
+          thumbnailClick={this.thumbnailOnClick}
         />
 
         <ProductInfo

@@ -17,28 +17,32 @@ var ProductInfo = (props) => {
         <br />
         <h4 id="curCateg">{currentCategory}</h4>
         <h1 id="curName">{currentName}</h1>
-        <p style={priceStyle} id="curPrice">
-          ${styleOGPrice}
-        </p>
         <p id="newPrice">
           <br />
         </p>
+        <p style={priceStyle} id="curPrice">
+          ${styleOGPrice}
+        </p>
+
       </div>
     );
   } else {
     var priceStyle = {
       textDecoration: "line-through",
-      color: "red",
     };
+    var saleStyle = {
+      color: "red",
+    }
     return (
       <div className="productinfomain">
         <br />
         <h4 id="curCateg">{currentCategory}</h4>
         <h1 id="curName">{currentName}</h1>
+        <p style={saleStyle} id="newPrice">${styleSalePrice}</p>
         <p style={priceStyle} id="curPrice">
           ${styleOGPrice}
         </p>
-        <p id="newPrice">${styleSalePrice}</p>
+
       </div>
     );
   }
