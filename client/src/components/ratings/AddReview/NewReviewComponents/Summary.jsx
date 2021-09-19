@@ -9,13 +9,14 @@ const Summary = ({ summary, handleChange }) => {
     <div>
       <label>
         <div>Summary</div>
-        {maxLengthWarning}
         <textarea
           maxLength={60}
           name='Review Summary'
           value={summary}
           onChange={handleChange}
+          placeholder='Example: Best purchase ever!'
         />
+        {maxLengthWarning}
       </label>
     </div>
   );

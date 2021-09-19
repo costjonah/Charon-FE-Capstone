@@ -34,8 +34,8 @@ class Modal extends React.Component {
         length: null,
         fit: null,
       },
-      body: '',
       summary: '',
+      body: '',
     };
     this.handleClose = this.handleClose.bind(this);
     this.changeRating = this.changeRating.bind(this);
