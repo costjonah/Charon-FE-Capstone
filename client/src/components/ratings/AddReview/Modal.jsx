@@ -34,11 +34,15 @@ class Modal extends React.Component {
         length: null,
         fit: null,
       },
+      body: '',
+      summary: '',
     };
     this.handleClose = this.handleClose.bind(this);
     this.changeRating = this.changeRating.bind(this);
     this.changeRecommended = this.changeRecommended.bind(this);
     this.changeCharacteristic = this.changeCharacteristic.bind(this);
+    this.changeBody = this.changeBody.bind(this);
+    this.changeSummary = this.changeSummary.bind(this);
   }
 
   handleClose() {
@@ -66,9 +70,18 @@ class Modal extends React.Component {
       characteristics: characteristicsCopy,
     });
   }
+  changeBody(e) {
+    this.setState({
+      body: e.target.value,
+    });
+  }
+  changeSummary(e) {
+    this.setState({
+      summary: e.target.value,
+    });
+  }
 
   render() {
-    console.log(this.state);
     let showModal = this.props.show ? 'block' : 'none';
     return (
       <StyledModal show={showModal}>
@@ -85,8 +98,11 @@ class Modal extends React.Component {
             handleChange={this.changeCharacteristic}
             selections={this.state.characteristics}
           />
-          <Summary />
-          <Body />
+          <Summary
+            summary={this.state.summary}
+            handleChange={this.changeSummary}
+          />
+          <Body body={this.state.body} handleChange={this.changeBody} />
           <Photos />
           <Nickname />
           <Email />

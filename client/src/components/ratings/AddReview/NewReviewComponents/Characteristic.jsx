@@ -71,17 +71,19 @@ const Characteristic = ({ char, handleChange, selected }) => {
 
   return (
     <React.Fragment>
-      <div>{char}</div>
-      <StyledRadio onChange={handleChange}>
-        {meaning}
-        <div>
-          <input type='radio' value={1} name={char} />1
-          <input type='radio' value={2} name={char} />2
-          <input type='radio' value={3} name={char} defaultChecked />3
-          <input type='radio' value={4} name={char} />4
-          <input type='radio' value={5} name={char} />5
-        </div>
-      </StyledRadio>
+      <label>
+        <div>{char}</div>
+        <StyledRadio onChange={handleChange}>
+          {meaning}
+          <div>
+            <input type='radio' value={1} name={char} />1
+            <input type='radio' value={2} name={char} />2
+            <input type='radio' value={3} name={char} defaultChecked />3
+            <input type='radio' value={4} name={char} />4
+            <input type='radio' value={5} name={char} />5
+          </div>
+        </StyledRadio>
+      </label>
     </React.Fragment>
   );
 };
