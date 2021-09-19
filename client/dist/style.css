@@ -1,3 +1,150 @@
+.SearchBar{
+  height: 60px;
+  width: 85%;
+  font-size: 15px;
+  font-weight: bold;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.Question{
+  font-size: 18px;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+}
+
+.HelpfulButton{
+  font-size: 15px;
+  font-weight: italic;
+  text-decoration: underline;
+  color: gray;
+}
+.HelpfulButtonClicked{
+  font-size: 15px;
+  font-weight: bold;
+  text-decoration: underline;
+  color: gray;
+}
+.HelpfulText{
+  font-size: 15px;
+  padding-left: 40%;
+  color:gray;
+  /* position: relative; */
+  /* position: justify; */
+}
+.HelpfulCounter{
+  font-size: 15px;
+  font-weight: italic;
+  color: gray;
+}
+.AddAnswerButton{
+  font-size: 15px;
+  font-weight: italic;
+  text-decoration: underline;
+  color: gray;
+}
+.Divider{
+  font-size: 15px;
+  font-weight: italic;
+  color: gray;
+}
+.AnswerList{
+  font-size: 18px;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+}
+.IndAnswer{
+  color:gray;
+  margin-bottom: 10px;
+
+}
+.AnswerInfo{
+  color: darkgray;
+}
+.Answers{
+  display: inline-table;
+  margin: 0;
+  padding: 5px;
+  list-style-type: none;
+  font-size: 14px;
+}
+.AnswerHelpfulButton{
+ color: darkgray;
+ text-decoration: underline;
+}
+.AnswerReport{
+  color: darkgray;
+  text-decoration: underline;
+}
+.AnswerHelpfulCounter{
+  color: darkgray;
+}
+.LoadMoreAnswers{
+  font-family: 'Times New Roman', Times, serif;
+  padding-left: 25px;
+  font-size: 13px;
+  font-weight: bold;
+}
+.AddQuestionButton{
+  font-size: 17px;
+  font-weight: bold;
+  font-family: 'Times New Roman', Times, serif;
+  margin: 10px;
+  height: 50px;
+  width: 200px;
+}
+.MoreQuestionsButton{
+  font-size: 17px;
+  font-weight: bold;
+  font-family: 'Times New Roman', Times, serif;
+  margin: 10px;
+  height: 50px;
+  width: 250px;
+}
+.CollapseButton{
+  font-size: 17px;
+  font-weight: bold;
+  font-family: 'Times New Roman', Times, serif;
+  margin: 10px;
+  height: 50px;
+  width: 150px;
+}
+.QuestionAndAnswerBody{
+  overflow: auto;
+  max-height: 600px;
+}
+.AnswerModal{
+  top: 200px;
+  left: 100px;
+  width: 600px;
+  height: 500px;
+  position: absolute;
+  background-color: white;
+  border: 1px solid black;
+  color: black;
+}
+.Modal{
+  top: 200px;
+  left: 100px;
+  width: 600px;
+  height: 550px;
+  position: fixed;
+  background-color: white;
+  border: 1px solid black;
+  color: black;
+  font-size: 18px;
+  font-weight: bold;
+  font-family: 'Times New Roman', Times, serif;
+}
+.AnswerImg{
+  width: 100px;
+  height: 100px
+}
+/* .AnswerModalText{
+  color: white
+} */
 html {
   -webkit-tap-highlight-color: transparent;
   -khtml-user-select: none;

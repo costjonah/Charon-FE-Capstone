@@ -7,6 +7,7 @@ import axios from 'axios';
 
 import Navbar from '../components/common/Navigation.jsx';
 import Overview from '../components/main_component/Overview.jsx';
+import QuestionsList from './Questions&Answers/QuestionsList.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -17,6 +18,7 @@ class App extends React.Component {
       reviewCount: 2,
       productId: '0',
       productInfo: [],
+      productName: '',
     };
     this.selectProduct = this.selectProduct.bind(this);
     this.showMoreReviews = this.showMoreReviews.bind(this);
@@ -31,9 +33,11 @@ class App extends React.Component {
     axios
       .get('/products')
       .then((productData) => {
+        console.log('dsauaygshduasd', typeof productData.data[0].id);
         this.setState({
           productInfo: productData.data,
           productId: productData.data[0].id,
+          productName: productData.data[0].name,
         });
       })
       .catch((err) => {
@@ -56,6 +60,13 @@ class App extends React.Component {
             products={this.state.products}
             selectProduct={this.selectProduct}
           />
+          <h1>Questions And Answers</h1>
+          <div className='QuestionAndAnswerBody'>
+            <QuestionsList
+              currentProduct={this.state.productId}
+              productName={this.state.productName}
+            />
+          </div>
           <ReviewsWidget
             product={this.state.currentProduct}
             reviewCount={this.state.reviewCount}
