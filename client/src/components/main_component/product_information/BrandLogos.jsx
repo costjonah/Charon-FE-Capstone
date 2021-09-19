@@ -18,10 +18,10 @@ var FreeForm = (props) => {
         <FontAwesomeIcon icon={faTwitterSquare} id="twitter" />
       </a>{" "}
       <a href="https://www.instagram.com/accounts/login/" target="_blank">
-      <FontAwesomeIcon icon={faInstagramSquare} id="instagram" />{" "}
+        <FontAwesomeIcon icon={faInstagramSquare} id="instagram" />{" "}
       </a>
       <a href="http://pinterest.com/pin/create/link/?url=" target="_blank">
-      <FontAwesomeIcon icon={faPinterestSquare} id="pinterest" />
+        <FontAwesomeIcon icon={faPinterestSquare} id="pinterest" />
       </a>
     </div>
   );
