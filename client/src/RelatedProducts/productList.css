@@ -1,21 +1,19 @@
 .slide-container {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    width: 1250px;
-    height: 400px;
-    gap: 10px;
-    margin: 1rem auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 1250px;
+  gap: 10px;
+  margin: 1rem auto;
 }
 
 .slide-container .card-container {
-    width: 1140px;
-    height: 400px;
-    max-height: 400px;
-    display: -webkit-box;
-    -webkit-overflow-scrolling: touch;
-    overflow-x: hidden;
-    transition: all .5s ease;
+  width: 1140px;
+
+  display: -webkit-box;
+  -webkit-overflow-scrolling: touch;
+  overflow-x: hidden;
+  transition: all 0.5s ease;
 }
 
 /* .slide-container .card-container .card {
@@ -26,7 +24,7 @@
 } */
 
 .slide-container .card-container .card:not(:first-child) {
-    margin-left: 30px;
+  margin-left: 30px;
 }
 
 /* .slide-container .card-container .card img {
@@ -36,23 +34,32 @@
 
 .slide-container .left,
 .slide-container .right {
-    height: 400px;
-    width: 30px;
-    border: none;
-    background-color: rgba(0,0,0,.5);
-    cursor: pointer;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 600;
+  height: 400px;
+  width: 30px;
+  border: none;
+  background-color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
 }
 
 .slide-container .left:hover,
 .slide-container .right:hover {
-    background-color: rgba(0,0,0,.8);
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 .hidden {
-    display: none !important;
+  display: none !important;
+}
+.outfit-products {
+  margin: 0 auto;
+  width: 1250px;
+  overflow-x: scroll;
+  display: flex;
+}
+.outfit-products > div {
+  margin-right: 15px;
 }

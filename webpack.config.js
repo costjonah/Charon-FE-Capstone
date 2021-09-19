@@ -1,6 +1,6 @@
 var path = require("path");
-var SRC_DIR = path.join(__dirname, "/client/src");
-var DIST_DIR = path.join(__dirname, "/client/dist");
+var SRC_DIR = path.join(__dirname, "./client/src");
+var DIST_DIR = path.join(__dirname, "./client/dist");
 
 module.exports = {
   entry: `${SRC_DIR}/index.js`,
@@ -21,6 +21,19 @@ module.exports = {
         options: {
           presets: ["@babel/preset-env", "@babel/preset-react"],
         },
+      },
+      {
+        test: /\.(gif|png|jpe?g|svg)$/i,
+        use: [
+          "file-loader",
+          {
+            loader: "image-webpack-loader",
+            options: {
+              bypassOnDebug: true, // webpack@1.x
+              disable: true, // webpack@2.x and newer
+            },
+          },
+        ],
       },
     ],
   },

@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import Modal from "../components/Modal";
 import "./productCard.css";
 import { fetchCurrentProduct, fetchProduct } from "../service/products";
+import { getProductAverageScore } from "../service/reviews";
+import RatingStar from "../components/RatingStar";
 
 class ProductCard extends React.Component {
   constructor() {
@@ -11,6 +13,7 @@ class ProductCard extends React.Component {
       isOpen: false,
       currentProduct: null,
       selectedProduct: null,
+      averagScore: 0,
     };
   }
 
@@ -31,8 +34,21 @@ class ProductCard extends React.Component {
       isOpen: false,
     });
   }
-
+  componentDidMount() {
+    const productID = this.props.product.id;
+    getProductAverageScore(productID).then((averagScore) => {
+      this.setState({
+        averagScore,
+      });
+    });
+  }
   render() {
+    const handleClickOutFit = () => {
+      this.props.handleClickOutFit(this.props.product);
+    };
+    const handleRemoveProductFromOutfits = () => {
+      this.props.handleRemoveProductFromOutfits(this.props.product);
+    };
     const modalHeaderContent = () => {
       return <div>Product1 VS Product2</div>;
     };
@@ -132,7 +148,9 @@ class ProductCard extends React.Component {
               </div>
             )}
           </div>
-
+          <div className="rating">
+            <RatingStar ratingScore={this.state.averagScore} />
+          </div>
           <div className="card-footer footer-info">
             <div className="created-date">{this.props.product.created_at}</div>
             <div className="card-btn-group">
@@ -151,6 +169,10 @@ class ProductCard extends React.Component {
               <Link to={`/product/${this.props.product.id}/detail`}>
                 Detail
               </Link>
+              {!this.props.outfit && <a onClick={handleClickOutFit}>Outfit</a>}
+              {this.props.outfit && (
+                <a onClick={handleRemoveProductFromOutfits}>Remove</a>
+              )}
             </div>
           </div>
         </div>
