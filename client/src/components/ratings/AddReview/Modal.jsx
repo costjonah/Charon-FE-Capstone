@@ -12,7 +12,7 @@ import Summary from './NewReviewComponents/Summary.jsx';
 
 const StyledModal = styled.div`
   background: lightgrey;
-  width: 80%;
+  width: 100%;
   height: auto;
   top: 50%;
   left: 50%;
@@ -36,6 +36,8 @@ class Modal extends React.Component {
       },
       summary: '',
       body: '',
+      nickname: '',
+      email: '',
     };
     this.handleClose = this.handleClose.bind(this);
     this.changeRating = this.changeRating.bind(this);
@@ -43,6 +45,8 @@ class Modal extends React.Component {
     this.changeCharacteristic = this.changeCharacteristic.bind(this);
     this.changeBody = this.changeBody.bind(this);
     this.changeSummary = this.changeSummary.bind(this);
+    this.changeNickname = this.changeNickname.bind(this);
+    this.changeEmail = this.changeEmail.bind(this);
   }
 
   handleClose() {
@@ -80,6 +84,16 @@ class Modal extends React.Component {
       summary: e.target.value,
     });
   }
+  changeNickname(e) {
+    this.setState({
+      nickname: e.target.value,
+    });
+  }
+  changeEmail(e) {
+    this.setState({
+      email: e.target.value,
+    });
+  }
 
   render() {
     let showModal = this.props.show ? 'block' : 'none';
@@ -104,8 +118,11 @@ class Modal extends React.Component {
           />
           <Body body={this.state.body} handleChange={this.changeBody} />
           <Photos />
-          <Nickname />
-          <Email />
+          <Nickname
+            nickname={this.state.nickname}
+            handleChange={this.changeNickname}
+          />
+          <Email email={this.state.email} handleChange={this.changeEmail} />
           <input type='submit' value='Submit' />
         </form>
         <button type='button' onClick={this.handleClose}>

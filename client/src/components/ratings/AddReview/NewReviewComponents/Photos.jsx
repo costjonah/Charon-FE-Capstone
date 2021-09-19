@@ -5,7 +5,7 @@ const Photos = (props) => {
     <div>
       <label>
         Photos
-        <input type='text' name='name' />
+        <input type='file' name='Photos' />
       </label>
     </div>
   );
