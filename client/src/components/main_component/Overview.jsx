@@ -129,6 +129,7 @@ class Overview extends React.Component {
     );
     mainViews.forEach((x) => {
       x.style.opacity = "0";
+      // x.style.visibility = "hidden"
     });
     this.setState({
       modal: true,
@@ -149,6 +150,7 @@ class Overview extends React.Component {
       );
       mainViews.forEach((x) => {
         x.style.opacity = "1";
+        // x.style.visibility = "visible"
       });
       var defaultImg = document.querySelector(".mainimg");
       if (defaultImg.style.opacity === "1") {
@@ -178,7 +180,7 @@ class Overview extends React.Component {
       allChecks[i].style.visibility = "hidden";
     }
     currentCheck.style.visibility = "visible";
-    console.log(this.state.currentStyle.favorite)
+    console.log(this.state.currentStyle.favorite);
   };
 
   zoomOnClick = () => {

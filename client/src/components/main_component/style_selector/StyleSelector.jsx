@@ -11,7 +11,7 @@ var StyleSelector = (props) => {
         <ul id="styleul">
           <h4 id="currentstylename"> Style > {props.currentStyle.name} </h4>
           <h3 className="zoom fav">
-            <FontAwesomeIcon icon={faHeart} id="heart"/>{" "}
+            <FontAwesomeIcon icon={faHeart} id="heart" />{" "}
           </h3>
           {props.styles.results.map((style, index) => {
             return (
