@@ -164,6 +164,10 @@ class Overview extends React.Component {
 
   // opposite functionality of this.showModalClick
   closeModalClick = (e) => {
+    if (this.state.modal === true) {
+      this.setState({
+        modal: false,
+      });
       var dropdowns = document.querySelectorAll(
         "#sizeselect > div, #qtyselect > div, .checked"
       );
@@ -182,10 +186,6 @@ class Overview extends React.Component {
       mainViews.forEach((z) => {
         z.style.visibility = "visible";
       });
-      if (this.state.modal === true) {
-        this.setState({
-          modal: false,
-        });
   };
 }
 
