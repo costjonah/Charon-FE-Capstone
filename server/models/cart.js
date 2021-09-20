@@ -1,5 +1,5 @@
-const axios = require("axios");
-const settings = require("./settings.js");
+const axios = require('axios');
+const settings = require('./settings.js');
 
 module.exports = {
   getCart: (callback) => {
@@ -12,11 +12,10 @@ module.exports = {
         callback(err);
       });
   },
-  addToCart: (data, callback) => {
+  addToCart: (id = 1, callback) => {
     axios
-      .post(`${settings.url}/cart`, data, settings.head)
+      .post(`${settings.url}/cart`, settings.head)
       .then((res) => {
-        console.log("LINE19", res);
         callback(null, res);
       })
       .catch((err) => {

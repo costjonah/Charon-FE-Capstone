@@ -1,13 +1,30 @@
 const models = require("../models/index");
 
 module.exports = (app) => {
+  app.get("/current-product"),
+    (req, res) => {
+      const productList = require("../data/productList");
+      return res.json({
+        code: 200,
+        msg: "ok",
+        currentProduct: productList.data[0],
+      });
+    };
+  app.get("/currentProduct"),
+    (req, res) => {
+      const productList = require("../data/productList");
+      return res.json({
+        code: 200,
+        msg: "ok",
+        currentProduct: productList.data[0],
+      });
+    };
   app.get("/products", (req, res) => {
     models.products.getAll((err, responseData) => {
       if (err) {
         console.error("Error: ", err);
         res.status(500).end();
       } else {
-        console.error("Success: ", responseData.data);
         res.send(responseData.data);
       }
     });

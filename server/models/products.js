@@ -1,6 +1,44 @@
 const axios = require("axios");
 const settings = require("./settings.js");
 
+const findProductStyles = async (id = 1) => {
+  const res = await axios.get(
+    `${settings.url}/products/${id}/styles`,
+    settings.head
+  );
+  return res.data.results;
+};
+const findRelatedProducts = async (id = 1) => {
+  const res = await axios.get(
+    `${settings.url}/products/${id}/related`,
+    settings.head
+  );
+  const relatedProductsIds = res.data;
+  let relatedProducts = [];
+  relatedProducts = await Promise.all(
+    relatedProductsIds.map((id) => findProduct(id))
+  );
+  return relatedProducts;
+};
+const findProduct = async (id = 1) => {
+  const res = await axios.get(`${settings.url}/products/${id}`, settings.head);
+  const product = res.data;
+  const productStyles = await findProductStyles(id);
+  product.styles = productStyles;
+  return product;
+};
+const findAllProducts = async () => {
+  const res = await axios.get(`${settings.url}/products`, settings.head);
+  const products = res.data;
+  const relatedProducts = await Promise.all(
+    products.map((product) => findRelatedProducts(product.id))
+  );
+  for (let i = 0; i < products.length; i++) {
+    products[i].relatedProducts = relatedProducts[i];
+  }
+  return products;
+};
+
 module.exports = {
   getAll: async function (cb) {
     try {

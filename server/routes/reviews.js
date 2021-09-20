@@ -1,14 +1,8 @@
 const models = require("../models/index");
 
 module.exports = (app) => {
-  app.get("/reviews", (req, res) => {
-    let queryParams = {
-      page: req.query.page || 1,
-      count: req.query.count || 5,
-      sort: req.query.sort || "newest",
-      id: req.query.product_id,
-    };
-    models.reviews.list(queryParams, (err, responseData) => {
+  app.get("/reviews/:productID", (req, res) => {
+    models.reviews.list(req.params.productID, (err, responseData) => {
       if (err) {
         console.error("Error: ", err);
         res.status(500).end();
@@ -18,8 +12,7 @@ module.exports = (app) => {
     });
   });
   app.get("/reviews/meta", (req, res) => {
-    let queryId = req.query.product_id;
-    models.reviews.getMetadata(queryId, (err, responseData) => {
+    models.reviews.getMetadata((err, responseData) => {
       if (err) {
         console.error("Error: ", err);
         res.status(500).end();
