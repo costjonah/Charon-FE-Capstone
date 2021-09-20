@@ -25,7 +25,7 @@ const ImgModal = (props) => {
               imageAlt="new"
               largeImageSrc={props.currentStyle.photos[props.idxTicker].url}
               className="mainimg"
-              magnifierBorderSize="1"
+              magnifierBorderSize={1}
               magnifierSize="40%"
             />
           </div>

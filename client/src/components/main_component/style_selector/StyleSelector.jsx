@@ -1,5 +1,6 @@
 import React from "react";
-import ZoomFav from "../image_gallery/ZoomFav.jsx";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 var StyleSelector = (props) => {
   if (props.styles.product_id !== undefined) {
@@ -7,7 +8,9 @@ var StyleSelector = (props) => {
       <div className="styleselectormain">
         <ul id="styleul">
           <h4 id="currentstylename"> Style > {props.currentStyle.name} </h4>
-          <ZoomFav zoomClick={props.zoomClick} zoom={props.zoom} />
+          <h3 className="fav">
+            <FontAwesomeIcon icon={faHeart} id="heart" title="Favorite"/>{" "}
+          </h3>
           {props.styles.results.map((style, index) => {
             return (
               <li
@@ -27,10 +30,11 @@ var StyleSelector = (props) => {
                 </div>
                 <div id="crop">
                   <img
+                    className="imglist"
                     src={style.photos[0].thumbnail_url}
                     alt="new"
                     title={style.name}
-                    id="imglist"
+                    id={"imglist" + index}
                   />
                 </div>
               </li>
