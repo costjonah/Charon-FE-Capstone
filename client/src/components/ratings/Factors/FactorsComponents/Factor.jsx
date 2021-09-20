@@ -1,23 +1,26 @@
 import React from 'react';
 import styled from 'styled-components';
+import Meanings from './Meanings.jsx';
 
 const Factor = ({ name, characteristic }) => {
   return (
-    <React.Fragment>
+    <StyledFactor>
       <div>{name}</div>
       <StyledBar>
         <FilledBar rating={characteristic.value}></FilledBar>
         <StyledArrow>▼</StyledArrow>
       </StyledBar>
       <StyledLabel>
-        <div>1</div>
-        <div>3</div>
-        <div>5</div>
+        <Meanings char={name} number={1} />
+        <Meanings char={name} number={5} />
       </StyledLabel>
-    </React.Fragment>
+    </StyledFactor>
   );
 };
 
+const StyledFactor = styled.div`
+  margin: 10px 0;
+`;
 const StyledBar = styled.div`
   width: 100%;
   height: 15px;
