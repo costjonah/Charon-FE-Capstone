@@ -1,28 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
+import Factor from './FactorsComponents/Factor.jsx';
 
-const Factors = (props) => {
-  let factors = [];
-  let makeBar = (factor) => {
+const Factors = ({ characteristics }) => {
+  let factors = Object.keys(characteristics);
+  return factors.map((factor) => {
     return (
-      <React.Fragment>
-        <StyledBar>
-          <FilledBar></FilledBar>
-          <StyledArrow>▼</StyledArrow>
-        </StyledBar>
-        <StyledLabel>
-          <div>1</div>
-          <div>3</div>
-          <div>5</div>
-        </StyledLabel>
-      </React.Fragment>
+      <Factor
+        key={factor}
+        name={factor}
+        characteristic={characteristics[factor]}
+      />
     );
-  };
-  for (var i = 5; i > 0; i--) {
-    factors.push(makeBar(i + ''));
-  }
-
-  return <React.Fragment>{factors}</React.Fragment>;
+  });
 };
 
 const StyledBar = styled.div`
