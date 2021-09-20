@@ -90,17 +90,6 @@ class ReviewsWidget extends React.Component {
       method: 'post',
       url: '/reviews',
       data: data,
-      // data: {
-      //   product_id: 37311,
-      //   rating: 4,
-      //   summary: 'it was ok',
-      //   body: 'I liked the product. It was comfy and matched the pictures that were shown.',
-      //   recommend: true,
-      //   name: 'customer1',
-      //   email: 'customer1@email.com',
-      //   photos: [],
-      //   characteristics: { 125033: 3, 125031: 4, 125032: 3, 125034: 4 },
-      // },
     })
       .then((res) => {
         console.log(res);

@@ -48,17 +48,13 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <div>
-          <h1 id="header">The Right Fit</h1>
+          <h1 id='header'>The Right Fit</h1>
 
           <Navbar />
 
           <Overview
             products={this.state.productInfo}
             productId={this.state.productId}
-          />
-          <TEMPPRODUCTS
-            products={this.state.products}
-            selectProduct={this.selectProduct}
           />
           <h1>Questions And Answers</h1>
           <div className='QuestionAndAnswerBody'>
@@ -67,11 +63,19 @@ class App extends React.Component {
               productName={this.state.productName}
             />
           </div>
-          <ReviewsWidget
-            product={this.state.currentProduct}
-            reviewCount={this.state.reviewCount}
-            showMoreReviews={this.showMoreReviews}
-          />
+          <div>
+            <ReviewsWidget
+              product={this.state.currentProduct}
+              reviewCount={this.state.reviewCount}
+              showMoreReviews={this.showMoreReviews}
+            />
+          </div>
+          <div>
+            <TEMPPRODUCTS
+              products={this.state.products}
+              selectProduct={this.selectProduct}
+            />
+          </div>
         </div>
       </BrowserRouter>
     );
@@ -101,7 +105,9 @@ class App extends React.Component {
       .then((res) => {
         this.setState({
           products: res.data,
+          productInfo: res.data,
           currentProduct: res.data[0],
+          productId: res.data[0].id,
         });
       })
       .catch((err) => {
