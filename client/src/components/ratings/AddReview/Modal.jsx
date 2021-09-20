@@ -10,26 +10,6 @@ import Photos from './NewReviewComponents/Photos.jsx';
 import Recommended from './NewReviewComponents/Recommended.jsx';
 import Summary from './NewReviewComponents/Summary.jsx';
 
-const StyledModal = styled.div`
-  background: lightgrey;
-  background-color: lightgrey;
-  width: 100%;
-  height: auto;
-  padding: 10px;
-  top: 50%;
-  left: 50%;
-  //transform: translate(-50%, -60%);
-  display: ${(props) => props.show};
-
-  div {
-    margin: 5px;
-  }
-  .subText {
-    size: small;
-    color: darkgrey;
-  }
-`;
-
 class Modal extends React.Component {
   constructor(props) {
     super(props);
@@ -275,5 +255,25 @@ class Modal extends React.Component {
     );
   }
 }
+
+const StyledModal = styled.div`
+  background: lightgrey;
+  background-color: lightgrey;
+  width: 100%;
+  height: auto;
+  padding: 10px;
+  top: 50%;
+  left: 50%;
+  //transform: translate(-50%, -60%);
+  display: ${(props) => props.show};
+
+  div {
+    margin: 5px;
+  }
+  .subText {
+    size: small;
+    color: darkgrey;
+  }
+`;
 
 export default Modal;
