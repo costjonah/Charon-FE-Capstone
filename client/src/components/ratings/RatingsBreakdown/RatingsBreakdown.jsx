@@ -2,6 +2,11 @@ import React from 'react';
 import RatingSummary from './BreakdownComponents/RatingSummary.jsx';
 import Breakdown from './BreakdownComponents/Breakdown.jsx';
 import Recommendations from './BreakdownComponents/Recommendations.jsx';
+import styled from 'styled-components';
+
+const StyledBreakdown = styled.div`
+  width: 30%;
+`;
 
 class RatingsBreakdown extends React.Component {
   constructor(props) {
@@ -45,18 +50,20 @@ class RatingsBreakdown extends React.Component {
     if (this.props.filter.length > 0) {
       filterBy = <span>Filter by: </span>;
       removeFilters = (
-        <span style={{ color: 'blue' }} onClick={this.handleRemoveFilters}>
+        <span className='blueText' onClick={this.handleRemoveFilters}>
           Remove all filters
         </span>
       );
     }
 
     return (
-      <div>
+      <StyledBreakdown>
+        <h3>{'Ratings & Reviews'}</h3>
         <RatingSummary
           averageRating={this.state.averageRating}
           totalRatings={this.state.totalRatings}
         />
+        <Recommendations recommended={this.props.recommended} />
         <Breakdown
           ratingsPer={this.state.ratingsPer}
           filterBy={this.props.filterBy}
@@ -68,8 +75,7 @@ class RatingsBreakdown extends React.Component {
           })}
         </div>
         {removeFilters}
-        <Recommendations recommended={this.props.recommended} />
-      </div>
+      </StyledBreakdown>
     );
   }
 

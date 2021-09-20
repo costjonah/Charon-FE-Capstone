@@ -18,6 +18,10 @@ const StyledModal = styled.div`
   left: 50%;
   transform: translate(-50%, -150%);
   display: ${(props) => props.show};
+
+  div {
+    margin: 5px;
+  }
 `;
 
 class Modal extends React.Component {

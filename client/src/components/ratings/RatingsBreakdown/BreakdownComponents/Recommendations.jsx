@@ -7,7 +7,7 @@ const Recommendations = (props) => {
   }
   return (
     <React.Fragment>
-      <span>{recommended}% of reviews recommend this product</span>
+      <div>{recommended}% of reviews recommend this product</div>
     </React.Fragment>
   );
 };

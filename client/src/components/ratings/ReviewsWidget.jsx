@@ -3,7 +3,33 @@ import ReviewsList from './ReviewsList/ReviewsList.jsx';
 import RatingsBreakdown from './RatingsBreakdown/RatingsBreakdown.jsx';
 import SortOptions from './SortOptions/SortOptions.jsx';
 import AddReview from './AddReview/AddReview.jsx';
-const axios = require('axios');
+import axios from 'axios';
+import styled from 'styled-components';
+
+const StyledWidget = styled.div`
+  margin: 0;
+  padding: 0;
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: flex-start;
+
+  .column {
+    display: flex;
+    flex-direction: column;
+  }
+  .blueText {
+    color: blue;
+  }
+  #breakdown {
+    width: 30%;
+  }
+  #column {
+    width: 50%;
+  }
+`;
 
 class ReviewsWidget extends React.Component {
   constructor(props) {
@@ -134,17 +160,20 @@ class ReviewsWidget extends React.Component {
     }
     let sortBy = this.sortFunctions[this.state.sortOption];
     return (
-      <div style={{ display: 'flex', flexDirection: 'row' }}>
+      <StyledWidget className='row' name='Reviews Widget'>
         <RatingsBreakdown
+          id='breakdown'
+          name='Breakdown'
           ratings={this.state.ratings}
           filterBy={this.filterBy}
           filter={this.state.filter}
           removeAllFilters={this.removeAllFilters}
           recommended={this.recommendedPercentages()}
         />
-        <SortOptions sort={this.sort} />
-        <div>
+        <div id='column' className='column'>
+          <SortOptions name='Sort Options' sort={this.sort} />
           <ReviewsList
+            name='Reviews List'
             reviews={this.state.reviews}
             count={this.props.reviewCount}
             helpful={this.helpful}
@@ -154,12 +183,13 @@ class ReviewsWidget extends React.Component {
           />
           {button}
           <AddReview
+            name='Add Review'
             product={this.props.product}
             characteristics={this.state.characteristics}
             submit={this.submit}
           />
         </div>
-      </div>
+      </StyledWidget>
     );
   }
 

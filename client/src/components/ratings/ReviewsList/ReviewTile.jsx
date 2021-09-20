@@ -8,6 +8,11 @@ import Recommend from './TileComponents/Recommend.jsx';
 import Name from './TileComponents/Name.jsx';
 import Response from './TileComponents/Response.jsx';
 import Helpfulness from './TileComponents/Helpfulness.jsx';
+import styled from 'styled-components';
+
+const StyledTile = styled.li`
+  border-bottom: 1px solid;
+`;
 
 class ReviewTile extends React.Component {
   constructor(props) {
@@ -26,8 +31,8 @@ class ReviewTile extends React.Component {
     }
 
     return (
-      <li style={{ listStyleType: 'none' }}>
-        <div style={{ borderStyle: 'solid' }}>
+      <StyledTile className='noBullet'>
+        <div>
           <div>
             <Rating rating={review.rating} />
             <div>
@@ -47,7 +52,7 @@ class ReviewTile extends React.Component {
             report={this.props.report}
           />
         </div>
-      </li>
+      </StyledTile>
     );
   }
 }

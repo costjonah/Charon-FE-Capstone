@@ -43,12 +43,7 @@ const Breakdown = (props) => {
     breakdown.push(makeBar(i + ''));
   }
 
-  return (
-    <React.Fragment>
-      <div>Breakdown</div>
-      {breakdown}
-    </React.Fragment>
-  );
+  return <React.Fragment>{breakdown}</React.Fragment>;
 };
 
 export default Breakdown;

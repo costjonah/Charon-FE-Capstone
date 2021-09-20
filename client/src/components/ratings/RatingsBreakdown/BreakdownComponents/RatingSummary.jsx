@@ -1,17 +1,36 @@
 import React from 'react';
+import styled from 'styled-components';
+import StarRatings from 'react-star-ratings';
+
+const StyledRating = styled.div`
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  .rating {
+    font-size: 300%;
+    margin: 0 10px;
+  }
+`;
 
 const RatingSummary = (props) => {
-  let rating = null;
+  let ratingNumber = null;
+  let rating = 0;
   if (typeof props.averageRating === 'number' && props.averageRating) {
-    rating = <h1>{props.averageRating}</h1>;
+    ratingNumber = <div className='rating'>{props.averageRating}</div>;
+    rating = props.averageRating;
   }
   return (
-    <div>
-      <div>RatingSummary</div>
-      {rating}
-      <div>★★★★★</div>
-      <div>Total Ratings: {props.totalRatings}</div>
-    </div>
+    <StyledRating>
+      {ratingNumber}
+      <div>
+        <StarRatings rating={rating} starDimension='25px' starSpacing='1px' />
+        <div>Total Ratings: {props.totalRatings}</div>
+      </div>
+    </StyledRating>
   );
 };
 
