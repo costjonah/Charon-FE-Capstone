@@ -177,7 +177,7 @@ class ReviewsWidget extends React.Component {
 
   componentDidMount() {
     axios
-      .get(`/reviews?product_id=${this.props.product.id || 37311}`)
+      .get(`/reviews?product_id=${this.props.product.id || 37311}&count=100`)
       .then((res) => {
         this.setState({
           reviews: res.data.results,
@@ -204,7 +204,7 @@ class ReviewsWidget extends React.Component {
   componentDidUpdate(prevProps) {
     if (prevProps.product !== this.props.product) {
       axios
-        .get(`/reviews?product_id=${this.props.product.id}`)
+        .get(`/reviews?product_id=${this.props.product.id}&count=100`)
         .then((res) => {
           this.setState({
             reviews: res.data.results,
