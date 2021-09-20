@@ -187,6 +187,7 @@ class Overview extends React.Component {
           modal: false,
         });
   };
+}
 
   // repeated logic of this.thumbnailOnClick *TEMP FIX* (prevents call stack overflow)
   modalGalleryClick = (index, e) => {
