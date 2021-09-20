@@ -17,7 +17,10 @@ module.exports = {
   },
   getMetadata: (params, callback) => {
     axios
-      .get(`${settings.url}/reviews/meta?product_id=${params}`, settings.head)
+      .get(
+        `${settings.url}/reviews/meta?product_id=${params.id}`,
+        settings.head
+      )
       .then((res) => {
         callback(null, res);
       })
@@ -35,9 +38,9 @@ module.exports = {
         callback(err);
       });
   },
-  markAsHelpful: (id = 1, callback) => {
+  markAsHelpful: (id, callback) => {
     axios
-      .put(`${settings.url}/reviews/${id}/helpful`, settings.head)
+      .put(`${settings.url}/reviews/${id}/helpful`, null, settings.head)
       .then((res) => {
         callback(null, res);
       })
@@ -45,9 +48,9 @@ module.exports = {
         callback(err);
       });
   },
-  report: (id = 1, callback) => {
+  report: (id, callback) => {
     axios
-      .put(`${settings.url}/reviews/${id}/report`, settings.head)
+      .put(`${settings.url}/reviews/${id}/report`, null, settings.head)
       .then((res) => {
         callback(null, res);
       })

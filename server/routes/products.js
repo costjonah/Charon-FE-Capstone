@@ -1,8 +1,12 @@
 const models = require("../models/index");
 
 module.exports = (app) => {
-  app.get("/products", (req, res) => {
-    models.products.getAll((err, responseData) => {
+  app.get('/products', (req, res) => {
+    let queryData = {
+      page: req.query.page || 1,
+      count: req.query.count || 5,
+    };
+    models.products.getAll(queryData, (err, responseData) => {
       if (err) {
         console.error("Error: ", err);
         res.status(500).end();
