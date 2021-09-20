@@ -27,12 +27,12 @@ class Modal extends React.Component {
       overallRating: null,
       recommended: null,
       selectedCharacteristics: {
-        size: null,
-        width: null,
-        comfort: null,
-        quality: null,
-        length: null,
-        fit: null,
+        Size: null,
+        Width: null,
+        Comfort: null,
+        Quality: null,
+        Length: null,
+        Fit: null,
       },
       summary: '',
       body: '',
@@ -67,6 +67,24 @@ class Modal extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    let newCharacteristics = {};
+    for (var keys in this.props.characteristics) {
+      newCharacteristics[this.props.characteristics[keys].id] = parseInt(
+        this.state.selectedCharacteristics[keys]
+      );
+    }
+    let newRec = this.state.recommended === 'true';
+    let submitData = {
+      product_id: this.props.product.id,
+      rating: parseInt(this.state.overallRating),
+      summary: this.state.summary,
+      body: this.state.body,
+      recommend: newRec,
+      name: this.state.nickname,
+      email: this.state.email,
+      photos: [], // TODO
+      characteristics: newCharacteristics,
+    };
     let isValid = this.validateAll((result) => {
       if (result) {
         this.setState(
@@ -75,7 +93,7 @@ class Modal extends React.Component {
             submitAttempted: true,
           },
           () => {
-            this.props.submit('Submitted');
+            this.props.submit(submitData);
           }
         );
       } else {

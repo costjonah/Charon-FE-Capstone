@@ -178,7 +178,7 @@ class Overview extends React.Component {
       currentPhoto: selection.photos[0].url,
       idx: 0,
     });
-    console.log(this.state.currentPhoto);
+    //console.log(this.state.currentPhoto);
     var allChecks = document.querySelectorAll(".checked");
     var currentCheck = document.querySelector("#radio" + index);
 
@@ -256,12 +256,12 @@ class Overview extends React.Component {
 
   handleSizeChange = (selectedSz) => {
     this.setState({ selectedSizeOption: selectedSz.value });
-    console.log(`Size option selected:`, selectedSz);
+    //console.log(`Size option selected:`, selectedSz);
   };
 
   handleQtyChange = (selectedQty) => {
     this.setState({ selectedQtyOption: selectedQty.value });
-    console.log(`Quantity option selected:`, selectedQty);
+    //console.log(`Quantity option selected:`, selectedQty);
   };
 
   render() {

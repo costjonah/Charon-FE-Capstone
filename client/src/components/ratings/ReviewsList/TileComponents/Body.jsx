@@ -23,9 +23,9 @@ class Body extends React.Component {
     if (this.props.body.length > 1000) {
       this.props.body = this.props.body.substring(0, 1000);
     }
-    if (this.props.body.length >= 20 /*CHANGE TO 250*/) {
-      bodyHead = this.props.body.substring(0, 20); // CHANGE TO 250
-      bodyTail = this.props.body.substring(20); // CHANGE TO 250
+    if (this.props.body.length >= 250) {
+      bodyHead = this.props.body.substring(0, 250);
+      bodyTail = this.props.body.substring(250);
     }
     if (this.state.showing === false) {
       bodyText = <div>{bodyHead}</div>;
