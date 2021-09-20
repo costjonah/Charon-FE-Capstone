@@ -81,7 +81,7 @@ const Characteristic = ({ char, handleChange, selected }) => {
           <div>
             <input type='radio' value={1} name={char} />1
             <input type='radio' value={2} name={char} />2
-            <input type='radio' value={3} name={char} defaultChecked />3
+            <input type='radio' value={3} name={char} />3
             <input type='radio' value={4} name={char} />4
             <input type='radio' value={5} name={char} />5
           </div>

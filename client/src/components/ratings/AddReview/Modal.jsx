@@ -61,13 +61,34 @@ class Modal extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.validateComponent = this.validateComponent.bind(this);
     this.validateAll = this.validateAll.bind(this);
+    this.validateCharacteristicsHelper =
+      this.validateCharacteristicsHelper.bind(this);
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    this.validateAll();
-    this.setState({
-      submitAttempted: true,
+    let isValid = this.validateAll((result) => {
+      console.log('Is valid? ', result);
+      if (result) {
+        this.setState(
+          {
+            validated: true,
+            submitAttempted: true,
+          },
+          () => {
+            this.props.submit('Submitted');
+          }
+        );
+      } else {
+        this.setState(
+          {
+            submitAttempted: true,
+          },
+          () => {
+            // ERROR MESSAGE: FORM NOT VALID
+          }
+        );
+      }
     });
   }
 
@@ -120,7 +141,7 @@ class Modal extends React.Component {
     });
   }
 
-  validateComponent(validator) {
+  validateComponent(validator, cb) {
     let validationCopy = JSON.parse(JSON.stringify(this.state.validation));
     if (this.state[validator]) {
       if (validator === 'nickname' || validator === 'email') {
@@ -133,30 +154,49 @@ class Modal extends React.Component {
         } else {
           validationCopy[validator] = false;
         }
+      } else if (validator === 'selectedCharacteristics') {
+        validationCopy[validator] = this.validateCharacteristicsHelper();
       } else {
         validationCopy[validator] = true;
       }
     }
-    console.log(`Validate ${validator} is `, validationCopy[validator]);
-    this.setState({
-      validation: validationCopy,
-    });
+    this.setState({ validation: validationCopy }, cb);
   }
 
-  validateAll() {
+  validateCharacteristicsHelper() {
     let allValid = true;
-    this.validateComponent('overallRating');
-    this.validateComponent('recommended');
-    this.validateComponent('selectedCharacteristics');
-    this.validateComponent('body');
-    this.validateComponent('nickname');
-    this.validateComponent('email');
-    for (let keys in this.state.validation) {
-      if (this.state.validation[keys] === false) {
-        allValid = false;
-      }
+    let productChars = Object.keys(this.props.characteristics);
+    if ([productChars].length > 0) {
+      productChars.forEach((charName) => {
+        if (!this.state.selectedCharacteristics[charName]) {
+          allValid = false;
+        }
+      });
     }
-    console.log('All Valid: ', allValid);
+    return allValid;
+  }
+
+  validateAll(cb) {
+    this.validateComponent('overallRating', () => {
+      this.validateComponent('recommended', () => {
+        this.validateComponent('selectedCharacteristics', () => {
+          this.validateComponent('body', () => {
+            this.validateComponent('nickname', () => {
+              this.validateComponent('email', () => {
+                let allValid = true;
+                for (let keys in this.state.validation) {
+                  if (this.state.validation[keys] === false) {
+                    allValid = false;
+                  }
+                }
+                console.log('All Valid: ', allValid);
+                cb(allValid);
+              });
+            });
+          });
+        });
+      });
+    });
   }
 
   render() {
@@ -164,6 +204,16 @@ class Modal extends React.Component {
     let invalid = null;
     if (!this.state.validated && this.state.submitAttempted) {
       invalid = <h2>You must enter the following:</h2>;
+    }
+    if (this.state.validated && this.state.submitAttempted) {
+      return (
+        <StyledModal show={showModal}>
+          <h1>Submitted</h1>
+          <button type='button' onClick={this.handleClose}>
+            Close
+          </button>
+        </StyledModal>
+      );
     }
 
     return (

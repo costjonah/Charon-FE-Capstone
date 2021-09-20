@@ -25,7 +25,7 @@ const Recommended = ({ handleChange }) => {
     <StyledRadio onChange={handleChange}>
       <label>
         Recommended
-        <input type='radio' value={true} name='recommended' defaultChecked />
+        <input type='radio' value={true} name='recommended' />
         Yes
         <input type='radio' value={false} name='recommended' />
         No

@@ -28,6 +28,7 @@ class AddReview extends React.Component {
     return (
       <StyledContainer>
         <Modal
+          submit={this.props.submit}
           show={this.state.show}
           hideModal={this.hideModal}
           product={this.props.product}
@@ -39,8 +40,6 @@ class AddReview extends React.Component {
       </StyledContainer>
     );
   }
-
-  componentDidMount() {}
 }
 
 export default AddReview;

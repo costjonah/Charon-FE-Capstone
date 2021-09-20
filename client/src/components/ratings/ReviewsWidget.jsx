@@ -31,6 +31,7 @@ class ReviewsWidget extends React.Component {
         return new Date(b.date) - new Date(a.date);
       },
     };
+    this.submit = this.submit.bind(this);
   }
 
   handleClick() {
@@ -81,6 +82,10 @@ class ReviewsWidget extends React.Component {
       .catch((err) => {
         console.log(err);
       });
+  }
+
+  submit(data) {
+    console.log('Submitted', data);
   }
 
   filterBy(starRating) {
@@ -140,6 +145,7 @@ class ReviewsWidget extends React.Component {
           <AddReview
             product={this.props.product}
             characteristics={this.state.characteristics}
+            submit={this.submit}
           />
         </div>
       </div>

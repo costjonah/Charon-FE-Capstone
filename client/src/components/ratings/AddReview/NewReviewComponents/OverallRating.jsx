@@ -33,7 +33,7 @@ const OverallRating = ({ selected, handleChange }) => {
         <input type='radio' value={2} name='rating' />
         <input type='radio' value={3} name='rating' />
         <input type='radio' value={4} name='rating' />
-        <input type='radio' value={5} name='rating' defaultChecked /> {meaning}
+        <input type='radio' value={5} name='rating' /> {meaning}
       </label>
     </StyledRadio>
   );
