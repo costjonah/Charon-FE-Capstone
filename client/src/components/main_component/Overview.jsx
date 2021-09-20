@@ -43,7 +43,6 @@ class Overview extends React.Component {
     this.getReviewData = this.getReviewData.bind(this);
     this.getAverage = this.getAverage.bind(this);
     this.styleOnClick = this.styleOnClick.bind(this);
-    this.zoomOnClick = this.zoomOnClick.bind(this);
     this.handleSizeChange = this.handleSizeChange.bind(this);
     this.handleQtyChange = this.handleQtyChange.bind(this);
     this.downArrowOnClick = this.downArrowOnClick.bind(this);
@@ -223,11 +222,12 @@ class Overview extends React.Component {
   };
 
    styleOnClick = (selection, index, e) => {
-    e.stopPropagation();
     e.preventDefault();
+    // update style based on event target
     this.setState({
       currentStyle: selection,
     });
+    // hide previous check, show check that corresponds to event target
     var allChecks = document.querySelectorAll(".checked");
     var currentCheck = document.querySelector("#radio" + index);
     for (var i = 0; i < allChecks.length; i++) {
@@ -236,12 +236,7 @@ class Overview extends React.Component {
     currentCheck.style.visibility = "visible";
   };
 
-  zoomOnClick = () => {
-    this.setState({
-      toggleZoom: !this.state.toggleZoom,
-    });
-  };
-
+  // original click event for thumbnails - logic duplicated in this.modalGalleryClick
   thumbnailOnClick = (index, e) => {
     e.preventDefault()
     var recurse = (target) => {
@@ -265,13 +260,16 @@ class Overview extends React.Component {
     recurse(e.target.id);
   };
 
+  // updates index of current photo using ticker algorithm
   upArrowOnClick = (e) => {
     var children = document.querySelectorAll(".thumbnails");
     var lastEl = Array.prototype.slice.call(children, 0, children.length - 1);
     var ul = document.querySelector(".galthumbs");
+    // original logic to add to end of list - TO-DO: refactor
     while (lastEl.length > 0) {
       ul.appendChild(lastEl.shift());
     }
+    // index state tracker, updates MainImage && ImgModal -- cycles through array
     let idx = this.state.idx;
     if (idx == 0) {
       idx = this.state.currentStyle.photos.length - 1;
@@ -283,6 +281,7 @@ class Overview extends React.Component {
     });
   };
 
+  // reverse logic of this.upArrowOnClick
   downArrowOnClick = (e) => {
     var children = document.querySelectorAll(".thumbnails");
     var firstEl = Array.prototype.slice.call(children, 0, 1);
@@ -301,6 +300,7 @@ class Overview extends React.Component {
     });
   };
 
+  // right and left click events - stopProp to prevent closing modal when open
   rightArrowOnClick = (e) => {
     e.stopPropagation();
     this.downArrowOnClick();
@@ -311,18 +311,6 @@ class Overview extends React.Component {
     this.upArrowOnClick();
   };
 
-  imageMouseOver = () => {
-    if (this.state.toggleZoom !== true) {
-      this.setState({
-        toggleZoom: true,
-      });
-    } else {
-      this.setState({
-        toggleZoom: false,
-      });
-    }
-  };
-
   getAverage = (array) => {
     var sum = 0;
     for (var i = 0; i < array.length; i++) {
@@ -331,6 +319,7 @@ class Overview extends React.Component {
     return sum / array.length;
   };
 
+  // update state of size and quantity
   handleSizeChange = (selectedSz) => {
     this.setState({ selectedSizeOption: selectedSz.value });
     console.log(`Size option selected:`, selectedSz);
