@@ -68,7 +68,6 @@ class Modal extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     let isValid = this.validateAll((result) => {
-      console.log('Is valid? ', result);
       if (result) {
         this.setState(
           {
@@ -80,14 +79,9 @@ class Modal extends React.Component {
           }
         );
       } else {
-        this.setState(
-          {
-            submitAttempted: true,
-          },
-          () => {
-            // ERROR MESSAGE: FORM NOT VALID
-          }
-        );
+        this.setState({
+          submitAttempted: true,
+        });
       }
     });
   }
@@ -189,7 +183,6 @@ class Modal extends React.Component {
                     allValid = false;
                   }
                 }
-                console.log('All Valid: ', allValid);
                 cb(allValid);
               });
             });

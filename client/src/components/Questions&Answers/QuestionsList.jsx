@@ -31,12 +31,10 @@ class QuestionsList extends React.Component {
 
   getAllQuestions(){
     let product_id = this.props.currentProduct
-    console.log(product_id)
     axios.get(`/qa/questions/${product_id}`)
       .then(results => {
         this.setState({questions: results.data.results})
         this.setState({temp: results.data.results})
-        console.log(results.data.results)
       })
   }
 

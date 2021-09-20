@@ -33,7 +33,6 @@ class App extends React.Component {
     axios
       .get('/products')
       .then((productData) => {
-        console.log('dsauaygshduasd', typeof productData.data[0].id);
         this.setState({
           productInfo: productData.data,
           productId: productData.data[0].id,
