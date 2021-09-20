@@ -3,43 +3,9 @@ import ReviewsList from './ReviewsList/ReviewsList.jsx';
 import RatingsBreakdown from './RatingsBreakdown/RatingsBreakdown.jsx';
 import SortOptions from './SortOptions/SortOptions.jsx';
 import AddReview from './AddReview/AddReview.jsx';
+import Factors from './Factors/Factors.jsx';
 import axios from 'axios';
 import styled from 'styled-components';
-
-const StyledWidget = styled.div`
-  margin: 0;
-  padding: 0;
-  width: 100%;
-
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: flex-start;
-
-  .column {
-    display: flex;
-    flex-direction: column;
-  }
-  .blueText {
-    color: blue;
-  }
-  #breakdown {
-    width: 30%;
-  }
-  #column {
-    width: 50%;
-  }
-  button {
-    cursor: pointer;
-    background-color: rgb(34, 34, 34);
-    border: none;
-    color: #faf9f8;
-    border-radius: 3.5px;
-    width: 100%;
-    height: 25px;
-    margin: 5px 0;
-  }
-`;
 
 class ReviewsWidget extends React.Component {
   constructor(props) {
@@ -171,15 +137,21 @@ class ReviewsWidget extends React.Component {
     let sortBy = this.sortFunctions[this.state.sortOption];
     return (
       <StyledWidget className='row' name='Reviews Widget'>
-        <RatingsBreakdown
-          id='breakdown'
-          name='Breakdown'
-          ratings={this.state.ratings}
-          filterBy={this.filterBy}
-          filter={this.state.filter}
-          removeAllFilters={this.removeAllFilters}
-          recommended={this.recommendedPercentages()}
-        />
+        <div className='column'>
+          <RatingsBreakdown
+            id='breakdown'
+            name='Breakdown'
+            ratings={this.state.ratings}
+            filterBy={this.filterBy}
+            filter={this.state.filter}
+            removeAllFilters={this.removeAllFilters}
+            recommended={this.recommendedPercentages()}
+          />
+          <Factors
+            name='Factors'
+            characteristics={this.state.characteristics}
+          />
+        </div>
         <div id='column' className='column'>
           <SortOptions name='Sort Options' sort={this.sort} />
           <ReviewsList
@@ -257,5 +229,41 @@ class ReviewsWidget extends React.Component {
     }
   }
 }
+
+const StyledWidget = styled.div`
+  margin: 10px;
+  padding: 0;
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: flex-start;
+
+  .column {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+  }
+  .blueText {
+    color: blue;
+  }
+  #breakdown {
+    width: 30%;
+  }
+  #column {
+    width: 50%;
+  }
+  button {
+    cursor: pointer;
+    background-color: rgb(34, 34, 34);
+    border: none;
+    color: #faf9f8;
+    border-radius: 3.5px;
+    width: 100%;
+    height: 25px;
+    margin: 5px 0;
+  }
+`;
 
 export default ReviewsWidget;

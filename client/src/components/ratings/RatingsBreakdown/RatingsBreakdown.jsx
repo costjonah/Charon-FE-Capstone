@@ -5,7 +5,8 @@ import Recommendations from './BreakdownComponents/Recommendations.jsx';
 import styled from 'styled-components';
 
 const StyledBreakdown = styled.div`
-  width: 30%;
+  width: 100%;
+  margin-bottom: 30px;
 `;
 
 class RatingsBreakdown extends React.Component {

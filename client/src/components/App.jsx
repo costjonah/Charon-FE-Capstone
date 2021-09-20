@@ -68,10 +68,10 @@ class App extends React.Component {
             reviewCount={this.state.reviewCount}
             showMoreReviews={this.showMoreReviews}
           />
-          <TEMPPRODUCTS
+          {/* <TEMPPRODUCTS
             products={this.state.products}
             selectProduct={this.selectProduct}
-          />
+          /> */}
         </div>
       </BrowserRouter>
     );
