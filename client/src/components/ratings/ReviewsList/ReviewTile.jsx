@@ -29,13 +29,13 @@ class ReviewTile extends React.Component {
     return (
       <StyledTile className='noBullet'>
         <div>
-          <div>
+          <StyledHeader>
             <Rating rating={review.rating} />
             <div>
               <Name name={review.reviewer_name} />
               <ReviewDate reviewDate={review.date} />
             </div>
-          </div>
+          </StyledHeader>
           <Summary summaryHead={summaryHead} />
           <Body summaryTail={summaryTail} body={review.body} />
           <Photos photos={review.photos} />
@@ -55,6 +55,11 @@ class ReviewTile extends React.Component {
 
 const StyledTile = styled.li`
   border-bottom: 1px solid;
+`;
+const StyledHeader = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 `;
 
 export default ReviewTile;
