@@ -59,7 +59,6 @@ class AddAnswer extends React.Component {
       email: this.state.email,
       photos: this.state.photos
     }
-    console.log(data)
     axios.post(`/qa/questions/${this.props.question_id}/answers`, data)
       .catch(err => {
         console.log(err)

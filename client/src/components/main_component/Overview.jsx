@@ -84,7 +84,7 @@ class Overview extends React.Component {
     axios
       .post("/cart", skuPost)
       .then((cartData) => {
-        console.log("SUCCESS", cartData);
+        //console.log("SUCCESS", cartData);
       })
       .catch((err) => {
         console.log("ERROR", err);
@@ -333,12 +333,12 @@ class Overview extends React.Component {
 
   handleSizeChange = (selectedSz) => {
     this.setState({ selectedSizeOption: selectedSz.value });
-    console.log(`Size option selected:`, selectedSz);
+    //console.log(`Size option selected:`, selectedSz);
   };
 
   handleQtyChange = (selectedQty) => {
     this.setState({ selectedQtyOption: selectedQty.value });
-    console.log(`Quantity option selected:`, selectedQty);
+    //console.log(`Quantity option selected:`, selectedQty);
   };
 
   render() {
