@@ -50,7 +50,7 @@ const Characteristic = ({ char, handleChange, selected }) => {
   if (!selected) {
     selected = 3;
   }
-  meaning = <span>{meanings[char][selected - 1]}</span>;
+  meaning = <div className='subText'>{meanings[char][selected - 1]}</div>;
 
   return (
     <React.Fragment>

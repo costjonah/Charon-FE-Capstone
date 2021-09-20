@@ -50,7 +50,7 @@ class App extends React.Component {
         <div>
           <h1 id='header'>The Right Fit</h1>
 
-          {/* <Navbar />
+          <Navbar />
 
           <Overview
             products={this.state.productInfo}
@@ -62,7 +62,7 @@ class App extends React.Component {
               currentProduct={this.state.productId}
               productName={this.state.productName}
             />
-          </div> */}
+          </div>
           <ReviewsWidget
             product={this.state.currentProduct}
             reviewCount={this.state.reviewCount}

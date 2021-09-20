@@ -12,15 +12,21 @@ import Summary from './NewReviewComponents/Summary.jsx';
 
 const StyledModal = styled.div`
   background: lightgrey;
+  background-color: lightgrey;
   width: 100%;
   height: auto;
+  padding: 10px;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -150%);
+  //transform: translate(-50%, -60%);
   display: ${(props) => props.show};
 
   div {
     margin: 5px;
+  }
+  .subText {
+    size: small;
+    color: darkgrey;
   }
 `;
 
@@ -258,7 +264,9 @@ class Modal extends React.Component {
             handleChange={this.changeNickname}
           />
           <Email email={this.state.email} handleChange={this.changeEmail} />
-          <input type='submit' value='Submit' />
+          <button type='submit' value='Submit'>
+            Submit
+          </button>
         </form>
         <button type='button' onClick={this.handleClose}>
           Close

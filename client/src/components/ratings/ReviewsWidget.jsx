@@ -29,6 +29,16 @@ const StyledWidget = styled.div`
   #column {
     width: 50%;
   }
+  button {
+    cursor: pointer;
+    background-color: rgb(34, 34, 34);
+    border: none;
+    color: #faf9f8;
+    border-radius: 3.5px;
+    width: 100%;
+    height: 25px;
+    margin: 5px 0;
+  }
 `;
 
 class ReviewsWidget extends React.Component {
