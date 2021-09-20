@@ -55,7 +55,6 @@ class Overview extends React.Component {
     this.closeModalClick = this.closeModalClick.bind(this);
     this.addToCartPost = this.addToCartPost.bind(this);
     this.modalGalleryClick = this.modalGalleryClick.bind(this);
-    // this.getImgSize = this.getImgSize.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -68,11 +67,14 @@ class Overview extends React.Component {
   addToCartPost = (e) => {
     var skuId;
     var skuPost;
+    // create object with current sz/qty state
     var shoppingData = {
       size: this.state.selectedSizeOption,
       quantity: this.state.selectedQtyOption,
     };
+    // iterate through all skus
     for (var key in this.state.styleSkus) {
+      // compare to find corresponding sku to POST
       if (this.state.styleSkus[key].size === shoppingData.size) {
         skuPost = {
           sku_id: key,
@@ -90,6 +92,7 @@ class Overview extends React.Component {
   };
 
   getStyleData = (id) => {
+    // use current product id to pull it's styles to client, use data to update state
     axios
       .get(`/products/${id}/styles`)
       .then((styleData) => {
@@ -97,6 +100,7 @@ class Overview extends React.Component {
           styles: styleData.data,
           allStyles: styleData.data.results,
         });
+        // iterate to find the default style and use respective data to update state
         for (var i = 0; i < this.state.styles.results.length; i++) {
           if (this.state.styles.results[i]["default?"] === true) {
             this.setState({
@@ -105,6 +109,7 @@ class Overview extends React.Component {
             });
           }
         }
+        // make default style "checked" upon load
         var defaultCheck = document.querySelector("#radio0");
         defaultCheck.style.visibility = "visible";
       })
@@ -113,6 +118,7 @@ class Overview extends React.Component {
       });
   };
 
+  // pulls review data from current product && set sets state
   getReviewData = (id) => {
     axios
       .get(`/reviews?product_id=${id}`)
@@ -129,38 +135,35 @@ class Overview extends React.Component {
   };
 
   showModalClick = (e) => {
+    // select elements that visibility: "hidden" lags when hiding, set to transparent *TEMP FIX*
     var dropdowns = document.querySelectorAll(
       "#sizeselect > div, #qtyselect > div, .checked"
     );
     dropdowns.forEach((x) => {
       x.style.opacity = "0";
     });
+    // all other desired elements visibilty set to "hidden" *TEMP FIX*
     var mainViews = document.querySelectorAll(
       ".mainimg, .galthumbs, #uparrow, #downarrow, #rightarrow, #curCateg, #curName, #newPrice, #curPrice, .star-ratings, #styleul, .cartbtn, .brandlogomain, .freeformmain, #readreviews, #expandbtn"
     );
     mainViews.forEach((y) => {
       y.style.visibility = "hidden";
     });
+    // show modal view's arrows
     var modalArrows = document.querySelectorAll(
       "#modalArrLeft, #modalArrRight"
     );
     modalArrows.forEach((z) => {
       z.style.visibility = "visible";
     });
+    // update state
     this.setState({
       modal: true,
     });
-    var defaultImg = document.querySelector(".mainimg");
-    if (defaultImg.style.opacity === "0") {
-      defaultImg.style.cursor = "default";
-    }
   };
 
+  // opposite functionality of this.showModalClick
   closeModalClick = (e) => {
-    if (this.state.modal === true) {
-      this.setState({
-        modal: false,
-      });
       var dropdowns = document.querySelectorAll(
         "#sizeselect > div, #qtyselect > div, .checked"
       );
@@ -179,26 +182,34 @@ class Overview extends React.Component {
       mainViews.forEach((z) => {
         z.style.visibility = "visible";
       });
-      var defaultImg = document.querySelector(".mainimg");
-      if (defaultImg.style.opacity === "1") {
-        defaultImg.style.cursor = "zoom-in";
-      }
-    }
+      if (this.state.modal === true) {
+        this.setState({
+          modal: false,
+        });
   };
 
+  // repeated logic of this.thumbnailOnClick *TEMP FIX* (prevents call stack overflow)
   modalGalleryClick = (index, e) => {
+    // prevent furthering of bubbling && capturing
     e.stopPropagation();
     var recurse = (target) => {
+      // assignments for ul, li, and li > div
       var ul = document.querySelector(".modalgalthumbs");
       var children = document.querySelectorAll(".modalthumbnails");
       var modalCaro = document.querySelectorAll("#modalthumbcaro");
+      // assignment for first Id
       var currentId = modalCaro[0].lastChild.id;
+      // base case - if event target id matches first Id
       if (target === currentId) {
         return;
       }
+      // otherwise - recursive case
       if (target !== currentId) {
+        // slice first element of node list
         var el = Array.prototype.slice.call(children, 0, 1);
+        // add to end of the list
         ul.appendChild(el.shift());
+        // parse index from dynamically generated img id && update state
         var idxState = Number(target.split("img")[1]);
         this.setState({
           idx: idxState,
@@ -206,21 +217,12 @@ class Overview extends React.Component {
       }
       recurse(target);
     };
+    // inner func invocation
     recurse(e.target.id);
   };
 
-  // getImgSize = (img) => {
-  //   img = document.getElementsByClassName("mainimg");
-  //   var imgHeight = img[0].clientHeight * 1.5;
-  //   var imgWidth = img[0].clientWidth * 1.5;
-  //   this.setState({
-  //     height: imgHeight,
-  //     width: imgWidth,
-  //   });
-  //   console.log('HEIGHT', this.state.height)
-  // };
-
-  styleOnClick = (selection, index, e) => {
+   styleOnClick = (selection, index, e) => {
+    e.stopPropagation();
     e.preventDefault();
     this.setState({
       currentStyle: selection,
@@ -240,6 +242,7 @@ class Overview extends React.Component {
   };
 
   thumbnailOnClick = (index, e) => {
+    e.preventDefault()
     var recurse = (target) => {
       var ul = document.querySelector(".galthumbs");
       var children = document.querySelectorAll(".thumbnails");

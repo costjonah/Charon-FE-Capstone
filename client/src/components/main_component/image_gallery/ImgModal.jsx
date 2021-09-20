@@ -9,6 +9,7 @@ import {
   TOUCH_ACTIVATION,
 } from "react-image-magnifiers";
 
+
 const ImgModal = (props) => {
   if (Object.keys(props.currentStyle).length !== 0) {
     if (props.modalState === true) {

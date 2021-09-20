@@ -649,12 +649,14 @@ body {
   border: none;
   font-size: 20px;
   color: #bd081c;
+  filter: drop-shadow(1.5px 1.5px 1.5px black);
 }
 #styleli input[type="radio"]:checked:after {
   content: "✔";
   border: none;
   font-size: 20px;
   color: #bd081c;
+  filter: drop-shadow(1.5px 1.5px 1.5px black);
 }
 
 #checkdiv {
