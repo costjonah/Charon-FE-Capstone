@@ -5,6 +5,7 @@ class Body extends React.Component {
     super(props);
     this.state = {
       showing: false,
+      shortEnough: true,
     };
     this.showMore = this.showMore.bind(this);
   }
@@ -18,30 +19,40 @@ class Body extends React.Component {
   render() {
     let bodyHead = this.props.body;
     let bodyTail = '';
-    let show;
+    let show = null;
     let bodyText;
+
     if (this.props.body.length > 1000) {
       this.props.body = this.props.body.substring(0, 1000);
     }
+
     if (this.props.body.length >= 250) {
       bodyHead = this.props.body.substring(0, 250);
       bodyTail = this.props.body.substring(250);
+      this.setState({
+        shortEnough: false,
+      });
     }
-    if (this.state.showing === false) {
+
+    if (this.state.shortEnough === true) {
       bodyText = <div>{bodyHead}</div>;
-      show = (
-        <span style={{ color: 'blue' }} onClick={this.showMore}>
-          Show more
-        </span>
-      );
     } else {
-      bodyText = (
-        <div>
-          {bodyHead}
-          {bodyTail}
-        </div>
-      );
-      show = null;
+      if (this.state.showing === false) {
+        bodyText = <div>{bodyHead}</div>;
+        show = (
+          <span className='link' onClick={this.showMore}>
+            Show more
+          </span>
+        );
+      } else {
+        bodyText = (
+          <div>
+            {bodyHead}
+            {bodyTail}
+          </div>
+        );
+        show = null;
+      }
     }
 
     return (

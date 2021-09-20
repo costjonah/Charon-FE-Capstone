@@ -51,7 +51,7 @@ class RatingsBreakdown extends React.Component {
     if (this.props.filter.length > 0) {
       filterBy = <span>Filter by: </span>;
       removeFilters = (
-        <span className='blueText' onClick={this.handleRemoveFilters}>
+        <span className='link' onClick={this.handleRemoveFilters}>
           Remove all filters
         </span>
       );

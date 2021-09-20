@@ -1,9 +1,13 @@
 import React from 'react';
 
 const Recommend = (props) => {
-  const recommended = '✓ I recommend this product';
   if (props.recommend) {
-    return <span>{recommended}</span>;
+    return (
+      <div>
+        <span className='large'>✓</span>
+        <span>I recommend this product</span>
+      </div>
+    );
   }
   return null;
 };

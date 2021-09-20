@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 
 const Helpfulness = (props) => {
   const handleHelpfulClick = () => {
@@ -12,12 +13,24 @@ const Helpfulness = (props) => {
   return (
     <div>
       <div>Was this review helpful?</div>
-      <div>
-        <div onClick={handleHelpfulClick}>Yes ({props.helpfulness})</div>
-        <div onClick={handleReportClick}>Report</div>
-      </div>
+      <StyledLinks>
+        <div onClick={handleHelpfulClick} className='link'>
+          Yes ({props.helpfulness})
+        </div>
+        <div> | </div>
+        <div onClick={handleReportClick} className='link'>
+          Report
+        </div>
+      </StyledLinks>
     </div>
   );
 };
+
+const StyledLinks = styled.div`
+  width: 30%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+`;
 
 export default Helpfulness;

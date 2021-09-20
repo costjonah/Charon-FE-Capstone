@@ -10,10 +10,6 @@ import Response from './TileComponents/Response.jsx';
 import Helpfulness from './TileComponents/Helpfulness.jsx';
 import styled from 'styled-components';
 
-const StyledTile = styled.li`
-  border-bottom: 1px solid;
-`;
-
 class ReviewTile extends React.Component {
   constructor(props) {
     super(props);
@@ -56,5 +52,9 @@ class ReviewTile extends React.Component {
     );
   }
 }
+
+const StyledTile = styled.li`
+  border-bottom: 1px solid;
+`;
 
 export default ReviewTile;

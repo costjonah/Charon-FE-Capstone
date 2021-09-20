@@ -245,8 +245,15 @@ const StyledWidget = styled.div`
     flex-direction: column;
     width: 30%;
   }
-  .blueText {
-    color: blue;
+  .link {
+    color: dimgrey;
+    cursor: pointer;
+  }
+  .link:hover {
+    color: rgb(34, 34, 34);
+  }
+  .large {
+    font-size: 150%;
   }
   #breakdown {
     width: 30%;
@@ -262,6 +269,9 @@ const StyledWidget = styled.div`
     border-radius: 3.5px;
     width: 100%;
     height: 25px;
+    margin: 5px 0;
+  }
+  div {
     margin: 5px 0;
   }
 `;
