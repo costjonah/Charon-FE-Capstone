@@ -1,10 +1,10 @@
-const axios = require('axios');
-const settings = require('./settings.js');
+const axios = require("axios");
+const settings = require("./settings.js");
 
 module.exports = {
-  questions: (callback) => {
+  questions: (product_id, callback) => {
     axios
-      .get(`${settings.url}/qa/questions`, settings.head)
+      .get(`${settings.url}/qa/questions/?product_id=${product_id}&count=100`, settings.head)
       .then((res) => {
         callback(null, res);
       })
@@ -12,9 +12,9 @@ module.exports = {
         callback(err);
       });
   },
-  answers: (id = 1, callback) => {
+  answers: (answer_id, callback) => {
     axios
-      .get(`${settings.url}/qa/questions/${id}/answers`, settings.head)
+      .get(`${settings.url}/qa/questions/${answer_id}/answers/?count=100`, settings.head)
       .then((res) => {
         callback(null, res);
       })
@@ -22,9 +22,9 @@ module.exports = {
         callback(err);
       });
   },
-  addQuestion: (callback) => {
+  addQuestion: (product_id, data, callback) => {
     axios
-      .post(`${settings.url}/qa/questions`, settings.head)
+      .post(`${settings.url}/qa/questions?product_id=${product_id}`, data, settings.head)
       .then((res) => {
         callback(null, res);
       })
@@ -32,9 +32,20 @@ module.exports = {
         callback(err);
       });
   },
-  addAnswer: (id, callback) => {
+  addAnswer: (question_id, data, callback) => {
     axios
-      .post(`${settings.url}/qa/questions/${id}/answers`, settings.head)
+      .post(`${settings.url}/qa/questions/${question_id}/answers`, data, settings.head)
+      .then((res) => {
+        callback(null, res);
+      })
+      .catch((err) => {
+        //console.log(test)
+        callback(err);
+      });
+  },
+  markQuestionAsHelpful: (question_id, callback) => {
+    axios
+      .put(`${settings.url}/qa/questions/${question_id}/helpful`, question_id, settings.head)
       .then((res) => {
         callback(null, res);
       })
@@ -42,9 +53,9 @@ module.exports = {
         callback(err);
       });
   },
-  markQuestionAsHelpful: (id, callback) => {
+  reportQuestion: (question_id, callback) => {
     axios
-      .put(`${settings.url}/qa/questions/${id}/helpful`, settings.head)
+      .put(`${settings.url}/qa/questions/${question_id}/report`, question_id, settings.head)
       .then((res) => {
         callback(null, res);
       })
@@ -52,9 +63,9 @@ module.exports = {
         callback(err);
       });
   },
-  reportQuestion: (id, callback) => {
+  markAnswerAsHelpful: (answer_id, callback) => {
     axios
-      .put(`${settings.url}/qa/questions/${id}/report`, settings.head)
+      .put(`${settings.url}/qa/answers/${answer_id}/helpful`, answer_id, settings.head)
       .then((res) => {
         callback(null, res);
       })
@@ -62,19 +73,9 @@ module.exports = {
         callback(err);
       });
   },
-  markAnswerAsHelpful: (id, callback) => {
+  reportAnswer: (answer_id, callback) => {
     axios
-      .put(`${settings.url}/qa/answers/${id}/helpful`, settings.head)
-      .then((res) => {
-        callback(null, res);
-      })
-      .catch((err) => {
-        callback(err);
-      });
-  },
-  reportAnswer: (id, callback) => {
-    axios
-      .put(`${settings.url}/qa/answers/${id}/report`, settings.head)
+      .put(`${settings.url}/qa/answers/${answer_id}/report`, answer_id, settings.head)
       .then((res) => {
         callback(null, res);
       })
