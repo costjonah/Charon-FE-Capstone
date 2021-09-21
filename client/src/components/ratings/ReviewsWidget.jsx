@@ -11,13 +11,13 @@ class ReviewsWidget extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      reviews: [],
+      allReviews: [],
+      showCount: 2,
+      sortOption: 'Relevant',
+      filter: [],
       recommended: {},
       ratings: {},
       characteristics: {},
-      filter: [],
-      sortOption: 'Relevant',
-      showCount: 2,
     };
     this.helpful = this.helpful.bind(this);
     this.report = this.report.bind(this);
@@ -26,45 +26,32 @@ class ReviewsWidget extends React.Component {
     this.sort = this.sort.bind(this);
     this.submit = this.submit.bind(this);
     this.showMoreReviews = this.showMoreReviews.bind(this);
+    this.getData = this.getData.bind(this);
+    this.getMetaData = this.getMetaData.bind(this);
+    this.sortReviews = this.sortReviews.bind(this);
+    this.filterReviews = this.filterReviews.bind(this);
   }
 
   static sortFunctions = {
     Relevant: (a, b) => {},
-    Helpful: (a, b) => {
-      return b.helpfulness - a.helpfulness;
-    },
-    Newest: (a, b) => {
-      return new Date(b.date) - new Date(a.date);
-    },
+    Helpful: (a, b) => b.helpfulness - a.helpfulness,
+    Newest: (a, b) => new Date(b.date) - new Date(a.date),
   };
 
   showMoreReviews() {
     let newCount = this.state.showCount + 2;
-    this.setState({
-      showCount: newCount,
-    });
+    this.setState({ showCount: newCount });
   }
 
   sort(option) {
-    this.setState({
-      sortOption: option,
-    });
+    this.setState({ sortOption: option });
   }
 
   helpful(reviewId) {
     axios
       .put(`/reviews/${reviewId}/helpful`)
       .then((res) => {
-        axios
-          .get(`/reviews?product_id=${this.props.product.id}`)
-          .then((res) => {
-            this.setState({
-              reviews: res.data.results,
-            });
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+        this.getData();
       })
       .catch((err) => {
         console.log(err);
@@ -75,16 +62,7 @@ class ReviewsWidget extends React.Component {
     axios
       .put(`/reviews/${reviewId}/report`)
       .then((res) => {
-        axios
-          .get(`/reviews?product_id=${this.props.product.id}`)
-          .then((res) => {
-            this.setState({
-              reviews: res.data.results,
-            });
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+        this.getData();
       })
       .catch((err) => {
         console.log(err);
@@ -104,20 +82,17 @@ class ReviewsWidget extends React.Component {
 
   filterBy(starRating) {
     let filter = this.state.filter.slice();
-    if (filter.indexOf(starRating) === -1) {
-      filter.push(starRating);
-    } else {
+    if (filter.includes(starRating)) {
       filter.splice(filter.indexOf(starRating), 1);
+    } else {
+      filter.push(starRating);
     }
     filter.sort();
-    console.log('filter: ', filter);
     this.setState({ filter: filter });
   }
 
   removeAllFilters() {
-    this.setState({
-      filter: [],
-    });
+    this.setState({ filter: [] });
   }
 
   recommendedPercentages() {
@@ -129,11 +104,54 @@ class ReviewsWidget extends React.Component {
     return yesPercent;
   }
 
+  getData() {
+    axios
+      .get(`/reviews?product_id=${this.props.product.id || 37311}&count=100`)
+      .then((res) => {
+        this.setState({ allReviews: res.data.results });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  getMetaData() {
+    axios
+      .get(`/reviews/meta?product_id=${this.props.product.id || 37311}`)
+      .then((res) => {
+        this.setState({
+          recommended: res.data.recommended,
+          ratings: res.data.ratings,
+          characteristics: res.data.characteristics,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  sortReviews(reviews) {
+    return reviews.sort(ReviewsWidget.sortFunctions[this.state.sortOption]);
+  }
+
+  filterReviews(reviews) {
+    return reviews.filter(
+      (review) =>
+        this.state.filter.includes(review.rating.toString()) ||
+        this.state.filter.length === 0
+    );
+  }
+
   render() {
     let button = null;
-    if (this.state.showCount < this.state.reviews.length) {
+    if (this.state.showCount < this.state.allReviews.length) {
       button = <button onClick={this.showMoreReviews}>More Reviews</button>;
     }
+    let modifiedReviews = this.filterReviews(
+      this.sortReviews(this.state.allReviews)
+    );
+    let shownReviews = modifiedReviews.slice(0, this.state.showCount);
+
     return (
       <StyledWidget className='row' name='Reviews Widget'>
         <div className='column'>
@@ -155,7 +173,7 @@ class ReviewsWidget extends React.Component {
           <SortOptions name='Sort Options' sort={this.sort} />
           <ReviewsList
             name='Reviews List'
-            reviews={this.state.reviews}
+            reviews={shownReviews}
             count={this.state.showCount}
             helpful={this.helpful}
             report={this.report}
@@ -175,56 +193,14 @@ class ReviewsWidget extends React.Component {
   }
 
   componentDidMount() {
-    axios
-      .get(`/reviews?product_id=${this.props.product.id || 37311}&count=100`)
-      .then((res) => {
-        this.setState({
-          reviews: res.data.results,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
-    axios
-      .get(`/reviews/meta?product_id=${this.props.product.id || 37311}`)
-      .then((res) => {
-        this.setState({
-          recommended: res.data.recommended,
-          ratings: res.data.ratings,
-          characteristics: res.data.characteristics,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    this.getData();
+    this.getMetaData();
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.product !== this.props.product) {
-      axios
-        .get(`/reviews?product_id=${this.props.product.id}&count=100`)
-        .then((res) => {
-          this.setState({
-            reviews: res.data.results,
-          });
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-
-      axios
-        .get(`/reviews/meta?product_id=${this.props.product.id}`)
-        .then((res) => {
-          this.setState({
-            recommended: res.data.recommended,
-            ratings: res.data.ratings,
-            characteristics: res.data.characteristics,
-          });
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      this.getData();
+      this.getMetaData();
     }
   }
 }

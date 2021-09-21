@@ -3,26 +3,19 @@ import ReviewTile from './ReviewTile.jsx';
 import styled from 'styled-components';
 
 const ReviewsList = (props) => {
-  let shownReviews = props.reviews.slice(0, props.count);
-  let sortedReviews = shownReviews.sort(props.sortFunction);
+  // let shownReviews = props.reviews.slice(0, props.count);
+  // let sortedReviews = shownReviews.sort(props.sortFunction);
   return (
     <StyledReviews name='Reviews List'>
-      {shownReviews.map((review) => {
-        if (
-          props.filter.length === 0 ||
-          props.filter.includes(review.rating + '')
-        ) {
-          return (
-            <ReviewTile
-              review={review}
-              key={review.review_id}
-              helpful={props.helpful}
-              report={props.report}
-            />
-          );
-        } else {
-          return null;
-        }
+      {props.reviews.map((review) => {
+        return (
+          <ReviewTile
+            review={review}
+            key={review.review_id}
+            helpful={props.helpful}
+            report={props.report}
+          />
+        );
       })}
     </StyledReviews>
   );

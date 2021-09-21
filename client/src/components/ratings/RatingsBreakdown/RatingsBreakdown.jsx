@@ -16,6 +16,7 @@ class RatingsBreakdown extends React.Component {
       averageRating: 0,
       totalRatings: 0,
       ratingsPer: {},
+      filter: [],
     };
     this.handleRemoveFilters = this.handleRemoveFilters.bind(this);
     this.findRatings = this.findRatings.bind(this);
