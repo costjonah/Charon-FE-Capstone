@@ -52,7 +52,7 @@ class App extends React.Component {
 
           <Navbar />
 
-          <Overview
+          {/* <Overview
             products={this.state.productInfo}
             productId={this.state.productId}
           />
@@ -62,16 +62,16 @@ class App extends React.Component {
               currentProduct={this.state.productId}
               productName={this.state.productName}
             />
-          </div>
+          </div> */}
           <ReviewsWidget
             product={this.state.currentProduct}
             reviewCount={this.state.reviewCount}
             showMoreReviews={this.showMoreReviews}
           />
-          {/* <TEMPPRODUCTS
+          <TEMPPRODUCTS
             products={this.state.products}
             selectProduct={this.selectProduct}
-          /> */}
+          />
         </div>
       </BrowserRouter>
     );
@@ -89,6 +89,7 @@ class App extends React.Component {
       if (this.state.products[i].id === parseInt(id)) {
         this.setState({
           currentProduct: this.state.products[i],
+          productId: this.state.products[i].id,
           reviewCount: 2,
         });
       }
