@@ -30,6 +30,7 @@ class App extends React.Component {
           productInfo: data,
           currentProduct: data[0],
           productId: data[0].id,
+          productName: data[0].name,
         });
       })
       .catch((err) => {
@@ -42,11 +43,12 @@ class App extends React.Component {
   }
 
   selectProduct(id) {
-    for (var i = 0; i < this.state.products.length; i++) {
-      if (this.state.products[i].id === parseInt(id)) {
+    for (var i = 0; i < this.state.productInfo.length; i++) {
+      if (this.state.productInfo[i].id === parseInt(id)) {
         this.setState({
-          currentProduct: this.state.products[i],
-          productId: this.state.products[i].id,
+          currentProduct: this.state.productInfo[i],
+          productId: this.state.productInfo[i].id,
+          productName: this.state.productInfo[i].name,
         });
       }
     }
@@ -57,10 +59,8 @@ class App extends React.Component {
       <BrowserRouter>
         <div>
           <h1 id='header'>The Right Fit</h1>
-
           <Navbar />
-
-          <Overview
+          {/* <Overview
             products={this.state.productInfo}
             productId={this.state.productId}
           />
@@ -70,7 +70,7 @@ class App extends React.Component {
               currentProduct={this.state.productId}
               productName={this.state.productName}
             />
-          </div>
+          </div> */}
           <ReviewsWidget
             product={this.state.currentProduct}
             showMoreReviews={this.showMoreReviews}
