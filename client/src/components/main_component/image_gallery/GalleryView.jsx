@@ -13,6 +13,7 @@ const Gallery = (props) => {
             <FontAwesomeIcon
               icon={faArrowUp}
               id="uparrow"
+              title="Previous"
               onClick={(e) => props.upClick(e)}
             />
           </p>
@@ -28,7 +29,8 @@ const Gallery = (props) => {
                       alt="new"
                       id={"img" + index}
                       className="galleryimg"
-                      onClick={(e) => props.thumbnailClick(pic, index, e)}
+                      title={"Style " + (index + 1)}
+                      onClick={(e) => props.thumbnailClick(index, e)}
                     />
                   </div>
                 </li>
@@ -42,6 +44,7 @@ const Gallery = (props) => {
             <FontAwesomeIcon
               icon={faArrowDown}
               id="downarrow"
+              title="Next"
               onClick={(e) => props.downClick(e)}
             />
           </p>

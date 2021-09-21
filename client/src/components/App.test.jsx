@@ -11,9 +11,9 @@ describe('App', () => {
     applicationBody = shallow(<App />);
   });
 
-  test('App contains `Project Catwalk`', () => {
+  test('App contains `The Right Fit`', () => {
     console.log(applicationBody.debug());
-    expect(applicationBody.contains('Project Catwalk')).toBe(true);
+    expect(applicationBody.contains('The Right Fit')).toBe(true);
   });
 
   test('renders top Navigation Bar', () => {

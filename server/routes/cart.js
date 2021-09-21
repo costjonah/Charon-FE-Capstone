@@ -13,7 +13,7 @@ module.exports = (app) => {
   });
   app.post("/cart", (req, res) => {
     let body = req.body;
-    console.log("BODY", body);
+    //console.log("BODY", body);
     models.cart.addToCart(body, (err, responseData) => {
       if (err) {
         console.error("Error: ", err);

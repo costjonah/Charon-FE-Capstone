@@ -1,17 +1,27 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 var StyleSelector = (props) => {
   if (props.styles.product_id !== undefined) {
-    // console.log(props);
-
     return (
       <div className="styleselectormain">
+        <div id="modalArrRight">
+          <p>
+            {" "}
+            <FontAwesomeIcon
+              icon={faArrowRight}
+              id="modalrightarrow"
+              title="Next"
+              onClick={(e) => props.rightClick(e)}
+            />
+          </p>
+        </div>
         <ul id="styleul">
           <h4 id="currentstylename"> Style > {props.currentStyle.name} </h4>
-          <h3 className="zoom fav">
-            <FontAwesomeIcon icon={faHeart} id="heart" />{" "}
+          <h3 className="fav">
+            <FontAwesomeIcon icon={faHeart} id="heart" title="Favorite" />{" "}
           </h3>
           {props.styles.results.map((style, index) => {
             return (
@@ -32,10 +42,11 @@ var StyleSelector = (props) => {
                 </div>
                 <div id="crop">
                   <img
+                    className="imglist"
                     src={style.photos[0].thumbnail_url}
                     alt="new"
                     title={style.name}
-                    id="imglist"
+                    id={"imglist" + index}
                   />
                 </div>
               </li>

@@ -2,43 +2,30 @@ const axios = require("axios");
 const settings = require("./settings.js");
 
 module.exports = {
-  getAll: async function (cb) {
-    try {
-      const products = await findAllProducts();
-      cb(null, {
-        data: products,
+  getAll: (params, callback) => {
+    axios
+      .get(
+        `${settings.url}/products?page=${params.page}&count=${params.count}`,
+        settings.head
+      )
+      .then((res) => {
+        callback(null, res);
+      })
+      .catch((err) => {
+        callback(err);
       });
-    } catch (err) {
-      cb(err, []);
-    }
-    // axios
-    //   .get(`${settings.url}/products`, settings.head)
-    //   .then((res) => {
-    //     callback(null, res);
-    //   })
-    //   .catch((err) => {
-    //     callback(err);
-    //   });
   },
-  info: async function (id = 1, cb) {
-    try {
-      const product = await findProduct(id);
-      cb(null, {
-        data: product,
+  info: (id = 1, callback) => {
+    axios
+      .get(`${settings.url}/products/${id}`, settings.head)
+      .then((res) => {
+        callback(null, res);
+      })
+      .catch((err) => {
+        callback(err);
       });
-    } catch (err) {
-      cb(err, null);
-    }
-    // axios
-    //   .get(`${settings.url}/products/${id}`, settings.head)
-    //   .then((res) => {
-    //     callback(null, res);
-    //   })
-    //   .catch((err) => {
-    //     callback(err);
-    //   });
   },
-  styles: function (id = 1, callback) {
+  styles: (id = 1, callback) => {
     axios
       .get(`${settings.url}/products/${id}/styles`, settings.head)
       .then((res) => {
@@ -48,7 +35,7 @@ module.exports = {
         callback(err);
       });
   },
-  related: function (id = 1, callback) {
+  related: (id = 1, callback) => {
     axios
       .get(`${settings.url}/products/${id}/related`, settings.head)
       .then((res) => {
