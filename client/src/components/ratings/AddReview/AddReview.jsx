@@ -2,11 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import Modal from './Modal.jsx';
 
-const StyledContainer = styled.div`
-  width: 100%;
-  height: 100%;
-`;
-
 class AddReview extends React.Component {
   constructor(props) {
     super(props);
@@ -41,5 +36,10 @@ class AddReview extends React.Component {
     );
   }
 }
+
+const StyledContainer = styled.div`
+  width: 100%;
+  height: 100%;
+`;
 
 export default AddReview;

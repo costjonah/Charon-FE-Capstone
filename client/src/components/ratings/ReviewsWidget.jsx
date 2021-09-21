@@ -4,6 +4,7 @@ import RatingsBreakdown from './RatingsBreakdown/RatingsBreakdown.jsx';
 import SortOptions from './SortOptions/SortOptions.jsx';
 import AddReview from './AddReview/AddReview.jsx';
 import Factors from './Factors/Factors.jsx';
+import MoreReviewsButton from './MoreReviewsButton.jsx';
 import axios from 'axios';
 import styled from 'styled-components';
 
@@ -143,10 +144,6 @@ class ReviewsWidget extends React.Component {
   }
 
   render() {
-    let button = null;
-    if (this.state.showCount < this.state.allReviews.length) {
-      button = <button onClick={this.showMoreReviews}>More Reviews</button>;
-    }
     let modifiedReviews = this.filterReviews(
       this.sortReviews(this.state.allReviews)
     );
@@ -180,13 +177,19 @@ class ReviewsWidget extends React.Component {
             filter={this.state.filter}
             sortFunction={ReviewsWidget.sortFunctions[this.state.sortOption]}
           />
-          {button}
-          <AddReview
-            name='Add Review'
-            product={this.props.product}
-            characteristics={this.state.characteristics}
-            submit={this.submit}
-          />
+          <div className='row'>
+            <MoreReviewsButton
+              showMore={this.showMoreReviews}
+              showCount={this.state.showCount}
+              reviews={modifiedReviews}
+            />
+            <AddReview
+              name='Add Review'
+              product={this.props.product}
+              characteristics={this.state.characteristics}
+              submit={this.submit}
+            />
+          </div>
         </div>
       </StyledWidget>
     );
@@ -220,6 +223,10 @@ const StyledWidget = styled.div`
     flex-direction: column;
     width: 30%;
   }
+  .row {
+    display: flex;
+    flex-direction: row;
+  }
   .link {
     color: dimgrey;
     cursor: pointer;
@@ -244,9 +251,6 @@ const StyledWidget = styled.div`
     border-radius: 3.5px;
     width: 100%;
     height: 25px;
-    margin: 5px 0;
-  }
-  div {
     margin: 5px 0;
   }
 `;
