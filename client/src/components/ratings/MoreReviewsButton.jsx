@@ -8,24 +8,13 @@ const MoreReviewsButton = ({ showMore, showCount, reviews }) => {
     return null;
   }
   if (showCount < reviews.length) {
-    moreReviewsButton = <button onClick={showMore}>More Reviews</button>;
+    moreReviewsButton = (
+      <button className='reviewListButton' onClick={showMore}>
+        More Reviews
+      </button>
+    );
   }
   return moreReviewsButton;
 };
-
-const StyledReviews = styled.ul`
-  width: 100%;
-  padding-inline-start: 0;
-
-  height: 550px;
-  max-height: 550px;
-  width: 100%;
-  overflow-y: scroll;
-  overflow-x: hidden;
-
-  .noBullet {
-    list-style-type: none;
-  }
-`;
 
 export default MoreReviewsButton;

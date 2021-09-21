@@ -29,7 +29,11 @@ class AddReview extends React.Component {
           product={this.props.product}
           characteristics={this.props.characteristics}
         />
-        <button type='button' onClick={this.showModal}>
+        <button
+          className='reviewListButton'
+          type='button'
+          onClick={this.showModal}
+        >
           Add a Review
         </button>
       </StyledContainer>

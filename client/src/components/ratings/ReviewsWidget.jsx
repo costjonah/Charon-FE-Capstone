@@ -226,6 +226,7 @@ const StyledWidget = styled.div`
   .row {
     display: flex;
     flex-direction: row;
+    justify-content: space-evenly;
   }
   .link {
     color: dimgrey;
@@ -252,6 +253,9 @@ const StyledWidget = styled.div`
     width: 100%;
     height: 25px;
     margin: 5px 0;
+  }
+  .reviewListButton {
+    width: 50%;
   }
 `;
 
