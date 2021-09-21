@@ -34,7 +34,10 @@ class ReviewsWidget extends React.Component {
   }
 
   static sortFunctions = {
-    Relevant: (a, b) => {},
+    Relevant: (a, b) =>
+      new Date(b.date) -
+      b.helpfulness * -50000000 -
+      (new Date(a.date) - a.helpfulness * -50000000),
     Helpful: (a, b) => b.helpfulness - a.helpfulness,
     Newest: (a, b) => new Date(b.date) - new Date(a.date),
   };
