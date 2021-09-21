@@ -15,18 +15,12 @@ class App extends React.Component {
     this.state = {
       products: [],
       currentProduct: { id: 0 },
-      reviewCount: 2,
       productId: '0',
       productInfo: [],
       productName: '',
     };
     this.selectProduct = this.selectProduct.bind(this);
-    this.showMoreReviews = this.showMoreReviews.bind(this);
     this.getProductData = this.getProductData.bind(this);
-  }
-
-  componentDidMount() {
-    this.getProductData();
   }
 
   getProductData = () => {
@@ -65,7 +59,6 @@ class App extends React.Component {
           </div> */}
           <ReviewsWidget
             product={this.state.currentProduct}
-            reviewCount={this.state.reviewCount}
             showMoreReviews={this.showMoreReviews}
           />
           <TEMPPRODUCTS
@@ -75,13 +68,6 @@ class App extends React.Component {
         </div>
       </BrowserRouter>
     );
-  }
-
-  showMoreReviews() {
-    let newCount = this.state.reviewCount + 2;
-    this.setState({
-      reviewCount: newCount,
-    });
   }
 
   selectProduct(id) {
@@ -97,6 +83,8 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    this.getProductData();
+
     axios
       .get('/products?page=1&count=10')
       .then((res) => {

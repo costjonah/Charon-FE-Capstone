@@ -17,8 +17,8 @@ class ReviewsWidget extends React.Component {
       characteristics: {},
       filter: [],
       sortOption: 'Relevant',
+      showCount: 2,
     };
-    this.handleClick = this.handleClick.bind(this);
     this.helpful = this.helpful.bind(this);
     this.report = this.report.bind(this);
     this.filterBy = this.filterBy.bind(this);
@@ -34,10 +34,14 @@ class ReviewsWidget extends React.Component {
       },
     };
     this.submit = this.submit.bind(this);
+    this.showMoreReviews = this.showMoreReviews.bind(this);
   }
 
-  handleClick() {
-    this.props.showMoreReviews();
+  showMoreReviews() {
+    let newCount = this.state.showCount + 2;
+    this.setState({
+      showCount: newCount,
+    });
   }
 
   sort(option) {
@@ -131,8 +135,8 @@ class ReviewsWidget extends React.Component {
   render() {
     this.recommendedPercentages();
     let button = null;
-    if (this.props.reviewCount < this.state.reviews.length) {
-      button = <button onClick={this.handleClick}>More Reviews</button>;
+    if (this.state.showCount < this.state.reviews.length) {
+      button = <button onClick={this.showMoreReviews}>More Reviews</button>;
     }
     let sortBy = this.sortFunctions[this.state.sortOption];
     return (
@@ -157,7 +161,7 @@ class ReviewsWidget extends React.Component {
           <ReviewsList
             name='Reviews List'
             reviews={this.state.reviews}
-            count={this.props.reviewCount}
+            count={this.state.showCount}
             helpful={this.helpful}
             report={this.report}
             filter={this.state.filter}
