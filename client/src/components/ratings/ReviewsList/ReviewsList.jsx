@@ -23,7 +23,7 @@ const StyledReviews = styled.ul`
   width: 100%;
   padding-inline-start: 0;
 
-  height: 550px;
+  height: auto;
   max-height: 550px;
   width: 100%;
   overflow-y: scroll;

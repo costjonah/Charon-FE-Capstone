@@ -221,7 +221,6 @@ const StyledWidget = styled.div`
   .column {
     display: flex;
     flex-direction: column;
-    width: 30%;
   }
   .row {
     display: flex;
@@ -255,7 +254,7 @@ const StyledWidget = styled.div`
     margin: 5px 0;
   }
   .reviewListButton {
-    width: 50%;
+    margin-right: 10px;
   }
 `;
 
