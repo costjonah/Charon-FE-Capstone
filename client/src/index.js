@@ -2,6 +2,6 @@ import 'babel-polyfill'
 
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './components/App.jsx'
+import Dashboard from './components/Dashboard.jsx'
 
-ReactDOM.render(<App />, document.getElementById('app'))
+ReactDOM.render(<Dashboard />, document.getElementById('app'))
