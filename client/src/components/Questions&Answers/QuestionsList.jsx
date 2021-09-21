@@ -1,7 +1,7 @@
-import React from 'react';
-import axios from 'axios';
-import Question from './Question.jsx';
-import AddQuestion from './AddQuestion.jsx';
+import React from "react";
+import axios from "axios";
+import Question from "./Question.jsx";
+import AddQuestion from "./AddQuestion.jsx";
 
 class QuestionsList extends React.Component {
   constructor(props) {
@@ -10,7 +10,7 @@ class QuestionsList extends React.Component {
       questions: [],
       temp: [],
       length: 2,
-      term: '',
+      term: "",
     };
     this.getAllQuestions = this.getAllQuestions.bind(this);
     this.helpfulQuestionClick = this.helpfulQuestionClick.bind(this);
@@ -70,9 +70,9 @@ class QuestionsList extends React.Component {
     return (
       <div>
         <input
-          className='SearchBar'
-          type='text'
-          placeholder='HAVE A QUESTION? SEARCH FOR ANSWERS'
+          className="SearchBar"
+          type="text"
+          placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS"
           onChange={this.SearchQuestions}
         />
         {this.state.questions.slice(0, this.state.length).map((question) => (
@@ -87,15 +87,15 @@ class QuestionsList extends React.Component {
         {this.state.questions.length > 2 ? (
           this.state.length < this.state.questions.length ? (
             <button
-              className='MoreQuestionsButton'
+              className="MoreQuestionsButton"
               onClick={this.loadMoreQuestions}
             >
-              {' '}
-              More Answered Questions{' '}
+              {" "}
+              More Answered Questions{" "}
             </button>
           ) : (
-            <button className='CollapseButton' onClick={this.loadMoreQuestions}>
-              {' '}
+            <button className="CollapseButton" onClick={this.loadMoreQuestions}>
+              {" "}
               Collapse
             </button>
           )

@@ -84,8 +84,8 @@ class AddQuestion extends React.Component {
         handleSubmit={this.handleSubmit}
       />
     ) : (
-      <button className='AddQuestionButton' onClick={this.showModal}>
-        {' '}
+      <button className="AddQuestionButton" onClick={this.showModal}>
+        {" "}
         ADD QUESTION +
       </button>
     );

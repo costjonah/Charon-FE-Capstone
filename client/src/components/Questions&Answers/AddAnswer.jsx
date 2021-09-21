@@ -1,6 +1,6 @@
-import React from 'react';
-import axios from 'axios';
-import AnswerModal from './AnswerModal.jsx';
+import React from "react";
+import axios from "axios";
+import AnswerModal from "./AnswerModal.jsx";
 
 class AddAnswer extends React.Component {
   constructor(props) {
@@ -8,9 +8,9 @@ class AddAnswer extends React.Component {
     this.state = {
       clicked: false,
       photo: false,
-      email: '',
-      answer: '',
-      nickname: '',
+      email: "",
+      answer: "",
+      nickname: "",
       photos: [],
     };
     this.showAnswerModal = this.showAnswerModal.bind(this);

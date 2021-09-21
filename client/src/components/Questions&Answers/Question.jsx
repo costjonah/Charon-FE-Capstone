@@ -1,17 +1,17 @@
-import React from 'react';
-import AnswersList from './AnswersList.jsx';
-import AddAnswer from './AddAnswer.jsx';
+import React from "react";
+import AnswersList from "./AnswersList.jsx";
+import AddAnswer from "./AddAnswer.jsx";
 
 const Question = (props) => {
   return (
     <div>
-      <div className='Question'>
-        {' '}
+      <div className="Question">
+        {" "}
         Q: {props.question.question_body}
-        <span className='HelpfulText'> Helpful? </span>
+        <span className="HelpfulText"> Helpful? </span>
         {props.question.disablehelpfulness !== true ? (
           <span
-            className='HelpfulButton'
+            className="HelpfulButton"
             onClick={(event) =>
               props.helpfulQuestionClick(event, props.question)
             }
@@ -19,12 +19,12 @@ const Question = (props) => {
             Yes
           </span>
         ) : (
-          <span className='HelpfulButtonClicked'>Yes</span>
+          <span className="HelpfulButtonClicked">Yes</span>
         )}
-        <span className='HelpfulCounter'>
+        <span className="HelpfulCounter">
           ({props.question.question_helpfulness})
         </span>
-        <span className='Divider'>&nbsp; | &nbsp;</span>
+        <span className="Divider">&nbsp; | &nbsp;</span>
         {/* <span> Add Answer </span> */}
         <AddAnswer
           productName={props.productName}

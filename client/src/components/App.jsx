@@ -1,21 +1,19 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import ReviewsWidget from './ratings/ReviewsWidget.jsx';
-import TEMPPRODUCTS from './TEMPPRODUCTS.jsx';
-import { BrowserRouter, Route } from 'react-router-dom';
 import axios from 'axios';
 
 import Navbar from '../components/common/Navigation.jsx';
 import Overview from '../components/main_component/Overview.jsx';
-import QuestionsList from './Questions&Answers/QuestionsList.jsx';
+import ProductList from '../components/RelatedProducts/ProductList';
+import QuestionsList from '../components/Questions&Answers/QuestionsList.jsx';
+import ReviewsWidget from '../components/ratings/ReviewsWidget.jsx';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      productInfo: [],
       currentProduct: { id: 0 },
       productId: '0',
-      productInfo: [],
       productName: '',
     };
     this.selectProduct = this.selectProduct.bind(this);
@@ -56,31 +54,25 @@ class App extends React.Component {
 
   render() {
     return (
-      <BrowserRouter>
-        <div>
-          <h1 id='header'>The Right Fit</h1>
-          <Navbar />
-          <Overview
-            products={this.state.productInfo}
-            productId={this.state.productId}
+      <div>
+        <h1 id='header'>The Right Fit</h1>
+        <Navbar />
+        <Overview
+          products={this.state.productInfo}
+          productId={this.state.productId}
+        />
+        <ProductList />
+        <h1>Questions And Answers</h1>
+        <div className='QuestionAndAnswerBody'>
+          <QuestionsList
+            currentProduct={this.state.productId}
+            productName={this.state.productName}
           />
-          <h1>Questions And Answers</h1>
-          <div className='QuestionAndAnswerBody'>
-            <QuestionsList
-              currentProduct={this.state.productId}
-              productName={this.state.productName}
-            />
-          </div>
-          <ReviewsWidget
-            product={this.state.currentProduct}
-            showMoreReviews={this.showMoreReviews}
-          />
-          {/* <TEMPPRODUCTS
-            products={this.state.productInfo}
-            selectProduct={this.selectProduct}
-          /> */}
         </div>
-      </BrowserRouter>
+        <ReviewsWidget
+          product={this.state.currentProduct}
+        />
+      </div>
     );
   }
 }

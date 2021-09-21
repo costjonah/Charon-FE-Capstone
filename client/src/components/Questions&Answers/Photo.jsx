@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 class Photo extends React.Component {
   constructor(props) {
@@ -8,10 +8,10 @@ class Photo extends React.Component {
   render() {
     return (
       <div>
-        <input type='file' onChange={this.props.handlePhotoChange} />
+        <input type="file" onChange={this.props.handlePhotoChange} />
         <br />
         {this.props.photos.map((photo) => (
-          <img className='AnswerImg' src={photo} />
+          <img className="AnswerImg" src={photo} />
         ))}
       </div>
     );

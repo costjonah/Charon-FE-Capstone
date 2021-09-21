@@ -1,6 +1,6 @@
-import React from 'react';
-import Answer from './Answer.jsx';
-import axios from 'axios';
+import React from "react";
+import Answer from "./Answer.jsx";
+import axios from "axios";
 
 class AnswersList extends React.Component {
   constructor(props) {
@@ -24,8 +24,8 @@ class AnswersList extends React.Component {
     var arr = [];
     for (var key in this.props.answers) {
       if (
-        this.props.answers[key].answerer_name === 'Seller' ||
-        this.props.answers[key].answerer_name === 'seller'
+        this.props.answers[key].answerer_name === "Seller" ||
+        this.props.answers[key].answerer_name === "seller"
       ) {
         sellerarr.push(this.props.answers[key]);
       } else {
@@ -67,10 +67,10 @@ class AnswersList extends React.Component {
     if (this.state.answers.length !== 0) {
       //console.log(this.state.answers)
       return (
-        <div className='AnswerList'>
-          {' '}
+        <div className="AnswerList">
+          {" "}
           A:
-          <ul className='Answers'>
+          <ul className="Answers">
             {this.state.answers.slice(0, this.state.length).map((answer) => (
               <Answer
                 key={answer.id}
@@ -81,14 +81,14 @@ class AnswersList extends React.Component {
             ))}
           </ul>
           {this.state.length < this.state.answers.length ? (
-            <div className='LoadMoreAnswers' onClick={this.loadMoreAnswers}>
-              {' '}
+            <div className="LoadMoreAnswers" onClick={this.loadMoreAnswers}>
+              {" "}
               LOAD MORE ANSWERS
             </div>
           ) : (
-            <div className='LoadMoreAnswers' onClick={this.loadMoreAnswers}>
-              {' '}
-              COLLAPSE ANSWERS{' '}
+            <div className="LoadMoreAnswers" onClick={this.loadMoreAnswers}>
+              {" "}
+              COLLAPSE ANSWERS{" "}
             </div>
           )}
         </div>

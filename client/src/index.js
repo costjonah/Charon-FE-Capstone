@@ -1,5 +1,7 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import App from "./components/App.jsx";
+import 'babel-polyfill'
 
-ReactDOM.render(<App />, document.getElementById('app'));
+import React from 'react'
+import ReactDOM from 'react-dom'
+import Dashboard from './components/Dashboard.jsx'
+
+ReactDOM.render(<Dashboard />, document.getElementById('app'))
