@@ -1,6 +1,6 @@
 const BASE_URL_PREFFIX = "";
 export const getProductAverageScore = async (productID) => {
-  const res = await fetch(`${BASE_URL_PREFFIX}/reviews/${productID}`);
+  const res = await fetch(`${BASE_URL_PREFFIX}/reviews?product_id=${productID}`);
   const data = await res.json();
   const reviews = data && data.results;
   console.log("reviews", reviews);

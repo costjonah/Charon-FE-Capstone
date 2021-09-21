@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-
+// import axios from 'axios'
 import Dashboard from './dashboard/Dashboard'
 import ProductDetail from './RelatedProducts/ProductDetail'
 

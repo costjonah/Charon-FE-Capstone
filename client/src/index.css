@@ -1,0 +1,26 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html,body {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: lightgray;
+}
+
+.w-80 {
+    width: 80% !important;
+    margin: auto;
+}
+
+.text-danger {
+    color: brown !important;
+}
+
+.font-weight-bold {
+    font-weight: bold;
+}
