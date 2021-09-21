@@ -13,7 +13,6 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      products: [],
       currentProduct: { id: 0 },
       productId: '0',
       productInfo: [],
@@ -25,18 +24,33 @@ class App extends React.Component {
 
   getProductData = () => {
     axios
-      .get('/products')
-      .then((productData) => {
+      .get('/products?page=1&count=10')
+      .then(({ data }) => {
         this.setState({
-          productInfo: productData.data,
-          productId: productData.data[0].id,
-          productName: productData.data[0].name,
+          productInfo: data,
+          currentProduct: data[0],
+          productId: data[0].id,
         });
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
       });
   };
+
+  componentDidMount() {
+    this.getProductData();
+  }
+
+  selectProduct(id) {
+    for (var i = 0; i < this.state.products.length; i++) {
+      if (this.state.products[i].id === parseInt(id)) {
+        this.setState({
+          currentProduct: this.state.products[i],
+          productId: this.state.products[i].id,
+        });
+      }
+    }
+  }
 
   render() {
     return (
@@ -46,7 +60,7 @@ class App extends React.Component {
 
           <Navbar />
 
-          {/* <Overview
+          <Overview
             products={this.state.productInfo}
             productId={this.state.productId}
           />
@@ -56,48 +70,18 @@ class App extends React.Component {
               currentProduct={this.state.productId}
               productName={this.state.productName}
             />
-          </div> */}
+          </div>
           <ReviewsWidget
             product={this.state.currentProduct}
             showMoreReviews={this.showMoreReviews}
           />
           <TEMPPRODUCTS
-            products={this.state.products}
+            products={this.state.productInfo}
             selectProduct={this.selectProduct}
           />
         </div>
       </BrowserRouter>
     );
-  }
-
-  selectProduct(id) {
-    for (var i = 0; i < this.state.products.length; i++) {
-      if (this.state.products[i].id === parseInt(id)) {
-        this.setState({
-          currentProduct: this.state.products[i],
-          productId: this.state.products[i].id,
-          reviewCount: 2,
-        });
-      }
-    }
-  }
-
-  componentDidMount() {
-    this.getProductData();
-
-    axios
-      .get('/products?page=1&count=10')
-      .then((res) => {
-        this.setState({
-          products: res.data,
-          productInfo: res.data,
-          currentProduct: res.data[0],
-          productId: res.data[0].id,
-        });
-      })
-      .catch((err) => {
-        console.error(err);
-      });
   }
 }
 
