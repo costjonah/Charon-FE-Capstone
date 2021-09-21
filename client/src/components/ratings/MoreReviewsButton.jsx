@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 const MoreReviewsButton = ({ showMore, showCount, reviews }) => {
   let moreReviewsButton = null;
-  console.log(showCount, reviews);
   if (!reviews) {
     return null;
   }
