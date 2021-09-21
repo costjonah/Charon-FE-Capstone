@@ -24,18 +24,19 @@ class ReviewsWidget extends React.Component {
     this.filterBy = this.filterBy.bind(this);
     this.removeAllFilters = this.removeAllFilters.bind(this);
     this.sort = this.sort.bind(this);
-    this.sortFunctions = {
-      Relevant: (a, b) => {},
-      Helpful: (a, b) => {
-        return b.helpfulness - a.helpfulness;
-      },
-      Newest: (a, b) => {
-        return new Date(b.date) - new Date(a.date);
-      },
-    };
     this.submit = this.submit.bind(this);
     this.showMoreReviews = this.showMoreReviews.bind(this);
   }
+
+  static sortFunctions = {
+    Relevant: (a, b) => {},
+    Helpful: (a, b) => {
+      return b.helpfulness - a.helpfulness;
+    },
+    Newest: (a, b) => {
+      return new Date(b.date) - new Date(a.date);
+    },
+  };
 
   showMoreReviews() {
     let newCount = this.state.showCount + 2;
@@ -96,13 +97,9 @@ class ReviewsWidget extends React.Component {
       method: 'post',
       url: '/reviews',
       data: data,
-    })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    }).catch((err) => {
+      console.error(err);
+    });
   }
 
   filterBy(starRating) {
@@ -133,12 +130,10 @@ class ReviewsWidget extends React.Component {
   }
 
   render() {
-    this.recommendedPercentages();
     let button = null;
     if (this.state.showCount < this.state.reviews.length) {
       button = <button onClick={this.showMoreReviews}>More Reviews</button>;
     }
-    let sortBy = this.sortFunctions[this.state.sortOption];
     return (
       <StyledWidget className='row' name='Reviews Widget'>
         <div className='column'>
@@ -165,7 +160,7 @@ class ReviewsWidget extends React.Component {
             helpful={this.helpful}
             report={this.report}
             filter={this.state.filter}
-            sortFunction={sortBy}
+            sortFunction={ReviewsWidget.sortFunctions[this.state.sortOption]}
           />
           {button}
           <AddReview
