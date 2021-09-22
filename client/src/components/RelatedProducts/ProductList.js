@@ -64,11 +64,15 @@ class ProductList extends React.Component {
   }
 
   async componentDidMount() {
-    const res = await fetchProductList();
-    // console.log("res is: ", res);
-    this.setState({
-      productList: res,
-    });
+    try {
+      const res = await fetchProductList();
+      // console.log("res is: ", res);
+      this.setState({
+        productList: res,
+      });
+    } catch (err) {
+      console.log(err);
+    }
     this.check(0);
   }
 
