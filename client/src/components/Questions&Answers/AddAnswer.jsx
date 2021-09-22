@@ -8,7 +8,7 @@ class AddAnswer extends React.Component {
     super(props);
     this.state = {
       clicked: false,
-      photo: false,
+      // photo: false,
       email: '',
       answer: '',
       nickname: '',
@@ -120,7 +120,7 @@ class AddAnswer extends React.Component {
       closeAnswerModal={this.closeAnswerModal}
       showPhotoModal={this.showPhotoModal}
       closePhotoModal={this.closePhotoModal}
-      photo={this.state.photo}
+      // photo={this.state.photo}
       photos={this.state.photos}
       handlePhotoChange={this.handlePhotoChange}
       handleSubmit={this.handleSubmit}

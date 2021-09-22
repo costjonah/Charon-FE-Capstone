@@ -882,7 +882,9 @@ body {
   width: 90px;
   height: 90px;
 }
-
+.photosfiles{
+  margin-bottom: 10px;
+}
 /* .AnswerModalText{
   color: white
 } */
