@@ -18,7 +18,7 @@ const Review = (props) => {
         <div className="reviewmain">
           {" "}
           <Stars rating={averageRating} title={averageRating + " stars"} />
-          <a data={reviewData} id="readreviews" title="Read all reviews">
+          <a href={'#reviewsection'} data={reviewData} id="readreviews" title="Read all reviews">
             {" "}
             &#65372; Read {numReviews} review(s)
           </a>

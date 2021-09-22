@@ -136,7 +136,7 @@ class ReviewsWidget extends React.Component {
     }
     let sortBy = this.sortFunctions[this.state.sortOption];
     return (
-      <StyledWidget className='row' name='Reviews Widget'>
+      <StyledWidget className='row' name='Reviews Widget' id={'reviewsection'}>
         <div className='column'>
           <RatingsBreakdown
             id='breakdown'
