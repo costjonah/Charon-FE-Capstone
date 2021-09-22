@@ -23,7 +23,6 @@ class AddQuestion extends React.Component {
     this.handleNicknameInput = this.handleNicknameInput.bind(this)
     this.handleQuestionInput = this.handleQuestionInput.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
-    // this.checkValidEmail = this.checkValidEmail.bind(this)
   }
 
 
@@ -72,13 +71,6 @@ class AddQuestion extends React.Component {
     })
   }
 
-  // checkValidEmail(email) {
-  //   var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-  //   if (email.match(validRegex) && email.includes('.com')) {
-  //     this.setState({validemail: true})
-  //   }
-  // }
-
   handleSubmit() {
     if (this.state.validquestion === false) {
       this.setState({questionerror: 'error'})
@@ -121,7 +113,6 @@ class AddQuestion extends React.Component {
         handleQuestionInput={this.handleQuestionInput}
         handleSubmit={this.handleSubmit}
         validquestion={this.state.validquestion}
-        // checkValidQuestion = {this.checkValidQuestion}
         questionerror = {this.state.questionerror}
         nickerror ={this.state.nickerror}
         emailerror ={this.state.emailerror}

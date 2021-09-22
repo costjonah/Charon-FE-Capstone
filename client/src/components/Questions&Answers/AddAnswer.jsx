@@ -8,7 +8,6 @@ class AddAnswer extends React.Component {
     super(props);
     this.state = {
       clicked: false,
-      // photo: false,
       email: '',
       answer: '',
       nickname: '',
@@ -95,7 +94,10 @@ class AddAnswer extends React.Component {
     } else {
       this.setState({emailerror: ''})
     }
-    if (this.state.validquestion === true && this.state.validemail === true && this.state.validnickname === true){
+    console.log(this.state.validanswer)
+    console.log(this.state.validnickname)
+    console.log(this.state.validemail)
+    if (this.state.validanswer === true && this.state.validemail === true && this.state.validnickname === true){
       let data = {
         body: this.state.answer,
         name: this.state.nickname,
@@ -103,6 +105,10 @@ class AddAnswer extends React.Component {
         photos: this.state.photos
       }
       axios.post(`/qa/questions/${this.props.question_id}/answers`, data)
+        .then(results => {
+          this.props.getAllQuestions()
+          this.closeAnswerModal()
+        })
         .catch(err => {
           console.log(err)
         })
@@ -118,9 +124,6 @@ class AddAnswer extends React.Component {
       question_body={this.props.question_body}
       handleAnswerInput={this.handleAnswerInput}
       closeAnswerModal={this.closeAnswerModal}
-      showPhotoModal={this.showPhotoModal}
-      closePhotoModal={this.closePhotoModal}
-      // photo={this.state.photo}
       photos={this.state.photos}
       handlePhotoChange={this.handlePhotoChange}
       handleSubmit={this.handleSubmit}

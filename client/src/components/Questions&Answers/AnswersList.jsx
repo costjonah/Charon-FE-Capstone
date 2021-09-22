@@ -10,7 +10,6 @@ class AnswersList extends React.Component {
       length: 2
     }
     this.helpfulAnswerClick = this.helpfulAnswerClick.bind(this)
-    //this.mysort = this.mysort.bind(this)
     this.getAllAnswers = this.getAllAnswers.bind(this)
     this.reportAnswerClick = this.reportAnswerClick.bind(this)
     this.loadMoreAnswers = this.loadMoreAnswers.bind(this)
@@ -20,6 +19,12 @@ class AnswersList extends React.Component {
   componentDidMount() {
     this.getAllAnswers()
   }
+  componentDidUpdate(prevProps) {
+    if(prevProps !== this.props) {
+      this.getAllAnswers()
+    }
+  }
+
   getAllAnswers() {
     var sellerarr =[]
     var arr = []
@@ -32,18 +37,13 @@ class AnswersList extends React.Component {
     }
     sellerarr.sort((a, b) => (a.helpfulness < b.helpfulness) ? 1 : -1)
     arr.sort((a, b) => (a.helpfulness < b.helpfulness) ? 1 : -1)
-    //mysort(sellerarr);
-    //mysort(arr);
     var total = sellerarr.concat(arr)
     this.setState({answers: total})
   }
 
   helpfulAnswerClick(event, answer) {
-    //console.log(answer.id);
-    //console.log(this.state.answers)
     axios.put(`/qa/answers/${answer.id}/helpful`)
     answer.helpfulness++;
-    //this.getAllAnswers()
     answer.disablehelpfulness = true
     this.setState({answers: this.state.answers})
   }
@@ -65,7 +65,6 @@ class AnswersList extends React.Component {
 
   render () {
     if (this.state.answers.length !== 0) {
-    //console.log(this.state.answers)
     return (
       <div className='AnswerList'> A:
       <ul className='Answers'>
@@ -78,15 +77,15 @@ class AnswersList extends React.Component {
         />
         )}
         </ul>
-        {this.state.length < this.state.answers.length ?
-          <div className='LoadMoreAnswers' onClick={this.loadMoreAnswers}> LOAD MORE ANSWERS</div> : <div className='LoadMoreAnswers' onClick={this.loadMoreAnswers}> COLLAPSE ANSWERS </div>
+        {this.state.answers.length > 2 ? this.state.length < this.state.answers.length ?
+          <div className='LoadMoreAnswers' onClick={this.loadMoreAnswers}> LOAD MORE ANSWERS</div> : <div className='LoadMoreAnswers' onClick={this.loadMoreAnswers}> COLLAPSE ANSWERS </div> : <> </>
       }
 
         </div>
     )
     } else {
       return (
-        <div> No answer</div>
+        <> </>
       )
     }
   }
