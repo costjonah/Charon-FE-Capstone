@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import AnswerModal from "./AnswerModal.jsx";
+import config from "../../../../config.js"
 
 class AddAnswer extends React.Component {
   constructor(props) {
@@ -74,8 +75,18 @@ class AddAnswer extends React.Component {
   }
   handlePhotoChange(event) {
     var myarr = this.state.photos;
-    myarr.push(URL.createObjectURL(event.target.files[0]));
-    this.setState({ photos: myarr });
+    var body = new FormData()
+    //console.log(config.imgbb)
+    body.set('key', config.imgbb)
+    body.append('image', event.target.files[0])
+    axios.post('https://api.imgbb.com/1/upload', body)
+    .then(result => {
+      myarr.push(result.data.data.url)
+      this.setState({ photos: myarr });
+    })
+    .catch(err => {
+      console.log(err)
+    })
   }
   handleSubmit() {
     if (this.state.validanswer === false) {
