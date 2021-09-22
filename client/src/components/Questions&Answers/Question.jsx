@@ -1,6 +1,6 @@
-import React from 'react';
-import AnswersList from './AnswersList.jsx';
-import AddAnswer from './AddAnswer.jsx';
+import React from "react";
+import AnswersList from "./AnswersList.jsx";
+import AddAnswer from "./AddAnswer.jsx";
 
 const Question = (props) => {
   return (
@@ -25,11 +25,13 @@ const Question = (props) => {
       }
       </div>
       <div>
-        <AnswersList answers={props.question.answers} getAllQuestions={props.getAllQuestions}/>
+        <AnswersList
+          answers={props.question.answers}
+          getAllQuestions={props.getAllQuestions}
+        />
       </div>
     </div>
-  )
-}
-
+  );
+};
 
 export default Question;

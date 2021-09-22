@@ -1,5 +1,5 @@
-import React from 'react';
-import moment from 'moment'
+import React from "react";
+import moment from "moment";
 
 const Answer = (props) => {
   return (
@@ -21,8 +21,7 @@ const Answer = (props) => {
     }
     <br/>
     </li>
-  )
-}
-
+  );
+};
 
 export default Answer;

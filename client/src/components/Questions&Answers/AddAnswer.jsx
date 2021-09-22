@@ -1,10 +1,9 @@
-import React from 'react';
-import axios from 'axios';
-import AnswerModal from './AnswerModal.jsx';
-
+import React from "react";
+import axios from "axios";
+import AnswerModal from "./AnswerModal.jsx";
 
 class AddAnswer extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       clicked: false,
@@ -29,7 +28,7 @@ class AddAnswer extends React.Component {
   }
 
   showAnswerModal() {
-    this.setState({clicked: true})
+    this.setState({ clicked: true });
   }
   closeAnswerModal() {
     this.setState({clicked: false})
@@ -74,9 +73,9 @@ class AddAnswer extends React.Component {
     })
   }
   handlePhotoChange(event) {
-    var myarr = this.state.photos
-    myarr.push(URL.createObjectURL(event.target.files[0]))
-    this.setState({photos: myarr})
+    var myarr = this.state.photos;
+    myarr.push(URL.createObjectURL(event.target.files[0]));
+    this.setState({ photos: myarr });
   }
   handleSubmit() {
     if (this.state.validanswer === false) {
@@ -115,9 +114,8 @@ class AddAnswer extends React.Component {
       }
     }
 
-  render(){
-    return (
-      this.state.clicked === true ?
+  render() {
+    return this.state.clicked === true ? (
       <AnswerModal
       clicked={this.state.clicked}
       productName={this.props.productName}
@@ -133,10 +131,13 @@ class AddAnswer extends React.Component {
       answererror={this.state.answererror}
       emailerror={this.state.emailerror}
       />
-       :<span className='AddAnswerButton' onClick={this.showAnswerModal}> Add Answer</span>
-    )
+    ) : (
+      <span className='AddAnswerButton' onClick={this.showAnswerModal}>
+        {' '}
+        Add Answer
+      </span>
+    );
   }
 }
 
-export default AddAnswer
-
+export default AddAnswer;

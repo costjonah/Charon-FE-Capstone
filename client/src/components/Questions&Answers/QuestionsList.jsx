@@ -1,11 +1,11 @@
-import React from 'react';
-import axios from 'axios';
-import Question from './Question.jsx'
-import AddQuestion from './AddQuestion.jsx'
+import React from "react";
+import axios from "axios";
+import Question from "./Question.jsx";
+import AddQuestion from "./AddQuestion.jsx";
 
 class QuestionsList extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       questions: [],
       temp: [],
@@ -19,14 +19,13 @@ class QuestionsList extends React.Component {
     this.reportQuestionClick = this.reportQuestionClick.bind(this)
   }
 
-
   componentDidMount() {
-    this.getAllQuestions()
+    this.getAllQuestions();
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps !== this.props) {
-      this.getAllQuestions()
+      this.getAllQuestions();
     }
   }
 
@@ -41,7 +40,7 @@ class QuestionsList extends React.Component {
 
   helpfulQuestionClick(event, question) {
     //console.log(question);
-    axios.put(`/qa/questions/${question.question_id}/helpful`)
+    axios.put(`/qa/questions/${question.question_id}/helpful`);
     question.question_helpfulness++;
     //this.getAllQuestions()
     question.disablehelpfulness = true
@@ -90,11 +89,8 @@ class QuestionsList extends React.Component {
         <AddQuestion product_id={this.props.currentProduct} productName={this.props.productName}
           getAllQuestions={this.getAllQuestions} />
       </div>
-    )
+    );
   }
-
-
 }
-
 
 export default QuestionsList;

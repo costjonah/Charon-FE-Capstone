@@ -1,0 +1,147 @@
+.card {
+  border-radius: 10px;
+  /* box-shadow: 8px 8px 5px rgba(0,0,0,.6); */
+  width: 380px !important;
+  background-color: #fff;
+  /* height: 300px; */
+
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+  transition: all 0.5s ease;
+}
+.rating {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+.card .card-header {
+  white-space: nowrap;
+  padding: 0.5rem 1rem;
+  color: #fff;
+  font-size: 1.5vw;
+  background-color: #3e2c41;
+  border-radius: 8px 8px 0 0;
+}
+.related-image {
+  margin-top: 8px;
+  width: 50%;
+}
+.related-products {
+  padding: 10px 0;
+}
+.card:hover .card-body {
+  color: #fff;
+  background-color: rgb(138, 135, 135);
+  cursor: pointer;
+  /* color: #fff; */
+  /* animation: glow 1s linear forwards; */
+}
+
+@keyframes glow {
+  from {
+    background-color: #fff;
+    transform: translateY(-50%);
+  }
+
+  to {
+    background-color: #5c527f;
+    transform: translateY(0%);
+  }
+}
+
+.card .card-body {
+  padding: 1rem;
+  color: rgb(138, 135, 135);
+  font-weight: 300;
+  height: 300px;
+  overflow-y: scroll;
+}
+
+.card .card-body .product-detail {
+  margin-bottom: 1rem;
+}
+
+.card .card-body .product-detail .item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.card .card-body .product-detail .item .label {
+  color: #3e2c41;
+  font-weight: 800;
+  font-size: 1.5vw;
+}
+
+.card .card-body .product-detail .item .item-value {
+  font-size: 1.2vw;
+  font-weight: 300;
+}
+
+.card .card-footer {
+  border-top: 2px solid #3e2c41;
+  border-radius: 0 0 10px 10px;
+  padding: 0.5rem 1.8rem;
+}
+
+.footer-info {
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+  gap: 1rem;
+}
+
+.card-btn-group {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.footer-info .created-date {
+  font-size: 0.8vw;
+  color: #6e85b2;
+}
+
+.btn,
+.footer-info a {
+  display: block;
+  background-color: #261c2c;
+  color: #fff;
+  text-decoration: none;
+  padding: 0.5rem 0.8rem;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+}
+
+.btn:hover,
+.footer-info a:hover {
+  background-color: #3e2c41;
+}
+
+.tool-bar {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+}
+
+.comparing-container {
+  padding: 1rem;
+}
+
+.comparing-container table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.comparing-container table thead tr,
+.comparing-container table tbody tr {
+  border: 1px solid teal;
+}
+
+.comparing-container table thead tr th,
+.comparing-container table tbody tr td {
+  width: 33.333%;
+  text-align: center;
+}

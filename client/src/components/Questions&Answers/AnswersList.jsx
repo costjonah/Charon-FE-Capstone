@@ -1,10 +1,10 @@
-import React from 'react';
-import Answer from './Answer.jsx';
-import axios from 'axios';
+import React from "react";
+import Answer from "./Answer.jsx";
+import axios from "axios";
 
 class AnswersList extends React.Component {
-  constructor(props){
-    super(props)
+  constructor(props) {
+    super(props);
     this.state = {
       answers: [],
       length: 2
@@ -15,9 +15,8 @@ class AnswersList extends React.Component {
     this.loadMoreAnswers = this.loadMoreAnswers.bind(this)
   }
 
-
   componentDidMount() {
-    this.getAllAnswers()
+    this.getAllAnswers();
   }
   componentDidUpdate(prevProps) {
     if(prevProps !== this.props) {
@@ -26,13 +25,16 @@ class AnswersList extends React.Component {
   }
 
   getAllAnswers() {
-    var sellerarr =[]
-    var arr = []
+    var sellerarr = [];
+    var arr = [];
     for (var key in this.props.answers) {
-      if (this.props.answers[key].answerer_name === 'Seller' || this.props.answers[key].answerer_name === 'seller') {
-        sellerarr.push(this.props.answers[key])
+      if (
+        this.props.answers[key].answerer_name === "Seller" ||
+        this.props.answers[key].answerer_name === "seller"
+      ) {
+        sellerarr.push(this.props.answers[key]);
       } else {
-        arr.push(this.props.answers[key])
+        arr.push(this.props.answers[key]);
       }
     }
     sellerarr.sort((a, b) => (a.helpfulness < b.helpfulness) ? 1 : -1)
@@ -49,21 +51,19 @@ class AnswersList extends React.Component {
   }
 
   reportAnswerClick(event, answer) {
-    axios.put(`/qa/answers/${answer.id}/report`)
-    answer.disablereport = true
-    this.setState({answers: this.state.answers})
+    axios.put(`/qa/answers/${answer.id}/report`);
+    answer.disablereport = true;
+    this.setState({ answers: this.state.answers });
   }
   loadMoreAnswers() {
     if (this.state.length >= this.state.answers.length) {
-      this.setState({length : 2})
+      this.setState({ length: 2 });
     } else {
-      this.setState({length: this.state.answers.length})
+      this.setState({ length: this.state.answers.length });
     }
   }
 
-
-
-  render () {
+  render() {
     if (this.state.answers.length !== 0) {
     return (
       <div className='AnswerList'> A:
@@ -82,7 +82,7 @@ class AnswersList extends React.Component {
       }
 
         </div>
-    )
+      );
     } else {
       return (
         <> </>
@@ -90,6 +90,5 @@ class AnswersList extends React.Component {
     }
   }
 }
-
 
 export default AnswersList;

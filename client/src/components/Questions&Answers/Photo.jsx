@@ -1,12 +1,11 @@
-import React from 'react';
-
+import React from "react";
 
 class Photo extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
   }
 
-  render(){
+  render() {
     return (
       <span>
         <input className='photosfiles' type='file' onChange={this.props.handlePhotoChange}/>
@@ -18,6 +17,5 @@ class Photo extends React.Component {
     )
   }
 }
-
 
 export default Photo;

@@ -1,9 +1,9 @@
 import React from 'react';
 import axios from 'axios';
-import QuestionModal from './QuestionModal.jsx'
+import QuestionModal from './QuestionModal.jsx';
 
 class AddQuestion extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       clicked: false,
@@ -103,8 +103,8 @@ class AddQuestion extends React.Component {
   }
 
   render() {
-    return(
-      this.state.clicked === true ? <QuestionModal
+    return this.state.clicked === true ? (
+      <QuestionModal
         clicked={this.state.clicked}
         productName={this.props.productName}
         closeModal={this.closeModal}
@@ -116,14 +116,9 @@ class AddQuestion extends React.Component {
         questionerror = {this.state.questionerror}
         nickerror ={this.state.nickerror}
         emailerror ={this.state.emailerror}
-        /> : <button className='AddQuestionButton' onClick={this.showModal}> ADD QUESTION +</button>
-    )
+        /> )
+        : <button className='AddQuestionButton' onClick={this.showModal}> ADD QUESTION +</button>
   }
-
-
-
-
-
 }
 
 export default AddQuestion;
