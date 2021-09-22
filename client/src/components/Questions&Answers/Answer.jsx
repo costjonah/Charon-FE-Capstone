@@ -3,7 +3,9 @@ import moment from 'moment'
 
 const Answer = (props) => {
   return (
-    <li className='IndAnswer'> {props.answer.body} {props.answer.photos.map(photo => console.log(photo))}
+    <li className='IndAnswer'> {props.answer.body} <br/>{props.answer.photos.map((photo, index) =>
+    <img key={index} className='AnswerImg' src={(photo)}/>
+    )}
     <br/>
     <br/>
     <span className='AnswerInfo'> by {props.answer.answerer_name}, {moment(props.answer.date).format('MMM Do, YYYY')} &nbsp; | &nbsp; helpful?&nbsp;
