@@ -876,14 +876,27 @@ body {
   font-size: 18px;
   font-weight: bold;
   font-family: "Times New Roman", Times, serif;
+  z-index: 1000;
 }
 .AnswerImg {
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
 }
 
 /* .AnswerModalText{
   color: white
 } */
+
+.error{
+  border: 1px solid red
+}
+.ErrorText{
+  font-size: 12px;
+  color: red;
+  padding-left: 10em;
+  height: 10px;
+  display: block;
+  margin-block-end: -10px;
+}
 
 /*---------------------------- Related Products ---------------------------- */

@@ -12,15 +12,19 @@ class AddAnswer extends React.Component {
       email: '',
       answer: '',
       nickname: '',
-      photos: []
+      answererror: '',
+      nickerror: '',
+      emailerror:'',
+      photos: [],
+      validemail: false,
+      validanswer: false,
+      validnickname: false,
     }
     this.showAnswerModal = this.showAnswerModal.bind(this)
     this.closeAnswerModal = this.closeAnswerModal.bind(this)
     this.handleEmailInput = this.handleEmailInput.bind(this)
     this.handleNicknameInput = this.handleNicknameInput.bind(this)
     this.handleAnswerInput = this.handleAnswerInput.bind(this)
-    this.showPhotoModal = this.showPhotoModal.bind(this)
-    this.closePhotoModal = this.closePhotoModal.bind(this)
     this.handlePhotoChange = this.handlePhotoChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
@@ -31,21 +35,44 @@ class AddAnswer extends React.Component {
   closeAnswerModal() {
     this.setState({clicked: false})
     this.setState({photos: []})
-  }
-  showPhotoModal() {
-    this.setState({photo: true})
-  }
-  closePhotoModal() {
-    this.setState({photo: false})
+    this.setState({answererror: ''})
+    this.setState({nickerror: ''})
+    this.setState({emailerror: ''})
+
   }
   handleEmailInput(event) {
-    this.setState({email: event.target.value})
+    this.setState({email: event.target.value}, function() {
+      var validRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      if (this.state.email.match(validRegex)) {
+        this.setState({validemail: true})
+        this.setState({emailerror: ''})
+      } else {
+        this.setState({validemail: false})
+        this.setState({emailerror: 'error'})
+      }
+    })
   }
   handleAnswerInput(event) {
-    this.setState({answer: event.target.value})
+    this.setState({answer: event.target.value}, function (){
+      if (this.state.answer.length > 0) {
+        this.setState({validanswer: true})
+        this.setState({answererror: ''})
+      } else {
+        this.setState({validanswer: false})
+        this.setState({answererror: 'error'})
+      }
+    })
   }
   handleNicknameInput(event) {
-    this.setState({nickname: event.target.value})
+    this.setState({nickname: event.target.value}, function (){
+      if(this.state.nickname.length > 0) {
+        this.setState({validnickname: true})
+        this.setState({nickerror: ''})
+      } else {
+        this.setState({validnickname: false})
+        this.setState({nickerror: 'error'})
+      }
+    })
   }
   handlePhotoChange(event) {
     var myarr = this.state.photos
@@ -53,17 +80,34 @@ class AddAnswer extends React.Component {
     this.setState({photos: myarr})
   }
   handleSubmit() {
-    let data = {
-      body: this.state.answer,
-      name: this.state.nickname,
-      email: this.state.email,
-      photos: this.state.photos
+    if (this.state.validanswer === false) {
+      this.setState({answererror: 'error'})
+    } else {
+      this.setState({answererror: ''})
     }
-    axios.post(`/qa/questions/${this.props.question_id}/answers`, data)
-      .catch(err => {
-        console.log(err)
-      })
-  }
+    if (this.state.validnickname === false) {
+      this.setState({nickerror: 'error'})
+    } else {
+      this.setState({nickerror: ''})
+    }
+    if (this.state.validemail === false) {
+      this.setState({emailerror: 'error'})
+    } else {
+      this.setState({emailerror: ''})
+    }
+    if (this.state.validquestion === true && this.state.validemail === true && this.state.validnickname === true){
+      let data = {
+        body: this.state.answer,
+        name: this.state.nickname,
+        email: this.state.email,
+        photos: this.state.photos
+      }
+      axios.post(`/qa/questions/${this.props.question_id}/answers`, data)
+        .catch(err => {
+          console.log(err)
+        })
+      }
+    }
 
   render(){
     return (
@@ -82,6 +126,9 @@ class AddAnswer extends React.Component {
       handleSubmit={this.handleSubmit}
       handleEmailInput={this.handleEmailInput}
       handleNicknameInput={this.handleNicknameInput}
+      nickerror={this.state.nickerror}
+      answererror={this.state.answererror}
+      emailerror={this.state.emailerror}
       />
        :<span className='AddAnswerButton' onClick={this.showAnswerModal}> Add Answer</span>
     )

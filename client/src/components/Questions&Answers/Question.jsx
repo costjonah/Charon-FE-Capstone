@@ -18,6 +18,11 @@ const Question = (props) => {
       {/* <span> Add Answer </span> */}
       <AddAnswer productName={props.productName} question_body={props.question.question_body}
       question_id={props.question.question_id}/>
+      <span className='Divider'>&nbsp; | &nbsp;</span>
+      {props.question.disablereport !== true ?
+      <span className='HelpfulButton'onClick={(event) => props.reportQuestionClick(event, props.question)}>Report </span> :
+      <span className='HelpfulButtonClicked'>Reported</span>
+      }
       </div>
       <div>
         <AnswersList answers={props.question.answers} getAllQuestions={props.getAllQuestions}/>
