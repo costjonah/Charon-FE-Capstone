@@ -6,6 +6,7 @@ import Overview from '../components/main_component/Overview.jsx';
 import ProductList from '../components/RelatedProducts/ProductList';
 import QuestionsList from '../components/Questions&Answers/QuestionsList.jsx';
 import ReviewsWidget from '../components/ratings/ReviewsWidget.jsx';
+import TEMPPRODUCTS from './TEMPPRODUCTS.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -69,8 +70,10 @@ class App extends React.Component {
             productName={this.state.productName}
           />
         </div>
-        <ReviewsWidget
-          product={this.state.currentProduct}
+        <ReviewsWidget product={this.state.currentProduct} />
+        <TEMPPRODUCTS
+          selectProduct={this.selectProduct}
+          products={this.state.productInfo}
         />
       </div>
     );
