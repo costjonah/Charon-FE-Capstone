@@ -1,5 +1,5 @@
 import React from "react";
-import { fetchProductList } from "./service/products";
+import { fetchProductList, ProductListid } from "./service/products";
 import ProductCard from "./ProductCard";
 import "./productList.css";
 
@@ -7,7 +7,8 @@ class ProductList extends React.Component {
   constructor() {
     super();
     this.state = {
-      productList: [],
+      productList: [],/* 列表 */
+      productid: [],/* 列表id */
       outfitProducts: [],
       move: 0,
     };
@@ -65,10 +66,15 @@ class ProductList extends React.Component {
 
   async componentDidMount() {
     try {
+      /* 列表的索引id跳转链接 */
+      const listid = await ProductListid();
+      console.log("listed is:", listid)
+      /* 列表 */
       const res = await fetchProductList();
       // console.log("res is: ", res);
       this.setState({
-        productList: res,
+        productList: res,/* 列表 */
+        productid: listid,/* 列表id */
       });
     } catch (err) {
       console.log(err);
@@ -133,6 +139,7 @@ class ProductList extends React.Component {
               return (
                 <ProductCard
                   key={index}
+                  listid={this.state.productid[index]}
                   product={item}
                   handleClickOutFit={handleClickOutFit}
                 />
