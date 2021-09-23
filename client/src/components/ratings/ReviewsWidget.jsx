@@ -175,7 +175,7 @@ class ReviewsWidget extends React.Component {
 
     return (
       <StyledWidget className='row' name='Reviews Widget'>
-        <div className='column'>
+        {/* <div className='column'>
           <RatingsBreakdown
             id='breakdown'
             name='Breakdown'
@@ -219,7 +219,7 @@ class ReviewsWidget extends React.Component {
               submit={this.submit}
             />
           </div>
-        </div>
+        </div> */}
       </StyledWidget>
     );
   }
