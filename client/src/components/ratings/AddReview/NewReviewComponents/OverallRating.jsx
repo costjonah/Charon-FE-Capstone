@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const OverallRating = ({ selected, handleChange }) => {
+const OverallRating = ({ selected, handleChange, valid }) => {
   let meanings = ['Poor', 'Fair', 'Average', 'Good', 'Great'];
   let meaning = null;
   meaning = <span>{meanings[selected - 1]}</span>;
