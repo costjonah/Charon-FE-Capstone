@@ -7,6 +7,14 @@ export const fetchProductList = async () => {
   return data;
 };
 
+export const ProductListid = async () => {
+  const res = await fetch(`${BASE_URL_PREFFIX}/products/1/related`);
+  //const res = await fetch(`${BASE_URL_PREFFIX}/7.json`);
+  const data = await res.json();
+  console.log('111' + JSON.stringify(data))
+  return data;
+};
+
 export const fetchProduct = async (id) => {
   const res = await fetch(`${BASE_URL_PREFFIX}/products/${id}`);
   const data = await res.json();

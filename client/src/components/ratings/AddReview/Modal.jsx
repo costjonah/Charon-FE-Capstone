@@ -257,22 +257,51 @@ class Modal extends React.Component {
 }
 
 const StyledModal = styled.div`
+  display: flex;
+  flex-direction: column;
+
   background: lightgrey;
   background-color: lightgrey;
-  width: 100%;
   height: auto;
-  padding: 10px;
-  top: 50%;
+  max-height: 90%;
+  width: 50%;
+  max-width: 100%;
+  overflow-y: auto;
+  padding: 1% 3%;
+  position: fixed;
   left: 50%;
-  //transform: translate(-50%, -60%);
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1010;
   display: ${(props) => props.show};
+  border-radius: 5px;
 
   div {
     margin: 5px;
   }
+
   .subText {
     size: small;
-    color: darkgrey;
+    color: rgb(100, 100, 100);
+    font-style: italic;
+  }
+
+  input[type='text'] {
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 1px;
+  }
+  textarea {
+    font-family: 'HM Sans Regular', 'ヒラギノ角ゴ Pro W3',
+      'Hiragino Kaku Gothic Pro', Osaka, メイリオ, Meiryo, 'ＭＳ Ｐゴシック',
+      'MS PGothic', sans-serif;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 1px;
+  }
+  textarea::-webkit-input-placeholder {
+    color: rgb(100, 100, 100);
+    font-style: italic;
   }
 `;
 

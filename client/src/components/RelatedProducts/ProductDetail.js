@@ -24,11 +24,16 @@ class ProductDetail extends React.Component {
   showDetail = (product) => {
     if (product) {
       // console.log("product is: ", product);
-      const productPhoto =
-        product &&
-        Array.isArray(product.styles) &&
-        product.styles[0] &&
-        product.styles[0].photos[0].url;
+      let productPhoto = '';
+      try {
+        productPhoto =
+          product &&
+          Array.isArray(product.styles) &&
+          product.styles[0] &&
+          product.styles[0].photos[0].url;
+      } catch {
+
+      }
       return (
         <div className="detail-card">
           <div className="card-header">{this.state.product.name}</div>
