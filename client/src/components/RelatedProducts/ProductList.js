@@ -7,8 +7,8 @@ class ProductList extends React.Component {
   constructor() {
     super();
     this.state = {
-      productList: [],/* 列表 */
-      productid: [],/* 列表id */
+      productList: [],
+      productid: [],
       outfitProducts: [],
       move: 0,
     };
@@ -66,15 +66,15 @@ class ProductList extends React.Component {
 
   async componentDidMount() {
     try {
-      /* 列表的索引id跳转链接 */
+
       const listid = await ProductListid();
       console.log("listed is:", listid)
-      /* 列表 */
+
       const res = await fetchProductList();
       // console.log("res is: ", res);
       this.setState({
-        productList: res,/* 列表 */
-        productid: listid,/* 列表id */
+        productList: res,
+        productid: listid,
       });
     } catch (err) {
       console.log(err);
