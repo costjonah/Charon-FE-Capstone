@@ -863,6 +863,7 @@ body {
   background-color: white;
   border: 1px solid black;
   color: black;
+  z-index: 100;
 }
 .Modal {
   top: 200px;
@@ -876,14 +877,29 @@ body {
   font-size: 18px;
   font-weight: bold;
   font-family: "Times New Roman", Times, serif;
+  z-index: 100;
 }
 .AnswerImg {
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
 }
-
+.photosfiles{
+  margin-bottom: 10px;
+}
 /* .AnswerModalText{
   color: white
 } */
+
+.error{
+  border: 1px solid red
+}
+.ErrorText{
+  font-size: 12px;
+  color: red;
+  padding-left: 10em;
+  height: 10px;
+  display: block;
+  margin-block-end: -10px;
+}
 
 /*---------------------------- Related Products ---------------------------- */

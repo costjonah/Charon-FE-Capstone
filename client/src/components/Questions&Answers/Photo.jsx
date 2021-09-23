@@ -7,14 +7,14 @@ class Photo extends React.Component {
 
   render() {
     return (
-      <div>
-        <input type="file" onChange={this.props.handlePhotoChange} />
-        <br />
-        {this.props.photos.map((photo) => (
-          <img className="AnswerImg" src={photo} />
-        ))}
-      </div>
-    );
+      <span>
+        <input className='photosfiles' type='file' onChange={this.props.handlePhotoChange}/>
+        <br/>
+        {this.props.photos.map((photo, index) =>
+          <img key={index} className='AnswerImg' src={photo} onClick={() => console.log('hello')}/>
+        )}
+      </span>
+    )
   }
 }
 
