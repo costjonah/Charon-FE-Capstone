@@ -259,6 +259,7 @@ class Modal extends React.Component {
 const StyledModal = styled.div`
   display: flex;
   flex-direction: column;
+
   background: lightgrey;
   background-color: lightgrey;
   height: auto;
@@ -271,7 +272,7 @@ const StyledModal = styled.div`
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  z-index: 1000001;
+  z-index: 1010;
   display: ${(props) => props.show};
   border-radius: 5px;
 
@@ -285,10 +286,18 @@ const StyledModal = styled.div`
     font-style: italic;
   }
 
+  input[type='text'] {
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 1px;
+  }
   textarea {
     font-family: 'HM Sans Regular', 'ヒラギノ角ゴ Pro W3',
       'Hiragino Kaku Gothic Pro', Osaka, メイリオ, Meiryo, 'ＭＳ Ｐゴシック',
       'MS PGothic', sans-serif;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 1px;
   }
   textarea::-webkit-input-placeholder {
     color: rgb(100, 100, 100);
