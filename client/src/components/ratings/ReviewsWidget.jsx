@@ -4,6 +4,7 @@ import RatingsBreakdown from './RatingsBreakdown/RatingsBreakdown.jsx';
 import SortOptions from './SortOptions/SortOptions.jsx';
 import AddReview from './AddReview/AddReview.jsx';
 import Factors from './Factors/Factors.jsx';
+import Search from './Search/Search.jsx';
 import MoreReviewsButton from './MoreReviewsButton.jsx';
 import axios from 'axios';
 import styled from 'styled-components';
@@ -13,6 +14,8 @@ class ReviewsWidget extends React.Component {
     super(props);
     this.state = {
       allReviews: [],
+      modifiedReviews: [],
+      searchedReviews: [],
       showCount: 2,
       sortOption: 'Relevant',
       filter: [],
@@ -31,6 +34,7 @@ class ReviewsWidget extends React.Component {
     this.getMetaData = this.getMetaData.bind(this);
     this.sortReviews = this.sortReviews.bind(this);
     this.filterReviews = this.filterReviews.bind(this);
+    this.updateSearch = this.updateSearch.bind(this);
   }
 
   static sortFunctions = {
@@ -40,6 +44,7 @@ class ReviewsWidget extends React.Component {
       (new Date(a.date) - a.helpfulness * -50000000),
     Helpful: (a, b) => b.helpfulness - a.helpfulness,
     Newest: (a, b) => new Date(b.date) - new Date(a.date),
+    Points: (a, b) => b.points - a.points,
   };
 
   showMoreReviews() {
@@ -112,7 +117,12 @@ class ReviewsWidget extends React.Component {
     axios
       .get(`/reviews?product_id=${this.props.product.id || 37311}&count=100`)
       .then((res) => {
-        this.setState({ allReviews: res.data.results });
+        this.setState({
+          allReviews: res.data.results,
+          modifiedReviews: this.filterReviews(
+            this.sortReviews(res.data.results)
+          ),
+        });
       })
       .catch((err) => {
         console.log(err);
@@ -135,7 +145,9 @@ class ReviewsWidget extends React.Component {
   }
 
   sortReviews(reviews) {
-    return reviews.sort(ReviewsWidget.sortFunctions[this.state.sortOption]);
+    return reviews
+      .sort(ReviewsWidget.sortFunctions[this.state.sortOption])
+      .sort(ReviewsWidget.sortFunctions.Points);
   }
 
   filterReviews(reviews) {
@@ -146,11 +158,20 @@ class ReviewsWidget extends React.Component {
     );
   }
 
+  updateSearch(reviewsWithPoints) {
+    this.setState({
+      searchedReviews: reviewsWithPoints,
+    });
+  }
+
   render() {
-    let modifiedReviews = this.filterReviews(
-      this.sortReviews(this.state.allReviews)
-    );
-    let shownReviews = modifiedReviews.slice(0, this.state.showCount);
+    let displayReviews = this.state.modifiedReviews;
+    let notFound = <span>Search terms not found!</span>;
+    if (this.state.searchedReviews.length > 0) {
+      displayReviews = this.state.searchedReviews;
+      notFound = null;
+    }
+    let shownReviews = displayReviews.slice(0, this.state.showCount);
 
     return (
       <StyledWidget className='row' name='Reviews Widget'>
@@ -170,6 +191,11 @@ class ReviewsWidget extends React.Component {
           />
         </div>
         <div id='column' className='column'>
+          <Search
+            reviews={this.state.modifiedReviews}
+            updateSearch={this.updateSearch}
+          />
+          {notFound}
           <SortOptions name='Sort Options' sort={this.sort} />
           <ReviewsList
             name='Reviews List'
@@ -184,7 +210,7 @@ class ReviewsWidget extends React.Component {
             <MoreReviewsButton
               showMore={this.showMoreReviews}
               showCount={this.state.showCount}
-              reviews={modifiedReviews}
+              reviews={this.state.modifiedReviews}
             />
             <AddReview
               name='Add Review'
