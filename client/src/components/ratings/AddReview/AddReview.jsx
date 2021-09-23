@@ -21,24 +21,26 @@ class AddReview extends React.Component {
 
   render() {
     return (
-      <StyledContainer>
-        <StyledCover showing={this.state.show}>
-          <Modal
-            submit={this.props.submit}
-            show={this.state.show}
-            hideModal={this.hideModal}
-            product={this.props.product}
-            characteristics={this.props.characteristics}
-          />
-        </StyledCover>
-        <button
-          className='reviewListButton'
-          type='button'
-          onClick={this.showModal}
-        >
-          Add a Review
-        </button>
-      </StyledContainer>
+      <div>
+        <StyledContainer>
+          <StyledCover>
+            <Modal
+              submit={this.props.submit}
+              show={this.state.show}
+              hideModal={this.hideModal}
+              product={this.props.product}
+              characteristics={this.props.characteristics}
+            />
+          </StyledCover>
+          <button
+            className='reviewListButton'
+            type='button'
+            onClick={this.showModal}
+          >
+            Add a Review
+          </button>
+        </StyledContainer>
+      </div>
     );
   }
 }
@@ -60,8 +62,6 @@ const StyledCover = styled.div`
 
   background-color: ${(props) =>
     props.showing ? 'rgba(0, 0, 0, 0.5)' : 'transparent'};
-
-  background-color: transparent;
 `;
 
 export default AddReview;
