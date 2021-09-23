@@ -8,7 +8,7 @@ const Summary = ({ summary, handleChange }) => {
   return (
     <div>
       <label>
-        <div>Summary</div>
+        <div>Summary: </div>
         <textarea
           maxLength={60}
           name='Review Summary'
