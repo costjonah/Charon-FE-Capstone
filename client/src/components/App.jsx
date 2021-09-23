@@ -71,10 +71,10 @@ class App extends React.Component {
           />
         </div>
         <ReviewsWidget product={this.state.currentProduct} />
-        <TEMPPRODUCTS
+        {/* <TEMPPRODUCTS
           selectProduct={this.selectProduct}
           products={this.state.productInfo}
-        />
+        /> */}
       </div>
     );
   }

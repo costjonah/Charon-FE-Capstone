@@ -37,6 +37,10 @@ class Search extends React.Component {
   getTotalPoints(review, searchTerms = []) {
     let totalPoints = 0;
     searchTerms.forEach((term) => {
+      let points = this.getPoints(review, term);
+      if (points > 0) {
+        totalPoints += 50;
+      }
       totalPoints += this.getPoints(review, term);
     });
     return totalPoints;
