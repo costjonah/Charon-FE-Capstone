@@ -4,7 +4,7 @@ const Photos = (props) => {
   return (
     <div>
       <label>
-        Photos
+        <span>Photos: </span>
         <input type='file' name='Photos' />
       </label>
     </div>

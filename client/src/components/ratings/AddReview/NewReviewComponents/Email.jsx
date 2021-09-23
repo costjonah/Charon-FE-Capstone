@@ -8,7 +8,7 @@ const Email = ({ email, handleChange }) => {
   return (
     <div>
       <label>
-        <div>Email</div>
+        <span>Email: </span>
         <input
           type='text'
           maxLength={60}
@@ -19,7 +19,9 @@ const Email = ({ email, handleChange }) => {
         />
         {maxLengthWarning}
       </label>
-      <div>For authentication reasons, you will not be emailed</div>
+      <div className='subText'>
+        For authentication reasons, you will not be emailed
+      </div>
     </div>
   );
 };
