@@ -22,13 +22,15 @@ class AddReview extends React.Component {
   render() {
     return (
       <StyledContainer>
-        <Modal
-          submit={this.props.submit}
-          show={this.state.show}
-          hideModal={this.hideModal}
-          product={this.props.product}
-          characteristics={this.props.characteristics}
-        />
+        <StyledCover showing={this.state.show}>
+          <Modal
+            submit={this.props.submit}
+            show={this.state.show}
+            hideModal={this.hideModal}
+            product={this.props.product}
+            characteristics={this.props.characteristics}
+          />
+        </StyledCover>
         <button
           className='reviewListButton'
           type='button'
@@ -44,6 +46,22 @@ class AddReview extends React.Component {
 const StyledContainer = styled.div`
   width: 100%;
   height: 100%;
+`;
+const StyledCover = styled.div`
+  background: darkgrey;
+  max-height: 100%;
+  max-width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+
+  background-color: ${(props) =>
+    props.showing ? 'rgba(0, 0, 0, 0.5)' : 'transparent'};
+
+  background-color: transparent;
 `;
 
 export default AddReview;

@@ -8,7 +8,7 @@ const Nickname = ({ nickname, handleChange }) => {
   return (
     <div>
       <label>
-        <div>Nickname</div>
+        <span>Nickname: </span>
         <input
           type='text'
           maxLength={60}
@@ -19,7 +19,9 @@ const Nickname = ({ nickname, handleChange }) => {
         />
         {maxLengthWarning}
       </label>
-      <div>For privacy reasons, do not use your full name or email address</div>
+      <div className='subText'>
+        For privacy reasons, do not use your full name or email address
+      </div>
     </div>
   );
 };
