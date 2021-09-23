@@ -83,8 +83,8 @@ class AddAnswer extends React.Component {
         handleNicknameInput={this.handleNicknameInput}
       />
     ) : (
-      <span className='AddAnswerButton' onClick={this.showAnswerModal}>
-        {' '}
+      <span className="AddAnswerButton" onClick={this.showAnswerModal}>
+        {" "}
         Add Answer
       </span>
     );

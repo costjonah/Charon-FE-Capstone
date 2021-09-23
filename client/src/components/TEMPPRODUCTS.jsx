@@ -1,6 +1,33 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const StylesTEMPS = styled.ul`
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+`;
+
+const StyledTEMP = styled.li`
+  list-style-type: none;
+  padding-inline-start: 0;
+
+  margin: 0;
+  padding: 0;
+
+  .submitButton,
+  button {
+    cursor: pointer;
+    background-color: rgb(34, 34, 34);
+    border: none;
+    color: #faf9f8;
+    border-radius: 3.5px;
+    height: 50px;
+    margin: 5px 0;
+  }
+`;
+
 const TEMPPRODUCTS = (props) => {
   return (
     <StylesTEMPS>
@@ -31,32 +58,5 @@ const TEMPPRODUCT = (props) => {
     </StyledTEMP>
   );
 };
-
-const StylesTEMPS = styled.ul`
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-`;
-
-const StyledTEMP = styled.li`
-  list-style-type: none;
-  padding-inline-start: 0;
-
-  margin: 0;
-  padding: 0;
-
-  .submitButton,
-  button {
-    cursor: pointer;
-    background-color: rgb(34, 34, 34);
-    border: none;
-    color: #faf9f8;
-    border-radius: 3.5px;
-    height: 50px;
-    margin: 5px 0;
-  }
-`;
 
 export default TEMPPRODUCTS;

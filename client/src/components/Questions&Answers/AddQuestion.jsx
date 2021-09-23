@@ -1,15 +1,15 @@
-import React from 'react';
-import axios from 'axios';
-import QuestionModal from './QuestionModal.jsx';
+import React from "react";
+import axios from "axios";
+import QuestionModal from "./QuestionModal.jsx";
 
 class AddQuestion extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       clicked: false,
-      email: '',
-      question: '',
-      nickname: '',
+      email: "",
+      question: "",
+      nickname: "",
     };
     this.showModal = this.showModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
@@ -48,9 +48,9 @@ class AddQuestion extends React.Component {
   handleSubmit() {
     var valid = this.checkValidEmail(this.state.email);
     if (
-      this.state.question !== '' &&
-      this.state.name !== '' &&
-      this.state.email !== ''
+      this.state.question !== "" &&
+      this.state.name !== "" &&
+      this.state.email !== ""
     ) {
       if (valid === true) {
         let data = {
@@ -65,10 +65,10 @@ class AddQuestion extends React.Component {
             this.props.getAllQuestions();
           });
       } else {
-        alert('Please enter valid email');
+        alert("Please enter valid email");
       }
     } else {
-      alert('Please enter all inputs');
+      alert("Please enter all inputs");
     }
   }
 

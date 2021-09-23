@@ -2,6 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import Modal from './Modal.jsx';
 
+const StyledContainer = styled.div`
+  width: 100%;
+  height: 100%;
+`;
+
 class AddReview extends React.Component {
   constructor(props) {
     super(props);
@@ -29,21 +34,12 @@ class AddReview extends React.Component {
           product={this.props.product}
           characteristics={this.props.characteristics}
         />
-        <button
-          className='reviewListButton'
-          type='button'
-          onClick={this.showModal}
-        >
+        <button type='button' onClick={this.showModal}>
           Add a Review
         </button>
       </StyledContainer>
     );
   }
 }
-
-const StyledContainer = styled.div`
-  width: 100%;
-  height: 100%;
-`;
 
 export default AddReview;
