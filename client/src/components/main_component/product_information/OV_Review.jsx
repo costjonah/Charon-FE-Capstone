@@ -4,6 +4,7 @@ import Stars from "./Stars.jsx";
 
 const Review = (props) => {
   let reviewData = props.reviewdata;
+  console.log(reviewData)
   let count = props.count;
   if (count > 0) {
     let numReviews = 0;

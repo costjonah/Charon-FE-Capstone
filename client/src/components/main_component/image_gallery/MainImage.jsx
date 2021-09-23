@@ -37,7 +37,7 @@ const MainView = (props) => {
           />
           <div className="defaultview">
             <img
-              src={props.currentStyle.photos[props.idxTicker].url}
+              src={props.photoLinks[props.idxTicker]}
               alt="new"
               className="mainimg"
               title={props.currentStyle.name}

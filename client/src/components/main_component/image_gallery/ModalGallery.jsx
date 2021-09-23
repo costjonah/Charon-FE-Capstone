@@ -6,17 +6,18 @@ const ModalGallery = (props) => {
       <div className="modalgallerymain">
         <div>
           <ul className="modalgalthumbs galthumbs">
-            {props.currentStyle.photos.map((pic, index) => {
+            {props.photoLinks.map((pic, index) => {
+              console.log('MODALPIC', pic)
               return (
                 <li key={index} className="modalthumbnails thumbnails">
-                  <div id="modalthumbcaro">
+                  <div className="modalthumbcaro thumbcaro">
                     <img
-                      src={pic.thumbnail_url}
+                      src={pic}
                       alt="new"
-                      id={"modalimg" + index}
-                      className="modalgalleryimg"
+                      id={"img" + index}
+                      className="galleryimg"
                       title={"Style " + (index + 1)}
-                      onClick={(e) => props.galleryClick(index, e)}
+                      onClick={(e) => props.thumbnailClick(index, e)}
                     />
                   </div>
                 </li>

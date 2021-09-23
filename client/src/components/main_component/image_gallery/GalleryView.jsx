@@ -20,17 +20,19 @@ const Gallery = (props) => {
         </div>
         <div>
           <ul className="galthumbs">
-            {props.currentStyle.photos.map((pic, index) => {
+            {props.photoLinks.map((pic, index) => {
+              console.log('PIC', pic)
               return (
                 <li key={index} className="thumbnails">
-                  <div id="thumbcaro">
+                  <div className="thumbcaro">
                     <img
-                      src={pic.thumbnail_url}
+                      src={pic}
                       alt="new"
                       id={"img" + index}
                       className="galleryimg"
                       title={"Style " + (index + 1)}
                       onClick={(e) => props.thumbnailClick(index, e)}
+
                     />
                   </div>
                 </li>

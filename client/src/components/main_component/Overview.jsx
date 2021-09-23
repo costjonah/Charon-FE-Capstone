@@ -25,6 +25,8 @@ class Overview extends React.Component {
       allStyles: [],
       currentStyle: {},
       productReview: [],
+      allPhotos: [],
+      allUrls: [],
       average: 0,
       idx: 0,
       height: 0,
@@ -53,7 +55,7 @@ class Overview extends React.Component {
     this.thumbnailOnClick = this.thumbnailOnClick.bind(this);
     this.closeModalClick = this.closeModalClick.bind(this);
     this.addToCartPost = this.addToCartPost.bind(this);
-    this.modalGalleryClick = this.modalGalleryClick.bind(this);
+    this.getPhotosUrl = this.getPhotosUrl.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -105,9 +107,12 @@ class Overview extends React.Component {
             this.setState({
               currentStyle: this.state.styles.results[i],
               styleSkus: this.state.styles.results[i].skus,
+              allPhotos: this.state.styles.results[i].photos,
             });
           }
         }
+        console.log(this.state.allPhotos);
+        this.getPhotosUrl();
         // make default style "checked" upon load
         var defaultCheck = document.querySelector("#radio0");
         defaultCheck.style.visibility = "visible";
@@ -131,6 +136,12 @@ class Overview extends React.Component {
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  getPhotosUrl = () => {
+    this.state.allPhotos.forEach((x) => {
+      this.state.allUrls.push(x.thumbnail_url);
+    });
   };
 
   showModalClick = (e) => {
@@ -185,43 +196,10 @@ class Overview extends React.Component {
       mainViews.forEach((z) => {
         z.style.visibility = "visible";
       });
-  };
-}
-
-  // repeated logic of this.thumbnailOnClick *TEMP FIX* (prevents call stack overflow)
-  modalGalleryClick = (index, e) => {
-    // prevent furthering of bubbling && capturing
-    e.stopPropagation();
-    var recurse = (target) => {
-      // assignments for ul, li, and li > div
-      var ul = document.querySelector(".modalgalthumbs");
-      var children = document.querySelectorAll(".modalthumbnails");
-      var modalCaro = document.querySelectorAll("#modalthumbcaro");
-      // assignment for first Id
-      var currentId = modalCaro[0].lastChild.id;
-      // base case - if event target id matches first Id
-      if (target === currentId) {
-        return;
-      }
-      // otherwise - recursive case
-      if (target !== currentId) {
-        // slice first element of node list
-        var el = Array.prototype.slice.call(children, 0, 1);
-        // add to end of the list
-        ul.appendChild(el.shift());
-        // parse index from dynamically generated img id && update state
-        var idxState = Number(target.split("img")[1]);
-        this.setState({
-          idx: idxState,
-        });
-      }
-      recurse(target);
-    };
-    // inner func invocation
-    recurse(e.target.id);
+    }
   };
 
-   styleOnClick = (selection, index, e) => {
+  styleOnClick = (selection, index, e) => {
     e.preventDefault();
     // update style based on event target
     this.setState({
@@ -238,65 +216,56 @@ class Overview extends React.Component {
 
   // original click event for thumbnails - logic duplicated in this.modalGalleryClick
   thumbnailOnClick = (index, e) => {
-    e.preventDefault()
-    var recurse = (target) => {
-      var ul = document.querySelector(".galthumbs");
-      var children = document.querySelectorAll(".thumbnails");
-      var caroDiv = document.querySelectorAll("#thumbcaro");
-      var currentId = caroDiv[0].lastChild.id;
-      if (target === currentId) {
+    e.stopPropagation();
+    var recurse = (target, children) => {
+      children = children || this.state.allUrls.slice();
+      var currentSrc = children[0];
+      if (target.src === currentSrc) {
+        this.setState({
+          allUrls: children,
+        });
         return;
       }
-      if (target !== currentId) {
-        var el = Array.prototype.slice.call(children, 0, 1);
-        ul.appendChild(el.shift());
-        var indexState = Number(target.split("img")[1]);
+      if (target.src !== currentSrc) {
+        var el = children.shift();
+        children.push(el);
+        children = children.flat();
+        var imgIndex = children.indexOf(target.src);
         this.setState({
-          idx: indexState,
+          idx: imgIndex,
         });
+        recurse(target, children);
       }
-      recurse(target);
     };
-    recurse(e.target.id);
+    recurse(e.target);
   };
 
   // updates index of current photo using ticker algorithm
   upArrowOnClick = (e) => {
-    var children = document.querySelectorAll(".thumbnails");
-    var lastEl = Array.prototype.slice.call(children, 0, children.length - 1);
-    var ul = document.querySelector(".galthumbs");
-    // original logic to add to end of list - TO-DO: refactor
-    while (lastEl.length > 0) {
-      ul.appendChild(lastEl.shift());
-    }
+    var children = this.state.allUrls.slice();
+    var lastEl = children.pop();
+    children.unshift(lastEl);
+    children = children.flat();
     // index state tracker, updates MainImage && ImgModal -- cycles through array
     let idx = this.state.idx;
-    if (idx == 0) {
-      idx = this.state.currentStyle.photos.length - 1;
-    } else {
-      idx--;
-    }
     this.setState({
-      idx,
+      allUrls: children,
     });
   };
 
   // reverse logic of this.upArrowOnClick
   downArrowOnClick = (e) => {
-    var children = document.querySelectorAll(".thumbnails");
-    var firstEl = Array.prototype.slice.call(children, 0, 1);
-    var ul = document.querySelector(".galthumbs");
-    while (firstEl.length > 0) {
-      ul.appendChild(firstEl.shift());
-    }
+    var children = this.state.allUrls.slice();
+    var firstEl = children.shift();
+    children.push(firstEl);
+    children = children.flat();
     let idx = this.state.idx;
     if (idx == this.state.currentStyle.photos.length - 1) {
       idx = 0;
-    } else {
-      idx++;
     }
     this.setState({
       idx,
+      allUrls: children,
     });
   };
 
@@ -342,6 +311,7 @@ class Overview extends React.Component {
           idxTicker={this.state.idx}
           height={this.state.height}
           width={this.state.width}
+          photoLinks={this.state.allUrls}
         />
 
         <ImgModal
@@ -351,6 +321,8 @@ class Overview extends React.Component {
           galleryClick={this.modalGalleryClick}
           modalState={this.state.modal}
           idxTicker={this.state.idx}
+          thumbnailClick={this.thumbnailOnClick}
+          photoLinks={this.state.allUrls}
         />
 
         <Gallery
@@ -358,6 +330,7 @@ class Overview extends React.Component {
           upClick={this.upArrowOnClick}
           downClick={this.downArrowOnClick}
           thumbnailClick={this.thumbnailOnClick}
+          photoLinks={this.state.allUrls}
         />
 
         <ProductInfo

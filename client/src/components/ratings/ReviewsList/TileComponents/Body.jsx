@@ -29,9 +29,9 @@ class Body extends React.Component {
     if (this.props.body.length >= 250) {
       bodyHead = this.props.body.substring(0, 250);
       bodyTail = this.props.body.substring(250);
-      this.setState({
-        shortEnough: false,
-      });
+      // this.setState({
+      //   shortEnough: false,
+      // });
     }
 
     if (this.state.shortEnough === true) {

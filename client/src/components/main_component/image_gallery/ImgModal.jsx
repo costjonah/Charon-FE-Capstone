@@ -19,7 +19,7 @@ const ImgModal = (props) => {
           <div className="modalview">
             <GlassMagnifier
               imageSrc={
-                props.currentStyle.photos[props.idxTicker].thumbnail_url
+                props.photoLinks[props.idxTicker]
               }
               imageAlt="Expanded View Image"
               largeImageSrc={props.currentStyle.photos[props.idxTicker].url}
@@ -34,6 +34,8 @@ const ImgModal = (props) => {
             downClick={props.downClick}
             thumbnailClick={props.thumbnailClick}
             galleryClick={props.galleryClick}
+            galleryChange={props.galleryChange}
+            photoLinks={props.photoLinks}
           />
         </div>
       );
