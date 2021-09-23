@@ -4,6 +4,7 @@ import RatingsBreakdown from './RatingsBreakdown/RatingsBreakdown.jsx';
 import SortOptions from './SortOptions/SortOptions.jsx';
 import AddReview from './AddReview/AddReview.jsx';
 import Factors from './Factors/Factors.jsx';
+import MoreReviewsButton from './MoreReviewsButton.jsx';
 import axios from 'axios';
 import styled from 'styled-components';
 
@@ -11,55 +12,50 @@ class ReviewsWidget extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      reviews: [],
+      allReviews: [],
+      showCount: 2,
+      sortOption: 'Relevant',
+      filter: [],
       recommended: {},
       ratings: {},
       characteristics: {},
-      filter: [],
-      sortOption: 'Relevant',
     };
-    this.handleClick = this.handleClick.bind(this);
     this.helpful = this.helpful.bind(this);
     this.report = this.report.bind(this);
     this.filterBy = this.filterBy.bind(this);
     this.removeAllFilters = this.removeAllFilters.bind(this);
     this.sort = this.sort.bind(this);
-    this.sortFunctions = {
-      Relevant: (a, b) => {},
-      Helpful: (a, b) => {
-        return b.helpfulness - a.helpfulness;
-      },
-      Newest: (a, b) => {
-        return new Date(b.date) - new Date(a.date);
-      },
-    };
     this.submit = this.submit.bind(this);
+    this.showMoreReviews = this.showMoreReviews.bind(this);
+    this.getData = this.getData.bind(this);
+    this.getMetaData = this.getMetaData.bind(this);
+    this.sortReviews = this.sortReviews.bind(this);
+    this.filterReviews = this.filterReviews.bind(this);
   }
 
-  handleClick() {
-    this.props.showMoreReviews();
+  static sortFunctions = {
+    Relevant: (a, b) =>
+      new Date(b.date) -
+      b.helpfulness * -50000000 -
+      (new Date(a.date) - a.helpfulness * -50000000),
+    Helpful: (a, b) => b.helpfulness - a.helpfulness,
+    Newest: (a, b) => new Date(b.date) - new Date(a.date),
+  };
+
+  showMoreReviews() {
+    let newCount = this.state.showCount + 2;
+    this.setState({ showCount: newCount });
   }
 
   sort(option) {
-    this.setState({
-      sortOption: option,
-    });
+    this.setState({ sortOption: option });
   }
 
   helpful(reviewId) {
     axios
       .put(`/reviews/${reviewId}/helpful`)
       .then((res) => {
-        axios
-          .get(`/reviews?product_id=${this.props.product.id}`)
-          .then((res) => {
-            this.setState({
-              reviews: res.data.results,
-            });
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+        this.getData();
       })
       .catch((err) => {
         console.log(err);
@@ -70,16 +66,7 @@ class ReviewsWidget extends React.Component {
     axios
       .put(`/reviews/${reviewId}/report`)
       .then((res) => {
-        axios
-          .get(`/reviews?product_id=${this.props.product.id}`)
-          .then((res) => {
-            this.setState({
-              reviews: res.data.results,
-            });
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+        this.getData();
       })
       .catch((err) => {
         console.log(err);
@@ -92,31 +79,24 @@ class ReviewsWidget extends React.Component {
       method: 'post',
       url: '/reviews',
       data: data,
-    })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    }).catch((err) => {
+      console.error(err);
+    });
   }
 
   filterBy(starRating) {
     let filter = this.state.filter.slice();
-    if (filter.indexOf(starRating) === -1) {
-      filter.push(starRating);
-    } else {
+    if (filter.includes(starRating)) {
       filter.splice(filter.indexOf(starRating), 1);
+    } else {
+      filter.push(starRating);
     }
     filter.sort();
-    console.log('filter: ', filter);
     this.setState({ filter: filter });
   }
 
   removeAllFilters() {
-    this.setState({
-      filter: [],
-    });
+    this.setState({ filter: [] });
   }
 
   recommendedPercentages() {
@@ -128,13 +108,50 @@ class ReviewsWidget extends React.Component {
     return yesPercent;
   }
 
+  getData() {
+    axios
+      .get(`/reviews?product_id=${this.props.product.id || 37311}&count=100`)
+      .then((res) => {
+        this.setState({ allReviews: res.data.results });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  getMetaData() {
+    axios
+      .get(`/reviews/meta?product_id=${this.props.product.id || 37311}`)
+      .then((res) => {
+        this.setState({
+          recommended: res.data.recommended,
+          ratings: res.data.ratings,
+          characteristics: res.data.characteristics,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  sortReviews(reviews) {
+    return reviews.sort(ReviewsWidget.sortFunctions[this.state.sortOption]);
+  }
+
+  filterReviews(reviews) {
+    return reviews.filter(
+      (review) =>
+        this.state.filter.includes(review.rating.toString()) ||
+        this.state.filter.length === 0
+    );
+  }
+
   render() {
-    this.recommendedPercentages();
-    let button = null;
-    if (this.props.reviewCount < this.state.reviews.length) {
-      button = <button onClick={this.handleClick}>More Reviews</button>;
-    }
-    let sortBy = this.sortFunctions[this.state.sortOption];
+    let modifiedReviews = this.filterReviews(
+      this.sortReviews(this.state.allReviews)
+    );
+    let shownReviews = modifiedReviews.slice(0, this.state.showCount);
+
     return (
       <StyledWidget className='row' name='Reviews Widget'>
         <div className='column'>
@@ -156,76 +173,40 @@ class ReviewsWidget extends React.Component {
           <SortOptions name='Sort Options' sort={this.sort} />
           <ReviewsList
             name='Reviews List'
-            reviews={this.state.reviews}
-            count={this.props.reviewCount}
+            reviews={shownReviews}
+            count={this.state.showCount}
             helpful={this.helpful}
             report={this.report}
             filter={this.state.filter}
-            sortFunction={sortBy}
+            sortFunction={ReviewsWidget.sortFunctions[this.state.sortOption]}
           />
-          {button}
-          <AddReview
-            name='Add Review'
-            product={this.props.product}
-            characteristics={this.state.characteristics}
-            submit={this.submit}
-          />
+          <div className='row'>
+            <MoreReviewsButton
+              showMore={this.showMoreReviews}
+              showCount={this.state.showCount}
+              reviews={modifiedReviews}
+            />
+            <AddReview
+              name='Add Review'
+              product={this.props.product}
+              characteristics={this.state.characteristics}
+              submit={this.submit}
+            />
+          </div>
         </div>
       </StyledWidget>
     );
   }
 
   componentDidMount() {
-    axios
-      .get(`/reviews?product_id=${this.props.product.id || 37311}&count=100`)
-      .then((res) => {
-        this.setState({
-          reviews: res.data.results,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
-    axios
-      .get(`/reviews/meta?product_id=${this.props.product.id || 37311}`)
-      .then((res) => {
-        this.setState({
-          recommended: res.data.recommended,
-          ratings: res.data.ratings,
-          characteristics: res.data.characteristics,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    this.getData();
+    this.getMetaData();
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.product !== this.props.product) {
-      axios
-        .get(`/reviews?product_id=${this.props.product.id}&count=100`)
-        .then((res) => {
-          this.setState({
-            reviews: res.data.results,
-          });
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-
-      axios
-        .get(`/reviews/meta?product_id=${this.props.product.id}`)
-        .then((res) => {
-          this.setState({
-            recommended: res.data.recommended,
-            ratings: res.data.ratings,
-            characteristics: res.data.characteristics,
-          });
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      this.getData();
+      this.getMetaData();
     }
   }
 }
@@ -243,7 +224,11 @@ const StyledWidget = styled.div`
   .column {
     display: flex;
     flex-direction: column;
-    width: 30%;
+  }
+  .row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
   }
   .link {
     color: dimgrey;
@@ -271,8 +256,8 @@ const StyledWidget = styled.div`
     height: 25px;
     margin: 5px 0;
   }
-  div {
-    margin: 5px 0;
+  .reviewListButton {
+    margin-right: 10px;
   }
 `;
 
