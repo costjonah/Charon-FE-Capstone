@@ -4,10 +4,6 @@ import Breakdown from './BreakdownComponents/Breakdown.jsx';
 import Recommendations from './BreakdownComponents/Recommendations.jsx';
 import styled from 'styled-components';
 
-const StyledBreakdown = styled.div`
-  width: 30%;
-`;
-
 class RatingsBreakdown extends React.Component {
   constructor(props) {
     super(props);
@@ -15,6 +11,7 @@ class RatingsBreakdown extends React.Component {
       averageRating: 0,
       totalRatings: 0,
       ratingsPer: {},
+      filter: [],
     };
     this.handleRemoveFilters = this.handleRemoveFilters.bind(this);
     this.findRatings = this.findRatings.bind(this);
@@ -50,7 +47,7 @@ class RatingsBreakdown extends React.Component {
     if (this.props.filter.length > 0) {
       filterBy = <span>Filter by: </span>;
       removeFilters = (
-        <span className='blueText' onClick={this.handleRemoveFilters}>
+        <span className='link' onClick={this.handleRemoveFilters}>
           Remove all filters
         </span>
       );
@@ -63,11 +60,14 @@ class RatingsBreakdown extends React.Component {
           averageRating={this.state.averageRating}
           totalRatings={this.state.totalRatings}
         />
-        <Recommendations recommended={this.props.recommended} />
+        <StyledDiv>
+          <Recommendations recommended={this.props.recommended} />
+        </StyledDiv>
         <Breakdown
           ratingsPer={this.state.ratingsPer}
           filterBy={this.props.filterBy}
         />
+
         <div>
           {filterBy}
           {this.props.filter.map((filter, index) => {
@@ -97,5 +97,13 @@ class RatingsBreakdown extends React.Component {
     }
   }
 }
+
+const StyledBreakdown = styled.div`
+  width: 100%;
+  margin-bottom: 30px;
+`;
+const StyledDiv = styled.div`
+  margin: 15px 0;
+`;
 
 export default RatingsBreakdown;

@@ -8,7 +8,7 @@ const OverallRating = ({ selected, handleChange }) => {
   return (
     <div onChange={handleChange}>
       <label>
-        Overall Rating
+        <span>Overall Rating: </span>
         <input type='radio' value={1} name='rating' />
         <input type='radio' value={2} name='rating' />
         <input type='radio' value={3} name='rating' />

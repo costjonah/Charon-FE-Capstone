@@ -10,26 +10,6 @@ import Photos from './NewReviewComponents/Photos.jsx';
 import Recommended from './NewReviewComponents/Recommended.jsx';
 import Summary from './NewReviewComponents/Summary.jsx';
 
-const StyledModal = styled.div`
-  background: lightgrey;
-  background-color: lightgrey;
-  width: 100%;
-  height: auto;
-  padding: 10px;
-  top: 50%;
-  left: 50%;
-  //transform: translate(-50%, -60%);
-  display: ${(props) => props.show};
-
-  div {
-    margin: 5px;
-  }
-  .subText {
-    size: small;
-    color: darkgrey;
-  }
-`;
-
 class Modal extends React.Component {
   constructor(props) {
     super(props);
@@ -275,5 +255,45 @@ class Modal extends React.Component {
     );
   }
 }
+
+const StyledModal = styled.div`
+  display: flex;
+  flex-direction: column;
+  background: lightgrey;
+  background-color: lightgrey;
+  height: auto;
+  max-height: 90%;
+  width: 50%;
+  max-width: 100%;
+  overflow-y: auto;
+  padding: 1% 3%;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000001;
+  display: ${(props) => props.show};
+  border-radius: 5px;
+
+  div {
+    margin: 5px;
+  }
+
+  .subText {
+    size: small;
+    color: rgb(100, 100, 100);
+    font-style: italic;
+  }
+
+  textarea {
+    font-family: 'HM Sans Regular', 'ヒラギノ角ゴ Pro W3',
+      'Hiragino Kaku Gothic Pro', Osaka, メイリオ, Meiryo, 'ＭＳ Ｐゴシック',
+      'MS PGothic', sans-serif;
+  }
+  textarea::-webkit-input-placeholder {
+    color: rgb(100, 100, 100);
+    font-style: italic;
+  }
+`;
 
 export default Modal;

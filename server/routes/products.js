@@ -1,17 +1,23 @@
 const models = require("../models/index");
-
 module.exports = (app) => {
-  app.get('/products', (req, res) => {
+  app.get("/currentProduct", (req, res) => {
+    const productList = require("../data/productList");
+    // return res.send(productList.data[0])
+    return res.json({
+      code: 200,
+      msg: "ok",
+      currentProduct: productList.data[0],
+    });
+  });
+  app.get("/products", (req, res) => {
     let queryData = {
       page: req.query.page || 1,
       count: req.query.count || 5,
     };
     models.products.getAll(queryData, (err, responseData) => {
       if (err) {
-        console.error("Error: ", err);
-        res.status(500).end();
+        res.status(500).send(err);
       } else {
-        console.error('Success: ', responseData.data);
         res.send(responseData.data);
       }
     });
@@ -20,8 +26,7 @@ module.exports = (app) => {
     let id = req.params.product_id;
     models.products.info(id, (err, responseData) => {
       if (err) {
-        console.error("Error: ", err);
-        res.status(500).end();
+        res.status(500).send(err);
       } else {
         res.send(responseData.data);
       }

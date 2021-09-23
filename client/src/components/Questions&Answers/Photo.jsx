@@ -1,23 +1,21 @@
-import React from 'react';
-
+import React from "react";
 
 class Photo extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
   }
 
-  render(){
+  render() {
     return (
-      <div>
-        <input type='file' onChange={this.props.handlePhotoChange}/>
+      <span>
+        <input className='photosfiles' type='file' onChange={this.props.handlePhotoChange}/>
         <br/>
-        {this.props.photos.map(photo =>
-          <img className='AnswerImg' src={photo}/>
+        {this.props.photos.map((photo, index) =>
+          <img key={index} className='AnswerImg' src={photo} onClick={() => console.log('hello')}/>
         )}
-      </div>
+      </span>
     )
   }
 }
-
 
 export default Photo;
