@@ -21,11 +21,10 @@ const QuestionModal = (props) => {
         {props.emailerror ? <span className='ErrorText'> Enter a valid email </span> : <></>}
         <br/>
         <div>For authentication reasons, you will not be emailed</div>
-        <button type="button" onClick={props.handleSubmit}>
-          {" "}
-          Submit Question{" "}
+        <button className='QandAbutton' type="button" onClick={props.handleSubmit}>
+          Submit Question
         </button>
-        <button type="button" onClick={props.closeModal}>
+        <button className='QandAbutton' type="button" onClick={props.closeModal}>
           Close
         </button>
       </form>

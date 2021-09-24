@@ -8,7 +8,8 @@ const AnswerModal = (props) => {
    <div className='QuestionAndAnswerFormcontainer'>
     <div className="Modal">
       <h2> Submit Your Answer </h2>
-      <h3> {props.productName} {props.question_body}</h3>
+      <h3> {props.productName}</h3>
+      <h4> {props.question_body} </h4>
       <form >
         <label> *Answer: </label>
         <textarea className={props.answererror} type='text' maxLength='1000' rows='7' cols='40' onChange={props.handleAnswerInput} placeholder='Your Answer Goes Here'>
@@ -39,13 +40,11 @@ const AnswerModal = (props) => {
         )}
         {props.photoclicked === true ? <PhotoModal photo={props.photo} closePhotoModal={props.closePhotoModal}/> : <></>}
         <br />
-        <button type="button" onClick={props.handleSubmit}>
-          {" "}
+        <button className='QandAbutton' type="button" onClick={props.handleSubmit}>
           Submit Answer
         </button>
-        <button type="button" onClick={props.closeAnswerModal}>
-          {" "}
-          Close{" "}
+        <button className='QandAbutton' type="button" onClick={props.closeAnswerModal}>
+          Close
         </button>
       </form>
     </div>
