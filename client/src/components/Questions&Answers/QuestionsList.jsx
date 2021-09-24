@@ -84,8 +84,8 @@ class QuestionsList extends React.Component {
             reportQuestionClick={this.reportQuestionClick}
           />
         )}
-        {this.state.questions.length > 2 ? this.state.length < this.state.questions.length ? <button className='MoreQuestionsButton' onClick={this.loadMoreQuestions}> More Answered Questions </button> :
-          <button className='CollapseButton' onClick={this.loadMoreQuestions}> Collapse</button> : <> </>}
+        {this.state.questions.length > 2 ? this.state.length < this.state.questions.length ? <button className='MoreQuestionsButton' onClick={this.loadMoreQuestions}> MORE ANSWERED QUESTIONS </button> :
+          <button className='QandAbutton' onClick={this.loadMoreQuestions}> Collapse</button> : <> </>}
         <AddQuestion product_id={this.props.currentProduct} productName={this.props.productName}
           getAllQuestions={this.getAllQuestions} />
       </div>
