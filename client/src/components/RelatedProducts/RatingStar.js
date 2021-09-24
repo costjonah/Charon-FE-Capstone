@@ -1,6 +1,6 @@
 import React from "react";
 import { halfStar } from "./assets/half-star";
-import { fullStar } from "./assets/full-start";
+import { fullStar } from "./assets/full-star";
 const RatingStar = ({ ratingScore }) => {
   if (isNaN(ratingScore)) {
     return <div style={{ width: "100%", height: "5vh" }}></div>;
