@@ -1,12 +1,12 @@
-import React from 'react';
-import axios from 'axios';
+import React from "react";
+import axios from "axios";
 
-import Navbar from '../components/common/Navigation.jsx';
-import Overview from '../components/main_component/Overview.jsx';
-import ProductList from '../components/RelatedProducts/ProductList';
-import QuestionsList from '../components/Questions&Answers/QuestionsList.jsx';
-import ReviewsWidget from '../components/ratings/ReviewsWidget.jsx';
-import TEMPPRODUCTS from './TEMPPRODUCTS.jsx';
+import Navbar from "../components/common/Navigation.jsx";
+import Overview from "../components/main_component/Overview.jsx";
+import ProductList from "../components/RelatedProducts/ProductList";
+import QuestionsList from "../components/Questions&Answers/QuestionsList.jsx";
+import ReviewsWidget from "../components/ratings/ReviewsWidget.jsx";
+import TEMPPRODUCTS from "./TEMPPRODUCTS.jsx";
 
 class App extends React.Component {
   constructor(props) {
@@ -14,16 +14,17 @@ class App extends React.Component {
     this.state = {
       productInfo: [],
       currentProduct: { id: 0 },
-      productId: '0',
-      productName: '',
+      productId: "0",
+      productName: "",
     };
     this.selectProduct = this.selectProduct.bind(this);
     this.getProductData = this.getProductData.bind(this);
+    this.onSearchEnter = this.onSearchEnter.bind(this);
   }
 
   getProductData = () => {
     axios
-      .get('/products?page=1&count=10')
+      .get("/products?page=1&count=10")
       .then(({ data }) => {
         this.setState({
           productInfo: data,
@@ -53,28 +54,50 @@ class App extends React.Component {
     }
   }
 
+  onSearchEnter = (e) => {
+    console.log(e.target.value);
+    let infoArray = [];
+    axios
+      .get("/products")
+      .then((productData) => {
+        productData.data.forEach((x) => {
+          infoArray.push(x);
+          if (x.name === e.target.value) {
+            this.setState(
+              {
+                productInfo: infoArray,
+                currentProduct: x,
+                productId: x.id,
+                productName: x.name,
+              },
+              () => {}
+            );
+          }
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   render() {
     return (
       <div>
-        <h1 id='header'>The Right Fit</h1>
-        <Navbar />
+        <h1 id="header">The Right Fit</h1>
+        <Navbar search={this.onSearchEnter} />
         <Overview
           products={this.state.productInfo}
           productId={this.state.productId}
         />
         <ProductList />
         <h1>Questions And Answers</h1>
-        <div className='QuestionAndAnswerBody'>
+        <div className="QuestionAndAnswerBody">
           <QuestionsList
             currentProduct={this.state.productId}
             productName={this.state.productName}
           />
         </div>
         <ReviewsWidget product={this.state.currentProduct} />
-        {/* <TEMPPRODUCTS
-          selectProduct={this.selectProduct}
-          products={this.state.productInfo}
-        /> */}
       </div>
     );
   }
