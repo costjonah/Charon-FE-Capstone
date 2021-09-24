@@ -166,10 +166,16 @@ class ReviewsWidget extends React.Component {
     let displayReviews = this.state.modifiedReviews;
     let notFound = <span>Search terms not found!</span>;
     if (this.state.searchedReviews.length > 0) {
-      displayReviews = this.state.searchedReviews.sort(
+      let sortedReviews = this.state.searchedReviews.sort(
         ReviewsWidget.sortFunctions['Points']
       );
+      displayReviews = this.filterReviews(sortedReviews);
       notFound = null;
+    } else {
+      let sortedReviews = this.state.modifiedReviews.sort(
+        ReviewsWidget.sortFunctions[this.state.sortOption]
+      );
+      displayReviews = this.filterReviews(sortedReviews);
     }
     let shownReviews = displayReviews.slice(0, this.state.showCount);
 
