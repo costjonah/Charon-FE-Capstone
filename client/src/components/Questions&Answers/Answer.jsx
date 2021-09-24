@@ -1,13 +1,11 @@
 import React from "react";
 import moment from "moment";
-import PhotoModal from './PhotoModal.jsx'
 
 const Answer = (props) => {
   return (
     <li className='IndAnswer'> {props.answer.body} <br/>{props.answer.photos.map((photo, index) =>
-    <img key={index} className='AnswerImg' src={(photo)} onClick={props.showPhotoModal}/>
+    <img key={index} className='AnswerImg' src={(photo)}/>
     )}
-    {props.photoclicked === true ? <PhotoModal photo={props.photo} closePhotoModal={props.closePhotoModal}/> : <></>}
     <br/>
     <br/>
     <span className='AnswerInfo'> by {props.answer.answerer_name}, {moment(props.answer.date).format('MMM Do, YYYY')} &nbsp; | &nbsp; helpful?&nbsp;

@@ -7,16 +7,12 @@ class AnswersList extends React.Component {
     super(props);
     this.state = {
       answers: [],
-      length: 2,
-      photoclicked:false,
-      photo: ''
+      length: 2
     }
     this.helpfulAnswerClick = this.helpfulAnswerClick.bind(this)
     this.getAllAnswers = this.getAllAnswers.bind(this)
     this.reportAnswerClick = this.reportAnswerClick.bind(this)
     this.loadMoreAnswers = this.loadMoreAnswers.bind(this)
-    this.showPhotoModal=this.showPhotoModal.bind(this)
-    this.closePhotoModal=this.closePhotoModal.bind(this)
   }
 
   componentDidMount() {
@@ -27,13 +23,7 @@ class AnswersList extends React.Component {
       this.getAllAnswers()
     }
   }
-  showPhotoModal(event) {
-    this.setState({ photoclicked: true})
-    this.setState({photo: event.target.src})
-  }
-  closePhotoModal(){
-    this.setState({ photoclicked: false})
-  }
+
   getAllAnswers() {
     var sellerarr = [];
     var arr = [];
@@ -84,10 +74,6 @@ class AnswersList extends React.Component {
         answer={answer}
         helpfulAnswerClick={this.helpfulAnswerClick}
         reportAnswerClick={this.reportAnswerClick}
-        closePhotoModal={this.closePhotoModal}
-        showPhotoModal={this.showPhotoModal}
-        photoclicked={this.state.photoclicked}
-        photo={this.state.photo}
         />
         )}
         </ul>

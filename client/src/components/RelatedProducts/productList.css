@@ -1,7 +1,7 @@
 .gs-product-wrapper {
   margin-top: -450px;
   position: relative;
-  z-index: 100;
+  z-index: 20210921;
 }
 
 .slide-container {
@@ -69,6 +69,6 @@
   margin-left: 30px;
 }
 
-.outfit-products>div {
+.outfit-products > div {
   margin-right: 20px;
 }

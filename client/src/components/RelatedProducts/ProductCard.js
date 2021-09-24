@@ -50,7 +50,7 @@ class ProductCard extends React.Component {
       if (Array.isArray(productIDs)) {
         const oneID = productIDs[0];
         const relatedProduct = await fetchProduct(oneID);
-        console.log(relatedProduct);
+
         this.setState({
           relatedProduct,
         });
@@ -166,10 +166,12 @@ class ProductCard extends React.Component {
           <div className="card-footer footer-info">
             <div className="created-date">{this.props.product.created_at}</div>
             <div className="card-btn-group">
-              <a onClick={() => {
-                console.log(this.props)
-                this.openModal(this.props.product.id)
-              }}>
+              <a
+                onClick={() => {
+                  console.log(this.props);
+                  this.openModal(this.props.product.id);
+                }}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"

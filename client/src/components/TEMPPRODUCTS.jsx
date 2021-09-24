@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 const TEMPPRODUCTS = (props) => {
   return (
@@ -19,7 +19,7 @@ const TEMPPRODUCTS = (props) => {
 
 const TEMPPRODUCT = (props) => {
   const handleClick = (event) => {
-    console.log('Selected: ', event.target.id);
+    console.log("productid", event.target.id);
     props.selectProduct(event.target.id);
   };
 
