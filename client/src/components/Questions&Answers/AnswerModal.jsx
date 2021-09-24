@@ -7,10 +7,10 @@ const AnswerModal = (props) => {
   return (
    <div className='QuestionAndAnswerFormcontainer'>
     <div className="Modal">
-      <h2> Submit Your Answer </h2>
-      <h3> {props.productName}</h3>
-      <h4> {props.question_body} </h4>
-      <form >
+      <h2 className='modalheader'> Submit Your Answer </h2>
+      <h3 className='modalheader'> {props.productName}</h3>
+      <h4 className='modalheader'> {props.question_body} </h4>
+      <form className='AnswerModalform'>
         <label> *Answer: </label>
         <textarea className={props.answererror} type='text' maxLength='1000' rows='7' cols='40' onChange={props.handleAnswerInput} placeholder='Your Answer Goes Here'>
         </textarea>

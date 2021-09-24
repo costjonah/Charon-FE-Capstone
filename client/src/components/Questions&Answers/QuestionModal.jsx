@@ -4,9 +4,9 @@ const QuestionModal = (props) => {
   return (
     <div className='QuestionAndAnswerFormcontainer'>
     <div className="Modal">
-      <h2> Ask Your Question</h2>
-      <h3> About the product {props.productName}</h3>
-      <form >
+      <h2 className='modalheader'> Ask Your Question</h2>
+      <h3 className='modalheader'> About the product {props.productName}</h3>
+      <form className='Questionformmodal'>
         <label>*Question: </label>
         <textarea className={props.questionerror} type='text' maxLength='1000' rows='7' cols='40' onChange={props.handleQuestionInput} placeholder='Your Question Goes Here' required></textarea>
         {props.questionerror ? <span className='ErrorText'> Enter a valid question </span> : <></>}
