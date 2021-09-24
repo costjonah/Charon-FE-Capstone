@@ -1,7 +1,7 @@
 .gs-product-wrapper {
   margin-top: -375px;
   position: relative;
-  z-index: 20210921;
+  z-index: 100;
 }
 
 .slide-container {
@@ -60,12 +60,15 @@
 .hidden {
   display: none !important;
 }
+
 .outfit-products {
   margin: 0 auto;
   width: 1250px;
   overflow-x: scroll;
   display: flex;
+  margin-left: 30px;
 }
-.outfit-products > div {
-  margin-right: 15px;
+
+.outfit-products>div {
+  margin-right: 20px;
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { fetchProductList } from "./service/products";
+import { fetchProductList, ProductListid } from "./service/products";
 import ProductCard from "./ProductCard";
 import "./productList.css";
 
@@ -8,6 +8,7 @@ class ProductList extends React.Component {
     super();
     this.state = {
       productList: [],
+      productid: [],
       outfitProducts: [],
       move: 0,
     };
@@ -64,11 +65,20 @@ class ProductList extends React.Component {
   }
 
   async componentDidMount() {
-    const res = await fetchProductList();
-    // console.log("res is: ", res);
-    this.setState({
-      productList: res,
-    });
+    try {
+
+      const listid = await ProductListid();
+      console.log("listed is:", listid)
+
+      const res = await fetchProductList();
+      // console.log("res is: ", res);
+      this.setState({
+        productList: res,
+        productid: listid,
+      });
+    } catch (err) {
+      console.log(err);
+    }
     this.check(0);
   }
 
@@ -129,6 +139,7 @@ class ProductList extends React.Component {
               return (
                 <ProductCard
                   key={index}
+                  listid={this.state.productid[index]}
                   product={item}
                   handleClickOutFit={handleClickOutFit}
                 />
