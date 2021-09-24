@@ -18,7 +18,7 @@ class ProductList extends React.Component {
     const nextBtn = document.getElementById("next-btn");
     const preBtn = document.getElementById("pre-btn");
     const cards = document.querySelectorAll(".card-container .card");
-    console.log("move is: ", move);
+
     if (move > 0) {
       preBtn.classList.remove("hidden");
     }
@@ -68,7 +68,7 @@ class ProductList extends React.Component {
     try {
 
       const listid = await ProductListid();
-      console.log("listed is:", listid)
+
 
       const res = await fetchProductList();
       // console.log("res is: ", res);
