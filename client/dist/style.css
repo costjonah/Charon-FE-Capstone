@@ -671,16 +671,8 @@ body {
   display: block;
 }
 
-.styleli input[type="radio"] {
 
-#styleli input.checked[type='radio'] {
-  visibility: hidden;
-  display: block;
-}
-
-#styleli input[type='radio'] {
-  display: inline-block;
-
+.styleli input[type='radio'] {
   position: absolute;
   margin-left: 40px;
   margin-top: 1px;
@@ -694,19 +686,10 @@ body {
 .styleli input[type="radio"]:after {
   content: "";
 }
-.styleli input[type="radio"]:checked:after {
-  content: "✔";
 
-#styleli input[type='radio']:after {
-  content: '✔';
-  border: none;
-  font-size: 20px;
-  color: #bd081c;
-  filter: drop-shadow(1.5px 1.5px 1.5px black);
-}
-#styleli input[type='radio']:checked:after {
-  content: '✔';
 
+.styleli input[type='radio']:checked:after {
+  content: '✔';
   border: none;
   font-size: 20px;
   color: #bd081c;

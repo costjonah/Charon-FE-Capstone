@@ -58,7 +58,7 @@ class App extends React.Component {
     console.log(e.target.value);
     let infoArray = [];
     axios
-      .get("/products")
+      .get("/products?page=1&count=10")
       .then((productData) => {
         productData.data.forEach((x) => {
           infoArray.push(x);
