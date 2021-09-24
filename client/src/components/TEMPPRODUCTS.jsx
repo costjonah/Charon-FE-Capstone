@@ -19,7 +19,7 @@ const TEMPPRODUCTS = (props) => {
 
 const TEMPPRODUCT = (props) => {
   const handleClick = (event) => {
-    console.log('Selected: ', event.target.id);
+    // console.log('Selected: ', event.target.id);
     props.selectProduct(event.target.id);
   };
 

@@ -48,6 +48,7 @@ body {
   margin-top: -10px;
   margin-bottom: 5px;
   box-sizing: border-box;
+  border-radius: 5px;
   height: 3.75rem;
   height: 3rem;
   padding: 0.5rem 1rem;
@@ -91,6 +92,7 @@ body {
 
 #readreviews {
   color: rgb(34, 34, 34);
+  text-decoration: none;
 }
 
 #readreviews:hover,
@@ -105,7 +107,9 @@ body {
 
 .searchBar {
   display: inline;
-  margin-left: 350px;
+  position: absolute;
+  right: 0;
+  margin-right: 25px;
   height: 30px;
   width: 250px;
   border: 0px none;
@@ -118,6 +122,9 @@ body {
 
 .overviewmain {
   display: grid;
+  margin-left: auto;
+  margin-right: auto;
+  width: 1150px;
   grid-template-columns: 40% 20% 40%;
   grid-template-rows: 3.5% 5% 23% 10% 33%;
   grid-gap: 5px;
@@ -128,6 +135,7 @@ body {
 .defaultview {
   height: 450px;
   margin: 0;
+  margin-top: 17px;
   margin-left: auto;
   margin-right: auto;
   display: block;
@@ -173,11 +181,11 @@ body {
 .galleryviewmain {
   grid-column: 1 / 3;
   margin-left: 0px;
-  margin-top: -30px;
+  margin-top: -10px;
   width: 10px;
 }
 
-#thumbcaro {
+.thumbcaro {
   width: 55px;
   height: 55px;
   text-align: center;
@@ -207,7 +215,10 @@ body {
   display: none;
 }
 
-#modalthumbcaro {
+.modalthumbcaro {
+  margin-left: 0px;
+  margin-right: 0px;
+  position: absolute;
   width: 30px;
   height: 40px;
   text-align: center;
@@ -220,11 +231,12 @@ body {
 
 .modalgalthumbs {
   display: grid;
-  margin-top: 550px;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 50px 50px 50px 50px 50px;
   list-style-type: none;
-  margin-left: 22px;
+  margin-top: 475px;
+  margin-left: 20px;
   padding: 0;
+  position: absolute;
 }
 
 .modalthumbnails {
@@ -241,12 +253,19 @@ body {
   height: 0;
 }
 
-/* .modalthumbnails:nth-child(3) {
-  filter: drop-shadow(0 0 0.75rem crimson);
-  width: 0;
-  height: 0;
-} */
-
+.expviewmodalcontainer {
+  height: 600px;
+  width: 900px;
+  border: 3px solid transparent;
+  border-radius: 5px;
+  margin-left: 110px;
+  margin-right: auto;
+  margin-top: 20px;
+  grid-column: 1 / 3;
+  grid-row: 1 / 5;
+  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.2);
+}
 .modalgalleryimg {
   height: 100%;
   width: 100%;
@@ -274,9 +293,19 @@ body {
 }
 
 #arrowR {
-  margin-top: -245px;
+  margin-top: -5.5px;
+  margin-left: 450px;
   padding: 0;
+  position: absolute;
   float: right;
+}
+
+#arrowL {
+  margin-top: 465px;
+  margin-left: 197px;
+  position: absolute;
+  padding: 0;
+  float: left;
 }
 
 .galleryimg {
@@ -290,19 +319,17 @@ body {
 }
 
 #modalArrRight {
-  margin-left: 19%;
-  margin-top: -9.2%;
   padding: 0;
   position: absolute;
-  visibility: hidden;
+  margin-left: 550px;
+  margin-top: 200px;
 }
 
 #modalArrLeft {
-  margin-left: 20%;
-  margin-top: 19%;
   padding: 0;
   position: absolute;
-  visibility: hidden;
+  margin-left: -280px;
+  margin-top: 200px;
 }
 
 #modalrightarrow,
@@ -325,7 +352,6 @@ body {
   font-size: 17.5px;
   color: #bd081c;
   padding: 0;
-  filter: drop-shadow(7.5px 12.5px 2px #4444dd97);
 }
 
 #leftarrow {
@@ -333,7 +359,6 @@ body {
   font-size: 17.5px;
   color: #bd081c;
   padding: 0;
-  filter: drop-shadow(7.5px 12.5px 2px #4444dd97);
 }
 
 #downarrow,
@@ -344,7 +369,6 @@ body {
   padding: 0;
   margin-top: 5px;
   margin-left: 20px;
-  filter: drop-shadow(7.5px 12.5px 2px #4444dd97);
 }
 
 #downarrow:hover,
@@ -356,17 +380,19 @@ body {
 }
 
 .mainimgmodal {
+  margin-left: auto;
+  margin-right: auto;
   height: fit-content;
   width: fit-content;
   /* aspect-ratio: 2/1; */
-  margin-left: -32.5px;
+  /* margin-left: -32.5px; */
 }
 
 .modalview {
   /* height: 55%; */
   width: auto;
   padding: 0;
-  position: absolute;
+  /* position: absolute; */
   opacity: 1 !important;
   border-radius: 5px;
   /* aspect-ratio: 1/1; */
@@ -376,10 +402,12 @@ body {
   width: 100%;
   border-radius: 5px;
   display: block;
+  margin-top: 45px;
+  -moz-box-shadow: 10px 15px 30px rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: 10px 15px 30px rgba(0, 0, 0, 0.25);
 }
 
 .fullimg > img {
-  margin-top: 50px;
   height: 100%;
   width: 100%;
   border-radius: 5px;
@@ -410,7 +438,7 @@ body {
   grid-column: 1 / 2;
   grid-row: 5 / 5;
   margin-left: 25px;
-  margin-top: 10px;
+  margin-top: 25px;
 }
 
 .reviewmain {
@@ -501,13 +529,13 @@ body {
   grid-column: 3 / 3;
   grid-row: 2 / 5;
   margin-top: -65px;
-  margin-left: 25px;
+  margin-left: 17px;
 }
 
 .brandlogomain {
   grid-column: 2 / 4;
   grid-row: 5 / 5;
-  margin-top: 30px;
+  margin-top: 45px;
   margin-left: 25px;
   height: fit-content;
   width: fit-content;
@@ -544,6 +572,7 @@ body {
   width: 35px;
   height: 35px;
   text-align: center;
+  margin-right: 5px;
   border-radius: 5px;
   color: #fff;
   font-size: 220px;
@@ -619,7 +648,7 @@ body {
   width: 100%;
 }
 
-#styleli {
+.styleli {
   display: inline-block;
   width: 22%;
   margin: 0 0 0 0;
@@ -666,7 +695,7 @@ body {
   margin: 0;
 }
 
-.checked {
+.checkMarked {
   padding: 0;
   margin-top: -10px;
 }
@@ -682,7 +711,8 @@ body {
 }
 
 .imglist {
-  height: 80px;
+  height: 100%;
+  width: 100%;
   object-fit: cover;
 }
 
@@ -729,8 +759,11 @@ body {
   background-color: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #bd081d9c;
+  background: #3e2c418c;
   border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3e2c41;
 }
 ::-webkit-scrollbar-corner {
   background-color: transparent;
