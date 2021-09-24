@@ -29,7 +29,7 @@ class App extends React.Component {
         this.setState({
           productInfo: data,
           currentProduct: data[0],
-          productId: data[4].id,
+          productId: data[0].id,
           productName: data[0].name,
         });
       })
