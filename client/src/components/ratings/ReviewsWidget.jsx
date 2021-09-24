@@ -208,6 +208,7 @@ class ReviewsWidget extends React.Component {
           />
           <div className='row'>
             <MoreReviewsButton
+              className='moreReviews'
               showMore={this.showMoreReviews}
               showCount={this.state.showCount}
               reviews={this.state.modifiedReviews}
@@ -278,7 +279,6 @@ const StyledWidget = styled.div`
     border: none;
     color: #faf9f8;
     border-radius: 3.5px;
-    width: 100%;
     height: 25px;
     margin: 5px 0;
   }
