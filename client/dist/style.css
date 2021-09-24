@@ -671,16 +671,8 @@ body {
   display: block;
 }
 
-.styleli input[type="radio"] {
-}
-#styleli input.checked[type='radio'] {
-  visibility: hidden;
-  display: block;
-}
 
-#styleli input[type='radio'] {
-  display: inline-block;
-
+.styleli input[type='radio'] {
   position: absolute;
   margin-left: 40px;
   margin-top: 1px;
@@ -694,19 +686,9 @@ body {
 .styleli input[type="radio"]:after {
   content: "";
 }
-.styleli input[type="radio"]:checked:after {
-  content: "✔";
-}
-#styleli input[type='radio']:after {
-  content: '✔';
-  border: none;
-  font-size: 20px;
-  color: #bd081c;
-  filter: drop-shadow(1.5px 1.5px 1.5px black);
-}
-#styleli input[type='radio']:checked:after {
-  content: '✔';
 
+.styleli input[type='radio']:checked:after {
+  content: '✔';
   border: none;
   font-size: 20px;
   color: #bd081c;
@@ -799,18 +781,29 @@ body {
 
 .SearchBar {
   height: 60px;
-  width: 85%;
+  width: 90%;
   font-size: 15px;
   font-weight: bold;
-  font-family: "Times New Roman", Times, serif;
+  font-family: "HM Sans Regular", "ヒラギノ角ゴ Pro W3",
+  "Hiragino Kaku Gothic Pro", Osaka, メイリオ, Meiryo, "ＭＳ Ｐゴシック",
+  "MS PGothic", sans-serif;
+  border-radius: 10px;
+  border: solid black 1px;
 }
 
 .Question {
   font-size: 18px;
-  font-family: "Times New Roman", Times, serif;
+  font-family: "HM Sans Regular", "ヒラギノ角ゴ Pro W3",
+  "Hiragino Kaku Gothic Pro", Osaka, メイリオ, Meiryo, "ＭＳ Ｐゴシック",
+  "MS PGothic", sans-serif;
   font-weight: bold;
   margin-top: 10px;
   margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 80%;
 }
 
 .HelpfulButton {
@@ -827,7 +820,7 @@ body {
 }
 .HelpfulText {
   font-size: 15px;
-  padding-left: 40%;
+  /* padding-left: 40%; */
   color: gray;
   /* position: relative; */
   /* position: justify; */
@@ -850,7 +843,9 @@ body {
 }
 .AnswerList {
   font-size: 18px;
-  font-family: "Times New Roman", Times, serif;
+  font-family: "HM Sans Regular", "ヒラギノ角ゴ Pro W3",
+  "Hiragino Kaku Gothic Pro", Osaka, メイリオ, Meiryo, "ＭＳ Ｐゴシック",
+  "MS PGothic", sans-serif;
   font-weight: bold;
 }
 .IndAnswer {
@@ -879,7 +874,9 @@ body {
   color: darkgray;
 }
 .LoadMoreAnswers {
-  font-family: "Times New Roman", Times, serif;
+  font-family: "HM Sans Regular", "ヒラギノ角ゴ Pro W3",
+  "Hiragino Kaku Gothic Pro", Osaka, メイリオ, Meiryo, "ＭＳ Ｐゴシック",
+  "MS PGothic", sans-serif;
   padding-left: 25px;
   font-size: 13px;
   font-weight: bold;
@@ -887,23 +884,35 @@ body {
 .AddQuestionButton {
   font-size: 17px;
   font-weight: bold;
-  font-family: "Times New Roman", Times, serif;
+  font-family: "HM Sans Regular", "ヒラギノ角ゴ Pro W3",
+  "Hiragino Kaku Gothic Pro", Osaka, メイリオ, Meiryo, "ＭＳ Ｐゴシック",
+  "MS PGothic", sans-serif;
   margin: 10px;
   height: 50px;
   width: 200px;
+  background-color: #261c2c;
+  color: #fff;
+  border-radius: 5px;
 }
 .MoreQuestionsButton {
   font-size: 17px;
   font-weight: bold;
-  font-family: "Times New Roman", Times, serif;
+  font-family: "HM Sans Regular", "ヒラギノ角ゴ Pro W3",
+  "Hiragino Kaku Gothic Pro", Osaka, メイリオ, Meiryo, "ＭＳ Ｐゴシック",
+  "MS PGothic", sans-serif;
   margin: 10px;
   height: 50px;
-  width: 250px;
+  width: 300px;
+  background-color: #261c2c;
+  color: #fff;
+  border-radius: 5px;
 }
 .CollapseButton {
   font-size: 17px;
   font-weight: bold;
-  font-family: "Times New Roman", Times, serif;
+  font-family: "HM Sans Regular", "ヒラギノ角ゴ Pro W3",
+  "Hiragino Kaku Gothic Pro", Osaka, メイリオ, Meiryo, "ＭＳ Ｐゴシック",
+  "MS PGothic", sans-serif;
   margin: 10px;
   height: 50px;
   width: 150px;
@@ -912,34 +921,32 @@ body {
   overflow: auto;
   max-height: 750px;
 }
-.AnswerModal {
-  top: 200px;
-  left: 100px;
-  width: 600px;
-  height: 500px;
-  position: absolute;
-  background-color: white;
-  border: 1px solid black;
-  color: black;
-  z-index: 100;
-}
+
 .Modal {
-  top: 200px;
-  left: 100px;
+  top: 5%;
+  left: 30%;
   width: 600px;
-  height: 550px;
+  height: auto;
   position: fixed;
   background-color: white;
   border: 1px solid black;
   color: black;
   font-size: 18px;
   font-weight: bold;
-  font-family: "Times New Roman", Times, serif;
+  font-family: "HM Sans Regular", "ヒラギノ角ゴ Pro W3",
+  "Hiragino Kaku Gothic Pro", Osaka, メイリオ, Meiryo, "ＭＳ Ｐゴシック",
+  "MS PGothic", sans-serif;
   z-index: 100;
+  border-radius: 10px;
+  max-width: 600px;
+  max-height: 700px;
+  overflow: scroll;
 }
 .AnswerImg {
   width: 90px;
   height: 90px;
+  padding: 5px;
+  border-radius: 10px;
 }
 .photosfiles {
   margin-bottom: 10px;
@@ -982,5 +989,58 @@ body {
   color: #f1f1f1;
   font-size: 40px;
   font-weight: bold;
+}
+.QuestionAndAnswerBody{
+  margin-left: auto;
+  margin-right: auto;
+  width: 1150px;
+}
+#QandAheader{
+  margin-left: auto;
+  margin-right: auto;
+  width: 1150px;
+}
+.QuestionAndAnswerFormcontainer{
+  position: fixed;
+  z-index: 1000;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .8)
+}
+.QandAbutton{
+  font-size: 17px;
+  font-weight: bold;
+  font-family: "HM Sans Regular", "ヒラギノ角ゴ Pro W3",
+  "Hiragino Kaku Gothic Pro", Osaka, メイリオ, Meiryo, "ＭＳ Ｐゴシック",
+  "MS PGothic", sans-serif;
+  margin-right: 20px;
+  height: 50px;
+  width: 200px;
+  background-color: #261c2c;
+  color: #fff;
+  border-radius: 5px;
+}
+.QuestionSidebar{
+  display: inline-flex;
+  /* justify-content: space-between; */
+
+}
+.QuestionHeader{
+  display: inline-block;
+  max-width: 60%;
+  overflow-wrap: break-word;
+}
+.AnswerModalform{
+  padding: 20px;
+}
+.modalheader{
+  padding: 20px;
+  word-wrap: break-word;
+}
+.Questionformmodal{
+  padding: 20px;
 }
 /*---------------------------- Related Products ---------------------------- */

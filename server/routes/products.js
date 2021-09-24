@@ -2,7 +2,6 @@ const models = require("../models/index");
 module.exports = (app) => {
   app.get("/currentProduct", (req, res) => {
     const productList = require("../data/productList");
-    // return res.send(productList.data[0])
     return res.json({
       code: 200,
       msg: "ok",

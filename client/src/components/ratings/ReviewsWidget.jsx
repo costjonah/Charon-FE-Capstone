@@ -294,6 +294,10 @@ const StyledWidget = styled.div`
   .addReview {
     width: 100%;
   }
+
+  margin-left: auto;
+  margin-right: auto;
+  width: 1150px;
 `;
 
 export default ReviewsWidget;
