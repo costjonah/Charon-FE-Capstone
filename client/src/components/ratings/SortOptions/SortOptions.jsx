@@ -15,7 +15,7 @@ class SortOptions extends React.Component {
 
   handleChange(e) {
     this.props.sort(e.value);
-    console.log('changed to ', e.value);
+    // console.log('changed to ', e.value);
   }
 
   render() {

@@ -3,21 +3,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
-var StyleSelector = (props) => {
+const StyleSelector = (props) => {
   if (props.styles.product_id !== undefined) {
     return (
       <div className="styleselectormain">
-        <div id="modalArrRight">
-          <p>
-            {" "}
-            <FontAwesomeIcon
-              icon={faArrowRight}
-              id="modalrightarrow"
-              title="Next"
-              onClick={(e) => props.rightClick(e)}
-            />
-          </p>
-        </div>
         <ul id="styleul">
           <h4 id="currentstylename"> Style > {props.currentStyle.name} </h4>
           <h3 className="fav">
@@ -26,17 +15,21 @@ var StyleSelector = (props) => {
           {props.styles.results.map((style, index) => {
             return (
               <li
-                id="styleli"
+                className="styleli"
                 key={style.style_id}
                 name={style.name}
+                id={style.style_id}
                 onClick={(e) => props.styleClick(style, index, e)}
               >
-                <div id="checkdiv">
+                <div key={style.style_id} id="checkdiv">
                   <input
-                    className="checked"
+                    key={style.style_id}
+                    className="checkMarked"
                     type="radio"
                     id={"radio" + index}
                     name="checkbox"
+                    onChange={(e) => props.styleChange(e)}
+                    checked={props.selected === style.style_id}
                   />
                   <label htmlFor={"radio" + index}></label>
                 </div>
@@ -46,7 +39,7 @@ var StyleSelector = (props) => {
                     src={style.photos[0].thumbnail_url}
                     alt="new"
                     title={style.name}
-                    id={"imglist" + index}
+                    id={style.style_id}
                   />
                 </div>
               </li>

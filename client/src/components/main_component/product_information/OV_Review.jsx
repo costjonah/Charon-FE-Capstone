@@ -8,7 +8,7 @@ const Review = (props) => {
   if (count > 0) {
     let numReviews = 0;
     let ratings = [];
-    for (var i = 0; i < reviewData.length; i++) {
+    for (let i = 0; i < reviewData.length; i++) {
       ratings.push(reviewData[i].rating);
       numReviews++;
     }
@@ -18,7 +18,12 @@ const Review = (props) => {
         <div className="reviewmain">
           {" "}
           <Stars rating={averageRating} title={averageRating + " stars"} />
-          <a data={reviewData} id="readreviews" title="Read all reviews">
+          <a
+            href={"#reviewsection"}
+            data={reviewData}
+            id="readreviews"
+            title="Read all reviews"
+          >
             {" "}
             &#65372; Read {numReviews} review(s)
           </a>

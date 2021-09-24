@@ -5,7 +5,7 @@ import { faInstagramSquare } from "@fortawesome/free-brands-svg-icons";
 import { faTwitterSquare } from "@fortawesome/free-brands-svg-icons";
 import { faPinterestSquare } from "@fortawesome/free-brands-svg-icons";
 
-var FreeForm = (props) => {
+const FreeForm = (props) => {
   return (
     <div className="brandlogomain">
       <a

@@ -1,9 +1,9 @@
 import React from "react";
 
-var FreeForm = (props) => {
-  var currentSlogan;
-  var currentDescription;
-  for (var i = 0; i < props.products.length; i++) {
+const FreeForm = (props) => {
+  let currentSlogan;
+  let currentDescription;
+  for (let i = 0; i < props.products.length; i++) {
     if (props.products[i].id === props.productId) {
       currentSlogan = props.products[i].slogan;
       currentDescription = props.products[i].description;
