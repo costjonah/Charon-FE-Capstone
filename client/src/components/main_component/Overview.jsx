@@ -27,6 +27,8 @@ class Overview extends React.Component {
       productReview: [],
       allPhotos: [],
       allUrls: [],
+      allThumbUrls: [],
+      selected: "",
       average: 0,
       idx: 0,
       height: 0,
@@ -56,6 +58,7 @@ class Overview extends React.Component {
     this.closeModalClick = this.closeModalClick.bind(this);
     this.addToCartPost = this.addToCartPost.bind(this);
     this.getPhotosUrl = this.getPhotosUrl.bind(this);
+    this.handleStyleChange = this.handleStyleChange.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -66,15 +69,15 @@ class Overview extends React.Component {
   }
 
   addToCartPost = (e) => {
-    var skuId;
-    var skuPost;
+    let skuId;
+    let skuPost;
     // create object with current sz/qty state
-    var shoppingData = {
+    const shoppingData = {
       size: this.state.selectedSizeOption,
       quantity: this.state.selectedQtyOption,
     };
     // iterate through all skus
-    for (var key in this.state.styleSkus) {
+    for (let key in this.state.styleSkus) {
       // compare to find corresponding sku to POST
       if (this.state.styleSkus[key].size === shoppingData.size) {
         skuPost = {
@@ -102,20 +105,18 @@ class Overview extends React.Component {
           allStyles: styleData.data.results,
         });
         // iterate to find the default style and use respective data to update state
-        for (var i = 0; i < this.state.styles.results.length; i++) {
+        for (let i = 0; i < this.state.styles.results.length; i++) {
           if (this.state.styles.results[i]["default?"] === true) {
             this.setState({
               currentStyle: this.state.styles.results[i],
               styleSkus: this.state.styles.results[i].skus,
               allPhotos: this.state.styles.results[i].photos,
+              selected: this.state.styles.results[i].style_id,
+              currentRadio: true,
             });
           }
         }
-        console.log(this.state.allPhotos);
         this.getPhotosUrl();
-        // make default style "checked" upon load
-        var defaultCheck = document.querySelector("#radio0");
-        defaultCheck.style.visibility = "visible";
       })
       .catch((err) => {
         console.log(err);
@@ -139,22 +140,32 @@ class Overview extends React.Component {
   };
 
   getPhotosUrl = () => {
+    let tempThumb = [];
+    let tempUrl = [];
     this.state.allPhotos.forEach((x) => {
-      this.state.allUrls.push(x.thumbnail_url);
+      tempThumb.push(x.thumbnail_url);
+      tempUrl.push(x);
     });
+    this.setState(
+      {
+        allThumbUrls: tempThumb,
+        allUrls: tempUrl,
+      },
+      () => {}
+    );
   };
 
   showModalClick = (e) => {
     // select elements that visibility: "hidden" lags when hiding, set to transparent *TEMP FIX*
     var dropdowns = document.querySelectorAll(
-      "#sizeselect > div, #qtyselect > div, .checked"
+      "#sizeselect > div, #qtyselect > div, .checkMarked"
     );
     dropdowns.forEach((x) => {
       x.style.opacity = "0";
     });
     // all other desired elements visibilty set to "hidden" *TEMP FIX*
     var mainViews = document.querySelectorAll(
-      ".mainimg, .galthumbs, #uparrow, #downarrow, #rightarrow, #curCateg, #curName, #newPrice, #curPrice, .star-ratings, #styleul, .cartbtn, .brandlogomain, .freeformmain, #readreviews, #expandbtn"
+      ".mainimg, .galthumbs, #uparrow, #downarrow, #rightarrow, #leftarrow, #curCateg, #curName, #newPrice, #curPrice, .star-ratings, #styleul, .cartbtn, .brandlogomain, .freeformmain, #readreviews, #expandbtn"
     );
     mainViews.forEach((y) => {
       y.style.visibility = "hidden";
@@ -179,7 +190,7 @@ class Overview extends React.Component {
         modal: false,
       });
       var dropdowns = document.querySelectorAll(
-        "#sizeselect > div, #qtyselect > div, .checked"
+        "#sizeselect > div, #qtyselect > div, .checkMarked"
       );
       dropdowns.forEach((x) => {
         x.style.opacity = "1";
@@ -191,7 +202,7 @@ class Overview extends React.Component {
         y.style.visibility = "hidden";
       });
       var mainViews = document.querySelectorAll(
-        ".mainimg, .galthumbs, #uparrow, #downarrow, #rightarrow, #curCateg, #curName, #newPrice, #curPrice, .star-ratings, #styleul, .cartbtn, .brandlogomain, .freeformmain, #readreviews, #expandbtn"
+        ".mainimg, .galthumbs, #uparrow, #downarrow, #rightarrow, #leftarrow, #curCateg, #curName, #newPrice, #curPrice, .star-ratings, #styleul, .cartbtn, .brandlogomain, .freeformmain, #readreviews, #expandbtn"
       );
       mainViews.forEach((z) => {
         z.style.visibility = "visible";
@@ -202,37 +213,55 @@ class Overview extends React.Component {
   styleOnClick = (selection, index, e) => {
     e.preventDefault();
     // update style based on event target
-    this.setState({
-      currentStyle: selection,
-    });
-    // hide previous check, show check that corresponds to event target
-    var allChecks = document.querySelectorAll(".checked");
-    var currentCheck = document.querySelector("#radio" + index);
-    for (var i = 0; i < allChecks.length; i++) {
-      allChecks[i].style.visibility = "hidden";
-    }
-    currentCheck.style.visibility = "visible";
+    this.setState(
+      {
+        currentStyle: selection,
+        allPhotos: selection.photos,
+        selected: Number(e.target.id),
+      },
+      () => {
+        this.getPhotosUrl();
+      }
+    );
   };
 
-  // original click event for thumbnails - logic duplicated in this.modalGalleryClick
+  handleStyleChange = (e) => {
+    this.setState({
+      selected: Number(e.target.id),
+    })
+  }
+
+  // recursive click event for thumbnails -- works for moderate amount of image files
+  // time complexity wise -- safe to assume wont scale for bigN
   thumbnailOnClick = (index, e) => {
     e.stopPropagation();
-    var recurse = (target, children) => {
+    e.preventDefault();
+    const recurse = (target, children) => {
       children = children || this.state.allUrls.slice();
-      var currentSrc = children[0];
+      let currentSrc = children[0].thumbnail_url;
       if (target.src === currentSrc) {
-        this.setState({
-          allUrls: children,
-        });
+        this.setState(
+          {
+            allUrls: children,
+          },
+          () => {}
+        );
         return;
       }
       if (target.src !== currentSrc) {
-        var el = children.shift();
+        let el = children.shift();
         children.push(el);
         children = children.flat();
-        var imgIndex = children.indexOf(target.src);
-        this.setState({
-          idx: imgIndex,
+        children.forEach((x) => {
+          if (x.thumbnail_url === target.src) {
+            let imgIndex = children.indexOf(x);
+            this.setState(
+              {
+                idx: imgIndex,
+              },
+              () => {}
+            );
+          }
         });
         recurse(target, children);
       }
@@ -242,21 +271,23 @@ class Overview extends React.Component {
 
   // updates index of current photo using ticker algorithm
   upArrowOnClick = (e) => {
-    var children = this.state.allUrls.slice();
-    var lastEl = children.pop();
+    let children = this.state.allUrls.slice();
+    let lastEl = children.pop();
     children.unshift(lastEl);
     children = children.flat();
     // index state tracker, updates MainImage && ImgModal -- cycles through array
     let idx = this.state.idx;
-    this.setState({
-      allUrls: children,
-    });
+    if (idx == 0) {
+      this.setState({
+        allUrls: children,
+      });
+    }
   };
 
   // reverse logic of this.upArrowOnClick
   downArrowOnClick = (e) => {
-    var children = this.state.allUrls.slice();
-    var firstEl = children.shift();
+    let children = this.state.allUrls.slice();
+    let firstEl = children.shift();
     children.push(firstEl);
     children = children.flat();
     let idx = this.state.idx;
@@ -281,8 +312,8 @@ class Overview extends React.Component {
   };
 
   getAverage = (array) => {
-    var sum = 0;
-    for (var i = 0; i < array.length; i++) {
+    let sum = 0;
+    for (let i = 0; i < array.length; i++) {
       sum += array[i];
     }
     return sum / array.length;
@@ -304,7 +335,6 @@ class Overview extends React.Component {
       <div className="overviewmain" onClick={(e) => this.closeModalClick(e)}>
         <MainImage
           currentStyle={this.state.currentStyle}
-          zoom={this.state.toggleZoom}
           leftClick={this.leftArrowOnClick}
           rightClick={this.rightArrowOnClick}
           toggleModal={this.showModalClick}
@@ -318,11 +348,14 @@ class Overview extends React.Component {
           currentStyle={this.state.currentStyle}
           upClick={this.upArrowOnClick}
           downClick={this.downArrowOnClick}
+          leftClick={this.leftArrowOnClick}
+          rightClick={this.rightArrowOnClick}
           galleryClick={this.modalGalleryClick}
           modalState={this.state.modal}
           idxTicker={this.state.idx}
           thumbnailClick={this.thumbnailOnClick}
-          photoLinks={this.state.allUrls}
+          photoLinks={this.state.allThumbUrls}
+          thumbLinks={this.state.allUrls}
         />
 
         <Gallery
@@ -330,7 +363,7 @@ class Overview extends React.Component {
           upClick={this.upArrowOnClick}
           downClick={this.downArrowOnClick}
           thumbnailClick={this.thumbnailOnClick}
-          photoLinks={this.state.allUrls}
+          thumbLinks={this.state.allUrls}
         />
 
         <ProductInfo
@@ -352,6 +385,8 @@ class Overview extends React.Component {
           zoom={this.state.toggleZoom}
           zoomClick={this.zoomOnClick}
           rightClick={this.rightArrowOnClick}
+          selected={this.state.selected}
+          styleChange={this.handleStyleChange}
         />
 
         <SizeSelector

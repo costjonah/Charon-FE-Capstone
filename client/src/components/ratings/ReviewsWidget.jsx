@@ -87,7 +87,7 @@ class ReviewsWidget extends React.Component {
   }
 
   submit(data) {
-    console.log('Submitted', data);
+    // console.log('Submitted', data);
     axios({
       method: 'post',
       url: '/reviews',
@@ -109,7 +109,7 @@ class ReviewsWidget extends React.Component {
       filter.splice(filter.indexOf(starRating), 1);
     }
     filter.sort();
-    console.log('filter: ', filter);
+    // console.log('filter: ', filter);
     this.setState({ filter: filter });
   }
 

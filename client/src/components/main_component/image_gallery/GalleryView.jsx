@@ -5,54 +5,56 @@ import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
 
 const Gallery = (props) => {
   if (Object.keys(props.currentStyle).length !== 0) {
-    return (
-      <div className="galleryviewmain">
-        <div id="arrowU">
-          <p>
-            {" "}
-            <FontAwesomeIcon
-              icon={faArrowUp}
-              id="uparrow"
-              title="Previous"
-              onClick={(e) => props.upClick(e)}
-            />
-          </p>
+    if (props.thumbLinks[0] !== undefined) {
+      return (
+        <div className="galleryviewmain">
+          <div id="arrowU">
+            <p>
+              {" "}
+              <FontAwesomeIcon
+                icon={faArrowUp}
+                id="uparrow"
+                title="Previous"
+                onClick={(e) => props.upClick(e)}
+              />
+            </p>
+          </div>
+          <div>
+            <ul className="galthumbs">
+              {props.thumbLinks.map((pic, index) => {
+                return (
+                  <li key={index} className="thumbnails">
+                    <div className="thumbcaro">
+                      <img
+                        src={pic.thumbnail_url}
+                        alt="new"
+                        id={"img" + index}
+                        className="galleryimg"
+                        title={"Style " + (index + 1)}
+                        onClick={(e) => props.thumbnailClick(index, e)}
+                      />
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+          <div id="arrowD">
+            <p>
+              {" "}
+              <FontAwesomeIcon
+                icon={faArrowDown}
+                id="downarrow"
+                title="Next"
+                onClick={(e) => props.downClick(e)}
+              />
+            </p>
+          </div>
         </div>
-        <div>
-          <ul className="galthumbs">
-            {props.photoLinks.map((pic, index) => {
-              console.log('PIC', pic)
-              return (
-                <li key={index} className="thumbnails">
-                  <div className="thumbcaro">
-                    <img
-                      src={pic}
-                      alt="new"
-                      id={"img" + index}
-                      className="galleryimg"
-                      title={"Style " + (index + 1)}
-                      onClick={(e) => props.thumbnailClick(index, e)}
-
-                    />
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-        <div id="arrowD">
-          <p>
-            {" "}
-            <FontAwesomeIcon
-              icon={faArrowDown}
-              id="downarrow"
-              title="Next"
-              onClick={(e) => props.downClick(e)}
-            />
-          </p>
-        </div>
-      </div>
-    );
+      );
+    } else {
+      return <div></div>;
+    }
   } else {
     return <div id="galleryviewmain"></div>;
   }

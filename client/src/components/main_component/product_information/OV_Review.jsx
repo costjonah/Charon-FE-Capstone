@@ -4,7 +4,6 @@ import Stars from "./Stars.jsx";
 
 const Review = (props) => {
   let reviewData = props.reviewdata;
-  console.log(reviewData)
   let count = props.count;
   if (count > 0) {
     let numReviews = 0;
@@ -19,7 +18,12 @@ const Review = (props) => {
         <div className="reviewmain">
           {" "}
           <Stars rating={averageRating} title={averageRating + " stars"} />
-          <a href={'#reviewsection'} data={reviewData} id="readreviews" title="Read all reviews">
+          <a
+            href={"#reviewsection"}
+            data={reviewData}
+            id="readreviews"
+            title="Read all reviews"
+          >
             {" "}
             &#65372; Read {numReviews} review(s)
           </a>
