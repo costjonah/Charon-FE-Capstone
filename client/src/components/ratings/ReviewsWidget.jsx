@@ -214,7 +214,6 @@ class ReviewsWidget extends React.Component {
           />
           <div className='row'>
             <MoreReviewsButton
-              className='moreReviews'
               showMore={this.showMoreReviews}
               showCount={this.state.showCount}
               reviews={this.state.modifiedReviews}
@@ -281,15 +280,19 @@ const StyledWidget = styled.div`
   }
   button {
     cursor: pointer;
-    background-color: rgb(34, 34, 34);
+    background-color: #3e2c41;
     border: none;
     color: #faf9f8;
     border-radius: 3.5px;
-    height: 25px;
+    height: 35px;
     margin: 5px 0;
   }
   .reviewListButton {
     margin-right: 10px;
+    width: 50%;
+  }
+  .addReview {
+    width: 100%;
   }
 `;
 

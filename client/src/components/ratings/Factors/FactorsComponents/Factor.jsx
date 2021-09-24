@@ -29,6 +29,7 @@ const StyledBar = styled.div`
   flex-direction: row;
   justify-content: flex-start;
   align-items: flex-start;
+  border-radius: 5px;
 
   :hover {
     background-color: grey;
