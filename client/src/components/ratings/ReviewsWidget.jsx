@@ -279,7 +279,7 @@ const StyledWidget = styled.div`
   }
   button {
     cursor: pointer;
-    background-color: #3e2c41;
+    background-color: #261c2c;
     border: none;
     color: #faf9f8;
     border-radius: 3.5px;
