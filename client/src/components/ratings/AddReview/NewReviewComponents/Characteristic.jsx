@@ -50,15 +50,16 @@ const Characteristic = ({ char, handleChange, selected }) => {
   if (!selected) {
     selected = 3;
   }
-  meaning = <div className='subText'>{meanings[char][selected - 1]}</div>;
+  meaning = <span>{meanings[char][selected - 1]}</span>;
 
   return (
     <React.Fragment>
       <label>
-        <div>{char}</div>
-        <div onChange={handleChange}>
-          {meaning}
-          <div>
+        <div>
+          {char}: <span className='subText'>{meaning}</span>
+        </div>
+        <div>
+          <div onChange={handleChange}>
             <input type='radio' value={1} name={char} />1
             <input type='radio' value={2} name={char} />2
             <input type='radio' value={3} name={char} />3

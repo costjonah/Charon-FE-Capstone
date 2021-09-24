@@ -24,11 +24,11 @@ const Recommended = ({ handleChange }) => {
   return (
     <StyledRadio onChange={handleChange}>
       <label>
-        Recommended
+        <span>Recommended: </span>
         <input type='radio' value={true} name='recommended' />
-        Yes
+        <span> Yes </span>
         <input type='radio' value={false} name='recommended' />
-        No
+        <span> No </span>
       </label>
     </StyledRadio>
   );

@@ -2,7 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Modal from "./Modal";
 import "./productCard.css";
-import { fetchCurrentProduct, fetchProduct } from "./service/products";
+import {
+  fetchCurrentProduct,
+  fetchProduct,
+  fetchRelatedProductIDs,
+} from "./service/products";
 import { getProductAverageScore } from "./service/reviews";
 import RatingStar from "./RatingStar";
 
@@ -14,6 +18,7 @@ class ProductCard extends React.Component {
       currentProduct: null,
       selectedProduct: null,
       averagScore: 0,
+      relatedProduct: null,
     };
   }
 
@@ -41,6 +46,16 @@ class ProductCard extends React.Component {
         averagScore,
       });
     });
+    fetchRelatedProductIDs(productID).then(async (productIDs) => {
+      if (Array.isArray(productIDs)) {
+        const oneID = productIDs[0];
+        const relatedProduct = await fetchProduct(oneID);
+        console.log(relatedProduct);
+        this.setState({
+          relatedProduct,
+        });
+      }
+    });
   }
   render() {
     const handleClickOutFit = () => {
@@ -52,11 +67,8 @@ class ProductCard extends React.Component {
     const modalHeaderContent = () => {
       return <div>Product1 VS Product2</div>;
     };
-    const relatedProduct =
-      (this.props.product &&
-        this.props.product.relatedProducts &&
-        this.props.product.relatedProducts[0]) ||
-      null;
+    const relatedProduct = this.state.relatedProduct || null;
+
     const relatedProductPhoto =
       relatedProduct &&
       Array.isArray(relatedProduct.styles) &&
@@ -154,7 +166,10 @@ class ProductCard extends React.Component {
           <div className="card-footer footer-info">
             <div className="created-date">{this.props.product.created_at}</div>
             <div className="card-btn-group">
-              <a onClick={() => this.openModal(this.props.product.id)}>
+              <a onClick={() => {
+                console.log(this.props)
+                this.openModal(this.props.product.id)
+              }}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"

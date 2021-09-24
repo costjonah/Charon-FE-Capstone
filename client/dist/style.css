@@ -12,11 +12,15 @@ body {
   padding: 0;
   min-height: 765px;
   min-width: 1200px;
+
+  max-height: 765px;
+  max-width: 1200px;
+  height: 100%;
 }
 body {
-  font-family: "HM Sans Regular", "ヒラギノ角ゴ Pro W3",
-    "Hiragino Kaku Gothic Pro", Osaka, メイリオ, Meiryo, "ＭＳ Ｐゴシック",
-    "MS PGothic", sans-serif;
+  font-family: 'HM Sans Regular', 'ヒラギノ角ゴ Pro W3',
+    'Hiragino Kaku Gothic Pro', Osaka, メイリオ, Meiryo, 'ＭＳ Ｐゴシック',
+    'MS PGothic', sans-serif;
   background-color: #faf9f8;
   color: rgb(34, 34, 34);
 }
@@ -30,7 +34,7 @@ body {
   position: -webkit-sticky;
   position: sticky;
   /* top: 0; */
-  z-index: 200;
+  z-index: 100;
 }
 .navbar,
 .navbar > .container,
@@ -486,9 +490,9 @@ body {
   border: none;
   color: #faf9f8;
   border-radius: 3.5px;
-  font-family: "HM Sans Regular", "ヒラギノ角ゴ Pro W3",
-    "Hiragino Kaku Gothic Pro", Osaka, メイリオ, Meiryo, "ＭＳ Ｐゴシック",
-    "MS PGothic", sans-serif;
+  font-family: 'HM Sans Regular', 'ヒラギノ角ゴ Pro W3',
+    'Hiragino Kaku Gothic Pro', Osaka, メイリオ, Meiryo, 'ＭＳ Ｐゴシック',
+    'MS PGothic', sans-serif;
   cursor: pointer;
 }
 
@@ -653,11 +657,21 @@ body {
   display: -moz-inline-box;
 }
 
+<<<<<<< HEAD
 .styleli input.checkMarked[type="radio"] {
   display: block;
 }
 
 .styleli input[type="radio"] {
+=======
+#styleli input.checked[type='radio'] {
+  visibility: hidden;
+  display: block;
+}
+
+#styleli input[type='radio'] {
+  display: inline-block;
+>>>>>>> newMain
   position: absolute;
   margin-left: 40px;
   margin-top: 1px;
@@ -668,11 +682,23 @@ body {
   appearance: none;
 }
 
+<<<<<<< HEAD
 .styleli input[type="radio"]:after {
   content: "";
 }
 .styleli input[type="radio"]:checked:after {
   content: "✔";
+=======
+#styleli input[type='radio']:after {
+  content: '✔';
+  border: none;
+  font-size: 20px;
+  color: #bd081c;
+  filter: drop-shadow(1.5px 1.5px 1.5px black);
+}
+#styleli input[type='radio']:checked:after {
+  content: '✔';
+>>>>>>> newMain
   border: none;
   font-size: 20px;
   color: #bd081c;
@@ -768,12 +794,12 @@ body {
   width: 85%;
   font-size: 15px;
   font-weight: bold;
-  font-family: "Times New Roman", Times, serif;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 .Question {
   font-size: 18px;
-  font-family: "Times New Roman", Times, serif;
+  font-family: 'Times New Roman', Times, serif;
   font-weight: bold;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -816,7 +842,7 @@ body {
 }
 .AnswerList {
   font-size: 18px;
-  font-family: "Times New Roman", Times, serif;
+  font-family: 'Times New Roman', Times, serif;
   font-weight: bold;
 }
 .IndAnswer {
@@ -845,7 +871,7 @@ body {
   color: darkgray;
 }
 .LoadMoreAnswers {
-  font-family: "Times New Roman", Times, serif;
+  font-family: 'Times New Roman', Times, serif;
   padding-left: 25px;
   font-size: 13px;
   font-weight: bold;
@@ -853,7 +879,7 @@ body {
 .AddQuestionButton {
   font-size: 17px;
   font-weight: bold;
-  font-family: "Times New Roman", Times, serif;
+  font-family: 'Times New Roman', Times, serif;
   margin: 10px;
   height: 50px;
   width: 200px;
@@ -861,7 +887,7 @@ body {
 .MoreQuestionsButton {
   font-size: 17px;
   font-weight: bold;
-  font-family: "Times New Roman", Times, serif;
+  font-family: 'Times New Roman', Times, serif;
   margin: 10px;
   height: 50px;
   width: 250px;
@@ -869,14 +895,14 @@ body {
 .CollapseButton {
   font-size: 17px;
   font-weight: bold;
-  font-family: "Times New Roman", Times, serif;
+  font-family: 'Times New Roman', Times, serif;
   margin: 10px;
   height: 50px;
   width: 150px;
 }
 .QuestionAndAnswerBody {
   overflow: auto;
-  max-height: 600px;
+  max-height: 750px;
 }
 .AnswerModal {
   top: 200px;
@@ -887,6 +913,7 @@ body {
   background-color: white;
   border: 1px solid black;
   color: black;
+  z-index: 100;
 }
 .Modal {
   top: 200px;
@@ -899,15 +926,53 @@ body {
   color: black;
   font-size: 18px;
   font-weight: bold;
-  font-family: "Times New Roman", Times, serif;
+  font-family: 'Times New Roman', Times, serif;
+  z-index: 100;
 }
 .AnswerImg {
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
 }
-
+.photosfiles {
+  margin-bottom: 10px;
+}
 /* .AnswerModalText{
   color: white
 } */
 
+.error {
+  border: 1px solid red;
+}
+.ErrorText {
+  font-size: 12px;
+  color: red;
+  padding-left: 10em;
+  height: 10px;
+  display: block;
+  margin-block-end: -10px;
+}
+.photoModal {
+  position: fixed;
+  z-index: 1000;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.photoModal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+}
+.photoModal-close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+}
 /*---------------------------- Related Products ---------------------------- */
