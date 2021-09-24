@@ -181,9 +181,8 @@ class ReviewsWidget extends React.Component {
 
     return (
       <StyledWidget className='row' name='Reviews Widget' id={'reviewsection'}>
-        <div className='column'>
+        <div className='column breakdownColumn'>
           <RatingsBreakdown
-            id='breakdown'
             name='Breakdown'
             ratings={this.state.ratings}
             filterBy={this.filterBy}
@@ -196,7 +195,7 @@ class ReviewsWidget extends React.Component {
             characteristics={this.state.characteristics}
           />
         </div>
-        <div id='column' className='column'>
+        <div id='column' className='column reviewListColumn'>
           <Search
             reviews={this.state.modifiedReviews}
             updateSearch={this.updateSearch}
@@ -250,7 +249,7 @@ const StyledWidget = styled.div`
 
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: flex-start;
 
   .column {
@@ -262,6 +261,12 @@ const StyledWidget = styled.div`
     flex-direction: row;
     justify-content: space-evenly;
   }
+  .breakdownColumn {
+    width: 30%;
+  }
+  .reviewListColumn {
+    width 60%;
+  }
   .link {
     color: dimgrey;
     cursor: pointer;
@@ -271,12 +276,6 @@ const StyledWidget = styled.div`
   }
   .large {
     font-size: 150%;
-  }
-  #breakdown {
-    width: 30%;
-  }
-  #column {
-    width: 50%;
   }
   button {
     cursor: pointer;
