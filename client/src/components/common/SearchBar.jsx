@@ -6,7 +6,7 @@ const SearchBar = (props) => {
       type="text"
       className="searchBar"
       placeholder="Enter item to search"
-      onKeyPress={props.search}
+      onKeyPress={(e) => e.key === "Enter" && props.search(e)}
     />
   );
 };

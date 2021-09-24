@@ -1,7 +1,7 @@
 .gs-product-wrapper {
   margin-top: -375px;
   position: relative;
-  z-index: 100;
+  z-index: 0;
 }
 
 .slide-container {

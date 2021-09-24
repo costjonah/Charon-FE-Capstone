@@ -18,6 +18,7 @@ const ImgModal = (props) => {
       if (props.thumbLinks[0] !== undefined) {
         return (
           <div className="expviewmodalcontainer">
+            <div className="expviewoverlay"></div>
             <div className="mainimgmodal">
               <ModalGallery
                 currentStyle={props.currentStyle}

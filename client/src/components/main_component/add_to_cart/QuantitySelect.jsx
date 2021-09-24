@@ -5,7 +5,7 @@ const QuantitySelector = (props) => {
   const options = [];
   let qty;
   let i = 1;
-  for (var key in props.styleSkus) {
+  for (let key in props.styleSkus) {
     if (props.selectedSizeOption === props.styleSkus[key].size) {
       qty = props.styleSkus[key].quantity;
     }
