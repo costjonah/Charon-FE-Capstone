@@ -25,7 +25,7 @@ const StyledBar = styled.div`
   align-items: flex-start;
 
   :hover {
-    background-color: grey;
+    background-color: #6e85b2;
   }
 `;
 const FilledBar = styled.div`

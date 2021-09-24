@@ -21,24 +21,22 @@ class AddReview extends React.Component {
 
   render() {
     return (
-      <StyledContainer>
-        <StyledCover showing={this.state.show}>
-          <Modal
-            submit={this.props.submit}
-            show={this.state.show}
-            hideModal={this.hideModal}
-            product={this.props.product}
-            characteristics={this.props.characteristics}
-          />
-        </StyledCover>
-        <button
-          className='reviewListButton'
-          type='button'
-          onClick={this.showModal}
-        >
-          Add a Review
-        </button>
-      </StyledContainer>
+      <div className='addReview'>
+        <StyledContainer>
+          <StyledCover showing={this.state.show}>
+            <Modal
+              submit={this.props.submit}
+              show={this.state.show}
+              hideModal={this.hideModal}
+              product={this.props.product}
+              characteristics={this.props.characteristics}
+            />
+          </StyledCover>
+          <button className='addReview' type='button' onClick={this.showModal}>
+            Add a Review
+          </button>
+        </StyledContainer>
+      </div>
     );
   }
 }

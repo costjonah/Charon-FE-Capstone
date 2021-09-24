@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components'
 
 const OverallRating = ({ selected, handleChange }) => {
   let meanings = ['Poor', 'Fair', 'Average', 'Good', 'Great'];
@@ -18,5 +19,23 @@ const OverallRating = ({ selected, handleChange }) => {
     </div>
   );
 };
+
+const StarContainer = styled.label`
+  .ratingStars {
+    -webkit-appearance: none;
+    display: none;
+  }
+`;
+const Star = styled.span`
+  -webkit-text-fill-color: ${(props) =>
+    props.filled ? 'black' : 'transparent'};
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #3e2c41;
+
+  :hover {
+    -webkit-text-fill-color: rgb(100, 100, 100);
+    cursor: pointer;
+  }
+`;
 
 export default OverallRating;

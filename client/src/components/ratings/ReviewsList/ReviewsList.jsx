@@ -24,7 +24,7 @@ const StyledReviews = styled.ul`
   padding-inline-start: 0;
 
   height: auto;
-  max-height: 550px;
+  max-height: 500px;
   width: 100%;
   overflow-y: scroll;
   overflow-x: hidden;

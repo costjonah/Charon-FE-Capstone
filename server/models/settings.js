@@ -5,6 +5,7 @@ module.exports = {
   head: {
     headers: {
       Authorization: config.TOKEN,
+      'Accept-Encoding': 'gzip, compress, br',
     },
   },
 };
