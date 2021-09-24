@@ -267,7 +267,7 @@ const StyledWidget = styled.div`
     cursor: pointer;
   }
   .link:hover {
-    color: rgb(34, 34, 34);
+    color: #6e85b2;
   }
   .large {
     font-size: 150%;

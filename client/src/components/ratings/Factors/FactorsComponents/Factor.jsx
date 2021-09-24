@@ -32,7 +32,7 @@ const StyledBar = styled.div`
   border-radius: 5px;
 
   :hover {
-    background-color: grey;
+    background-color: #6e85b2;
   }
 `;
 const FilledBar = styled.div`

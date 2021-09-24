@@ -88,7 +88,7 @@ class Overview extends React.Component {
     axios
       .post("/cart", skuPost)
       .then((cartData) => {
-        console.log("SUCCESS", cartData);
+        // console.log("SUCCESS", cartData);
       })
       .catch((err) => {
         console.log("ERROR", err);
