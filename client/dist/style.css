@@ -687,7 +687,6 @@ body {
   content: "";
 }
 
-
 .styleli input[type='radio']:checked:after {
   content: '✔';
   border: none;
@@ -903,7 +902,7 @@ body {
   "MS PGothic", sans-serif;
   margin: 10px;
   height: 50px;
-  width: 300px;
+  width: 350px;
   background-color: #261c2c;
   color: #fff;
   border-radius: 5px;

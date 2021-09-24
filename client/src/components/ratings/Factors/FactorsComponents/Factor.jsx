@@ -29,9 +29,10 @@ const StyledBar = styled.div`
   flex-direction: row;
   justify-content: flex-start;
   align-items: flex-start;
+  border-radius: 5px;
 
   :hover {
-    background-color: grey;
+    background-color: #6e85b2;
   }
 `;
 const FilledBar = styled.div`
