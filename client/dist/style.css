@@ -18,7 +18,7 @@ body {
     "Hiragino Kaku Gothic Pro", Osaka, メイリオ, Meiryo, "ＭＳ Ｐゴシック",
     "MS PGothic", sans-serif;
   background-color: #faf9f8;
-  color: #3e2c41;
+  color: #261c2c;
 }
 
 #header {
@@ -495,7 +495,7 @@ body {
 .cartbtn {
   width: 317px;
   height: 25px;
-  background-color: #3e2c41;
+  background-color: #261c2c;
   border: none;
   color: #faf9f8;
   border-radius: 3.5px;
@@ -783,6 +783,7 @@ body {
 .SearchBar {
   height: 60px;
   width: 85%;
+
   font-size: 15px;
   font-weight: bold;
   font-family: "Times New Roman", Times, serif;
@@ -894,6 +895,7 @@ body {
 .QuestionAndAnswerBody {
   overflow: auto;
   max-height: 750px;
+
 }
 .AnswerModal {
   top: 200px;
