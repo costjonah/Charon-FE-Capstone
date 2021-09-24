@@ -79,7 +79,7 @@ class ReviewsWidget extends React.Component {
   }
 
   submit(data) {
-    console.log('Submitted', data);
+    // console.log('Submitted', data);
     axios({
       method: 'post',
       url: '/reviews',
@@ -174,7 +174,7 @@ class ReviewsWidget extends React.Component {
     let shownReviews = displayReviews.slice(0, this.state.showCount);
 
     return (
-      <StyledWidget className='row' name='Reviews Widget'>
+      <StyledWidget className='row' name='Reviews Widget' id={'reviewsection'}>
         <div className='column'>
           <RatingsBreakdown
             id='breakdown'
@@ -208,6 +208,7 @@ class ReviewsWidget extends React.Component {
           />
           <div className='row'>
             <MoreReviewsButton
+              className='moreReviews'
               showMore={this.showMoreReviews}
               showCount={this.state.showCount}
               reviews={this.state.modifiedReviews}
@@ -278,7 +279,6 @@ const StyledWidget = styled.div`
     border: none;
     color: #faf9f8;
     border-radius: 3.5px;
-    width: 100%;
     height: 25px;
     margin: 5px 0;
   }
