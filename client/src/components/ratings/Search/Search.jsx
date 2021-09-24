@@ -94,8 +94,9 @@ class Search extends React.Component {
 const StyledSearch = styled.input`
   height: 30px;
   width: 100%;
-  border: 0px none;
+  border: 1px solid;
   border-radius: 5px;
+  margin: 10px 0;
 `;
 
 export default Search;
