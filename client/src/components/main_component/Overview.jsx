@@ -156,56 +156,15 @@ class Overview extends React.Component {
   };
 
   showModalClick = (e) => {
-    // select elements that visibility: "hidden" lags when hiding, set to transparent *TEMP FIX*
-    var dropdowns = document.querySelectorAll(
-      "#sizeselect > div, #qtyselect > div, .checkMarked"
-    );
-    dropdowns.forEach((x) => {
-      x.style.opacity = "0";
-    });
-    // all other desired elements visibilty set to "hidden" *TEMP FIX*
-    var mainViews = document.querySelectorAll(
-      ".mainimg, .galthumbs, #uparrow, #downarrow, #rightarrow, #leftarrow, #curCateg, #curName, #newPrice, #curPrice, .star-ratings, #styleul, .cartbtn, .brandlogomain, .freeformmain, #readreviews, #expandbtn"
-    );
-    mainViews.forEach((y) => {
-      y.style.visibility = "hidden";
-    });
-    // show modal view's arrows
-    var modalArrows = document.querySelectorAll(
-      "#modalArrLeft, #modalArrRight"
-    );
-    modalArrows.forEach((z) => {
-      z.style.visibility = "visible";
-    });
-    // update state
     this.setState({
       modal: true,
     });
   };
 
-  // opposite functionality of this.showModalClick
   closeModalClick = (e) => {
     if (this.state.modal === true) {
       this.setState({
         modal: false,
-      });
-      var dropdowns = document.querySelectorAll(
-        "#sizeselect > div, #qtyselect > div, .checkMarked"
-      );
-      dropdowns.forEach((x) => {
-        x.style.opacity = "1";
-      });
-      var modalArrows = document.querySelectorAll(
-        "#modalArrLeft, #modalArrRight"
-      );
-      modalArrows.forEach((y) => {
-        y.style.visibility = "hidden";
-      });
-      var mainViews = document.querySelectorAll(
-        ".mainimg, .galthumbs, #uparrow, #downarrow, #rightarrow, #leftarrow, #curCateg, #curName, #newPrice, #curPrice, .star-ratings, #styleul, .cartbtn, .brandlogomain, .freeformmain, #readreviews, #expandbtn"
-      );
-      mainViews.forEach((z) => {
-        z.style.visibility = "visible";
       });
     }
   };
@@ -228,8 +187,8 @@ class Overview extends React.Component {
   handleStyleChange = (e) => {
     this.setState({
       selected: Number(e.target.id),
-    })
-  }
+    });
+  };
 
   // recursive click event for thumbnails -- works for moderate amount of image files
   // time complexity wise -- safe to assume wont scale for bigN
@@ -343,7 +302,6 @@ class Overview extends React.Component {
           width={this.state.width}
           photoLinks={this.state.allUrls}
         />
-
         <ImgModal
           currentStyle={this.state.currentStyle}
           upClick={this.upArrowOnClick}
@@ -357,7 +315,6 @@ class Overview extends React.Component {
           photoLinks={this.state.allThumbUrls}
           thumbLinks={this.state.allUrls}
         />
-
         <Gallery
           currentStyle={this.state.currentStyle}
           upClick={this.upArrowOnClick}
@@ -365,13 +322,11 @@ class Overview extends React.Component {
           thumbnailClick={this.thumbnailOnClick}
           thumbLinks={this.state.allUrls}
         />
-
         <ProductInfo
           products={this.props.products}
           productId={this.props.productId}
           currentStyle={this.state.currentStyle}
         />
-
         <Review
           reviewdata={this.state.productReview}
           averageFunc={this.getAverage}
@@ -388,7 +343,6 @@ class Overview extends React.Component {
           selected={this.state.selected}
           styleChange={this.handleStyleChange}
         />
-
         <SizeSelector
           styleSkus={this.state.styleSkus}
           handleSizeChange={this.handleSizeChange}

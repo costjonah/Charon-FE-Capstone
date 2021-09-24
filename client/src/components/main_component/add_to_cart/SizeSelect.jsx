@@ -3,8 +3,8 @@ import Select from "react-select";
 
 const SizeSelector = (props) => {
   const options = [];
-  var sizesQty;
-  for (var key in props.styleSkus) {
+  let sizesQty;
+  for (let key in props.styleSkus) {
     if (props.styleSkus[key].quantity === 0) {
       options.push({
         value: 0,

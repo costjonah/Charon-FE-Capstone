@@ -1,41 +1,35 @@
-import React from "react";
-import axios from "axios";
+import React from 'react';
+import axios from 'axios';
 
-import Navbar from "../components/common/Navigation.jsx";
-import Overview from "../components/main_component/Overview.jsx";
-import ProductList from "../components/RelatedProducts/ProductList";
-import QuestionsList from "../components/Questions&Answers/QuestionsList.jsx";
-import ReviewsWidget from "../components/ratings/ReviewsWidget.jsx";
+import Navbar from '../components/common/Navigation.jsx';
+import Overview from '../components/main_component/Overview.jsx';
+import ProductList from '../components/RelatedProducts/ProductList';
+import QuestionsList from '../components/Questions&Answers/QuestionsList.jsx';
+import ReviewsWidget from '../components/ratings/ReviewsWidget.jsx';
+import TEMPPRODUCTS from './TEMPPRODUCTS.jsx';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      products: [],
-      currentProduct: { id: 0 },
-      reviewCount: 2,
-      productId: "0",
       productInfo: [],
-      productName: "",
+      currentProduct: { id: 0 },
+      productId: '0',
+      productName: '',
     };
     this.selectProduct = this.selectProduct.bind(this);
-    this.showMoreReviews = this.showMoreReviews.bind(this);
     this.getProductData = this.getProductData.bind(this);
-  }
-
-  componentDidMount() {
-    this.getProductData();
   }
 
   getProductData = () => {
     axios
-      .get("/products?page=1&count=10")
-      .then((res) => {
+      .get('/products?page=1&count=10')
+      .then(({ data }) => {
         this.setState({
-          products: res.data,
-          productInfo: res.data,
-          currentProduct: res.data[0],
-          productId: res.data[0].id,
+          productInfo: data,
+          currentProduct: data[0],
+          productId: data[0].id,
+          productName: data[0].name,
         });
       })
       .catch((err) => {
@@ -43,28 +37,26 @@ class App extends React.Component {
       });
   };
 
+  componentDidMount() {
+    this.getProductData();
+  }
+
   selectProduct(id) {
-    for (var i = 0; i < this.state.products.length; i++) {
-      if (this.state.products[i].id === parseInt(id)) {
+    for (var i = 0; i < this.state.productInfo.length; i++) {
+      if (this.state.productInfo[i].id === parseInt(id)) {
         this.setState({
-          currentProduct: this.state.products[i],
-          reviewCount: 2,
+          currentProduct: this.state.productInfo[i],
+          productId: this.state.productInfo[i].id,
+          productName: this.state.productInfo[i].name,
         });
       }
     }
   }
 
-  showMoreReviews() {
-    let newCount = this.state.reviewCount + 2;
-    this.setState({
-      reviewCount: newCount,
-    });
-  }
-
   render() {
     return (
       <div>
-        <h1 id="header">The Right Fit</h1>
+        <h1 id='header'>The Right Fit</h1>
         <Navbar />
         <Overview
           products={this.state.productInfo}
@@ -72,17 +64,17 @@ class App extends React.Component {
         />
         <ProductList />
         <h1>Questions And Answers</h1>
-        <div className="QuestionAndAnswerBody">
+        <div className='QuestionAndAnswerBody'>
           <QuestionsList
             currentProduct={this.state.productId}
             productName={this.state.productName}
           />
         </div>
-        <ReviewsWidget
-          product={this.state.currentProduct}
-          reviewCount={this.state.reviewCount}
-          showMoreReviews={this.showMoreReviews}
-        />
+        <ReviewsWidget product={this.state.currentProduct} />
+        {/* <TEMPPRODUCTS
+          selectProduct={this.selectProduct}
+          products={this.state.productInfo}
+        /> */}
       </div>
     );
   }
