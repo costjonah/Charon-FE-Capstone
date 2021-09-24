@@ -782,7 +782,7 @@ body {
 
 .SearchBar {
   height: 60px;
-  width: 90%;
+  width: 99%;
   font-size: 15px;
   font-weight: bold;
   font-family: "HM Sans Regular", "ヒラギノ角ゴ Pro W3",
@@ -903,7 +903,7 @@ body {
   "MS PGothic", sans-serif;
   margin: 10px;
   height: 50px;
-  width: 300px;
+  width: 350px;
   background-color: #261c2c;
   color: #fff;
   border-radius: 5px;
