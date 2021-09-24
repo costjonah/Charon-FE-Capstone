@@ -5,6 +5,7 @@ import PhotoModal from './PhotoModal.jsx'
 
 const AnswerModal = (props) => {
   return (
+   <div className='QuestionAndAnswerFormcontainer'>
     <div className="Modal">
       <h2> Submit Your Answer </h2>
       <h3> {props.productName} {props.question_body}</h3>
@@ -48,6 +49,7 @@ const AnswerModal = (props) => {
         </button>
       </form>
     </div>
+  </div>
   );
 };
 

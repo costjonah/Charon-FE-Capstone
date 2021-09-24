@@ -2,6 +2,7 @@ import React from "react";
 
 const QuestionModal = (props) => {
   return (
+    <div className='QuestionAndAnswerFormcontainer'>
     <div className="Modal">
       <h2> Ask Your Question</h2>
       <h3> About the product {props.productName}</h3>
@@ -29,6 +30,7 @@ const QuestionModal = (props) => {
         </button>
       </form>
     </div>
+  </div>
   );
 };
 
