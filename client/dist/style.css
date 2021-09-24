@@ -672,7 +672,7 @@ body {
 }
 
 .styleli input[type="radio"] {
-
+}
 #styleli input.checked[type='radio'] {
   visibility: hidden;
   display: block;
@@ -696,7 +696,7 @@ body {
 }
 .styleli input[type="radio"]:checked:after {
   content: "✔";
-
+}
 #styleli input[type='radio']:after {
   content: '✔';
   border: none;

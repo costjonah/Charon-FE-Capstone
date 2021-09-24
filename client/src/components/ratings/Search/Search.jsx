@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 
 class Search extends React.Component {
   constructor(props) {
@@ -76,7 +77,7 @@ class Search extends React.Component {
       <div>
         <label>
           <div>Search: </div>
-          <input
+          <StyledSearch
             type='text'
             name='Search'
             value={this.state.searchString}
@@ -89,5 +90,12 @@ class Search extends React.Component {
     );
   }
 }
+
+const StyledSearch = styled.input`
+  height: 30px;
+  width: 100%;
+  border: 0px none;
+  border-radius: 5px;
+`;
 
 export default Search;
