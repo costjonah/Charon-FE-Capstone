@@ -5,7 +5,10 @@ import AddAnswer from "./AddAnswer.jsx";
 const Question = (props) => {
   return (
     <div>
-      <div className='Question'> Q: {props.question.question_body}
+      {/* <div className='QuestionSidebar'> */}
+      <div className='Question' >
+      <span className='QuestionHeader'>Q: {props.question.question_body} </span>
+      <span className='QuestionSidebar'>
       <span className='HelpfulText'> Helpful? </span>
       {props.question.disablehelpfulness !== true ?
       <span className='HelpfulButton'onClick={(event) => props.helpfulQuestionClick(event, props.question)}>
@@ -23,6 +26,9 @@ const Question = (props) => {
       <span className='HelpfulButton'onClick={(event) => props.reportQuestionClick(event, props.question)}>Report </span> :
       <span className='HelpfulButtonClicked'>Reported</span>
       }
+      {/* </div> */}
+      </span>
+      {/* </div> */}
       </div>
       <div>
         <AnswersList

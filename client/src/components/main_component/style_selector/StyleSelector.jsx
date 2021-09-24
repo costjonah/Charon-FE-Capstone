@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
-var StyleSelector = (props) => {
+const StyleSelector = (props) => {
   if (props.styles.product_id !== undefined) {
     return (
       <div className="styleselectormain">

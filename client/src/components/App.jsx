@@ -19,6 +19,7 @@ class App extends React.Component {
     };
     this.selectProduct = this.selectProduct.bind(this);
     this.getProductData = this.getProductData.bind(this);
+    this.onSearchEnter = this.onSearchEnter.bind(this);
   }
 
   getProductData = () => {
@@ -53,28 +54,50 @@ class App extends React.Component {
     }
   }
 
+  onSearchEnter = (e) => {
+    console.log(e.target.value);
+    let infoArray = [];
+    axios
+      .get("/products?page=1&count=10")
+      .then((productData) => {
+        productData.data.forEach((x) => {
+          infoArray.push(x);
+          if (x.name === e.target.value) {
+            this.setState(
+              {
+                productInfo: infoArray,
+                currentProduct: x,
+                productId: x.id,
+                productName: x.name,
+              },
+              () => {}
+            );
+          }
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   render() {
     return (
       <div>
         <h1 id="header">The Right Fit</h1>
-        <Navbar />
+        <Navbar search={this.onSearchEnter} />
         <Overview
           products={this.state.productInfo}
           productId={this.state.productId}
         />
-        <ProductList selectProduct={this.selectProduct} />
-        <h1>Questions And Answers</h1>
-        <div className="QuestionAndAnswerBody">
+        <ProductList selectProduct={this.selectProduct}/>
+        <h1 id='QandAheader'>Questions And Answers</h1>
+        <div className='QuestionAndAnswerBody'>
           <QuestionsList
             currentProduct={this.state.productId}
             productName={this.state.productName}
           />
         </div>
         <ReviewsWidget product={this.state.currentProduct} />
-        <TEMPPRODUCTS
-          selectProduct={this.selectProduct}
-          products={this.state.productInfo}
-        />
       </div>
     );
   }

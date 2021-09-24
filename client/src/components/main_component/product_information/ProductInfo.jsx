@@ -1,11 +1,11 @@
 import React from "react";
 
-var ProductInfo = (props) => {
-  var currentCategory;
-  var currentName;
-  var styleOGPrice = props.currentStyle["original_price"];
-  var styleSalePrice = props.currentStyle["sale_price"];
-  for (var i = 0; i < props.products.length; i++) {
+const ProductInfo = (props) => {
+  let currentCategory;
+  let currentName;
+  const styleOGPrice = props.currentStyle["original_price"];
+  const styleSalePrice = props.currentStyle["sale_price"];
+  for (let i = 0; i < props.products.length; i++) {
     if (props.products[i].id === props.productId) {
       currentCategory = props.products[i].category;
       currentName = props.products[i].name;

@@ -134,59 +134,19 @@ class Overview extends React.Component {
   };
 
   showModalClick = (e) => {
-    // select elements that visibility: "hidden" lags when hiding, set to transparent *TEMP FIX*
-    var dropdowns = document.querySelectorAll(
-      "#sizeselect > div, #qtyselect > div, .checked"
-    );
-    dropdowns.forEach((x) => {
-      x.style.opacity = "0";
-    });
-    // all other desired elements visibilty set to "hidden" *TEMP FIX*
-    var mainViews = document.querySelectorAll(
-      ".mainimg, .galthumbs, #uparrow, #downarrow, #rightarrow, #curCateg, #curName, #newPrice, #curPrice, .star-ratings, #styleul, .cartbtn, .brandlogomain, .freeformmain, #readreviews, #expandbtn"
-    );
-    mainViews.forEach((y) => {
-      y.style.visibility = "hidden";
-    });
-    // show modal view's arrows
-    var modalArrows = document.querySelectorAll(
-      "#modalArrLeft, #modalArrRight"
-    );
-    modalArrows.forEach((z) => {
-      z.style.visibility = "visible";
-    });
-    // update state
     this.setState({
       modal: true,
     });
   };
 
-  // opposite functionality of this.showModalClick
   closeModalClick = (e) => {
     if (this.state.modal === true) {
       this.setState({
         modal: false,
       });
-      var dropdowns = document.querySelectorAll(
-        "#sizeselect > div, #qtyselect > div, .checked"
-      );
-      dropdowns.forEach((x) => {
-        x.style.opacity = "1";
-      });
-      var modalArrows = document.querySelectorAll(
-        "#modalArrLeft, #modalArrRight"
-      );
-      modalArrows.forEach((y) => {
-        y.style.visibility = "hidden";
-      });
-      var mainViews = document.querySelectorAll(
-        ".mainimg, .galthumbs, #uparrow, #downarrow, #rightarrow, #curCateg, #curName, #newPrice, #curPrice, .star-ratings, #styleul, .cartbtn, .brandlogomain, .freeformmain, #readreviews, #expandbtn"
-      );
-      mainViews.forEach((z) => {
-        z.style.visibility = "visible";
-      });
+    }
   };
-}
+
 
   // repeated logic of this.thumbnailOnClick *TEMP FIX* (prevents call stack overflow)
   modalGalleryClick = (index, e) => {
@@ -225,15 +185,8 @@ class Overview extends React.Component {
     e.preventDefault();
     // update style based on event target
     this.setState({
-      currentStyle: selection,
+      selected: Number(e.target.id),
     });
-    // hide previous check, show check that corresponds to event target
-    var allChecks = document.querySelectorAll(".checked");
-    var currentCheck = document.querySelector("#radio" + index);
-    for (var i = 0; i < allChecks.length; i++) {
-      allChecks[i].style.visibility = "hidden";
-    }
-    currentCheck.style.visibility = "visible";
   };
 
   // original click event for thumbnails - logic duplicated in this.modalGalleryClick
@@ -343,7 +296,6 @@ class Overview extends React.Component {
           height={this.state.height}
           width={this.state.width}
         />
-
         <ImgModal
           currentStyle={this.state.currentStyle}
           upClick={this.upArrowOnClick}
@@ -352,20 +304,17 @@ class Overview extends React.Component {
           modalState={this.state.modal}
           idxTicker={this.state.idx}
         />
-
         <Gallery
           currentStyle={this.state.currentStyle}
           upClick={this.upArrowOnClick}
           downClick={this.downArrowOnClick}
           thumbnailClick={this.thumbnailOnClick}
         />
-
         <ProductInfo
           products={this.props.products}
           productId={this.props.productId}
           currentStyle={this.state.currentStyle}
         />
-
         <Review
           reviewdata={this.state.productReview}
           averageFunc={this.getAverage}
@@ -380,7 +329,6 @@ class Overview extends React.Component {
           zoomClick={this.zoomOnClick}
           rightClick={this.rightArrowOnClick}
         />
-
         <SizeSelector
           styleSkus={this.state.styleSkus}
           handleSizeChange={this.handleSizeChange}
@@ -405,3 +353,4 @@ class Overview extends React.Component {
 }
 
 export default Overview;
+

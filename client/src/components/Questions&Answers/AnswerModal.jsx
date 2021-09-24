@@ -3,10 +3,12 @@ import Photo from "./Photo.jsx";
 
 const AnswerModal = (props) => {
   return (
+   <div className='QuestionAndAnswerFormcontainer'>
     <div className="Modal">
-      <h2> Submit Your Answer </h2>
-      <h3> {props.productName} {props.question_body}</h3>
-      <form >
+      <h2 className='modalheader'> Submit Your Answer </h2>
+      <h3 className='modalheader'> {props.productName}</h3>
+      <h4 className='modalheader'> {props.question_body} </h4>
+      <form className='AnswerModalform'>
         <label> *Answer: </label>
         <textarea className={props.answererror} type='text' maxLength='1000' rows='7' cols='40' onChange={props.handleAnswerInput} placeholder='Your Answer Goes Here'>
         </textarea>
@@ -32,16 +34,15 @@ const AnswerModal = (props) => {
           props.photos.map((photo, index) => <img key={index} className="AnswerImg" src={photo} onClick={() => console.log('hello')}/>)
         )}
         <br />
-        <button type="button" onClick={props.handleSubmit}>
-          {" "}
+        <button className='QandAbutton' type="button" onClick={props.handleSubmit}>
           Submit Answer
         </button>
-        <button type="button" onClick={props.closeAnswerModal}>
-          {" "}
-          Close{" "}
+        <button className='QandAbutton' type="button" onClick={props.closeAnswerModal}>
+          Close
         </button>
       </form>
     </div>
+  </div>
   );
 };
 

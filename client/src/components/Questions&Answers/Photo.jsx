@@ -8,7 +8,7 @@ class Photo extends React.Component {
   render() {
     return (
       <span>
-        <input className='photosfiles' type='file' onChange={this.props.handlePhotoChange}/>
+        <input value={''} className='photosfiles' type='file' onChange={this.props.handlePhotoChange}/>
         <br/>
         {this.props.photos.map((photo, index) =>
           <img key={index} className='AnswerImg' src={photo} onClick={() => console.log('hello')}/>

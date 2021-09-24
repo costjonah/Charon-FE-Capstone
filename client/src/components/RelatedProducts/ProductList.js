@@ -6,8 +6,8 @@ import Products from "./Products";
 import "./productList.css";
 
 class ProductList extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       productList: [],
       outfitProducts: [],

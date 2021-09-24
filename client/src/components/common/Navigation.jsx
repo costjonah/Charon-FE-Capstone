@@ -10,18 +10,7 @@ import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 class Navbar extends React.Component {
   constructor(props) {
     super(props);
-    this.onSearchEnter = this.onSearchEnter.bind(this);
   }
-
-  onSearchEnter = (e) => {
-    // incomplete function
-    if (e.charCode === 13) {
-      e.preventDefault();
-      onSearch(e.target.value);
-      e.target.value = "";
-      e.target.blur();
-    }
-  };
 
   render() {
     return (
@@ -51,7 +40,7 @@ class Navbar extends React.Component {
                     <FontAwesomeIcon icon={faEnvelope} id="navmail" /> Contact
                   </a>
                 </li>
-                <SearchBar search={this.onSearchEnter} />
+                <SearchBar search={this.props.search} />
               </div>
               <div
                 aria-label="Navigation bar toggle"

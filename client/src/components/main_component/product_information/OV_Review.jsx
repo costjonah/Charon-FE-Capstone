@@ -8,7 +8,7 @@ const Review = (props) => {
   if (count > 0) {
     let numReviews = 0;
     let ratings = [];
-    for (var i = 0; i < reviewData.length; i++) {
+    for (let i = 0; i < reviewData.length; i++) {
       ratings.push(reviewData[i].rating);
       numReviews++;
     }
