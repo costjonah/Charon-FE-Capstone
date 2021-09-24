@@ -13,7 +13,7 @@ class ProductDetail extends React.Component {
   async componentDidMount() {
     const productId = this.props.match.params.id;
     const res = await fetchProduct(productId);
-    console.log("res", res);
+
     if (res instanceof Object) {
       this.setState({
         product: res,
@@ -24,16 +24,14 @@ class ProductDetail extends React.Component {
   showDetail = (product) => {
     if (product) {
       // console.log("product is: ", product);
-      let productPhoto = '';
+      let productPhoto = "";
       try {
         productPhoto =
           product &&
           Array.isArray(product.styles) &&
           product.styles[0] &&
           product.styles[0].photos[0].url;
-      } catch {
-
-      }
+      } catch {}
       return (
         <div className="detail-card">
           <div className="card-header">{this.state.product.name}</div>

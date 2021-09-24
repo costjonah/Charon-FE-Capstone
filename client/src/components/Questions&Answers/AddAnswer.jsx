@@ -18,8 +18,6 @@ class AddAnswer extends React.Component {
       validemail: false,
       validanswer: false,
       validnickname: false,
-      photoclicked:false,
-      photo: ''
     }
     this.showAnswerModal = this.showAnswerModal.bind(this)
     this.closeAnswerModal = this.closeAnswerModal.bind(this)
@@ -28,19 +26,10 @@ class AddAnswer extends React.Component {
     this.handleAnswerInput = this.handleAnswerInput.bind(this)
     this.handlePhotoChange = this.handlePhotoChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
-    this.showPhotoModal = this.showPhotoModal.bind(this)
-    this.closePhotoModal = this.closePhotoModal.bind(this)
   }
 
   showAnswerModal() {
     this.setState({ clicked: true });
-  }
-  showPhotoModal(event) {
-    this.setState({ photoclicked: true})
-    this.setState({photo: event.target.src})
-  }
-  closePhotoModal(){
-    this.setState({ photoclicked: false})
   }
   closeAnswerModal() {
     this.setState({clicked: false})
@@ -152,10 +141,6 @@ class AddAnswer extends React.Component {
       nickerror={this.state.nickerror}
       answererror={this.state.answererror}
       emailerror={this.state.emailerror}
-      showPhotoModal={this.showPhotoModal}
-      photoclicked={this.state.photoclicked}
-      photo={this.state.photo}
-      closePhotoModal={this.closePhotoModal}
       />
     ) : (
       <span className='AddAnswerButton' onClick={this.showAnswerModal}>

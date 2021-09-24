@@ -1,5 +1,4 @@
 import React from "react";
-import PhotoModal from './PhotoModal.jsx'
 
 class Photo extends React.Component {
   constructor(props) {
@@ -12,9 +11,8 @@ class Photo extends React.Component {
         <input value={''} className='photosfiles' type='file' onChange={this.props.handlePhotoChange}/>
         <br/>
         {this.props.photos.map((photo, index) =>
-          <img key={index} className='AnswerImg' src={photo} onClick={this.props.showPhotoModal}/>
+          <img key={index} className='AnswerImg' src={photo} onClick={() => console.log('hello')}/>
         )}
-        {this.props.photoclicked === true ? <PhotoModal photo={this.props.photo} closePhotoModal={this.props.closePhotoModal}/> : <></>}
       </span>
     )
   }

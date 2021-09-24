@@ -204,7 +204,7 @@ class Modal extends React.Component {
     let showModal = this.props.show ? 'block' : 'none';
     let invalid = null;
     if (!this.state.validated && this.state.submitAttempted) {
-      invalid = <h3 className='red'>Incomplete Fields!</h3>;
+      invalid = <h2>You must enter the following:</h2>;
     }
     if (this.state.validated && this.state.submitAttempted) {
       return (
@@ -335,10 +335,6 @@ const StyledModal = styled.div`
     border-width: 1px;
     width: 100%;
   }
-  input[type='radio'] {
-    cursor: pointer;
-  }
-
   textarea {
     font-family: 'HM Sans Regular', 'ヒラギノ角ゴ Pro W3',
       'Hiragino Kaku Gothic Pro', Osaka, メイリオ, Meiryo, 'ＭＳ Ｐゴシック',
@@ -351,10 +347,6 @@ const StyledModal = styled.div`
   textarea::-webkit-input-placeholder {
     color: rgb(100, 100, 100);
     font-style: italic;
-  }
-
-  .red {
-    color: red;
   }
 `;
 

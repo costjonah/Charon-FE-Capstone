@@ -89,7 +89,7 @@ class App extends React.Component {
           products={this.state.productInfo}
           productId={this.state.productId}
         />
-        <ProductList />
+        <ProductList selectProduct={this.selectProduct}/>
         <h1 id='QandAheader'>Questions And Answers</h1>
         <div className='QuestionAndAnswerBody'>
           <QuestionsList

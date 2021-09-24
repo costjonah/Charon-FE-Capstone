@@ -7,6 +7,17 @@ const StyleSelector = (props) => {
   if (props.styles.product_id !== undefined) {
     return (
       <div className="styleselectormain">
+        <div id="modalArrRight">
+          <p>
+            {" "}
+            <FontAwesomeIcon
+              icon={faArrowRight}
+              id="modalrightarrow"
+              title="Next"
+              onClick={(e) => props.rightClick(e)}
+            />
+          </p>
+        </div>
         <ul id="styleul">
           <h4 id="currentstylename"> Style > {props.currentStyle.name} </h4>
           <h3 className="fav">
@@ -15,21 +26,17 @@ const StyleSelector = (props) => {
           {props.styles.results.map((style, index) => {
             return (
               <li
-                className="styleli"
+                id="styleli"
                 key={style.style_id}
                 name={style.name}
-                id={style.style_id}
                 onClick={(e) => props.styleClick(style, index, e)}
               >
-                <div key={style.style_id} id="checkdiv">
+                <div id="checkdiv">
                   <input
-                    key={style.style_id}
-                    className="checkMarked"
+                    className="checked"
                     type="radio"
                     id={"radio" + index}
                     name="checkbox"
-                    onChange={(e) => props.styleChange(e)}
-                    checked={props.selected === style.style_id}
                   />
                   <label htmlFor={"radio" + index}></label>
                 </div>
@@ -39,7 +46,7 @@ const StyleSelector = (props) => {
                     src={style.photos[0].thumbnail_url}
                     alt="new"
                     title={style.name}
-                    id={style.style_id}
+                    id={"imglist" + index}
                   />
                 </div>
               </li>
