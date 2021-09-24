@@ -166,18 +166,23 @@ class ReviewsWidget extends React.Component {
     let displayReviews = this.state.modifiedReviews;
     let notFound = <span>Search terms not found!</span>;
     if (this.state.searchedReviews.length > 0) {
-      displayReviews = this.state.searchedReviews.sort(
+      let sortedReviews = this.state.searchedReviews.sort(
         ReviewsWidget.sortFunctions['Points']
       );
+      displayReviews = this.filterReviews(sortedReviews);
       notFound = null;
+    } else {
+      let sortedReviews = this.state.modifiedReviews.sort(
+        ReviewsWidget.sortFunctions[this.state.sortOption]
+      );
+      displayReviews = this.filterReviews(sortedReviews);
     }
     let shownReviews = displayReviews.slice(0, this.state.showCount);
 
     return (
       <StyledWidget className='row' name='Reviews Widget' id={'reviewsection'}>
-        <div className='column'>
+        <div className='column breakdownColumn'>
           <RatingsBreakdown
-            id='breakdown'
             name='Breakdown'
             ratings={this.state.ratings}
             filterBy={this.filterBy}
@@ -190,7 +195,7 @@ class ReviewsWidget extends React.Component {
             characteristics={this.state.characteristics}
           />
         </div>
-        <div id='column' className='column'>
+        <div id='column' className='column reviewListColumn'>
           <Search
             reviews={this.state.modifiedReviews}
             updateSearch={this.updateSearch}
@@ -208,7 +213,6 @@ class ReviewsWidget extends React.Component {
           />
           <div className='row'>
             <MoreReviewsButton
-              className='moreReviews'
               showMore={this.showMoreReviews}
               showCount={this.state.showCount}
               reviews={this.state.modifiedReviews}
@@ -245,7 +249,7 @@ const StyledWidget = styled.div`
 
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: flex-start;
 
   .column {
@@ -257,34 +261,42 @@ const StyledWidget = styled.div`
     flex-direction: row;
     justify-content: space-evenly;
   }
+  .breakdownColumn {
+    width: 30%;
+  }
+  .reviewListColumn {
+    width 60%;
+  }
   .link {
     color: dimgrey;
     cursor: pointer;
   }
   .link:hover {
-    color: rgb(34, 34, 34);
+    color: #6e85b2;
   }
   .large {
     font-size: 150%;
   }
-  #breakdown {
-    width: 30%;
-  }
-  #column {
-    width: 50%;
-  }
   button {
     cursor: pointer;
-    background-color: rgb(34, 34, 34);
+    background-color: #261c2c;
     border: none;
     color: #faf9f8;
     border-radius: 3.5px;
-    height: 25px;
+    height: 35px;
     margin: 5px 0;
   }
   .reviewListButton {
     margin-right: 10px;
+    width: 50%;
   }
+  .addReview {
+    width: 100%;
+  }
+
+  margin-left: auto;
+  margin-right: auto;
+  width: 1150px;
 `;
 
 export default ReviewsWidget;

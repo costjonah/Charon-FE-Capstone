@@ -90,8 +90,8 @@ class App extends React.Component {
           productId={this.state.productId}
         />
         <ProductList />
-        <h1>Questions And Answers</h1>
-        <div className="QuestionAndAnswerBody">
+        <h1 id='QandAheader'>Questions And Answers</h1>
+        <div className='QuestionAndAnswerBody'>
           <QuestionsList
             currentProduct={this.state.productId}
             productName={this.state.productName}

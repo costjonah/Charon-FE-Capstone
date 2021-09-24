@@ -21,7 +21,7 @@ class AddReview extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className='addReview'>
         <StyledContainer>
           <StyledCover showing={this.state.show}>
             <Modal
@@ -32,7 +32,7 @@ class AddReview extends React.Component {
               characteristics={this.props.characteristics}
             />
           </StyledCover>
-          <button type='button' onClick={this.showModal}>
+          <button className='addReview' type='button' onClick={this.showModal}>
             Add a Review
           </button>
         </StyledContainer>

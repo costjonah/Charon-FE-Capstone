@@ -219,38 +219,55 @@ class Modal extends React.Component {
 
     return (
       <StyledModal show={showModal}>
-        <h1>Write Your Review</h1>
-        <h2>About the {this.props.product.name}</h2>
-        {invalid}
-        <form onSubmit={this.handleSubmit}>
-          <OverallRating
-            handleChange={this.changeRating}
-            selected={this.state.overallRating}
-          />
-          <Recommended handleChange={this.changeRecommended} />
-          <Characteristics
-            characteristics={this.props.characteristics}
-            handleChange={this.changeCharacteristic}
-            selections={this.state.selectedCharacteristics}
-          />
-          <Summary
-            summary={this.state.summary}
-            handleChange={this.changeSummary}
-          />
-          <Body body={this.state.body} handleChange={this.changeBody} />
-          <Photos />
-          <Nickname
-            nickname={this.state.nickname}
-            handleChange={this.changeNickname}
-          />
-          <Email email={this.state.email} handleChange={this.changeEmail} />
-          <button type='submit' value='Submit'>
-            Submit
+        <div className='headRow modalHead'>
+          <div>
+            <h1 className='modalHeadText'>Write Your Review</h1>
+          </div>
+          <button
+            className='modalButton headButton'
+            type='button'
+            onClick={this.handleClose}
+          >
+            ✖
           </button>
-        </form>
-        <button type='button' onClick={this.handleClose}>
-          Close
-        </button>
+        </div>
+        <div className='modalBody'>
+          <h2>About the {this.props.product.name}</h2>
+          {invalid}
+          <form onSubmit={this.handleSubmit}>
+            <OverallRating
+              handleChange={this.changeRating}
+              selected={this.state.overallRating}
+            />
+            <Recommended handleChange={this.changeRecommended} />
+            <Characteristics
+              characteristics={this.props.characteristics}
+              handleChange={this.changeCharacteristic}
+              selections={this.state.selectedCharacteristics}
+            />
+            <Summary
+              summary={this.state.summary}
+              handleChange={this.changeSummary}
+            />
+            <Body body={this.state.body} handleChange={this.changeBody} />
+            <Photos />
+            <Nickname
+              nickname={this.state.nickname}
+              handleChange={this.changeNickname}
+            />
+            <Email email={this.state.email} handleChange={this.changeEmail} />
+            <button className='modalButton' type='submit' value='Submit'>
+              Submit
+            </button>
+          </form>
+          <button
+            className='modalButton'
+            type='button'
+            onClick={this.handleClose}
+          >
+            Close
+          </button>
+        </div>
       </StyledModal>
     );
   }
@@ -259,29 +276,55 @@ class Modal extends React.Component {
 const StyledModal = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
 
-  background: lightgrey;
-  background-color: lightgrey;
+  background: white;
+  background-color: white;
   height: auto;
-  max-height: 90%;
-  width: 50%;
+  max-height: 60%;
   max-width: 100%;
-  overflow-y: auto;
-  padding: 1% 3%;
   position: fixed;
+  overflow-y: auto;
+  overflow-x: hidden;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   z-index: 1010;
   display: ${(props) => props.show};
-  border-radius: 5px;
+  border-radius: 8px;
 
   div {
-    margin: 5px;
+    margin: 10px 5px;
+  }
+
+  .modalButton {
+    width: 100%;
+  }
+  .modalHead {
+    margin: 0;
+    background-color: #3e2c41;
+    width: 100%;
+    color: white;
+  }
+  .headRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .modalHeadText {
+    margin: 10px;
+  }
+  .headButton {
+    width: 5%;
+  }
+  .modalBody {
+    padding: 3% 5%;
   }
 
   .subText {
     size: small;
+    font-size: small;
     color: rgb(100, 100, 100);
     font-style: italic;
   }
@@ -290,6 +333,7 @@ const StyledModal = styled.div`
     border-radius: 3px;
     border-style: solid;
     border-width: 1px;
+    width: 100%;
   }
   input[type='radio'] {
     cursor: pointer;
@@ -302,6 +346,7 @@ const StyledModal = styled.div`
     border-radius: 5px;
     border-style: solid;
     border-width: 1px;
+    width: 100%;
   }
   textarea::-webkit-input-placeholder {
     color: rgb(100, 100, 100);

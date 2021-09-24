@@ -41,7 +41,7 @@ const Star = styled.span`
   -webkit-text-fill-color: ${(props) =>
     props.filled ? 'black' : 'transparent'};
   -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: black;
+  -webkit-text-stroke-color: #3e2c41;
 
   :hover {
     -webkit-text-fill-color: rgb(100, 100, 100);
