@@ -95,6 +95,7 @@ const StyledSearch = styled.input`
   height: 30px;
   width: 100%;
   border: 1px solid;
+  border-color: lightgrey;
   border-radius: 5px;
   margin: 10px 0;
 `;
