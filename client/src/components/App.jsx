@@ -55,7 +55,6 @@ class App extends React.Component {
   }
 
   onSearchEnter = (e) => {
-    console.log(e.target.value);
     let infoArray = [];
     axios
       .get("/products?page=1&count=10")

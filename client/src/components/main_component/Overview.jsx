@@ -120,7 +120,7 @@ class Overview extends React.Component {
   // pulls review data from current product && set sets state
   getReviewData = (id) => {
     axios
-      .get(`/reviews?product_id=${id}`)
+      .get(`/reviews?product_id=${id || 37311}&count=100`)
       .then((reviewData) => {
         this.setState({
           productReview: reviewData.data.results,
