@@ -79,7 +79,7 @@ class ReviewsWidget extends React.Component {
   }
 
   submit(data) {
-    // console.log('Submitted', data);
+    console.log('Submitted', data);
     axios({
       method: 'post',
       url: '/reviews',

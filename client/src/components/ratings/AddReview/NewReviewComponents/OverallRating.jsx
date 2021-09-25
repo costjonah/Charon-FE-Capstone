@@ -1,32 +1,21 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components'
 
-const OverallRating = ({ selected, handleChange, valid }) => {
+const OverallRating = ({ selected, handleChange }) => {
   let meanings = ['Poor', 'Fair', 'Average', 'Good', 'Great'];
   let meaning = null;
   meaning = <span>{meanings[selected - 1]}</span>;
 
   return (
-    <div>
-      <span>Overall Rating: </span>
-      <span>
-        {meanings.map((meaning, index) => {
-          return (
-            <StarContainer key={index}>
-              <Star filled={index + 1 <= selected}>★ </Star>
-              <input
-                type='checkbox'
-                value={index + 1}
-                name={`rating${index + 1}`}
-                checked={index + 1 <= selected}
-                onChange={handleChange}
-                className='ratingStars'
-              />
-            </StarContainer>
-          );
-        })}
-      </span>
-      <span> {meaning}</span>
+    <div onChange={handleChange}>
+      <label>
+        <span>Overall Rating: </span>
+        <input type='radio' value={1} name='rating' />
+        <input type='radio' value={2} name='rating' />
+        <input type='radio' value={3} name='rating' />
+        <input type='radio' value={4} name='rating' />
+        <input type='radio' value={5} name='rating' /> {meaning}
+      </label>
     </div>
   );
 };

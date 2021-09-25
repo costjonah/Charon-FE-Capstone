@@ -1,7 +1,5 @@
 import React from "react";
 import Photo from "./Photo.jsx";
-import PhotoModal from './PhotoModal.jsx'
-
 
 const AnswerModal = (props) => {
   return (
@@ -31,14 +29,10 @@ const AnswerModal = (props) => {
           <Photo
             photos={props.photos}
             handlePhotoChange={props.handlePhotoChange}
-            showPhotoModal={props.showPhotoModal}
-            photoclicked={props.photoclicked}
-            photo={props.photo}
           />
         ) : (
-          props.photos.map((photo, index) => <img key={index} className="AnswerImg" src={photo} onClick={props.showPhotoModal}/>)
+          props.photos.map((photo, index) => <img key={index} className="AnswerImg" src={photo} onClick={() => console.log('hello')}/>)
         )}
-        {props.photoclicked === true ? <PhotoModal photo={props.photo} closePhotoModal={props.closePhotoModal}/> : <></>}
         <br />
         <button className='QandAbutton' type="button" onClick={props.handleSubmit}>
           Submit Answer

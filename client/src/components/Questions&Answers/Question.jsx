@@ -18,6 +18,7 @@ const Question = (props) => {
       }
       <span className='HelpfulCounter'>({props.question.question_helpfulness})</span>
       <span className='Divider'>&nbsp; | &nbsp;</span>
+      {/* <span> Add Answer </span> */}
       <AddAnswer productName={props.productName} question_body={props.question.question_body}
       question_id={props.question.question_id} getAllQuestions={props.getAllQuestions}/>
       <span className='Divider'>&nbsp; | &nbsp;</span>

@@ -46,16 +46,20 @@ const StyledContainer = styled.div`
   height: 100%;
 `;
 const StyledCover = styled.div`
-  position: fixed;
+  background: darkgrey;
+  max-height: 100%;
+  max-width: 100%;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   z-index: 1000;
-  pointer-events: ${(props) => (props.showing ? 'auto' : 'none')};
 
   background-color: ${(props) =>
-    props.showing ? 'rgba(0, 0, 0, 0.8)' : 'transparent'};
+    props.showing ? 'rgba(0, 0, 0, 0.5)' : 'transparent'};
+
+  background-color: transparent;
 `;
 
 export default AddReview;

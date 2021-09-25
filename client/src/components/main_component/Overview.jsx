@@ -25,10 +25,6 @@ class Overview extends React.Component {
       allStyles: [],
       currentStyle: {},
       productReview: [],
-      allPhotos: [],
-      allUrls: [],
-      allThumbUrls: [],
-      selected: "",
       average: 0,
       idx: 0,
       height: 0,
@@ -57,8 +53,7 @@ class Overview extends React.Component {
     this.thumbnailOnClick = this.thumbnailOnClick.bind(this);
     this.closeModalClick = this.closeModalClick.bind(this);
     this.addToCartPost = this.addToCartPost.bind(this);
-    this.getPhotosUrl = this.getPhotosUrl.bind(this);
-    this.handleStyleChange = this.handleStyleChange.bind(this);
+    this.modalGalleryClick = this.modalGalleryClick.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -69,15 +64,15 @@ class Overview extends React.Component {
   }
 
   addToCartPost = (e) => {
-    let skuId;
-    let skuPost;
+    var skuId;
+    var skuPost;
     // create object with current sz/qty state
-    const shoppingData = {
+    var shoppingData = {
       size: this.state.selectedSizeOption,
       quantity: this.state.selectedQtyOption,
     };
     // iterate through all skus
-    for (let key in this.state.styleSkus) {
+    for (var key in this.state.styleSkus) {
       // compare to find corresponding sku to POST
       if (this.state.styleSkus[key].size === shoppingData.size) {
         skuPost = {
@@ -105,18 +100,17 @@ class Overview extends React.Component {
           allStyles: styleData.data.results,
         });
         // iterate to find the default style and use respective data to update state
-        for (let i = 0; i < this.state.styles.results.length; i++) {
+        for (var i = 0; i < this.state.styles.results.length; i++) {
           if (this.state.styles.results[i]["default?"] === true) {
             this.setState({
               currentStyle: this.state.styles.results[i],
               styleSkus: this.state.styles.results[i].skus,
-              allPhotos: this.state.styles.results[i].photos,
-              selected: this.state.styles.results[i].style_id,
-              currentRadio: true,
             });
           }
         }
-        this.getPhotosUrl();
+        // make default style "checked" upon load
+        var defaultCheck = document.querySelector("#radio0");
+        defaultCheck.style.visibility = "visible";
       })
       .catch((err) => {
         console.log(err);
@@ -139,22 +133,6 @@ class Overview extends React.Component {
       });
   };
 
-  getPhotosUrl = () => {
-    let tempThumb = [];
-    let tempUrl = [];
-    this.state.allPhotos.forEach((x) => {
-      tempThumb.push(x.thumbnail_url);
-      tempUrl.push(x);
-    });
-    this.setState(
-      {
-        allThumbUrls: tempThumb,
-        allUrls: tempUrl,
-      },
-      () => {}
-    );
-  };
-
   showModalClick = (e) => {
     this.setState({
       modal: true,
@@ -169,93 +147,109 @@ class Overview extends React.Component {
     }
   };
 
-  styleOnClick = (selection, index, e) => {
-    e.preventDefault();
-    // update style based on event target
-    this.setState(
-      {
-        currentStyle: selection,
-        allPhotos: selection.photos,
-        selected: Number(e.target.id),
-      },
-      () => {
-        this.getPhotosUrl();
+
+  // repeated logic of this.thumbnailOnClick *TEMP FIX* (prevents call stack overflow)
+  modalGalleryClick = (index, e) => {
+    // prevent furthering of bubbling && capturing
+    e.stopPropagation();
+    var recurse = (target) => {
+      // assignments for ul, li, and li > div
+      var ul = document.querySelector(".modalgalthumbs");
+      var children = document.querySelectorAll(".modalthumbnails");
+      var modalCaro = document.querySelectorAll("#modalthumbcaro");
+      // assignment for first Id
+      var currentId = modalCaro[0].lastChild.id;
+      // base case - if event target id matches first Id
+      if (target === currentId) {
+        return;
       }
-    );
+      // otherwise - recursive case
+      if (target !== currentId) {
+        // slice first element of node list
+        var el = Array.prototype.slice.call(children, 0, 1);
+        // add to end of the list
+        ul.appendChild(el.shift());
+        // parse index from dynamically generated img id && update state
+        var idxState = Number(target.split("img")[1]);
+        this.setState({
+          idx: idxState,
+        });
+      }
+      recurse(target);
+    };
+    // inner func invocation
+    recurse(e.target.id);
   };
 
-  handleStyleChange = (e) => {
+   styleOnClick = (selection, index, e) => {
+    e.preventDefault();
+    // update style based on event target
     this.setState({
       selected: Number(e.target.id),
     });
   };
 
-  // recursive click event for thumbnails -- works for moderate amount of image files
-  // time complexity wise -- safe to assume wont scale for bigN
+  // original click event for thumbnails - logic duplicated in this.modalGalleryClick
   thumbnailOnClick = (index, e) => {
-    e.stopPropagation();
-    e.preventDefault();
-    const recurse = (target, children) => {
-      children = children || this.state.allUrls.slice();
-      let currentSrc = children[0].thumbnail_url;
-      if (target.src === currentSrc) {
-        this.setState(
-          {
-            allUrls: children,
-          },
-          () => {}
-        );
+    e.preventDefault()
+    var recurse = (target) => {
+      var ul = document.querySelector(".galthumbs");
+      var children = document.querySelectorAll(".thumbnails");
+      var caroDiv = document.querySelectorAll("#thumbcaro");
+      var currentId = caroDiv[0].lastChild.id;
+      if (target === currentId) {
         return;
       }
-      if (target.src !== currentSrc) {
-        let el = children.shift();
-        children.push(el);
-        children = children.flat();
-        children.forEach((x) => {
-          if (x.thumbnail_url === target.src) {
-            let imgIndex = children.indexOf(x);
-            this.setState(
-              {
-                idx: imgIndex,
-              },
-              () => {}
-            );
-          }
+      if (target !== currentId) {
+        var el = Array.prototype.slice.call(children, 0, 1);
+        ul.appendChild(el.shift());
+        var indexState = Number(target.split("img")[1]);
+        this.setState({
+          idx: indexState,
         });
-        recurse(target, children);
       }
+      recurse(target);
     };
-    recurse(e.target);
+    recurse(e.target.id);
   };
 
   // updates index of current photo using ticker algorithm
   upArrowOnClick = (e) => {
-    let children = this.state.allUrls.slice();
-    let lastEl = children.pop();
-    children.unshift(lastEl);
-    children = children.flat();
+    var children = document.querySelectorAll(".thumbnails");
+    var lastEl = Array.prototype.slice.call(children, 0, children.length - 1);
+    var ul = document.querySelector(".galthumbs");
+    // original logic to add to end of list - TO-DO: refactor
+    while (lastEl.length > 0) {
+      ul.appendChild(lastEl.shift());
+    }
     // index state tracker, updates MainImage && ImgModal -- cycles through array
     let idx = this.state.idx;
     if (idx == 0) {
-      this.setState({
-        allUrls: children,
-      });
+      idx = this.state.currentStyle.photos.length - 1;
+    } else {
+      idx--;
     }
+    this.setState({
+      idx,
+    });
   };
 
   // reverse logic of this.upArrowOnClick
   downArrowOnClick = (e) => {
-    let children = this.state.allUrls.slice();
-    let firstEl = children.shift();
-    children.push(firstEl);
-    children = children.flat();
+    var children = document.querySelectorAll(".thumbnails");
+    var firstEl = Array.prototype.slice.call(children, 0, 1);
+    var ul = document.querySelector(".galthumbs");
+    while (firstEl.length > 0) {
+      ul.appendChild(firstEl.shift());
+    }
     let idx = this.state.idx;
     if (idx == this.state.currentStyle.photos.length - 1) {
       idx = 0;
+    } else {
+      idx++;
     }
     this.setState({
       idx,
-      allUrls: children,
     });
   };
 
@@ -271,8 +265,8 @@ class Overview extends React.Component {
   };
 
   getAverage = (array) => {
-    let sum = 0;
-    for (let i = 0; i < array.length; i++) {
+    var sum = 0;
+    for (var i = 0; i < array.length; i++) {
       sum += array[i];
     }
     return sum / array.length;
@@ -294,33 +288,27 @@ class Overview extends React.Component {
       <div className="overviewmain" onClick={(e) => this.closeModalClick(e)}>
         <MainImage
           currentStyle={this.state.currentStyle}
+          zoom={this.state.toggleZoom}
           leftClick={this.leftArrowOnClick}
           rightClick={this.rightArrowOnClick}
           toggleModal={this.showModalClick}
           idxTicker={this.state.idx}
           height={this.state.height}
           width={this.state.width}
-          photoLinks={this.state.allUrls}
         />
         <ImgModal
           currentStyle={this.state.currentStyle}
           upClick={this.upArrowOnClick}
           downClick={this.downArrowOnClick}
-          leftClick={this.leftArrowOnClick}
-          rightClick={this.rightArrowOnClick}
           galleryClick={this.modalGalleryClick}
           modalState={this.state.modal}
           idxTicker={this.state.idx}
-          thumbnailClick={this.thumbnailOnClick}
-          photoLinks={this.state.allThumbUrls}
-          thumbLinks={this.state.allUrls}
         />
         <Gallery
           currentStyle={this.state.currentStyle}
           upClick={this.upArrowOnClick}
           downClick={this.downArrowOnClick}
           thumbnailClick={this.thumbnailOnClick}
-          thumbLinks={this.state.allUrls}
         />
         <ProductInfo
           products={this.props.products}
@@ -340,8 +328,6 @@ class Overview extends React.Component {
           zoom={this.state.toggleZoom}
           zoomClick={this.zoomOnClick}
           rightClick={this.rightArrowOnClick}
-          selected={this.state.selected}
-          styleChange={this.handleStyleChange}
         />
         <SizeSelector
           styleSkus={this.state.styleSkus}
