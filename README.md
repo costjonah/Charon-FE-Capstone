@@ -7,7 +7,7 @@ To check out this project:
 
 Start by cloning the repo into your computer in the terminal:
 
-`<$git clone https://github.com/RFE5-FEC/Charon-FE-Capstone.git>`
+`$git clone https://github.com/RFE5-FEC/Charon-FE-Capstone.git`
 
 ## Features
 The four main features of this repo are as follows:
@@ -20,15 +20,15 @@ The four main features of this repo are as follows:
 
 First install dependencies used in the project:
 
-`<npm install or npm i>`
+`npm install or npm i`
 
 Run webpack using:
 
-`<npm run watch>`
+`npm run watch`
 
 Run server using:
 
-`<npm run start>`
+`npm run start`
 
 To open the page in your browser go to:
 
