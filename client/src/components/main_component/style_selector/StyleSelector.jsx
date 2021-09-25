@@ -37,7 +37,7 @@ const StyleSelector = (props) => {
                   <img
                     className="imglist"
                     src={style.photos[0].thumbnail_url}
-                    alt="new"
+                    alt={style.name}
                     title={style.name}
                     id={style.style_id}
                   />

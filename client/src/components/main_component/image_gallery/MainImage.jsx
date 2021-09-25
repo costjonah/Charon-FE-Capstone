@@ -38,7 +38,7 @@ const MainView = (props) => {
           <div className="defaultview">
             <img
               src={props.photoLinks[props.idxTicker].url}
-              alt="new"
+              alt={props.currentStyle.name}
               className="mainimg"
               title={props.currentStyle.name}
               onClick={(e) => props.toggleModal(e)}

@@ -27,7 +27,7 @@ const Gallery = (props) => {
                     <div className="thumbcaro">
                       <img
                         src={pic.thumbnail_url}
-                        alt="new"
+                        alt={"img" + index}
                         id={"img" + index}
                         className="galleryimg"
                         title={"Style " + (index + 1)}
