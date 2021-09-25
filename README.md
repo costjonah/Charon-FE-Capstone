@@ -5,9 +5,9 @@ This repo consists of a client side application that resembles a basic clothing 
 
 To check out this project:
 
-Start by cloning the repo into your computer in the terminal. You may do it in a new folder.
+Start by cloning the repo into your computer in the terminal:
 
-git clone https://github.com/RFE5-FEC/Charon-FE-Capstone.git
+`<$git clone https://github.com/RFE5-FEC/Charon-FE-Capstone.git>`
 
 ## Features
 The four main features of this repo are as follows:
