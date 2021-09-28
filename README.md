@@ -22,6 +22,11 @@ The four main features of this repo are as follows:
 ## Product Overview Demo · https://player.vimeo.com/video/617113569
 <img width="1376" alt="FECoverview" src="https://user-images.githubusercontent.com/72520699/135125958-c2f72cec-c398-415b-b9b0-9e7600754d47.png">
 
+## Related Items & Products Demo · coming soon..
+
+## Questions & Answers Demo · coming soon..
+
+## Ratings & Reviews Demo · coming soon..
 
 ## Usage
 
