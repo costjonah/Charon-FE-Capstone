@@ -19,7 +19,7 @@ The four main features of this repo are as follows:
 ## Product Overview Demo
 <img width="1376" alt="FECoverview" src="https://user-images.githubusercontent.com/72520699/135125958-c2f72cec-c398-415b-b9b0-9e7600754d47.png">
 https://player.vimeo.com/video/617113569?h=509542fcb3&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479
-
+<iframe src="https://player.vimeo.com/video/617113569" width="640" height="564" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
 ## Usage
 
 First install dependencies used in the project:
