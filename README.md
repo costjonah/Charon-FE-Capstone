@@ -7,7 +7,7 @@ The current link to this application's AWS EC2 instance is http://3.86.113.169/
 This was a project done in a group of 4 while enrolled at Hack Reactor. The team objective was to deliver a fully functional web application that meets the specifications and requirements outlined by project stakeholders. The initial release focused on providing the minimum viable product for the retail application. A pre-existing API for all product data was provided to team members to integrate with their front end.
 
 ## Features
-The four main features of this repo are as follows:
+This repo's four main features and their authors are as follows:
 * Product Overview · Jonah Cost
 * Related Items and Comparisons · David Du
 * Questions and Answers · James Tsui
