@@ -17,7 +17,7 @@ The four main features of this repo are as follows:
 * Ratings and Reviews · Chris Chung
 
 ## Product Overview Demo
-![ProductOverview](https://vimeo.com/617113569)
+![ProductOverview(https://vimeo.com/617113569)](https://vimeo.com/617113569)
 
 
 ## Usage
