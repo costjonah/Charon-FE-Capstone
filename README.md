@@ -4,13 +4,7 @@
 The current link to this application's AWS EC2 instance is http://3.86.113.169/
 
 ## Overview
-This repo consists of a client side application that resembles a basic clothing e-commerce website. The project was developed by four students, focusing mainly on the project overview, the related products, outfits for the user, a ratings and reviews section, and questions and answer section 
-
-To check out this project:
-
-Start by cloning the repo into your computer in the terminal:
-
-`$git clone https://github.com/RFE5-FEC/Charon-FE-Capstone.git`
+This was a project done in a group of 4 while enrolled at Hack Reactor. The team objective was to deliver a fully functional web application that meets the specifications and requirements outlined by project stakeholders. The initial release focused on providing the minimum viable product for the retail application. A pre-existing API for all product data was provided to team members to integrate with their front end.
 
 ## Features
 The four main features of this repo are as follows:
@@ -30,6 +24,12 @@ The four main features of this repo are as follows:
 
 ## Ratings & Reviews Demo · coming soon..
 <img width="1647" alt="Screen Shot 2021-09-28 at 1 06 24 PM" src="https://user-images.githubusercontent.com/72520699/135133163-0a4e0bb2-b0c6-4820-93a7-1b46ed08357c.png">
+
+## To check out this project:
+
+Start by cloning the repo into your computer in the terminal:
+
+`$ git clone https://github.com/RFE5-FEC/Charon-FE-Capstone.git`
 
 ## Usage
 
