@@ -11,10 +11,14 @@ Start by cloning the repo into your computer in the terminal:
 
 ## Features
 The four main features of this repo are as follows:
-* Overview
-* Related Items and Comparisons
-* Questions and Answers
-* Ratings and Reviews
+* Product Overview · Jonah Cost
+* Related Items and Comparisons · David Du
+* Questions and Answers · James Tsui
+* Ratings and Reviews · Chris Chung
+
+## Product Overview Demo
+![ProductOverview](https://vimeo.com/617113569)
+
 
 ## Usage
 
