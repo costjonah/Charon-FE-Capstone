@@ -13,7 +13,7 @@ This repo's four main features and their authors are as follows:
 * Questions and Answers · James Tsui
 * Ratings and Reviews · Chris Chung
 
-## Product Overview · Demo https://player.vimeo.com/video/617113569
+## Product Overview · https://player.vimeo.com/video/617113569
 <img width="1376" alt="FECoverview" src="https://user-images.githubusercontent.com/72520699/135125958-c2f72cec-c398-415b-b9b0-9e7600754d47.png">
 
 ## Related Items & Products · Demo coming soon..
