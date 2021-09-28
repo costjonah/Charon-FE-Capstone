@@ -115,9 +115,9 @@ class AddAnswer extends React.Component {
     } else {
       this.setState({emailerror: ''})
     }
-    console.log(this.state.validanswer)
-    console.log(this.state.validnickname)
-    console.log(this.state.validemail)
+    // console.log(this.state.validanswer)
+    // console.log(this.state.validnickname)
+    // console.log(this.state.validemail)
     if (this.state.validanswer === true && this.state.validemail === true && this.state.validnickname === true){
       let data = {
         body: this.state.answer,

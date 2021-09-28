@@ -6,7 +6,7 @@ import Overview from "../components/main_component/Overview.jsx";
 import ProductList from "../components/RelatedProducts/ProductList";
 import QuestionsList from "../components/Questions&Answers/QuestionsList.jsx";
 import ReviewsWidget from "../components/ratings/ReviewsWidget.jsx";
-import TEMPPRODUCTS from "./TEMPPRODUCTS.jsx";
+import Footer from "../components/common/Footer.jsx";
 
 class App extends React.Component {
   constructor(props) {
@@ -97,6 +97,7 @@ class App extends React.Component {
           />
         </div>
         <ReviewsWidget product={this.state.currentProduct} />
+        <Footer />
       </div>
     );
   }

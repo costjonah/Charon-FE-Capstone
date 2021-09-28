@@ -1,5 +1,5 @@
 const CompressionPlugin = require('compression-webpack-plugin');
-const BrotliPlugin = require('brotli-webpack-plugin'); //brotli
+const BrotliPlugin = require('brotli-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const path = require('path');
 
@@ -20,7 +20,7 @@ module.exports = {
       threshold: 8192,
       minRatio: 0.8
       }),
-      new BrotliPlugin({ //brotli plugin
+      new BrotliPlugin({
         asset: '[path].br[query]',
         test: /\.(js|css|html|svg)$/,
         threshold: 10240,
@@ -49,8 +49,8 @@ module.exports = {
           {
             loader: 'image-webpack-loader',
             options: {
-              bypassOnDebug: true, // webpack@1.x
-              disable: true, // webpack@2.x and newer
+              bypassOnDebug: true,
+              disable: true,
             },
           },
         ],
