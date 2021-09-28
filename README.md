@@ -1,23 +1,37 @@
 # Charon-FE-Capstone
 
-
-This repo consists of building a client side application that resembles a  basic clothing e-commerce website. The project was developed by 4 students, focusing mainly on the project overview, the related products, outfits for the user, a ratings and reviews section, and questions and answer section 
+## Overview
+This repo consists of a client side application that resembles a basic clothing e-commerce website. The project was developed by four students, focusing mainly on the project overview, the related products, outfits for the user, a ratings and reviews section, and questions and answer section 
 
 To check out this project:
 
-Start by cloning the repo into your computer in the terminal. You may do it in a new folder.
+Start by cloning the repo into your computer in the terminal:
 
-git clone https://github.com/RFE5-FEC/Charon-FE-Capstone.git
+`$git clone https://github.com/RFE5-FEC/Charon-FE-Capstone.git`
 
+## Features
+The four main features of this repo are as follows:
+* Overview
+* Related Items and Comparisons
+* Questions and Answers
+* Ratings and Reviews
+
+## Usage
 
 First install dependencies used in the project:
 
-npm install or npm i 
+`npm install or npm i`
 
-To run webpack by using (open in another terminal):
+Run webpack using:
 
-npm run watch 
+`npm run watch`
 
-To open it with your  browser:
+Run server using:
+
+`npm run start`
+
+To open the page in your browser go to:
 
 localhost:3000
+
+## Links
