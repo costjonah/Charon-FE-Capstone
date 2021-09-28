@@ -36,7 +36,7 @@ class Navbar extends React.Component {
                   </a>
                 </li>
                 <li id="navli">
-                  <a href="#">
+                  <a href="https://github.com/RFE5-FEC/Charon-FE-Capstone">
                     <FontAwesomeIcon icon={faEnvelope} id="navmail" /> Contact
                   </a>
                 </li>

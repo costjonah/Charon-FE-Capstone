@@ -5,6 +5,7 @@ import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
 
 const Gallery = (props) => {
   if (Object.keys(props.currentStyle).length !== 0) {
+    const imagePath = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png';
     if (props.thumbLinks[0] !== undefined) {
       return (
         <div className="galleryviewmain">
@@ -26,7 +27,7 @@ const Gallery = (props) => {
                   <li key={index} className="thumbnails">
                     <div className="thumbcaro">
                       <img
-                        src={pic.thumbnail_url}
+                        src={pic.thumbnail_url ? pic.thumbnail_url : imagePath}
                         alt={"img" + index}
                         id={"img" + index}
                         className="galleryimg"

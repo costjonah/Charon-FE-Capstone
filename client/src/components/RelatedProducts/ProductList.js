@@ -28,7 +28,7 @@ class ProductList extends React.Component {
 
   render() {
     const handleClickProduct = (product) => {
-      console.log("productid", product.id);
+      // console.log("productid", product.id);
       this.props.selectProduct(product.id);
     };
     const handleRemoveProductFromOutfits = (product) => {

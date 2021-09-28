@@ -12,7 +12,7 @@ describe('App', () => {
   });
 
   test('App contains `The Right Fit`', () => {
-    console.log(applicationBody.debug());
+    // console.log(applicationBody.debug());
     expect(applicationBody.contains('The Right Fit')).toBe(true);
   });
 

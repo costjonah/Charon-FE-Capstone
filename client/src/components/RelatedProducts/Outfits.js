@@ -5,7 +5,7 @@ class Outfits extends React.Component {
     super();
   }
   render() {
-    console.log(this.props.outfitProducts);
+    // console.log(this.props.outfitProducts);
     const renderOutFitProducts = () => {
       if (
         !Array.isArray(this.props.outfitProducts) ||

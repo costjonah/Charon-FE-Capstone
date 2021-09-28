@@ -15,7 +15,7 @@ class Products extends React.Component {
     const nextBtn = document.getElementById("next-btn");
     const preBtn = document.getElementById("pre-btn");
     const cards = document.querySelectorAll(".card-container .card");
-    console.log("move is: ", move);
+    // console.log("move is: ", move);
     if (move > 0) {
       preBtn.classList.remove("hidden");
     }
@@ -23,7 +23,7 @@ class Products extends React.Component {
       nextBtn.classList.remove("hidden");
     }
     if (move === 0) {
-      console.log("hidden previous button...");
+      // console.log("hidden previous button...");
       preBtn.classList.add("hidden");
     }
     if (move + 3 === cards.length) {

@@ -5,6 +5,7 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 const StyleSelector = (props) => {
   if (props.styles.product_id !== undefined) {
+    const imagePath = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png';
     return (
       <div className="styleselectormain">
         <ul id="styleul">
@@ -36,7 +37,7 @@ const StyleSelector = (props) => {
                 <div id="crop">
                   <img
                     className="imglist"
-                    src={style.photos[0].thumbnail_url}
+                    src={style.photos[0].thumbnail_url ? style.photos[0].thumbnail_url : imagePath}
                     alt={style.name}
                     title={style.name}
                     id={style.style_id}

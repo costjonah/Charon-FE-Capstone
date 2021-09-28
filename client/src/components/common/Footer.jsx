@@ -10,7 +10,7 @@ class Footer extends React.Component {
 
   render() {
     return (
-      <div className="footerdiv">
+      <div className="footerdiv" id="contact">
         <nav className="footer footer--fixed-bottom">
           <div className="footer__inner">
             <div className="footer__items">

@@ -15,6 +15,7 @@ import { faExpandArrowsAlt } from "@fortawesome/free-solid-svg-icons";
 
 const MainView = (props) => {
   if (Object.keys(props.currentStyle).length !== 0) {
+    const imagePath = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png';
     if (props.photoLinks[0] !== undefined) {
       return (
         <div className="viewcontainer">
@@ -37,7 +38,7 @@ const MainView = (props) => {
           </div>
           <div className="defaultview">
             <img
-              src={props.photoLinks[props.idxTicker].url}
+              src={props.photoLinks[props.idxTicker].url ? props.photoLinks[props.idxTicker].url : imagePath}
               alt={props.currentStyle.name}
               className="mainimg"
               title={props.currentStyle.name}
